@@ -1,0 +1,123 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{ritsi/ritsi}
+
+\RequirePackage{iftex}
+\RequireXeTeX
+
+\RequirePackage[l2tabu, orthodox]{nag}
+
+\RequirePackage{ifdraft}
+
+\ifdraft{%
+  \PassOptionsToPackage{draft}{bookmark}%
+}{}
+
+\ProcessOptions\relax
+
+\RequirePackage{ifxetex}
+
+
+% Basic LaTeX packages
+\RequirePackage{fixltx2e}
+
+% Basic packages for XeTeX
+\RequirePackage{xltxtra}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont[AutoFakeSlant=0.3]{Play}
+\setsansfont[Scale=MatchLowercase,AutoFakeSlant=0.3]{Play}
+\setmonofont[Scale=MatchLowercase]{Andale Mono}
+\RequirePackage[protrusion=true]{microtype}
+
+\RequirePackage{polyglossia}
+\setdefaultlanguage{spanish}
+%\setotherlanguage[variant=uk]{english}
+
+% Bibliography
+%\RequirePackage[backend=biber,hyperref=true,backref=true,style=numeric-comp]{biblatex}
+%\RequirePackage{xpatch}
+%\RequirePackage[autostyle=true,spanish=spanish]{csquotes}
+
+% KOMA Script hacks
+%\AtBeginDocument{\RequirePackage{scrhack}}
+\RequirePackage{scrhack}
+
+% Common useful stuff
+\RequirePackage{underscore}
+\RequirePackage{ellipsis}
+\RequirePackage{enumitem}
+\RequirePackage{calc}
+\RequirePackage[autolanguage]{numprint}
+\RequirePackage[usenames,dvipsnames,svgnames,table,x11names]{xcolor}
+\RequirePackage{float}
+\RequirePackage{subfig}
+\RequirePackage{url}
+
+% Custom color
+\definecolor{rojoritsi}{RGB}{218,39,36}
+
+% Math
+\RequirePackage{unicode-math}
+\RequirePackage{amsmath}
+%\setmathfont[Scale=MatchLowercase]{Asana Math}
+
+\RequirePackage[a4paper,includeheadfoot,margin=2cm]{geometry}
+\RequirePackage{fancyhdr}
+\RequirePackage[pagecontinue=false]{pageslts}
+
+% Graphics
+\RequirePackage{graphicx}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.mps}
+
+% Other stuff
+%\RequirePackage[gen,right]{eurosym}
+\RequirePackage[zeros]{euro}
+\EUROSYM{EUR}{€}
+\RequirePackage{numprint}
+\RequirePackage{translator}
+\RequirePackage[detect-all,binary-units,locale=FR]{siunitx}
+
+% Table stuff
+\RequirePackage{array}
+\RequirePackage{tabularx}
+\RequirePackage{tabulary}
+\RequirePackage{multirow}
+\RequirePackage{booktabs}
+
+\addtokomafont{disposition}{\color{rojoritsi}}
+
+%\renewcommand{\familydefault}{\sfdefault}
+
+%\setlength{\headheight}{60pt}
+\setlength{\headheight}{1.95cm}
+%\setlength{\headsep}{40pt}
+\setlength{\headsep}{0.5cm}
+%\addtolength{\textheight}{-55pt}
+\addtolength{\textheight}{-0.25cm}
+\setlength{\footskip}{0.6cm}
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0pt}
+%\setlength{\parindent}{1cm}
+%\renewcommand{\arraystretch}{1.5}
+
+% Just before hyperref
+\RequirePackage[nohints]{minitoc}
+
+% Hyperref features
+\RequirePackage{varioref}
+\RequirePackage{hyperref}
+\RequirePackage{bookmark}
+\hypersetup{
+  unicode = true,
+  pdfencoding = auto,
+  pdfcreator = {XeLaTeX}
+}
+\AtBeginDocument{%
+  \hypersetup{
+    pdftitle = {\@title},
+    pdfauthor = {\@author}
+  }
+}
+
+% Packages that go after hyperref
+\RequirePackage{cleveref}
+\RequirePackage[hypcap]{caption}

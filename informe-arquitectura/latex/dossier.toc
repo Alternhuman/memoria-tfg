@@ -1,0 +1,21 @@
+\select@language {spanish}
+\select@language {spanish}
+\contentsline {section}{\numberline {1}Introducción}{2}{section.1}
+\contentsline {section}{\numberline {2}¿Qué es RITSI?}{2}{section.2}
+\contentsline {section}{\numberline {3}Origen y fundamento de RITSI}{3}{section.3}
+\contentsline {section}{\numberline {4}Universidad del País Vasco / Euskal Herriko Unibertsitatea}{3}{section.4}
+\contentsline {section}{\numberline {5}¿Qué es el Congreso Estatal RITSI?}{3}{section.5}
+\contentsline {section}{\numberline {6}Antecedentes}{4}{section.6}
+\contentsline {subsection}{\numberline {6.1}I Congreso Estatal RITSI}{4}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}II Congreso Estatal RITSI}{4}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}III Congreso Estatal RITSI}{5}{subsection.6.3}
+\contentsline {section}{\numberline {7}IV Congreso Estatal RITSI}{5}{section.7}
+\contentsline {subsection}{\numberline {7.1}Objetivos}{5}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}¿Dónde y cuándo?}{6}{subsection.7.2}
+\contentsline {subsection}{\numberline {7.3}Asistentes}{6}{subsection.7.3}
+\contentsline {section}{\numberline {8}Patrocinios y colaboración}{7}{section.8}
+\contentsline {paragraph}{\relax Patrocinio Platino}{7}{section*.8}
+\contentsline {paragraph}{\relax Patrocinio Oro}{7}{section*.9}
+\contentsline {paragraph}{\relax Colaboración}{8}{section*.11}
+\contentsline {section}{\numberline {9}Nuestra experiencia}{8}{section.9}
+\contentsline {section}{\numberline {10}Comité Organizador y contacto}{8}{section.10}

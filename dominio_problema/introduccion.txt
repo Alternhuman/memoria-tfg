@@ -1,0 +1,11 @@
+Dominio del problema
+
+La utilización de algoritmos distribuidos implica mejoras sustanciales en una gran cantidad de aplicaciones, incrementando la capacidad de computación de un sistema global mediante la unión de varios dispositivos de cómputo que trabajan de como una única unidad indivisible a la vez que mantienen un grado de independencia alto y una tolerancia a fallos aceptable. Sin embargo, el desarrollo de aplicaciones distribuidas implica el uso de un conjunto de nodos cuyo coste y mantenimiento es costoso.
+
+Si bien la mayoría de las aplicaciones en las que el paradigma de computación distribuida suelen exigir una gran capacidad de cálculo, el desarrollo de dichas aplicaciones únicamente requiere un conjunto de instancias independientes de un software (sistema operativo, contenedor de servicios...). Dicha característica implica consecuentemente que la utilización de nodos de módico precio para el diseño, análisis y evaluación de este tipo de algoritmos constituye una alternativa válida frente a sistemas de precio superior.
+
+Sumada a dicha motivación existe el potencial aprovechamiento de este sistema como herramienta didáctica para facilitar el aprendizaje de conceptos como el reparto de procesos, balance de carga, compartición de recursos, etc... en asignaturas en las que se estudian este tipo de conceptos dentro de los planes de estudio de Ingeniería Informática.
+
+A la hora de crear el sistema se realiza un análisis de las diferentes alternativas, a fin de escoger la alternativa que mejor satisfaga los objetivos definidos.
+
+Figura: Tabla de alternativas

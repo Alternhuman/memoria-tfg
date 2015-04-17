@@ -1,0 +1,19 @@
+\ProvidesPackage{ritsi/frontpage}
+
+\RequirePackage{wallpaper}
+
+\renewcommand{\maketitle}{
+\thispagestyle{empty}
+%\addtocounter{page}{-1}
+%\addtocounter{pagesLTS.arabic.1.cnt}{-1}
+   \begin{titlepage}
+      \ThisCenterWallPaper{1}{img/portada}
+      \vspace*{6cm}
+      \hspace*{67mm}
+      %\makebox[0mm][c]{\color{white}\Huge\@title \\* \large\@author}
+      \parbox{80mm}{\centering\color{white}\Huge\textbf{\@title} \\* \vspace{5mm} \emph{\LARGE\@author \@subtitle}}
+   \end{titlepage}
+   \thispagestyle{firstpage}
+   \pagenumbering{roman}
+   \pagenumbering{arabic}
+}

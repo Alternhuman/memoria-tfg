@@ -1,0 +1,10 @@
+\select@language {spanish}
+\select@language {spanish}
+\contentsline {part}{I\hspace {1em}Parte}{3}{part.1}
+\contentsline {xpart}{Parte}{5}{part.1}
+\contentsline {chapter}{\numberline {1}Capítulo}{5}{chapter.1}
+\contentsline {section}{\numberline {1.1}Sección}{5}{section.1.1}
+\contentsline {section}{\numberline {1.2}Sección 2}{5}{section.1.2}
+\contentsline {chapter}{\numberline {2}Otro capítulo}{7}{chapter.2}
+\contentsline {section}{\numberline {2.1}Preliminar}{7}{section.2.1}
+\contentsline {chapter}{\numberline {3}Fin}{9}{chapter.3}
