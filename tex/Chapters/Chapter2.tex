@@ -1,0 +1,115 @@
+\chapter{Dominio del problema}
+
+La utilización de algoritmos distribuidos implica mejoras sustanciales en una gran cantidad de aplicaciones, incrementando la capacidad de computación de un sistema global mediante la unión de varios dispositivos de cómputo que trabajan de como una única unidad indivisible a la vez que mantienen un grado de independencia alto y una tolerancia a fallos aceptable. Sin embargo, el desarrollo de aplicaciones distribuidas implica el uso de un conjunto de nodos cuyo coste y mantenimiento es costoso.
+
+Si bien la mayoría de las aplicaciones en las que el paradigma de computación distribuida introduce mejoras suelen exigir una gran capacidad de cálculo, su desarrollo únicamente requiere un conjunto de instancias independientes de un software (sistema operativo, contenedor de servicios...) con las que trabajar. Dicha característica implica consecuentemente que la utilización de nodos de módico precio para el diseño, análisis y evaluación de este tipo de algoritmos constituye una alternativa válida frente a sistemas de precio superior.
+
+Sumada a dicha motivación existe el potencial aprovechamiento de este sistema como herramienta didáctica para facilitar el aprendizaje de conceptos como el reparto de procesos, balance de carga, compartición de recursos, etc... en asignaturas en las que se estudian este tipo de conceptos dentro de los planes de estudio de Ingeniería Informática.
+
+A la hora de crear el sistema se realiza un análisis de las diferentes alternativas, a fin de escoger la alternativa que mejor satisfaga los objetivos definidos.
+
+Figura: Tabla de alternativas
+
+\section{Arquitectura del sistema}
+
+\subsection{Introducción}
+
+El presente documento recoge los diferentes aspectos a valorar en el modelado del sistema a construir teniendo en cuenta diferentes criterios que se detallarán más adelante.
+
+Este documento no tiene como objetivo establecer de forma definitiva la arquitectura y aspectos a considerar del sistema, si no que su principal uso es la elicitación de diferentes decisiones de diseño y el uso del mismo para exponer las ideas reflejadas a terceros como tutores o colaboradores.
+
+La técnica utilizada en la versión actual se basa remotamente en \cite{Toro99arequirements}, si bien la influencia de dicha publicación será mayor en posteriores versiones.
+
+\subsection{Objetivos del proyecto}
+
+Este proyecto cuenta con varios objetivos muy diferentes entre sí, que se agrupan en tres categorías:
+\begin{itemize}
+  \item Arquitectura subyacente\\
+  Definición de los componentes hardware a utilizar en el sistema, interconexión de los mismos, soluciones de alimentación eléctrica, almacenamiento\dots.
+  \item Servicios a proveer\\
+  \item Componente didáctico\\
+\end{itemize}
+
+\section{Definiciones\protect\footnote{Esta parte abarca únicamente el componente didáctico del sistema debido a que no se cuenta con ningún tipo de trasfondo para el resto de partes del dominio del problema.}}
+
+\subsection{Definición del dominio del problema}
+
+El sistema se ubica en una Facultad universitaria con aproximadamente 600 alumnos (\textbf{cita requerida}) con varias asignaturas en las que se imparten áreas de conocimiento relacionados con la Computación Distribuida, en particular las asignaturas \textbf{Arquitectura de Computadores} y \textbf{Sistemas Distribuidos} \cite{DIA15GuiaAcademica}.
+
+\subsection{Modelado del sistema actual}
+
+La Facultad cuenta con varias aulas y laboratorios informáticos donde los alumnos disponen de la intraestructura necesaria para realizar los ejercicios y prácticas asignadas. Dichos espacios permiten utilizar cualquier equipo como nodos, pues pertenecen a la misma red, siendo incluso factible la comunicación directa entre equipos situados en diferentes aulas o edificios. La conexión es relativamente rápida, contando con un cableado capaz de soportar teóricamente transferencias de hasta 100Mb/s \textit{full-duplex}. La gestión de usuarios se realiza mediante un protocolo LDAP (\textit{Lightweight Directory Access Protocol}) \cite{RFC4516-comment}, contando con un sistema de ficheros centralizado que permite acceder a la información de un usuario desde cualquier equipo, facilitando las tareas de replicación menos sofisticadas.
+
+La mayoría de las prácticas son programadas en el lenguaje \textbf{Java}, que es ya conocido por la totalidad de los estudiantes gracias a asignaturas previamente cursadas (\textbf{Cita requerida}) y que facilita el despliegue y la compatibilidad entre diferentes equipos de trabajo sustancialmente.
+
+\paragraph{Problemas conocidos}
+
+Estos son varios de los problemas identificados en los diferentes usuarios de la infraestructura:
+
+\begin{itemize}
+  \item Cada pareja de alumnos necesita tres estaciones de trabajo para poder realizar algunos de losejercicios propuestos.
+  \item El servidor LDAP constituye un ``cuello de botella'', pues todos los alumnos acceden a él de forma intensiva, provocando caídas en el mismo.
+  \item Las técnicas de programación utilizadas hasta la fecha tienen un rendimiento bajo y son en ocasiones relativamente complejas.
+\end{itemize}
+
+\subsection{Identificación de usuarios participantes}
+
+\begin{itemize}
+
+  \item Estudiantes de tercero y cuarto curso del Grado en Ingeniería Informática
+  \item Doctentes de las asignaturas Arquitectura de Computadores y Sistemas Distribuidos
+  \item Administradores del sistema
+\end{itemize}
+
+\section{Identificación de las necesidades de cada parte}
+\subsection{Necesidades de los alumnos}
+
+\begin{itemize}
+  \item Entorno de trabajo útil y sencillo.
+  \item Posibilidad de observar los resultados de las ejecuciones de forma sencilla.
+\end{itemize}
+
+\subsection{Docentes}
+
+\begin{itemize}
+  \item Entorno versátil sobre el cual puedan llevarse a cabo \textbf{todas} las prácticas y ejercicios propuestos, aportando si es posible algún tipo de ventaja sobre el sistema en uso.
+\end{itemize}
+\subsection{Administrador}
+\begin{itemize}
+  \item Sistema integrable en la intraestructura actual cuyo mantenimiento sea sencillo.
+\end{itemize}
+
+\section{Propuestas para la búsqueda de necesidades}
+
+\begin{itemize}
+  \item Encuestas o entrevistas a todas las partes.
+  \item Evaluación de la experiencia de uso en las diferentes etapas de desarrollo del sistema.
+\end{itemize}
+
+\section{Identificación de requisitos}
+
+\subsection{Requisitos de almacenamiento de la información}
+
+\begin{itemize}
+  \item Gestión de usuarios (credenciales de autenticación)
+  \item Gestión de los datos de cada usuario
+  \item \textit{Logs} del sistema
+\end{itemize}
+
+\subsection{Identificación de requisitos funcionales}
+
+
+\subsection{Identificación de actores}
+
+\subsection{Identificación de requisitos no funcionales}
+
+\begin{itemize}
+  \item El \textit{software} debe ser mantenible y robusto\footnote{Siendo dicha robustez garantizada mediante el uso de \textit{software} utilizado por una base de usuarios significativa, una arquitectura conocida, pruebas realizadas sobre él o un equipo de desarrollo en activo, entre otras}.
+  \item Reducción de los costes de desarrollo.
+  \item Definición de los protocolos de comunicación.
+  \item Definición de los protocolos de seguridad y confidencialidad.
+  \item Definición de la interacción con el usuario.
+  \item Integridad del sistema y fiabilidad (\textit{uptime}, recuperación frente a fallos).
+  \item Productos a crear.
+  \item Compatibilidad con las prácticas y ejercicios.
+\end{itemize}
