@@ -1,0 +1,275 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Structured General Purpose Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%   PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+\usepackage[T1]{fontenc} % Codificación de las fuentes utilizadas
+\usepackage[spanish]{babel} % Español como idioma principal del texto (permite hyphenation de palabras al final de una línea)
+\selectlanguage{spanish}
+
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName} % Top left header
+\chead{\hmwkTitle\ (\hmwkClassInstructor): \hmwkTitle} % Top center header
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%   DOCUMENT STRUCTURE COMMANDS
+%   Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+%\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\newenvironment{homeworkProblem}[1][Evaluación \arabic{homeworkProblemCounter}]{
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{\large{#1}} % Assign \homeworkProblemName the name of the problem
+\section{\large{\homeworkProblemName}} % Make a section in the document with the custom problem count
+\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
+}{
+\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+   
+%----------------------------------------------------------------------------------------
+%   NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Evaluación de las herramientas desarrolladas para MPI} % Assignment title
+\newcommand{\hmwkDueDate}{Lunes,\ 13\ de\ April\ de\ 2015} % Due date
+\newcommand{\hmwkClassInstructor}{Jones} % Teacher/lecturer
+\newcommand{\hmwkAuthorName}{Diego Martín Arroyo} % Your name
+
+%----------------------------------------------------------------------------------------
+%   TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkTitle}}\\
+\normalsize\vspace{0.1in}\small{Realizado\ el\ \hmwkDueDate}\\
+\vspace{0.1in}\large{\textit{\hmwkClassInstructor\ }}
+\vspace{3in}
+}
+
+\title{\hmwkTitle}
+\author{\textbf{\hmwkAuthorName}}
+\date{13 de abril de 2015} % Insert date here if you want it to appear below your name
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%   TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+%\setcounter{tocdepth}{1} % Uncomment this line if you don't want subsections listed in the ToC
+
+\newpage
+\tableofcontents
+\newpage
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 1
+%----------------------------------------------------------------------------------------
+
+% To have just one problem per page, simply put a \clearpage after each problem
+
+\section{Introducción}
+
+En el programa de estudios de la titulación Grado en Ingeniería Informática de la Universidad de Salamanca se incluye la adquisición de conocimientos básicos de la división de tareas entre diferentes procesos situados en un único equipo o en un conjunto de computadores físicamente independientes, así como los fundamentos básicos que posibilitan la comunicación entre procesos. Como herramienta para la adquisición de dichos conocimientos se plantea la realización de ejercicios prácticos con la interfaz MPI (\textit{Message Passing Interface}) en el marco de la asignatura \textbf{Arquitectura de Computadores}.
+
+Con el objetivo de facilitar el desarrollo de estas prácticas se han creado una serie de herramientas que complementan al sistema, y que en el presente documento sometemos a evaluación.
+
+\subsection{Perfil del evaluado}
+
+El estudiante voluntario cursa la asignatura Arquitectura de Computadores y ya ha realizado la práctica de MPI obligatoria.
+
+\begin{homeworkProblem}[Evaluación de la herramienta `marcodiscover.py']
+
+Se presenta al usuario con las soluciones propuestas a los problemas típicos a los que los estudiantes se enfrentan en la asignatura Arquitectura de Computadores, a saber:
+
+\begin{itemize}
+
+\item Detección de cada nodo: Con la utilidad \texttt{marcodiscover.py} el usuario puede conocer las direcciones de todos los nodos sin tener que acceder físicamente a cada uno de ellos. Dado que para poder utilizar un programa en MPI en varios nodos es necesario conocer la IP de cada uno previamente, valora positivamente dicha herramienta.
+
+\item Lanzamiento de programas: La integración de \texttt{marcodiscover.py} en el lanzamiento de un programa para varios nodos es muy sencillo, dado que únicamente es necesario volcar la salida de marcodiscover.py en un fichero, o utilizar un pseudofichero en la shell:
+
+\texttt{marcodiscover.py >\textgreater hosts.txt\\
+mpirun -np 20 -hostfile hosts.txt ./ejecutable}
+
+o 
+
+\texttt{mpirun -np 20 -hostfile <(marcodiscover.py) ./ejecutable}
+
+\end{itemize}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[Instalación de claves públicas] %Use {} for section
+
+La comunicación entre nodos se realiza mediante sesiones remotas SSH, por lo que utilizar una clave RSA evita tener que indicar el usuario y contraseña en cada nodo. Para ello se ha creado el script marcoinstallkey.sh que utiliza internamente la utilidad \texttt{ssh-copy-id}.
+
+\problemAnswer{
+    El usuario valora positivamente esta utilidad.
+}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[Despliegue de los ejecutables]
+
+Uno de los problemas al que los estudiantes se enfrentan es la copia de los ejecutables en cada nodo. Para ello se está creando una herramienta de despliegue que permitirá realizar dicho despliegue. Debido a que aún no está completa se ha preguntado al sujeto qué valoraría en esta herramienta:
+
+Una forma de conocer el árbol de directorios del propio nodo, para seleccionar el directorio de instalación.
+La integración con la herramienta de estadísticas y el resto de componentes.
+
+\problemAnswer{ % Answer
+\begin{center}
+\lipsum[2]%\includegraphics[width=0.75\columnwidth]{example_figure} % Example image
+\end{center}
+
+\lipsum[2]
+}
+
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%   PROBLEM 2
+%----------------------------------------------------------------------------------------
+
+%\begin{homeworkProblem}[Exercise \#\arabic{homeworkProblemCounter}] % Custom section title
+%\lipsum[3] % Question
+
+%--------------------------------------------
+
+% \begin{homeworkSection}{(a)} % Section within problem
+% \lipsum[4]\vspace{10pt} % Question
+
+% \problemAnswer{ % Answer
+% \lipsum[5]
+% }
+% \end{homeworkSection}
+
+% %--------------------------------------------
+
+% \begin{homeworkSection}{(b)} % Section within problem
+% \problemAnswer{ % Answer
+% \lipsum[6]
+% }
+% \end{homeworkSection}
+
+% %--------------------------------------------
+
+% \end{homeworkProblem}
+
+% %----------------------------------------------------------------------------------------
+% %   PROBLEM 3
+% %----------------------------------------------------------------------------------------
+
+% \begin{homeworkProblem}[Prob. \Roman{homeworkProblemCounter}] % Roman numerals
+
+% %--------------------------------------------
+
+% \begin{homeworkSection}{\homeworkProblemName:~(a)} % Using the problem name elsewhere
+% \problemAnswer{ % Answer
+% \lipsum[7]
+% }
+% \end{homeworkSection}
+
+% %--------------------------------------------
+
+% \begin{homeworkSection}{\homeworkProblemName:~(b)}
+% \lipsum[8]\vspace{10pt} % Question
+
+% \problemAnswer{ % Answer
+% \lipsum[9]
+% }
+% \end{homeworkSection}
+
+% %--------------------------------------------
+
+% \end{homeworkProblem}
+
+% %----------------------------------------------------------------------------------------
+% %   PROBLEM 4
+% %----------------------------------------------------------------------------------------
+
+% \begin{homeworkProblem}[Prob. \Roman{homeworkProblemCounter}] % Roman numerals
+% \problemAnswer{ % Answer
+% \lipsum[10]
+% }
+% \end{homeworkProblem}
+
+% %----------------------------------------------------------------------------------------
+
+\end{document}
