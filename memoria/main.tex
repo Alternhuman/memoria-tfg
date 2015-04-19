@@ -3,6 +3,8 @@
 %% ---------------------------------------------------------------- 
 
 % Set up the document
+
+%input includes
 \documentclass[a4paper, 11pt, oneside]{Thesis}  % Use the "Thesis" style, based on the ECS Thesis style by Steve Gunn
 
 \usepackage[T1]{fontenc} % Codificación de las fuentes utilizadas
@@ -12,7 +14,7 @@
 \usepackage{graphicx}
 \usepackage{url}
 
-\graphicspath{{Figures/}}  % Location of the graphics files (set up for graphics to be in PDF format)
+\graphicspath{{Figures/}{Diagrams}}  % Location of the graphics files (set up for graphics to be in PDF format)
 \selectlanguage{spanish}
 
 % Include any extra LaTeX packages required
@@ -197,11 +199,11 @@ $\omega$ & angular frequency & rads$^{-1}$ \\
 % Include the chapters of the thesis, as separate files
 % Just uncomment the lines as you write the chapters
 
-\input{Chapters/Chapter1} % Introduction
+\include{Chapters/Chapter1} % Introduction
 
-\input{Chapters/Chapter2} % Background Theory 
+\include{Chapters/Chapter2} % Dominio del problema
 
-%\input{Chapters/Chapter3} % Experimental Setup
+\include{Chapters/Chapter3/Chapter3} % Herramientas
 
 %\input{Chapters/Chapter4} % Experiment 1
 

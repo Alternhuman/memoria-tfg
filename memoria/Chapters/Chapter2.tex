@@ -1,36 +1,32 @@
 \chapter{Dominio del problema}
 
-La utilización de algoritmos distribuidos implica mejoras sustanciales en una gran cantidad de aplicaciones, incrementando la capacidad de computación de un sistema global mediante la unión de varios dispositivos de cómputo que trabajan de como una única unidad indivisible a la vez que mantienen un grado de independencia alto y una tolerancia a fallos aceptable. Sin embargo, el desarrollo de aplicaciones distribuidas implica el uso de un conjunto de nodos cuyo coste y mantenimiento es costoso.
+La utilización de algoritmos distribuidos implica mejoras sustanciales en una gran cantidad de aplicaciones, incrementando la capacidad global de computación de un sistema mediante la unión de varios dispositivos de cómputo que trabajan de como una única unidad indivisible a la vez que mantienen un alto grado de independencia y una tolerancia global a fallos muy alta. Sin embargo, el desarrollo de aplicaciones distribuidas implica el uso de un conjunto de nodos cuyo coste y mantenimiento es costoso.
 
-Si bien la mayoría de las aplicaciones en las que el paradigma de computación distribuida introduce mejoras suelen exigir una gran capacidad de cálculo, su desarrollo únicamente requiere un conjunto de instancias independientes de un software (sistema operativo, contenedor de servicios...) con las que trabajar. Dicha característica implica consecuentemente que la utilización de nodos de módico precio para el diseño, análisis y evaluación de este tipo de algoritmos constituye una alternativa válida frente a sistemas de precio superior.
+Dicho aumento de la potencia implica una mayor complejidad en el desarrollo de algoritmos que puedan aprovechar de forma óptima este tipo de sistemas. Varios factores como la sincronización y la comunicación entre partes, o errores tales como condiciones de carrera son mucho más comunes que en otro tipo de aplicaciones. Dichas dircunstancias no solo dificultan el desarrollo de este sistema, sino también la comprensión de los fundamentos básicos de la Computación Distribuida. %cite http://ceit.aut.ac.ir/~amirkhani/Downloads/patterson_book.pdf
 
-Sumada a dicha motivación existe el potencial aprovechamiento de este sistema como herramienta didáctica para facilitar el aprendizaje de conceptos como el reparto de procesos, balance de carga, compartición de recursos, etc... en asignaturas en las que se estudian este tipo de conceptos dentro de los planes de estudio de Ingeniería Informática.
+Si bien la mayoría de las aplicaciones en las que el paradigma de computación distribuida introduce mejoras suelen exigir una gran capacidad de cálculo, su desarrollo únicamente requiere un conjunto de instancias independientes de un software (sistema operativo, contenedor de servicios...) con las que trabajar. Dicha característica implica que la utilización de nodos de precio reducido (o incluso reutilizados) para el diseño, análisis y evaluación de este tipo de algoritmos constituye una alternativa válida frente a sistemas de precio superior.
+
+Sumada a dicha motivación existe el potencial aprovechamiento de este sistema como herramienta didáctica que facilite el aprendizaje de conceptos como el reparto de procesos, balance de carga o la compartición de recursos en asignaturas centradas en este tipo de conceptos dentro de los planes de estudio de Ingeniería Informática o titulaciones afines.
+
+Con el presente proyecto se plantea la creación de un sistema con estas características aprovechando el bajo coste de los componentes del mismo que permita en primer lugar su utilización como herramienta de análisis y diseño (o incluso su utilización como plataforma definitiva) de aplicaciones distribuidas y en segundo lugar la posibilidad de uso como herramienta educativa.
 
 A la hora de crear el sistema se realiza un análisis de las diferentes alternativas, a fin de escoger la alternativa que mejor satisfaga los objetivos definidos.
 
 Figura: Tabla de alternativas
 
-\section{Arquitectura del sistema}
-
-\subsection{Introducción}
-
-El presente documento recoge los diferentes aspectos a valorar en el modelado del sistema a construir teniendo en cuenta diferentes criterios que se detallarán más adelante.
-
-Este documento no tiene como objetivo establecer de forma definitiva la arquitectura y aspectos a considerar del sistema, si no que su principal uso es la elicitación de diferentes decisiones de diseño y el uso del mismo para exponer las ideas reflejadas a terceros como tutores o colaboradores.
-
-La técnica utilizada en la versión actual se basa remotamente en \cite{Toro99arequirements}, si bien la influencia de dicha publicación será mayor en posteriores versiones.
-
-\subsection{Objetivos del proyecto}
+\section{Objetivos del proyecto}
 
 Este proyecto cuenta con varios objetivos muy diferentes entre sí, que se agrupan en tres categorías:
 \begin{itemize}
   \item Arquitectura subyacente\\
   Definición de los componentes hardware a utilizar en el sistema, interconexión de los mismos, soluciones de alimentación eléctrica, almacenamiento\dots.
   \item Servicios a proveer\\
+  Conjunto de servicios que podrán ser aprovechados por diferentes clientes para explotar la capacidad de cálculo de las máquinas.
   \item Componente didáctico\\
+  Creación de aplicaciones, herramientas y documentación como alternativa a las instalaciones típicas utilizadas actualmente.
 \end{itemize}
 
-\section{Definiciones\protect\footnote{Esta parte abarca únicamente el componente didáctico del sistema debido a que no se cuenta con ningún tipo de trasfondo para el resto de partes del dominio del problema.}}
+\section{Definiciones}
 
 \subsection{Definición del dominio del problema}
 
@@ -38,17 +34,17 @@ El sistema se ubica en una Facultad universitaria con aproximadamente 600 alumno
 
 \subsection{Modelado del sistema actual}
 
-La Facultad cuenta con varias aulas y laboratorios informáticos donde los alumnos disponen de la intraestructura necesaria para realizar los ejercicios y prácticas asignadas. Dichos espacios permiten utilizar cualquier equipo como nodos, pues pertenecen a la misma red, siendo incluso factible la comunicación directa entre equipos situados en diferentes aulas o edificios. La conexión es relativamente rápida, contando con un cableado capaz de soportar teóricamente transferencias de hasta 100Mb/s \textit{full-duplex}. La gestión de usuarios se realiza mediante un protocolo LDAP (\textit{Lightweight Directory Access Protocol}) \cite{RFC4516-comment}, contando con un sistema de ficheros centralizado que permite acceder a la información de un usuario desde cualquier equipo, facilitando las tareas de replicación menos sofisticadas.
+La Facultad cuenta con varias aulas y laboratorios informáticos donde los alumnos disponen de la intraestructura necesaria para realizar los ejercicios y prácticas asignadas. Dichos espacios permiten utilizar cualquier equipo como nodo, pues se integran en la misma red, siendo incluso factible la comunicación directa entre equipos situados en diferentes aulas o incluso edificios. La conexión es relativamente rápida, contando con un cableado capaz de soportar teóricamente transferencias de hasta 100Mb/s de forma bidireccional (\textit{full-duplex}) (\textbf{Cita requerida}). La gestión de un sistema de autenticación se realiza mediante el protocolo LDAP (\textit{Lightweight Directory Access Protocol}) \cite{RFC4516-comment}, contando con un sistema de ficheros centralizado que permite acceder a la información de un usuario desde cualquier equipo, facilitando las tareas de replicación de la información entre nodos.
 
-La mayoría de las prácticas son programadas en el lenguaje \textbf{Java}, que es ya conocido por la totalidad de los estudiantes gracias a asignaturas previamente cursadas (\textbf{Cita requerida}) y que facilita el despliegue y la compatibilidad entre diferentes equipos de trabajo sustancialmente.
+La mayoría de las prácticas asignadas a los alumnos son desarrolladas en el lenguaje \textbf{Java}, ya conocido por la totalidad de los estudiantes gracias a asignaturas previamente cursadas (\textbf{Cita requerida}) y que facilita el despliegue y la compatibilidad entre diferentes equipos de trabajo sustancialmente. En ocasiones es necesario el uso de lenguajes como C y se plantean alternativas a \textit{Java} como Python o C\#.
 
 \paragraph{Problemas conocidos}
 
-Estos son varios de los problemas identificados en los diferentes usuarios de la infraestructura:
+Si bien la infraestructura existente es capaz de proveer a los estudiantes de los recursos necesarios, identificamos una serie de problemas inicialmente:
 
 \begin{itemize}
-  \item Cada pareja de alumnos necesita tres estaciones de trabajo para poder realizar algunos de losejercicios propuestos.
-  \item El servidor LDAP constituye un ``cuello de botella'', pues todos los alumnos acceden a él de forma intensiva, provocando caídas en el mismo.
+  \item Cada grupo de alumnos necesita tres estaciones de trabajo para poder realizar algunos de los ejercicios propuestos.
+  \item El servidor LDAP constituye un ``cuello de botella'', pues todos los alumnos acceden a él de forma intensiva, provocando el fallo por exceso de peticiones del mismo.
   \item Las técnicas de programación utilizadas hasta la fecha tienen un rendimiento bajo y son en ocasiones relativamente complejas.
 \end{itemize}
 
@@ -56,27 +52,30 @@ Estos son varios de los problemas identificados en los diferentes usuarios de la
 
 \begin{itemize}
 
-  \item Estudiantes de tercero y cuarto curso del Grado en Ingeniería Informática
-  \item Doctentes de las asignaturas Arquitectura de Computadores y Sistemas Distribuidos
-  \item Administradores del sistema
+  \item Estudiantes de tercero y cuarto curso del Grado en Ingeniería Informática.
+  \item Doctentes de las asignaturas Arquitectura de Computadores y Sistemas Distribuidos.
+  \item Administradores del Sistema.
 \end{itemize}
 
 \section{Identificación de las necesidades de cada parte}
 \subsection{Necesidades de los alumnos}
 
 \begin{itemize}
-  \item Entorno de trabajo útil y sencillo.
+  \item Entorno de trabajo sencillo que agilice el desarrollo de sus prácticas.
   \item Posibilidad de observar los resultados de las ejecuciones de forma sencilla.
+  \item Facilidades para el despliegue de los diferentes ejecutables en todas las máquinas, así como el consumo de los servicios que estos implementen.
 \end{itemize}
 
-\subsection{Docentes}
+\subsection{Necesidades de los docentes}
 
 \begin{itemize}
-  \item Entorno versátil sobre el cual puedan llevarse a cabo \textbf{todas} las prácticas y ejercicios propuestos, aportando si es posible algún tipo de ventaja sobre el sistema en uso.
+  \item Entorno versátil sobre el cual puedan llevarse a cabo la totalidad de las prácticas y ejercicios propuestos, aportando si es posible algún tipo de ventaja sobre el sistema en uso.
 \end{itemize}
+
 \subsection{Administrador}
+
 \begin{itemize}
-  \item Sistema integrable en la intraestructura actual cuyo mantenimiento sea sencillo.
+  \item Sistema integrable en la intraestructura actual cuyo mantenimiento sea sencillo y cuyo enfoque garantice la escalabilidad y su durabilidad.
 \end{itemize}
 
 \section{Propuestas para la búsqueda de necesidades}
@@ -99,8 +98,6 @@ Estos son varios de los problemas identificados en los diferentes usuarios de la
 \subsection{Identificación de requisitos funcionales}
 
 
-\subsection{Identificación de actores}
-
 \subsection{Identificación de requisitos no funcionales}
 
 \begin{itemize}
@@ -113,3 +110,332 @@ Estos son varios de los problemas identificados en los diferentes usuarios de la
   \item Productos a crear.
   \item Compatibilidad con las prácticas y ejercicios.
 \end{itemize}
+
+\section{Evaluación de alternativas}
+
+A la hora de evaluar las diferentes opciones que satisfagan los requisitos descritos, se consideran los siguientes aspectos:
+
+\begin{itemize}
+  \item Coste económico.
+  \item Prestaciones técnicas (potencia de procesamiento, entrada/salida, capacidad de almacenamiento,facilidad de interconexión con otros materiales...).
+  \item Facilidad de trabajo y de aprendizaje (documentación disponible, proyectos similares ya realizados, conocimiento sobre la plataforma en cuestión...).
+  \item Escalabilidad del sistema.
+  \item Necesidades de mantenimiento del sistema.
+  \item Consumo del sistema (consumo eléctrico).
+  \item Obsolescencia del sistema (número de años en los que el sistema podrá ser actualizado (tanto en hardware como software) y será capaz de seguir siendo una herramienta adecuada para el propósito planteado).
+
+\end{itemize}
+
+\subsection{Propuesta de solución: Virtualización de entornos de trabajo}
+
+Crear un conjunto de nodos virtuales dentro de una máquina que simulen un sistema distribuido
+
+\paragraph{Ventajas intrínsecas de la solución}
+
+Simplificación del sistema (reduce las necesidades de adquisición y mantenimiento de hardware).
+Gestión de varias partes del sistema (sistema de ficheros centralizado, gestión de usuarios...) de forma mas sencilla.
+
+\paragraph{Inconvenientes intrínsecos del sistema}
+
+No se exploran apenas las posibilidades de un sistema distribuido formado por varios equipos físicamente independientes.
+
+\paragraph{Facilidad de trabajo y curva de aprendizaje}
+
+Requiere una etapa de formación en materia de virtualización
+\paragraph{Prestaciones técnicas}
+
+\paragraph{Coste econonómico}
+
+\paragraph{Escalabilidad del sistema}
+
+Dependiente de las capacidades de virtualización del equipo disponible, y el número de nodos y usuarios a gestionar (previsiblemente alto)
+
+\paragraph{Necesidades de mantenimiento}
+
+Las necesidades propias de un sistema GNU/Linux junto a las específicas de la virtualización de los equipos.
+
+\paragraph{Consumo energético del sistema}
+\paragraph{Obsolescencia del sistema}
+
+\paragraph{Material con el que se cuenta actualmente}
+Se plantea el aprovechamiento de equipos pertenecientes a la Universidad, por lo que se estima un coste muy pequeño a la hora de adquirir material.
+\paragraph{Otras características}
+
+\subsection{Propuesta de solución: Clúster con equipos de escritorio}
+
+Se plantea la reutilización de equipos de escritorio pertenecientes a la Universidad que ya no se encuentran en uso (debido a su renovación, falta de potencia como PC...) para la creación de este sistema.
+
+\paragraph{Ventajas intrínsecas de la solución}
+La potencia del sistema es mucho mayor que la de cualquier otra solucion.
+Reduce dramáticamente el coste de adquisición de material y permite dar nueva vida a material universitario.
+La arquitectura es conocida
+
+\paragraph{Inconvenientes intrínsecos del sistema}
+No se exploran las características únicas de otros sistemas menos ``convencionales'', tales como la utilización de sistemas embebidos.
+Consumo mayor.
+Mayor demanda de espacio.
+Debido a el mayor tamaño de los equipos, puede llegar a ser complicado implementar las soluciones de visualizacion planteadas (LEDs, etc)
+\paragraph{Facilidad de trabajo y curva de aprendizaje}
+Soporte completo de casi la totalidad de las distribuciones de GNU/Linux.
+Las necesidades de manipulación de hardware se minimizan.
+\paragraph{Prestaciones técnicas}
+Arquitectura x86/x64
+Entre 2 y 4 GB de memoria
+Conectividad Ethernet, USB
+Almacenamiento en disco duro
+\paragraph{Coste econonómico}
+
+\paragraph{Escalabilidad del sistema}
+Dependiente únicamente del coste económico de la adquisición de nuevos equipos
+\paragraph{Necesidades de mantenimiento}
+Las necesarias en cualquier sistema GNU/Linux y las específicas del montaje dado (en materia de refrigeración, gestión de cableado, etc)
+\paragraph{Consumo energético del sistema}
+
+\paragraph{Obsolescencia del sistema}
+\paragraph{Material con el que se cuenta actualmente}
+La Facultad de Ciencias ya dispone de los equipos, pues se plantea la reutilización de los mismos
+
+\paragraph{Otras características}
+
+\subsection{Clúster con equipos embebidos multimedia }
+
+Utilización de equipos embebidos diseñados para aplicaciones multimedia en el sistema (ejemplos son Chromecast, Apple TV, Amazon Fire TV...)
+
+\paragraph{Ventajas intrínsecas de la solución}
+
+Relacion potencia/precio presumiblemente superior a soluciones de coste similar como las placas Raspberry Pi.
+
+\paragraph{Inconvenientes intrínsecos del sistema}
+
+Dificultad de conexión (generalmente la conexión a red se realiza de forma inalámbrica, ausencia casi absoluta de cualquier conexión cuya finalidad no sea la emisión de vídeo o conexión con sistemas de almacenamiento mediante USB), falta de puertos GPIO, I2C...
+
+\paragraph{Facilidad de trabajo y curva de aprendizaje}
+Es difícil determinar la viabilidad de esta solución, pues no se cuenta con experiencia previa ni una documentación amplia al respecto.
+Es probable que sea necesaria la manipulación del sistema a muy bajo nivel. Lo cual incrementa el grado de complejidad de la solución.
+
+\paragraph{Prestaciones técnicas}
+Arquitectura ARM
+2 núcleos a 1.2 GHz
+512 MB de RAM
+Almacenamiento: 2 GB no expandibles
+Alimentación por microUSB
+
+\paragraph{Coste econonómico}
+
+
+
+\paragraph{Escalabilidad del sistema}
+Dependiente del coste de adquisición de nuevos equipos y las facilidades de interconexión de la plataforma (previsiblemente compleja, debido a la ausencia de sistemas de interconexión más allá de WiFi)
+
+\paragraph{Necesidades de mantenimiento}
+
+Dependiente del número de modificaciones que se realicen a las capas más bajas. En el peor de los casos puede que el administrador del sistema tenga que someterse a una etapa de formación para realizar un mantenimiento adecuado del sistema sin depender de desarrolladores previos.
+Las derivadas del mantenimiento de un sistema Linux sumadas a posibles problemas de interconexión si se utiliza una red inalámbrica (conexión a  la LAN de la infraestructura local, interferencias...).
+
+\paragraph{Consumo energético del sistema}
+
+
+
+\paragraph{Obsolescencia del sistema}
+
+Difícil de determinar: no se cuenta con una gran cantidad de software para este tipo de sistemas más allá de las aplicaciones multimedia. No obstante, el sistema subyacente es conocido (Linux)
+
+\paragraph{Material con el que se cuenta actualmente}
+
+No se dispone de material de estas o similares características
+
+\paragraph{Otras características}
+
+\subsection{Clúster con equipos embebidos multimedia }
+
+Utilización de equipos embebidos diseñados para aplicaciones multimedia en el sistema (ejemplos son Chromecast, Apple TV, Amazon Fire TV...)
+
+\paragraph{Ventajas intrínsecas de la solución}
+
+Relacion potencia/precio presumiblemente superior a soluciones de coste similar como las placas Raspberry Pi.
+
+\paragraph{Inconvenientes intrínsecos del sistema}
+
+Dificultad de conexión (generalmente la conexión a red se realiza de forma inalámbrica, ausencia casi absoluta de cualquier conexión cuya finalidad no sea la emisión de vídeo o conexión con sistemas de almacenamiento mediante USB), falta de puertos GPIO, I2C...
+
+\paragraph{Facilidad de trabajo y curva de aprendizaje}
+Es difícil determinar la viabilidad de esta solución, pues no se cuenta con experiencia previa ni una documentación amplia al respecto.
+Es probable que sea necesaria la manipulación del sistema a muy bajo nivel. Lo cual incrementa el grado de complejidad de la solución.
+
+\paragraph{Prestaciones técnicas}
+Arquitectura ARM
+2 núcleos a 1.2 GHz
+512 MB de RAM
+Almacenamiento: 2 GB no expandibles
+Alimentación por microUSB
+
+\paragraph{Coste econonómico}
+
+
+
+\paragraph{Escalabilidad del sistema}
+Dependiente del coste de adquisición de nuevos equipos y las facilidades de interconexión de la plataforma (previsiblemente compleja, debido a la ausencia de sistemas de interconexión más allá de WiFi)
+
+\paragraph{Necesidades de mantenimiento}
+
+Dependiente del número de modificaciones que se realicen a las capas más bajas. En el peor de los casos puede que el administrador del sistema tenga que someterse a una etapa de formación para realizar un mantenimiento adecuado del sistema sin depender de desarrolladores previos.
+Las derivadas del mantenimiento de un sistema Linux sumadas a posibles problemas de interconexión si se utiliza una red inalámbrica (conexión a  la LAN de la infraestructura local, interferencias...).
+
+\paragraph{Consumo energético del sistema}
+
+
+
+\paragraph{Obsolescencia del sistema}
+
+Difícil de determinar: no se cuenta con una gran cantidad de software para este tipo de sistemas más allá de las aplicaciones multimedia. No obstante, el sistema subyacente es conocido (Linux)
+
+\paragraph{Material con el que se cuenta actualmente}
+
+No se dispone de material de estas o similares características
+
+\paragraph{Otras características}
+
+\subsection{Clúster con Raspberry Pi}
+
+Utilizar la plataforma de hardware libre Raspberry Pi para la creación del sistema, disponiendo los diferentes equipos en un pequeño ``rack'' con un sistema de alimentación propio centralizado y una conexión directa a la infraestructura local.
+
+\paragraph{Ventajas intrínsecas de la solución}
+Existen varias soluciones similares bien documentadas.
+El hardware es flexible, barato y el consumo es pequeño.
+Gran comunidad de desarrolladores alrededor de la plataforma.
+
+\paragraph{Inconvenientes intrínsecos del sistema}
+
+La potencia del sistema es pequeña (ver seccion prestaciones técnicas)
+
+\paragraph{Facilidad de trabajo y curva de aprendizaje}
+
+Ya se cuenta con experiencia en el manejo de estas placas.
+Amplia documentación de las prestaciones de la misma.
+Proyectos similares ya realizados.
+Soporte completo de varias distribuciones de GNU/Linux
+
+\paragraph{Prestaciones técnicas}
+
+Arquitectura ARM
+Entre 512 MB y 1 GB de memoria
+1 o 4 Núcleos a 700 o 900 MHz (overclock a 1 GHz de forma segura)
+Conectividad Ethernet, I2C, GPIO
+Alimentación por microUSB/GPIO
+Almacenamiento entre 1 GB y 256 GB mediante tarjetas MicroSD/SD
+
+\paragraph{Coste econonómico}
+
+\paragraph{Escalabilidad del sistema}
+
+Dependiente únicamente del coste económico de la adquisición de nuevos equipos
+
+\paragraph{Necesidades de mantenimiento}
+
+Las mismas que cualquier sistema GNU/Linux de iguales características.
+Pueden surgir problemas con la fuente de alimentación, dado que es una solución propia.
+
+\paragraph{Consumo energético del sistema}
+
+Variable según modelo, entre 3 y 4 W, con 5V de tensión y un amperaje variable entre 0.6 y 0.8 A
+
+\paragraph{Obsolescencia del sistema}
+
+El software de terceros (sistema operativo, bibliotecas, etc) a incluir está respaldado por una comunidad extensa que provee actualizaciones de forma continua, por lo que previsiblemente el sistema podrá estar actualizado durante varios años.
+Las necesidades que el sistema cubre no demandarán previsiblemente una mayor potencia de cálculo.
+ 
+
+\paragraph{Material con el que se cuenta actualmente}
+
+El Departamento de Informática y Automática cuenta con varios de estos equipos se plantea la reutilización de los mismos
+
+\paragraph{Otras características}
+
+
+\subsection{Elección de la solución}
+
+\subsection{Raspberry Pi: Elección de las características básicas del sistema}
+
+Comparativa de las características relevantes de los diferentes modelos de Raspberry Pi.
+Quedan descartados los modelos A y A+ por la carencia de puerto Ethernet (amén de otras características necesarias)
+
+\begin{table}[h]
+\begin{tabular}{|p{2cm}|p{4cm}|p{4cm}|p{4cm}|}
+\hline
+ & Modelo B & Modelo B+ & Modelo B 2\\ \hline
+Procesador & ARMv6 1 Núcleo, 700 MHz (safe overclock hasta 1GHz) & ARMv6 1 Núcleo, 700 MHz (safe overclock hasta 1GHz) & ARMv7 4 Núcleos a 900 MHz \\ \hline
+Memoria           & 512 MB compartidos con GPU & 512 MB compartidos con GPU & 1 GB compartido con GPU\\ \hline
+Evaluación de rendimiento con LINPACK [5][6][7] & 40.64 & 40.64 & 92.88\\ \hline
+Conexiones & 2 USB, GPIO de 8 pines. Ethernet 10/100 & 4 USB, GPIO de 17 pines. Ethernet 10/100 & 4 USB, GPIO de 17 pines. Ethernet 10/100\\ \hline
+Consumo medio [8] & 700 mA, 5 V (3.5 W) & 600 mA, 5 V (3 W) & 800 mA, 5 V (4 W)\\ \hline
+Almacenamiento & SD & MicroSD & MicroSD\\ \hline
+Alimentación & Mediante MicroUSB o los pines GPIO & Mediante MicroUSB o los pines GPIO &Mediante MicroUSB o los pines GPIO\\ \hline
+Sistemas operativos compatibles & 
+\begin{itemize}
+\item Archlinux ARM
+\item OpenELEC
+\item Puppy Linux
+\item Raspbmc
+\item RISC OS
+\item Raspbian
+\item XBian
+\item openSUSE
+\item Slackware ARM
+\item FreeBSD
+\item Plan 9
+\item Kali Linux
+\item Sailfish OS
+\item Pidora (Fedora Remix)
+\item Lista completa en [1]
+\end{itemize} & Los mismos que para el modelo B & Hasta la fecha, únicamente:
+\begin{itemize}
+
+\item Ubuntu Snappy Core
+\item Raspbian
+\item OpenELEC
+\item RISC OS
+\item Según la web de ArchLinux, también soporta este sistema operativo [2]
+\end{itemize}\\ \hline % 
+Otros & Modelo descatalogado, el soporte oficial y proporcionado por la comunidad probablemente será menor que para los modelos más recientes en el futuro. &  & Lleva poco tiempo en el mercado (apenas un mes). Se conocen pequeños fallos en el hardware (fotosensibilidad de algún componente)\\ \hline
+
+\end{tabular}
+\end{table}
+
+
+% \verb{[1] Software para Raspberry Pi http://en.wikipedia.org/wiki/Raspberry_Pi#Software
+% [2] ArchLinux en Raspberry Pi Rev 2 http://archlinuxarm.org/platforms/armv7/broadcom/raspberry-pi-2
+% [3] Comparativa de placas https://learn.adafruit.com/embedded-linux-board-comparison/performance
+% [4] Comparativa de modelos (B+ contra Rev 2) https://learn.adafruit.com/introducing-the-raspberry-pi-2-model-b/performance-improvements
+% [5] Benchmarking The Raspberry Pi 2 (consultado el 5/03/2015)   http://hackaday.com/2015/02/05/benchmarking-the-raspberry-pi-2/
+% [6] Raspberry Pi 2 Linpack Benchmark https://gist.github.com/jitomesky/fcfc9a3653aaf550d753
+% [7] RPi Performance-Embedded Linux Wiki http://elinux.org/RPi_Performance
+% [8]  RasPiTV - 
+% How Much Less Power does the Raspberry Pi B+ use than the old model B? http://raspi.tv/2014/how-much-less-power-does-the-raspberry-pi-b-use-than-the-old-model-b}
+
+\subsection{Elección del sistema operativo}
+
+\begin{table}[h]
+\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+\hline
+Nombre & Enfoque & Características notables & Ventajas & Inconvenientes & Software disponible\\ \hline
+ArchLinux ARM & Distribucion ligera centrada en el minimalismo y la disponibilidad de software novedoso. Requiere sin embargo que el usuario conozca el entorno GNU/Linux antes de utilizarlo & Muy optimizado con un ciclo de desarrollo que permite contar con software puntero en poco tiempo & Eficiente, gran comunidad alrededor, relativamente sencillo de utilizar & En ocasiones puede ser complejo su uso. Ya no se incluye en las distribuciones por defecto de la Fundacion Raspberry Pi, lo cual puede suponer falta de soporte oficial & 8700 paquetes disponibles en los repositorios oficiales, más pequeño que para otras distribuciones, si bien no se ha encontrado aun software no compatible\\ \hline
+
+Ubuntu Snappy Core & Centrado en la facilidad de uso & Es la distribución más popular (en equipos de escritorio) con gran cantidad de paquetes disponible & Fácil de configurar, gran cantidad de soporte & Aún no ha sido probado en la Raspberry de forma intensiva.El rendimiento de ubuntu suele ser menor al de otros sistemas operativos debido a la gran cantidad de paquetes incluidos por defecto. & \\ \hline 
+
+Raspbian & & & & &\\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+\hline
+Nombre & Enfoque & Características notables & Ventajas & Inconvenientes & Software disponible\\ \hline
+
+RISC OS & Diseñado específicamente para la arquitectura ARM, aprovechando las posibilidades de dicha arquitectura & Eficiente, basado en el RISCOS original, incluyendo características del mismo. Sistema monousuario con multitarea cooperativa (en contraste con multihilo o multitarea apropriativa) & Muy eficiente & No esta basado en un sistema conocido previamente. Relativamente desfasado en cuanto a la arquitectura del Sistema Operativo. El software suele ser programado en BBC BASIC & \\ \hline
+
+Gentoo & Diseñado para permitir la personalización del sistema al máximo nivel posible & Enfocado en la personalizacion, siendo el sistema compilado en la maquina sobre la que se va a utilizar en vez de ser descargado como archivo binario & Permite ser customizado de forma sencilla & Poco soportado en Raspberry Pi & \\ \hline
+
+Windows 10 & Diseñado para el paradigma IoT & Sencillo de utilizar Soporte de .NET & Poco probado. Esta diseñado para un proposito especifico. No compatible con software para Linux de forma nativa & & \\ \hline
+
+\end{tabular}
+\end{table}

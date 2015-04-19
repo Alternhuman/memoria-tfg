@@ -152,27 +152,27 @@
 \university  {\texorpdfstring{\href{University Web Site URL Here (include http://)}
                 {University Name}}
                 {University Name}}
-\UNIVERSITY  {\texorpdfstring{\href{University Web Site URL Here (include http://)}
-                {UNIVERSITY NAME (IN BLOCK CAPITALS)}}
-                {UNIVERSITY NAME (IN BLOCK CAPITALS)}}
-\department  {\texorpdfstring{\href{Department or School Web Site URL Here (include http://)}
-                {Department or School Name}}
-                {Department or School Name}}
-\DEPARTMENT  {\texorpdfstring{\href{Department or School Web Site URL Here (include http://)}
-                {DEPARTMENT OR SCHOOL NAME (IN BLOCK CAPITALS)}}
-                {DEPARTMENT OR SCHOOL NAME (IN BLOCK CAPITALS)}}
+\UNIVERSITY  {\texorpdfstring{\href{http://www.usal.es}
+                {UNIVERSIDAD DE SALAMANCA}}
+                {UNIVERSIDAD DE SALAMANCA}}
+\department  {\texorpdfstring{\href{http://diaweb.usal.es}
+                {Departamento de Informática y Automática}}
+                {Departamento de Informática y Automática}}
+\DEPARTMENT  {\texorpdfstring{\href{http://diaweb.usal.es}
+                {DEPARTAMENTO DE INFORMÁTICA Y AUTOMÁTICA}}
+                {DEPARTAMENTO DE INFORMÁTICA Y AUTOMÁTICA}}
 \group       {\texorpdfstring{\href{Research Group Web Site URL Here (include http://)}
                 {Research Group Name}}
                 {Research Group Name}}
 \GROUP       {\texorpdfstring{\href{Research Group Web Site URL Here (include http://)}
                 {RESEARCH GROUP NAME (IN BLOCK CAPITALS)}}
                 {RESEARCH GROUP NAME (IN BLOCK CAPITALS)}}
-\faculty     {\texorpdfstring{\href{Faculty Web Site URL Here (include http://)}
-                {Faculty Name}}
-                {Faculty Name}}
-\FACULTY     {\texorpdfstring{\href{Faculty Web Site URL Here (include http://)}
-                {FACULTY NAME (IN BLOCK CAPITALS)}}
-                {FACULTY NAME (IN BLOCK CAPITALS)}}
+\faculty     {\texorpdfstring{\href{http://fciencias.usal.es}
+                {Facultad de Ciencias}}
+                {Facultad de Ciencias}}
+\FACULTY     {\texorpdfstring{\href{http://fciencias.usal.es}
+                {FACULTAD DE CIENCIAS}}
+                {FACULTAD DE CIENCIAS}}
 \addresses   {}
 \subject     {}
 \keywords    {}
@@ -200,11 +200,11 @@
       \smallskip
       {\LARGE \authornames \par}
       \vfill
-      {\large A thesis submitted in partial fulfillment for the \par}
-      {\large degree of Doctor of Philosophy \par}
+      {\large Trabajo de Fin de Grado en el marco de los estudios de \par}
+      {\large Graduado en Ingeniería Informática \par}
       \bigskip
       \bigskip
-      {\large in the \par}
+      {\large en la \par}
       {\large \facname \par}
       {\large \deptname \par}
       \bigskip
