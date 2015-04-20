@@ -1,0 +1,135 @@
+%http://tex.stackexchange.com/a/85218/76599
+\usepackage{fancyvrb}
+\usepackage[dvipsnames]{xcolor}
+
+
+% redefine \VerbatimInput
+\RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}% Inclusión de archivos de texto plano
+{fontsize=\footnotesize,
+ %
+ frame=lines,  % top and bottom rule only
+ framesep=2em, % separation between frame and text
+ rulecolor=\color{Gray},
+ %
+ label=\fbox{\color{Black}data.txt},
+ labelposition=topline,
+ %
+ commandchars=\|\(\), % escape character and argument delimiters for
+                      % commands within the verbatim
+ commentchar=*        % comment character
+}
+
+\usepackage{listings} % Requerido para la inserción de código
+%Listings command
+
+\usepackage{float}
+\newcommand*\lstinputpath[1]{\lstset{inputpath=#1}}
+\lstinputpath{Code/}
+
+\newcounter{undefinedreferences}
+\setcounter{undefinedreferences}{0}
+
+\newcommand{\citationneeded}{\stepcounter{undefinedreferences}\textsuperscript{\color{blue} [Citation needed]}}
+\newcommand{\checkreferences}{
+	\ifnum\value{undefinedreferences} > 0
+	\begin{center}
+	\includegraphics[width=\textwidth]{protester.png}
+	\end{center}
+	\else
+	Cool!
+	\fi
+}
+
+
+%https://github.com/pads-fhs/LaTeX-Template-Thesis/blob/master/lststyles.tex
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch,%
+    function, return, null, catch, switch, var,%
+    if, in, while, do, else, case, break},
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  morestring=[b]"
+}
+\newcommand{\lstsetjavascript}{
+  \lstset{
+		language=JavaScript,
+		breaklines=true,
+		commentstyle=\textit,
+		basicstyle=\ttfamily,
+		keywordstyle=\bfseries,
+		stringstyle=\ttfamily,
+		showstringspaces=false,
+		frame=single,
+		tabsize=2
+  }
+}
+
+\lstdefinelanguage{log}{
+  keywords={typeof, new, true, false, catch,%
+    function, return, null, catch, switch, var,%
+    if, in, while, do, else, case, break},
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  morestring=[b]"
+}
+\newcommand{\lstsetlog}{
+  \lstset{
+		language=log,
+		breaklines=true,
+		commentstyle=\textit,
+		basicstyle=\ttfamily,
+		keywordstyle=\bfseries,
+		stringstyle=\ttfamily,
+		showstringspaces=false,
+		frame=single,
+		tabsize=2
+  }
+}
+
+\lstloadlanguages{Java,XML, JavaScript, log}
+
+\newcommand{\javascriptcode}[4]{
+	\lstinputlisting[caption=#2,label=#1, firstline=#3, lastline=#4]{#1.json}
+}
+
+\newcommand{\logcode}[4]{
+	\lstinputlisting[caption=#2,label=#1, firstline=#3, lastline=#4]{#1.log}
+}
+
+
+%Ajustes para Java
+% \lstset{
+% 	language=java,
+%  	frame=single, % Un marco simple alrededor del código
+%     basicstyle=\small\ttfamily, % Utilizar fuente true type pequeña
+%     keywordstyle=[1]\color{Blue}\bf, % Funciones en negrita y azul
+%     keywordstyle=[2]\color{Purple}, % Argumentos en morado
+%     keywordstyle=[3]\color{Blue}\underbar, % Funciones personalizadas subrayadas en azul
+%     identifierstyle=, % Nada especial acerca de identificadores
+%     commentstyle=\usefont{T1}{pcr}{m}{sl}\color{Green}\small, % Los comentarios se renderizan en fuente pequeña verde
+%     stringstyle=\color{Purple}, % Cadenas en morado
+%     showstringspaces=false, % No se muestran los espacios entre cadenas
+%     tabsize=5, % 5 espacios por tabulado
+%     %
+%     % Put standard Perl functions not included in the default language here
+%     %morekeywords={rand},
+%     %
+%     % Put Perl function parameters here
+%     %morekeywords=[2]{on, off, interp},
+%     %
+%     % Put user defined functions here
+%     %morekeywords=[3]{test},
+%    	%
+%     morecomment=[l][\color{Blue}]{...}, % Line continuation (...) like blue comment
+%     numbers=left, % Número de línea a la izquierda
+%     firstnumber=1, % Número de línea comienza en 1
+%     numberstyle=\tiny\color{Blue}, % Los números de línea son azules y pequeños
+%     stepnumber=5, % Los números de línea van de 5 en 5
+%     breaklines=true % Salto de línea si el texto no entra. See http://stackoverflow.com/a/1875803
+% }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="11.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <type>com.umlet.element.SequenceDiagram</type>
+    <coordinates>
+      <x>20</x>
+      <y>20</y>
+      <w>450</w>
+      <h>290</h>
+    </coordinates>
+    <panel_attributes>title: Marco
+_Marco~id1_|_Polo:1~id2_|_Polo:2~id3_|_Polo:3_
+id1-&gt;&gt;id2:id1,id2:Marco
+id1-&gt;&gt;id3:id1,id3:Marco
+id2-&gt;id1:id2,id1:Polo
+id1-&gt;id1:id1:Almacenar respuesta
+id3-&gt;id1:id3,id1
+id1-&gt;id1:id1:Almacenar respuesta
+
+
+//id2-/&gt;id1:async Msg.
+//id3-&gt;&gt;&gt;id1:id1,id3
+//id1.&gt;id3:id1,id3:async return Msg
+//id1-&gt;id1:id1:self
+//iframe{:interaction frame
+//id2-&gt;id3:id1,id3:async Msg.
+//iframe}</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
