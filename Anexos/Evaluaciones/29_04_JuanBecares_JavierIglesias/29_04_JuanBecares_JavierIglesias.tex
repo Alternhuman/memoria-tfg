@@ -1,0 +1,92 @@
+\input{includes}
+
+\newcommand{\hmwkTitle}{Entrevista sobre las herramientas para la asignatura Arquitectura de Computadores} % Assignment title
+\newcommand{\hmwkDueDate}{Miércoles,\ 29\ de\ April\ de\ 2015}
+\newcommand{\hmwkClassInstructor}{Rodrigo Santamaría} % Teacher/lecturer
+\newcommand{\hmwkAuthorName}{Diego Martín Arroyo} % Your name
+\newcommand{\hmwkSubject}{3, 4} % Evaluation subject number
+
+%----------------------------------------------------------------------------------------
+%   TITLE PAGE
+%----------------------------------------------------------------------------------------
+\newcommand{\ordinalindicator}{\hspace{-1.5mm}$\phantom{a}^{\circ}$}
+\title{\hmwkTitle\\Sujetos de evaluación n\ordinalindicator \hmwkSubject}
+\author{\textbf{\hmwkAuthorName}}
+\date{29 de abril de 2015} % Insert date here if you want it to appear below your name
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+\section{Descripción}
+
+\begin{itemize}
+	\item \textbf{Perfil}: Estudiantes de la asignatura \textbf{Arquitectura de Computadores}.
+	\item No conocían las herramientas previamente.
+	\item Cuentan con experiencia en el desarrollo de aplicaciones con MPI en el marco de la Asignatura.
+\end{itemize}
+
+
+\section{Introducción}
+
+En este caso se ha realizado una entrevista en vez de una evaluación con el conjunto de herramientas, con el objetivo de llevar a cabo la búsqueda de necesidades desde un enfoque distinto. A fin de dinamizar la sesión se han realizado ambas entrevistas de forma simultánea.
+
+Durante la entrevista se han realizado preguntas genéricas sobre el desarrollo de la asignatura Arquitectura de Computadores, en particular en el aspecto de relevancia para el sistema, las sesiones de aprendizaje de MPI, así como una serie de preguntas sobre las plataformas ya creadas.
+
+\section{Entrevista}
+
+La entrevista comienza con el análisis de la herramienta \textbf{Status monitor}. Ambos sujetos comprenden rápidamente el funcionamiento de la aplicación (aunque se les describió el funcionamiento de la misma previamente). El sujeto número 3 considera de utilidad añadir la siguiente funcionalidad:
+
+\begin{itemize}
+	\item Controles en el panel \texttt{top} para detener procesos en la máquina remota.
+	\item Conocer el tiempo de funcionamiento continuo (\textit{uptime}) de cada nodo.
+	\item Contar con una gráfica que muestre el histórico de cada una de las variables medidas que complemente a la información sobre el instante actual.
+	\item Contar con una consola de acceso al equipo de forma instantánea.
+	\item Cambiar el esquema de colores de cada nodo para permitir diferenciarlos de forma sencilla.
+\end{itemize}
+
+
+
+Posteriormente se realizan preguntas sobre la herramienta \textbf{Deployer}, con el siguiente resultado. El sujeto número 4 sugiere las siguientes mejoras:
+
+\begin{itemize}
+	\item Con el objetivo de reducir el tiempo de subida, comprimir los archivos antes de transferirlos. (Esto se debe en particular al hecho de que generalmente en la infraestructura los usuarios cuentan con un espacio en disco relativamente reducido, y el despliegue de los ficheros de forma comprimida ayudaría a evitar agotar la cuota, pues posteriormente solo se descomprimirían aquellos a utilizar de forma inmediata). 
+	\item El usuario preguntó por la verificación de sobreescritura. Esta función está ya programada para ser implementada.
+	\item Posibilitar la conexión del sistema a una pantalla mediante el puerto HDMI para acceder a la información sobre las estadísticas allí.
+\end{itemize}
+
+Tras la ronda de preguntas individuales, surgen las siguientes sugerencias fruto de un diálogo entre el entrevistador y los dos sujetos:
+
+	\begin{itemize}
+		\item Uno de los mayores problemas con el sistema actual es el hecho de que los usuarios, la mayoría alumnos con poca experiencia en el uso de ciertos recursos del sistema operativo, solicitan el uso de estos sin posteriormente liberarlos, impidiendo al resto de usuarios trabajar en el sistema. Por ello los sujetos plantean el uso de algún tipo de herramienta que libere periódicamente todos los recursos sin utilizar o reinicie por completo el sistema.
+
+		\item Crear un sistema que vigile la carga del sistema y evite que un proceso o conjunto de procesos consuman todos los recursos.
+	\end{itemize}
+
+Por otro lado, se describen las herramientas \textbf{marcosshcommand}, para la ejecución de comandos de forma remota y \textbf{marcosshcommand}. Esta última es muy valorada por ambos sujetos.
+
+\section{Conclusiones}
+
+A raíz de esta sesión se extraen las siguientes conclusiones y los caminos de actuación:
+
+\begin{itemize}
+	\item Implementar todas las sugerencias estéticas.
+	\item Implementar gráficas para reflejar el histórico.
+	\item Detención de procesos desde la máquina remota.
+	\item Añadir información sobre el \textit{uptime}.
+	\item Considerar la creación de una consola virtual.
+	\item Utilizar compresión HTTP para optimizar la subida\cite{rfc2616}.
+	\item Acceso a los ficheros del sistema mediante una interfaz web.
+\end{itemize}
+
+\begin{thebibliography}{9}
+
+\bibitem{rfc2616}
+  {Fielding, R. and Gettys, J. and Mogul, J. and Frystyk, H. and Masinter, L. and Leach, P. and Berners-Lee, T.},
+  \emph{Hypertext Transfer Protocol – HTTP/1.1},
+  Internet Engineering Task Force,
+  1999.
+
+\end{thebibliography}
+
+\end{document}
