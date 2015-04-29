@@ -1,0 +1,17 @@
+http://www.bootc.net/archives/2012/05/26/how-to-build-a-cross-compiler-for-your-raspberry-pi/
+http://johnlane.ie/a-distcc-server-for-raspberry-pi.html
+http://archlinuxarm.org/developers/distcc-cross-compiling
+http://archlinuxarm.org/developers/distributed-compiling
+http://johnlane.ie/a-distcc-server-for-raspberry-pi.html
+https://wiki.debian.org/Distcc
+http://wiki.vpslink.com/HOWTO:_Install/Configure_Distcc
+http://es.wikipedia.org/wiki/Compilador_cruzado
+http://www.kegel.com/crosstool/
+https://code.google.com/p/distcc/
+http://crosstool-ng.org/
+https://github.com/crosstool-ng/crosstool-ng
+http://elinux.org/Toolchains
+http://es.wikipedia.org/wiki/Cadena_de_herramientas
+http://es.wikipedia.org/wiki/Linux_From_Scratch
+http://es.wikipedia.org/wiki/GNU_toolchain
+http://getglitched.com/?page_id=253

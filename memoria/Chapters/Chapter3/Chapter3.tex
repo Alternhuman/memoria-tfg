@@ -1,3 +1,4 @@
+\lhead{\emph{Herramientas}}
 \chapter{Herramientas}
 
 La complejidad que acarrea el uso de aplicaciones distribuidas hace necesario el uso de herramientas que permitan el desarrollo de forma cómoda del propio sistema, su uso posterior como herramienta de prueba de aplicaciones distribuidas y por último, facilitar el aprendizaje de algoritmos y herramientas distribuidas.
@@ -6,9 +7,9 @@ Muchas de las aplicaciones distribuidas utilizadas incluyen varias herramientas 
 
 \section{MarcoPolo, el protocolo de descubrimiento de servicios}
 
-Uno de los problemas típicos a la hora de crear un sistema distribuido es la localización de cada uno de los nodos que lo conforman. Soluciones como servicios de nombres (DNS) permiten crear estructuras jerárquicas donde cada nodo está identificado por un nombre previamente conocido. También existen protocolos inspirados en este como mDNS (\textit{Multicast Domain Name Service}) donde la necesidad de un servidor de nombres desaparece, y los nodos son capaces de encontrarse entre ellos mediante multicast\citationneeded. Otras alternativas como Bonjour, Avahi o AppleTalk (ya descontinuado) también han sido evaluadas. %TODO http://en.wikipedia.org/wiki/Multicast_DNS, http://tools.ietf.org/html/rfc6762, http://tools.ietf.org/html/bcp78, http://tools.ietf.org/html/rfc6760, http://en.wikipedia.org/wiki/AppleTalk, http://lathiat.net/files/avahi-lca2007.pdf, http://tools.ietf.org/html/rfc3927, http://tools.ietf.org/html/rfc3927, http://en.wikipedia.org/wiki/Network_Information_Service, http://mirror.linux.org.au/linux.conf.au/2007/video/monday/monday_1150_GNOME.ogg
+Uno de los problemas típicos a la hora de crear un sistema distribuido es la localización de cada uno de los nodos que lo conforman. Soluciones como servicios de nombres (DNS) permiten crear estructuras jerárquicas donde cada nodo está identificado por un nombre previamente conocido. También existen protocolos inspirados en este como \textbf{mDNS} (\textit{Multicast Domain Name Service}) donde la necesidad de un servidor de nombres desaparece, y los nodos son capaces de encontrarse entre ellos mediante multicast\cite{rfc6762}. Otras alternativas como Bonjour, Avahi o AppleTalk (ya descontinuado) también han sido evaluadas.
 
-Sin embargo, estas y otras soluciones similares no responden a una de las necesidades básicas del sistema a construir: la condición de que la información que conoce cada nodo sobre el resto en el arranque del sistema es nula. Si bien con mDNS evitamos contar con un servidor de nombres, debemos conocer el nombre de cada máquina o esta debe anunciarse en la red antes de poder estar disponible (mDNS Probing). Dicho inconveniente se suma al hecho de que DNS y protocolos similares son creados con el único propósito de resolver la correspondencia nombre - dirección de red de un equipo, y son difícilmente extensibles a otro tipo de aplicaciones. Además, la mayoría de los protocolos asumen que la información de un nodo presente de una red local es de interés para el resto de nodos de la red, lo cual dificulta la independencia de un conjunto de equipos frente al resto.
+Sin embargo, estas y otras soluciones similares no responden a una de las necesidades básicas del sistema a construir: la condición de que la información que conoce cada nodo sobre el resto en el arranque del sistema es nula. Si bien con \textbf{mDNS} evitamos contar con un servidor de nombres, debemos conocer el nombre de cada máquina o esta debe anunciarse en la red antes de poder estar disponible (mDNS Probing). Dicho inconveniente se suma al hecho de que \textbf{DNS} y protocolos similares son creados con el único propósito de resolver la correspondencia nombre - dirección de red de un equipo, y son difícilmente extensibles a otro tipo de aplicaciones. Además, la mayoría de los protocolos asumen que la información de un nodo presente de una red local es de interés para el resto de nodos de la red, lo cual dificulta la independencia de un conjunto de equipos frente al resto.
 
 Una de las piezas clave del sistema consiste en la escalabilidad del mismo en tiempo real: no es necesario conocer qué nodos participan en el sistema hasta que no se vayan a utilizar. Además, se pretende optimizar al máximo cada uno de los nodos del sistema por separado, por lo que dedicar uno de ellos como ``autoridad'' frente a la que el resto de nodos se registren y esta actúe posteriormente como nodo coordinador y ``resolver'' supone una dedicación de recursos innecesaria y que dificulta la escalabilidad del sistema. Además, la gestión del espacio de direcciones de la red en la que se integra el sistema no es gestionado por este y además es compartido con una gran cantidad de equipos adicionales. Esto implica que las direcciones de cada nodo son asignadas por un servidor DHCP (\textit{Dynamic Host Configuration Protocol}) sobre el que no se tiene control, y cuyas direcciones son asignadas para intervalos de tiempo pequeños\footnote{Durante el desarrollo del sistema se observa que las direcciones son asignadas por periodos de tiempo pequeños y no suelen repetirse a menos que dicha dirección no haya sido asignada anteriormente, fenómeno que suele darse con bastante frecuencia.}. %TODOEsto implica que no es posible contar con un nodo coordinador sin un espacio de nombres anteriormente definido.
 Por otro lado, la clave de este sistema no la constituye la disponibilidad de un nodo, sino las aplicaciones distribuidas que pueden utilizarse en el mismo (de ahora en adelante denominaremos a estas ``servicios''). Un nodo puede contar con un conjunto de servicios diferente al de sus vecinos, y por tanto colaborará en unas tareas y en otras no en virtud de dicha disponibilidad. Este requisito no es satisfecho por la mayoría de los sistemas anteriormente mencionados.
@@ -17,7 +18,7 @@ Motivada por esta serie de características surge la necesidad de crear un peque
 
 \subsection{MarcoPolo: Introducción}
 
-MarcoPolo es un protocolo de descubrimiento de servicios cuya dinámica y nombre se inspiran en el juego homónimo\citationneeded, en el cual uno de los integrantes debe encontrar al resto privado de visión mediante ecolocalización (gritando la palabra clave ``Marco'', cuya respuesta por parte del resto de jugadores es ``Polo''). El protocolo se compone de dos roles claramente diferenciados (y prácticamente independientes aún siendo ejecutados en el mismo nodo): \textbf{Marco}, encargado de enviar consultas a la red y \textbf{Polo}, que emite una respuesta a dichos comandos y gestiona la información de cada nodo. %TODO: http://en.wikipedia.org/wiki/Marco_Polo_%28game%29#cite_note-play-1.http://www.wisegeek.com/what-is-the-game-marco-polo.htm
+MarcoPolo es un protocolo de descubrimiento de servicios cuya dinámica y nombre se inspiran en el juego homónimo\citationneeded, en el cual uno de los integrantes debe encontrar al resto privado de visión mediante ecolocalización (gritando la palabra clave ``Marco'', cuya respuesta por parte del resto de jugadores es ``Polo''). El protocolo se compone de dos roles claramente diferenciados (y prácticamente independientes aún siendo ejecutados en el mismo nodo): \textbf{Marco}, encargado de enviar consultas a la red y \textbf{Polo}, que emite una respuesta a dichos comandos y gestiona la información de cada nodo.\citationneeded %TODO: http://en.wikipedia.org/wiki/Marco_Polo_%28game%29#cite_note-play-1.http://www.wisegeek.com/what-is-the-game-marco-polo.htm
 
 Con el objetivo de posibilitar la coexistencia de varias ``mallas'' de nodos independientes (donde los servicios ofrecidos por un nodo únicamente sean conocidos y consecuentemente aprovechables por el resto de sus vecinos) a la vez que las consultas son realizadas a todos los integrantes sin necesidad de conocer su identificador en la red (dirección a nivel de red o enlace, nombre \textit{DNS}) se utilizan mensajes uno-a-muchos, conocidos generalmente con el nombre \textit{multicast}, donde cada una de las \textit{mallas} se comunicará con el resto de integrantes de la misma a través de un grupo preestablecido (o consensuado por dichos nodos).
 
@@ -77,7 +78,7 @@ Toda la funcionalidad se ejecuta en un único proceso que se encarga de la creac
 
 \subsubsection{Configuración}
 
-Todos los aspectos modificables de cada rol, tales como el grupo \textit{multicast} al que suscribirse o el tiempo de espera predeterminado se definen en un archivo de configuración alojado en el directorio \texttt{/etc/marcopolo} (siguiendo la estructura definida en el \textit{Filesystem Hierarchy Standard} \citationneeded{}).
+Todos los aspectos modificables de cada rol, tales como el grupo \textit{multicast} al que suscribirse o el tiempo de espera predeterminado se definen en un archivo de configuración alojado en el directorio \texttt{/etc/marcopolo} (siguiendo la estructura definida en el \textit{Filesystem Hierarchy Standard} \cite{fhs}).
 
 \begin{figure}[H]
 \centering
@@ -121,13 +122,13 @@ systemctl restart (marco|polo)
 systemctl reload polo #Orden exclusiva de Polo
 \end{lstlisting}
 
-El comando \texttt{reload} permite actualizar la lista de servicios que \textbf{Polo} ofrece sin tener que detener todo el proceso para ello. Dicho comportamiento se consigue de forma similar al comando \texttt{reload} de Apache, enviando la señal de UNIX \citationneeded \texttt{SIGUSR1} al proceso. 
+El comando \texttt{reload} permite actualizar la lista de servicios que \textbf{Polo} ofrece sin tener que detener todo el proceso para ello. Dicho comportamiento se consigue de forma similar al comando \texttt{reload} de Apache, enviando la señal \texttt{SIGUSR1} al proceso. 
 
 \subsection{Conexiones con MarcoPolo (\textit{Bindings})}
 
 La funcionalidad de \textbf{MarcoPolo} no se limita al descubrimiento de los servicios del sistema, por lo que es necesario proveer a los usuarios del clúster de herramientas que permitan integrar sus aplicaciones distribuidas con estos servicios. Dichas herramientas, conocidas generalmente como \textit{bindings}, permiten exponer públicamente la funcionalidad de \textbf{MarcoPolo} para que pueda ser aprovechada por otros usuarios.
 
-Se han creado \textit{bindings} para los lenguajes de programación \textbf{Python} y \textbf{Java} y se plantea crear uno para el lenguaje \textbf{C}. Todos ellos son consistentes entre sí, y utilizan la misma sintaxis para realizar el mismo tipo de operación a la vez que aprovechan las características propias de cada lenguaje. Dicha filosofía está inspirada en el funcionamiento de las primitivas de la API de resolución de nombres en red (\texttt{netdb.h})\citationneeded, por lo que los \texttt{bindings} se comunican con la instancia local de Marco o Polo a través de \textit{sockets} vinculados a la dirección IP local (127.0.1.1). %TODO: http://pubs.opengroup.org/onlinepubs/7908799/xns/netdb.h.html
+Se han creado \textit{bindings} para los lenguajes de programación \textbf{Python} y \textbf{Java} y se plantea crear uno para el lenguaje \textbf{C}. Todos ellos son consistentes entre sí, y utilizan la misma sintaxis para realizar el mismo tipo de operación a la vez que aprovechan las características propias de cada lenguaje. Dicha filosofía está inspirada en el funcionamiento de las primitivas de la API de resolución de nombres en red (\texttt{netdb.h})\cite{netdb}, por lo que los \texttt{bindings} se comunican con la instancia local de Marco o Polo a través de \textit{sockets} vinculados a la dirección IP local (127.0.1.1).
 
 Todos los \textit{bindings} deben implementar el mismo conjunto de primitivas, a saber:
 
@@ -212,7 +213,7 @@ A fin de aprovechar la funcionalidad de \textbf{MarcoPolo} dentro del sistema, s
 
 \subsubsection{Status Monitor}
 
-El monitor de estado consiste en una aplicación con interfaz web que permite observar las estadísticas de uso del \textit{hardware} y de diversos procesos. Utiliza para la detección de los diferentes nodos el \textit{binding} de \textbf{Marco} en Python que realiza una consulta para descubrir que nodos están dispuestos a ofrecer el servicio \texttt{statusmonitor}. La respuesta de dicho comando es enviada al cliente, que establece conexiones directas a cada uno de los nodos a través de \textit{Websockets}\citationneeded. Esto es posible debido a que según la especificación del estándard de websockets, la \textit{Same-Origin Policy} no es utilizada de la misma forma que en peticiones HTTP\citationneeded.
+El monitor de estado consiste en una aplicación con interfaz web que permite observar las estadísticas de uso del \textit{hardware} y de diversos procesos. Utiliza para la detección de los diferentes nodos el \textit{binding} de \textbf{Marco} en Python que realiza una consulta para descubrir que nodos están dispuestos a ofrecer el servicio \texttt{statusmonitor}. La respuesta de dicho comando es enviada al cliente, que establece conexiones directas a cada uno de los nodos a través de \textit{Websockets}\citationneeded. Esto es posible debido a que según la especificación del estándard de websockets, la \textit{Same-Origin Policy}\cite{rfc6455} no es utilizada de la misma forma que en peticiones HTTP,\cite{rfc6454}.
 
 \begin{figure}[H]
 \centering
@@ -240,7 +241,7 @@ Para conocer la información sobre el sistema el proceso servidor utiliza varios
 
 Dichos comandos son ejecutados periódicamente mediante el gestor de eventos \texttt{ioloop} de \textbf{Tornado}.
 
-La implementación del servicio está realizada íntegramente en Tornado\citationneeded, un servidor web ligero asíncrono implementado en Python.
+La implementación del servicio está realizada íntegramente en Tornado\footnote{Más información sobre el proyecto puede encontrarse en \href{http://www.tornadoweb.org/en/stable/}{tornadoweb.org/en/stable}}, un servidor web ligero asíncrono implementado íntegramente en Python y mantenido por Facebook.
 
 \subsubsection{Deployer}
 
@@ -271,7 +272,7 @@ La aplicación es accesible a través de un panel web %TODO: o del comando marco
 \label{fig:vista_deployer}
 \end{figure}
 
-Al igual que en el caso de la aplicación \textbf{statusmonitor} el \textbf{deployer} está creado utilizando el servidor web \textbf{Tornado} y todo el contenido enviado al usuario se reduce a archivos HTML, CSS y JavaScript. La comunicación entre el cliente y el servidor se realiza a través de peticiones \textit{AJAX} y \textit{Websockets}. Todo el control de la interfaz se delega a hojas de estilo CSS y JavaScript utilizando la biblioteca jQuery\citationneeded.
+Al igual que en el caso de la aplicación \textbf{statusmonitor} el \textbf{deployer} está creado utilizando el servidor web \textbf{Tornado} y todo el contenido enviado al usuario se reduce a archivos HTML, CSS y JavaScript. La comunicación entre el cliente y el servidor se realiza a través de peticiones \textit{AJAX} y \textit{Websockets}. Todo el control de la interfaz se delega a hojas de estilo CSS y JavaScript utilizando la biblioteca jQuery\footnote{\href{https://jquery.com/}{jquery.com/}}.
 
 % \begin{figure}[H]
 % \centering
@@ -282,4 +283,4 @@ Al igual que en el caso de la aplicación \textbf{statusmonitor} el \textbf{depl
 
 \subsection{Pruebas de concepto}
 
-%\includegraphics{Chapter3/ScreenShot.png}
+%\includegraphics{Chapter3/ScreenShot.png}http://www.bootc.net/archives/2012/05/26/how-to-build-a-cross-compiler-for-your-raspberry-pi/

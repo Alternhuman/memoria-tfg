@@ -1,0 +1,249 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Structured General Purpose Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%   PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+\usepackage[T1]{fontenc} % Codificación de las fuentes utilizadas
+\usepackage[spanish]{babel} % Español como idioma principal del texto (permite hyphenation de palabras al final de una línea)
+\selectlanguage{spanish}
+
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in 
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName} % Top left header
+\chead{\hmwkTitle\ (\hmwkClassInstructor): \hmwkTitle} % Top center header
+\rhead{\firstxmark} % Top right header
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%   DOCUMENT STRUCTURE COMMANDS
+%   Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+%\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\newenvironment{homeworkProblem}[1][Evaluación \arabic{homeworkProblemCounter}]{
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{\large{#1}} % Assign \homeworkProblemName the name of the problem
+\section{\large{\homeworkProblemName}} % Make a section in the document with the custom problem count
+\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
+}{
+\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+   
+%----------------------------------------------------------------------------------------
+%   NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Configuración de un sistema de compilación multiplataforma con distcc y aplicación de este en un entorno distribuido} % Assignment title
+\newcommand{\hmwkDueDate}{Martes,\ 21\ de\ April\ de\ 2015} % Due date
+\newcommand{\hmwkAuthorName}{Diego Martín Arroyo} % Your name
+
+%----------------------------------------------------------------------------------------
+%   TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkTitle}}\\
+\normalsize\vspace{0.1in}\small{Realizado\ el\ \hmwkDueDate}\\
+\vspace{0.1in}\large{\textit{\hmwkClassInstructor\ }}
+\vspace{3in}
+}
+
+\title{\hmwkTitle}
+\author{\textbf{\hmwkAuthorName}}
+\date{21 de abril de 2015}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%   TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+\setcounter{tocdepth}{1}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Introducción}
+
+Configuración de LDAP
+
+\section{}
+
+%%Referencias
+%http://www.brennan.id.au/20-Shared_Address_Book_LDAP.html
+%http://www.openldap.org/
+%http://www.brennan.id.au/20-Shared_Address_Book_LDAP.html
+%https://wiki.archlinux.org/index.php/OpenLDAP
+%https://wiki.archlinux.org/index.php/LDAP_authentication
+%https://wiki.archlinux.org/index.php/Pam_mount
+
+%%
+\section{Introducción}
+
+Uno de los graves inconvenientes a la hora de desarrollar software para el sistema distribuido es la pequeña capacidad de cómputo de cada nodo de forma individual. Si bien esta circunstancia no supone un inconveniente significativo a la hora la ejecución, supone un grave obstáculo a la hora de realizar procesos de compilación, en particular, de paquetes de software voluminosos, tales como pueden ser la biblioteca MPI, cuyo tiempo de compilación en una Raspberry Pi puede alcanzar los 20 minutos.
+
+Diversas soluciones han sido propuestas para solucionar este problema, siendo una de las más simples y efectivas la compilación cruzada. Un compilador cruzado es un compilador que genera código ejecutable en el set de instrucciones de otra máquina, permitiendo aprovechar las ventajas de otro equipo (como pueden ser la mayor capacidad de cálculo) para agilizar el proceso de compilación. En el caso concreto del sistema, el equipo compilador cuenta con un procesador x86_64 con una capacidad de cómputo muy superior al del chip ARM de las Raspberries. Conseguir realizar compilaciones en este equipo facilitaría el trabajo de administración del sistema, la instalación de nuevo \textit{software} e incluso el desarrollo de código.
+
+\section{crostool-ng}
+
+Crosstool ng es una utilidad para la generación de cadenas de herramientas (\textit{toolchains}) tales como GCC, que permiten compilar y enlazar códigos fuente. El proyecto tiene como objetivo crear \textit{toolchains} ajustadas a cada necesidad específica, ofreciendo un gran número de parámetros de configuración con el objetivo de optimizar al máximo el proceso de compilación y adaptarse a las necesidades del usuario.\citationneeded{http://crosstool-ng.org/}. Crosstool-ng es un proyecto cuyo origen se remonta a la herramienta crosstool de Daniel Kegel\citationneeded{http://kegel.com/crosstool/}.
+
+
+\subsection{Configuración de crosstool-ng}
+
+La configuración de crosstool-ng es sencilla una vez se conocen los diferentes parámetros a tener en cuenta:
+
+\begin{enumerate}
+\item Descarga de los archivos desde el sitio del proyecto.
+\item Descomprimir el fichero y realizar la configuración del mismo con \texttt{./configure --prefix=/opt/cross}. El directorio de compilación puede ser alterado.
+\item Ejecutar el comando \texttt{make} y \texttt{make install}
+\item Añadir a la variable \texttt{PATH} la ruta \texttt{/opt/cross/bin}
+Una vez realizados estos pasos podremos crear \textit{toolchains}
+\item Crear un subdirectorio en la carpeta \textbf{home} del usuario, en el que se almacenarán los diferentes archivos auxiliares.
+\item Ejecutar \texttt{ct-ng menuconfig}, que presentará una serie de opciones:
+
+\begin{itemize}
+\item En la opción \textit{Paths and misc options}, activar la opción ``Enable Try features marked as EXPERIMENTAL''. También es posible modificar el directorio de despliegue.
+\item En el menú \textit{Target options}, seleccionar arm como \textit{Target architecture} \textit{bitness} como 32 bit y \textit{Endianness} como \textit{Little endian}
+\item \textit{Operating System}: Linux
+\item Elegir la opción estable de \textit{Binutils version} más reciente en el menú \textit{Binutils}
+\item Elegir la opción para \textit{gcc} \textit{linaro} en el menú C Compiler%revisar
+Activando \textit{ Show Linaro versions (EXPERIMENTAL) }. En el campo  gcc version field, elegir linaro-4.6-2012.04 (EXPERIMENTAL) 
+\end{itemize}
+\end{enumerate}
+
+Dependencias:
+
+\verb+gawk bison flex gperf cvs texinfo automake libtool ncurses-dev g++ subversion python-dev libexpat1-dev cmake+	
+
+Una vez realizados estos ajustes es posible general la \textit{toolchain} con el comando \texttt{ct-ng build}. Tras el proceso de compilación se contará con los ejecutables en el directorio \texttt{/opt/cross/x-tools/arm-unknown-linux-gnueabi/bin} o en aquella ruta especificada.
+
+Ejemplo de ejecución:
+
+% bootc@tarquin ~ $ arm-unknown-linux-gnueabi-gcc --version
+% arm-unknown-linux-gnueabi-gcc (crosstool-NG 1.15.2) 4.6.4 20120402 (prerelease)
+% Copyright (C) 2011 Free Software Foundation, Inc.
+% This is free software; see the source for copying conditions.Â  There is NO
+% warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+% bootc@tarquin ~ $ cat > test.c
+% #include <stdio.h>
+% int main() { printf("Hello, world!\n"); return 0; }
+% ^D
+% bootc@tarquin ~ $ arm-unknown-linux-gnueabi-gcc -o test test.c
+% bootc@tarquin ~ $
+
+
+%Fuente: http://www.bootc.net/archives/2012/05/26/how-to-build-a-cross-compiler-for-your-raspberry-pi/
+%http://pointclouds.org/documentation/advanced/distcc.php
+%http://www.linuxjournal.com/article/9814
+%https://lists.samba.org/archive/distcc/2009q2/003918.html
+%https://www.raspberrypi.org/forums/viewtopic.php?f=51&t=60908
+%http://distcc.googlecode.com/svn/trunk/doc/web/man/distcc_1.html#TOC_17
+%http://distcc.googlecode.com/svn/trunk/doc/web/faq.html
+%http://jeremy-nicola.info/portfolio-item/cross-compilation-distributed-compilation-for-the-raspberry-pi/
+%https://mborgerson.com/cross-compiling-for-the-raspberry-pi/
+En el caso de que utilicemos Arch ARM y la arquitectura del equipo a utilizar como compilador sea x86_64 es posible descargar los parámetros de configuración desde la web del proyecto Arch Linux ARM o los propios ejecutables precompilados.
+
+%Fuente: http://archlinuxarm.org/developers/distcc-cross-compiling
+
+
+
+\section{distcc}
+
+La compilación distribuida consiste en una serie de máquinas dedicadas a realizar procesos de compilación comandadas por una serie de nodos denominados maestros, que envían una serie de instrucciones de compilado a la máquina remota para que sean ejecutadas, retornando el resultado de dicho proceso de compilación. Distcc es una herramienta que actúa como demonio del sistema, escuchando peticiones de compilación de forma continua.
+
+%TODO: tiempos de compilación
+
+%http://archlinuxarm.org/developers/distributed-compiling
+%http://johnlane.ie/a-distcc-server-for-raspberry-pi.html
+% https://wiki.debian.org/Distcc
+% http://wiki.vpslink.com/HOWTO:_Install/Configure_Distcc
+% http://es.wikipedia.org/wiki/Compilador_cruzado
+% http://www.kegel.com/crosstool/
+% https://code.google.com/p/distcc/
+% http://crosstool-ng.org/
+% https://github.com/crosstool-ng/crosstool-ng
+% http://elinux.org/Toolchains
+% http://es.wikipedia.org/wiki/Cadena_de_herramientas
+% http://es.wikipedia.org/wiki/Linux_From_Scratch
+% http://es.wikipedia.org/wiki/GNU_toolchain
+% http://getglitched.com/?page_id=253
+
+\end{document}
