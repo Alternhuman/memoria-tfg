@@ -1,0 +1,3 @@
+https://docs.fedoraproject.org/en-US/Fedora/12/html/Deployment_Guide/s1-ldap-quickstart.html
+https://wiki.debian.org/LDAP/PAM
+
