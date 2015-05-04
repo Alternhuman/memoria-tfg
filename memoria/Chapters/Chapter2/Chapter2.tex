@@ -353,70 +353,54 @@ El Departamento de Informática y Automática cuenta con varios de estos equipos
 \paragraph{Otras características}
 
 
+
 \subsection{Elección de la solución}
 
 \subsection{Raspberry Pi: Elección de las características básicas del sistema}
-
 Comparativa de las características relevantes de los diferentes modelos de Raspberry Pi.
-Quedan descartados los modelos A y A+ por la carencia de puerto Ethernet (amén de otras características necesarias)
-
+Quedan descartados los modelos A y A+ por la carencia de puerto Ethernet (amén de otras características necesarias).
+\begin{landscape}
 \begin{table}[h]
-\begin{tabular}{|p{2cm}|p{4cm}|p{4cm}|p{4cm}|}
+\begin{tabular}{|p{3cm}|p{6cm}|p{6cm}|p{6cm}|}
 \hline
  & Modelo B & Modelo B+ & Modelo B 2\\ \hline
 Procesador & ARMv6 1 Núcleo, 700 MHz (safe overclock hasta 1GHz) & ARMv6 1 Núcleo, 700 MHz (safe overclock hasta 1GHz) & ARMv7 4 Núcleos a 900 MHz \\ \hline
 Memoria           & 512 MB compartidos con GPU & 512 MB compartidos con GPU & 1 GB compartido con GPU\\ \hline
-Evaluación de rendimiento con LINPACK [5][6][7] & 40.64 & 40.64 & 92.88\\ \hline
+Evaluación de rendimiento con LINPACK \cite{hackaday:benchmarkpi2,gist:linpackbenchmark,elinux:benchmark} & 40.64 & 40.64 & 92.88\\ \hline
 Conexiones & 2 USB, GPIO de 8 pines. Ethernet 10/100 & 4 USB, GPIO de 17 pines. Ethernet 10/100 & 4 USB, GPIO de 17 pines. Ethernet 10/100\\ \hline
-Consumo medio [8] & 700 mA, 5 V (3.5 W) & 600 mA, 5 V (3 W) & 800 mA, 5 V (4 W)\\ \hline
+Consumo medio \citationneeded & 700 mA, 5 V (3.5 W) & 600 mA, 5 V (3 W) & 800 mA, 5 V (4 W)\\ \hline
 Almacenamiento & SD & MicroSD & MicroSD\\ \hline
 Alimentación & Mediante MicroUSB o los pines GPIO & Mediante MicroUSB o los pines GPIO &Mediante MicroUSB o los pines GPIO\\ \hline
 Sistemas operativos compatibles & 
-\begin{itemize}
-\item Archlinux ARM
-\item OpenELEC
-\item Puppy Linux
-\item Raspbmc
-\item RISC OS
-\item Raspbian
-\item XBian
-\item openSUSE
-\item Slackware ARM
-\item FreeBSD
-\item Plan 9
-\item Kali Linux
-\item Sailfish OS
-\item Pidora (Fedora Remix)
-\item Lista completa en [1]
-\end{itemize} & Los mismos que para el modelo B & Hasta la fecha, únicamente:
-\begin{itemize}
+%\begin{itemize}
+% \setlength\itemsep{0.005em}
+Archlinux ARM, OpenELEC, Puppy Linux, Raspbmc, RISC OS, Raspbian, XBian, openSUSE, Slackware ARM, FreeBSD, Plan 9, Kali Linux, Sailfish OS, Pidora (Fedora Remix), Lista completa en \citationneeded & Los mismos que para el modelo B & Hasta la fecha, únicamente:
+%\end{itemize} 
 
-\item Ubuntu Snappy Core
-\item Raspbian
-\item OpenELEC
-\item RISC OS
-\item Según la web de ArchLinux, también soporta este sistema operativo [2]
-\end{itemize}\\ \hline % 
-Otros & Modelo descatalogado, el soporte oficial y proporcionado por la comunidad probablemente será menor que para los modelos más recientes en el futuro. &  & Lleva poco tiempo en el mercado (apenas un mes). Se conocen pequeños fallos en el hardware (fotosensibilidad de algún componente)\\ \hline
+%\begin{itemize}
+
+Ubuntu Snappy Core, Raspbian, OpenELEC, RISC OS, Según la web de ArchLinux, también soporta este sistema operativo \footnote{\href{http://archlinuxarm.org/platforms/armv7/broadcom/raspberry-pi-2}{archlinuxarm.org/platforms/armv7/broadcom/raspberry-pi-2}} \\
+%\end{itemize}\\ 
+\hline % 
+
+Otros & Modelo descatalogado, el soporte oficial y proporcionado por la comunidad probablemente será menor que para los modelos más recientes en el futuro. &  & Lleva poco tiempo en el mercado (apenas un mes). Se conocen pequeños fallos en el hardware (fotosensibilidad de algún componente).\\ \hline
 
 \end{tabular}
 \end{table}
+\end{landscape}
 
 
 % \verb{[1] Software para Raspberry Pi http://en.wikipedia.org/wiki/Raspberry_Pi#Software
-% [2] ArchLinux en Raspberry Pi Rev 2 http://archlinuxarm.org/platforms/armv7/broadcom/raspberry-pi-2
 % [3] Comparativa de placas https://learn.adafruit.com/embedded-linux-board-comparison/performance
 % [4] Comparativa de modelos (B+ contra Rev 2) https://learn.adafruit.com/introducing-the-raspberry-pi-2-model-b/performance-improvements
-% [5] Benchmarking The Raspberry Pi 2 (consultado el 5/03/2015)   http://hackaday.com/2015/02/05/benchmarking-the-raspberry-pi-2/
-% [6] Raspberry Pi 2 Linpack Benchmark https://gist.github.com/jitomesky/fcfc9a3653aaf550d753
-% [7] RPi Performance-Embedded Linux Wiki http://elinux.org/RPi_Performance
+
 % [8]  RasPiTV - 
 % How Much Less Power does the Raspberry Pi B+ use than the old model B? http://raspi.tv/2014/how-much-less-power-does-the-raspberry-pi-b-use-than-the-old-model-b}
-
+\begin{landscape}
 \subsection{Elección del sistema operativo}
 
 \begin{table}[h]
-\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+\begin{tabular}{|p{2cm}|p{4cm}|p{5cm}|p{3cm}|p{4cm}|p{4cm}|}
 \hline
 Nombre & Enfoque & Características notables & Ventajas & Inconvenientes & Software disponible\\ \hline
 ArchLinux ARM & Distribucion ligera centrada en el minimalismo y la disponibilidad de software novedoso. Requiere sin embargo que el usuario conozca el entorno GNU/Linux antes de utilizarlo & Muy optimizado con un ciclo de desarrollo que permite contar con software puntero en poco tiempo & Eficiente, gran comunidad alrededor, relativamente sencillo de utilizar & En ocasiones puede ser complejo su uso. Ya no se incluye en las distribuciones por defecto de la Fundacion Raspberry Pi, lo cual puede suponer falta de soporte oficial & 8700 paquetes disponibles en los repositorios oficiales, más pequeño que para otras distribuciones, si bien no se ha encontrado aun software no compatible\\ \hline
@@ -426,17 +410,20 @@ Ubuntu Snappy Core & Centrado en la facilidad de uso & Es la distribución más 
 Raspbian & & & & &\\ \hline
 \end{tabular}
 \end{table}
+\end{landscape}
 
+\begin{landscape}
 \begin{table}[h]
-\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+\begin{tabular}{|p{2cm}|p{4cm}|p{5cm}|p{3cm}|p{4cm}|p{4cm}|}
 \hline
 Nombre & Enfoque & Características notables & Ventajas & Inconvenientes & Software disponible\\ \hline
 
 RISC OS & Diseñado específicamente para la arquitectura ARM, aprovechando las posibilidades de dicha arquitectura & Eficiente, basado en el RISCOS original, incluyendo características del mismo. Sistema monousuario con multitarea cooperativa (en contraste con multihilo o multitarea apropriativa) & Muy eficiente & No esta basado en un sistema conocido previamente. Relativamente desfasado en cuanto a la arquitectura del Sistema Operativo. El software suele ser programado en BBC BASIC & \\ \hline
 
-Gentoo & Diseñado para permitir la personalización del sistema al máximo nivel posible & Enfocado en la personalizacion, siendo el sistema compilado en la maquina sobre la que se va a utilizar en vez de ser descargado como archivo binario & Permite ser customizado de forma sencilla & Poco soportado en Raspberry Pi & \\ \hline
+Gentoo & Diseñado para permitir la personalización del sistema al máximo nivel posible & Enfocado en la personalizacion, siendo el sistema compilado en la maquina sobre la que se va a utilizar en vez de ser descargado como archivo binario & Permite ser modificado de forma sencilla & Poco soportado en Raspberry Pi & \\ \hline
 
-Windows 10 & Diseñado para el paradigma IoT & Sencillo de utilizar Soporte de .NET & Poco probado. Esta diseñado para un proposito especifico. No compatible con software para Linux de forma nativa & & \\ \hline
+Windows 10 & Diseñado para el paradigma IoT & Sencillo de utilizar, con soporte (previsiblemente) del \textit{framework} .NET & Aún no se encuentra disponible\cite{windows10raspberry}. Esta diseñado para un proposito especifico. No compatible con software para Linux de forma nativa & & \\ \hline
 
 \end{tabular}
 \end{table}
+\end{landscape}

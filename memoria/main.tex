@@ -9,6 +9,8 @@
 
 \input{includes}
 
+%\usepackage{lscape}
+\usepackage{pdflscape}
 \begin{document}
 
 \newcommand{\nombre}{Diseño e implementación de un sistema de computación distribuida con
@@ -106,6 +108,7 @@ The acknowledgements and the people to thank go here, don't forget to include yo
 
 % Include the chapters of the thesis, as separate files
 % Just uncomment the lines as you write the chapters
+\include{Chapters/Introduction/Introduction}
 
 \include{Chapters/Chapter1/Chapter1} % Introduction
 
@@ -115,9 +118,9 @@ The acknowledgements and the people to thank go here, don't forget to include yo
 
 \input{Chapters/Chapter4/Chapter4} % Arquitectura
 
-%\input{Chapters/Chapter5} % Experiment 2
+\input{Chapters/Chapter5/Chapter5} % Herramientas de terceros
 
-%\input{Chapters/Chapter6} % Results and Discussion
+\input{Chapters/Chapter6/Chapter6} % Results and Discussion
 
 %\input{Chapters/Chapter7} % Conclusion
 
@@ -136,7 +139,8 @@ The acknowledgements and the people to thank go here, don't forget to include yo
 
 %\addtocontents{toc}{\vspace{2em}}  % Add a gap in the Contents, for aesthetics
 \backmatter
-
+\nocite{Coulouris:2011:DSC:2029110}
+\nocite{insideappletalk}
 %% ----------------------------------------------------------------
 \label{Bibliography}
 \lhead{\emph{Bibliography}}  % Change the left side page header to "Bibliography"
