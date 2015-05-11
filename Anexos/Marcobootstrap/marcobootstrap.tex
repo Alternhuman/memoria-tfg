@@ -104,7 +104,7 @@ Los parámetros de interés son los siguientes:
 
 \begin{itemize}
 	\item \texttt{root}: Partición raíz a utilizar (generalmente la segunda partición)
-	\item \texttt{init}: Especifica el archivo a ejecutar en el arranque. Este proceso tendrá por tanto el \textbf{PID} 1 y generalmente su ejecutable es el fichero \texttt{/bin/init}\footnote{En sistemas donde \texttt{systemd} es el proceso inicial, \texttt{/bin/init} es un enlace simbólico al ejecutable de \texttt{systemd}}. Si no se especifica, como ocurre en el archivo por defecto, su valor es este.
+	\item \texttt{init}: Especifica el archivo a ejecutar en el arranque. Este proceso tendrá por tanto el \textbf{PID} 1 y generalmente su ejecutable es el fichero \texttt{/sbin/init}\footnote{En sistemas donde \texttt{systemd} es el proceso inicial, \texttt{/sbin/init} es un enlace simbólico al ejecutable de \texttt{systemd}}. Si no se especifica, como ocurre en el archivo por defecto, su valor es este\cite{kernelparams:init}.
 \end{itemize}
 
 Modificando el parámetro \texttt{init} es posible ejecutar un código diferente a \texttt{init} en el proceso de arranque, que realice la descarga e instalación del sistema operativo, logrando una solución de compromiso entre la instalación manual y el uso de \textbf{PXE}.
@@ -195,7 +195,7 @@ Interfaz de gestión de los sistemas operativos que el servidor ofrece para su d
 
 \section{Instalación}
 
-El conjunto de herramientas que realizan la instalación del sistema operativo están basadas en \textbf{Debian}, y por tanto utilizan el gestor de arranque \textbf{init}. Para realizar la instalación por tanto se delegará la ejecución de los \textit{scripts} que realicen las funciones a dicho gestor. Por ello, se define el script \texttt{/etc/rcS}, que es ejecutado en cualquier nivel de ejecución (\textit{runlevel}). 
+El conjunto de herramientas que realizan la instalación del sistema operativo están basadas en \textbf{Debian}, y por tanto utilizan el gestor de arranque \textbf{init}. Para realizar la instalación por tanto se delegará la ejecución de los \textit{scripts} que realicen las funciones a dicho gestor. Por ello, se define el script \texttt{/etc/rcS}, que es ejecutado en cualquier nivel de ejecución (\textit{runlevel})\footnote{\href{http://apt-browse.org/browse/ubuntu/trusty/main/all/sysv-rc/2.88dsf-41ubuntu6/file/etc/rcS.d/README}{apt-browse.org/browse/ubuntu/trusty/main/all/sysv-rc/2.88dsf-41ubuntu6/file/etc/rcS.d/README}}. 
 
 El script lleva a cabo la siguiente secuencia de tareas:
 
@@ -228,6 +228,7 @@ El script lleva a cabo la siguiente secuencia de tareas:
 
 Una vez ejecutado el script el nodo está preparado para integrarse en el sistema. El tiempo total de instalación es de unos 5 minutos, según el fichero de log, dependiendo del estado de la red. En pruebas realizadas, el tiempo de descarga supone aproximadamente la mitad del tiempo total de instalación, si bien mejora significativamente cuando se cuenta con un servidor local que aloje el sistema operativo.
 
+\nocite{rpiconfig}
 
  \label{Bibliography}
  \lhead{\emph{Bibliografía}}  % Change the left side page header to "Bibliography"
