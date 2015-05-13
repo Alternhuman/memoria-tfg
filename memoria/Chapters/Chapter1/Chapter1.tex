@@ -5,9 +5,58 @@
 
 Los límites físicos de los que adolecen los computadores en la época actual hacen de la computación distribuida y paralela un método para incrementar de forma sencilla y rentable el rendimiento total de un sistema, rendimiento que aumenta significativamente en problemas \textit{ridículamente paralelos}\citationneeded.
 
-Sin embargo, dichos beneficios conllevan una serie de inconvenientes, o el aumento de la complejidad de diversas tareas. En general, un sistema distribuido requiere de un conjunto de máquinas independientes, que en conjunto constituyen un coste superior al de un único nodo. Además, aparecen nuevos problemas de índole técnica: problemas de comunicación, depuración de aplicaciones, etcétera. Con el objetivo de solventar estos inconvenientes se han propuesto varias soluciones.
+Sin embargo, estas ganancias conllevan una serie de inconvenientes, o el aumento de la complejidad de diversas tareas. En general, un sistema distribuido requiere de un conjunto de máquinas independientes, que en conjunto suelen suponer un coste superior al de un único nodo. Además, aparecen nuevos problemas de índole técnica: problemas de comunicación, integridad y sincronización, dificultad en el desarrollo y depuración de aplicaciones, etcétera.
 
-\section{Situación actual}
+En el apartado didáctico, el estudio del paradigma distribuido suele requerir un gran esfuerzo por parte de los estudiantes, en particular para comprender los fundamentos básicos de cualquier aplicación distribuida.
+
+\section{Motivación}
+
+El sistema descrito en esta memoria surge inspirado en proyectos similares y se desarrolla con una serie de objetivos claros e independientes:
+
+\begin{itemize}
+	\item Como herramienta de síntesis de los conocimientos adquiridos en la carrera, se busca la creación de un sistema completo desde sus cimientos hasta los componentes de más alto nivel, gestionando las tareas de mantenimiento, instalación y manejo del mismo, así como los protocolos de trabajo, tanto en cada uno de los componentes (nodos) como en la comunicación entre los mismos. Con un enfoque más teórico, se pretende crear un sistema capaz de poder ser utilizado como herramienta de diseño y prueba de algoritmos que resuelvan problemas gracias al paradigma de la computación distribuida.
+	\item Potenciar el aprendizaje en el mundo de los sistemas operativos, sistemas embebidos, redes de computadores, sistemas distribuidos, administración de sistemas y algoritmos.
+	\item Constituir una herramienta didáctica para varias asignaturas cursadas en el plan de estudios del Grado en Ingeniería Informática en la Universidad de Salamanca, analizando las asignaturas relevantes en el Plan y buscando soluciones a las necesidades propuestas por el Profesorado, Estudiantes y Administradores del sistema.
+	\item Intentar elevar el \textit{state of the art} en el mundo de los sistemas distribuidos con plataformas embebidas mediante la creación de un sistema multipropósito en lugar de soluciones con un fin determinado.
+\end{itemize}
+
+Partiendo de la premisa de las potenciales ventajas del uso de este tipo de computadores en detrimento de otras soluciones se plantea el sistema definitivo.
+
+\section{Objetivos del sistema}
+
+Durante las fases de definición del proyecto, se plantean los siguientes objetivos a cumplir para la consecución del sistema:
+
+\subsection{Diseño y construcción de la arquitectura física del sistema}
+Se deberán definir las interconexiones entre los diferentes componentes del sistema, solucionar los diferentes problemas físicos tales como la alimentación eléctrica, conexiones de red, refrigeración\dots analizando los diferentes enfoques y valorando la mejor solución en función del resto de objetivos a cumplir.
+
+\subsection{Gestión del sistema}
+
+El sistema debe contar con un conjunto de herramientas que mantengan los principios de transparencia propios de un sistema distribuido.
+
+\subsection{Integración}
+El sistema debe integrarse en una infraestructura preexistente, sin que dicha integración comprometa el diseño básico del sistema, a fin de facilitar su adaptabilidad a otros entornos.
+
+\subsection{Uso como herramienta didáctica}
+El sistema debe ofrecer una serie de ventajas a las herramientas didácticas utilizadas en aquellas asignaturas donde se impartan conocimientos relacionados con la computación paralela y distribuida, ofreciendo herramientas que faciliten la comprensión de dichos paradigmas o el desarrollo, prueba y aplicación de programas basados en los mismos.
+
+\subsection{Evaluación}
+
+A fin de probar los objetivos definidos anteriormente, la viabilidad de sistema como herramienta didáctica y su integración en la organización deberán ser determinados por los diferentes usuarios de la misma.
+
+
+Durante el desarrollo del proyecto surgen los siguientes objetivos funcionales
+
+\subsection{Simplicidad de MarcoPolo}
+
+MarcoPolo debe conseguir un alto grado de versatilidad y aplicabilidad en un gran rango de aplicaciones. A fin de conseguir este objetivo, la simplicidad del sistema construido es clave. Esto conlleva el desacoplamiento y delegación de gran parte de la funcionalidad a otras capas superiores, independientes del protocolo, pero que aprovechan su funcionalidad, en lugar de ser integradas en el mismo.
+
+\subsection{Test-Driven Development}
+
+\section{Conceptos teóricos}
+
+\section{Situación actual (\textit{state of the art})}
+
+%Este apartado sería parecido a lo que en trabajos de grado (WHVLQDV \ WHVLV) se denomina estado del arte. En un proyecto de final de carrera de primer ciclo no parece obligada su presencia (D GLIHUHQFLD GHO VHJXQGR FLFOR GRQGH OD MXVWLILFDFLyQ WHyULFD PHGLDQWH XQ HVWDGR GHO DUWH GHEH DFRPSDxDU D ORV SURGXFWRV VRIWZDUH UHDOL]DGRV), aunque se puede dejar a juicio del tutor o tutores el incluir un pequeño resumen comentado de los trabajos y proyectos ya realizados en el campo del proyecto en curso.
 
 \subsection{Computadores de placa única}
 

@@ -31,7 +31,7 @@ Este proyecto cuenta con varios objetivos muy diferentes entre sí, que se agrup
 
 \subsection{Definición del dominio del problema}
 
-El sistema se ubica en una Facultad universitaria con aproximadamente 600 alumnos (\textbf{cita requerida}) con varias asignaturas en las que se imparten áreas de conocimiento relacionados con la Computación Distribuida, en particular las asignaturas \textbf{Arquitectura de Computadores} y \textbf{Sistemas Distribuidos} \cite{DIA15GuiaAcademica}.
+El sistema se ubica en una Facultad universitaria con aproximadamente 600 alumnos\citationneeded con varias asignaturas en las que se imparten áreas de conocimiento relacionados con la Computación Distribuida, en particular las asignaturas \textbf{Arquitectura de Computadores} y \textbf{Sistemas Distribuidos} \cite{DIA15GuiaAcademica}.
 
 \subsection{Modelado del sistema actual}
 
@@ -134,7 +134,7 @@ Crear un conjunto de nodos virtuales dentro de una máquina que simulen un siste
 \paragraph{Ventajas intrínsecas de la solución}
 
 Simplificación del sistema (reduce las necesidades de adquisición y mantenimiento de hardware).
-Gestión de varias partes del sistema (sistema de ficheros centralizado, gestión de usuarios...) de forma mas sencilla.
+Gestión de varias partes del sistema (sistema de ficheros centralizado, gestión de usuarios...) de forma mas sencilla. El coste se reduce significativamente.
 
 \paragraph{Inconvenientes intrínsecos del sistema}
 
@@ -142,10 +142,15 @@ No se exploran apenas las posibilidades de un sistema distribuido formado por va
 
 \paragraph{Facilidad de trabajo y curva de aprendizaje}
 
-Requiere una etapa de formación en materia de virtualización
+Si bien el trabajo con cada una de las instancias es previsiblemente sencillo, debido a la eliminación de la gran parte del mantenimiento de la capa física subyacente, el uso de este tipo de sistema requiere una etapa de formación previa en materia de virtualización.
+
 \paragraph{Prestaciones técnicas}
 
+Las prestaciones técnicas con las que se contaría, de llevarse a cabo este proyecto, son las de los equipos ya dispuestos para fines similares a este en el Centro: %TODO: Andrés. 
+
 \paragraph{Coste econonómico}
+
+El coste econónomico es muy reducido si ya se cuenta con los equipos a utilizar y las licencias \textit{software} que fueran necesarias para realizar la virtualización.
 
 \paragraph{Escalabilidad del sistema}
 
@@ -162,23 +167,28 @@ Las necesidades propias de un sistema GNU/Linux junto a las específicas de la v
 Se plantea el aprovechamiento de equipos pertenecientes a la Universidad, por lo que se estima un coste muy pequeño a la hora de adquirir material.
 \paragraph{Otras características}
 
+\paragraph{Análisis coste/beneficio}
+
+Si bien el coste de esta solución es muy atractivo, presenta una serie de carencias que dificultan significativamente el desarrollo del sistema en el mismo. 
+
+
 \subsection{Propuesta de solución: Clúster con equipos de escritorio}
 
 Se plantea la reutilización de equipos de escritorio pertenecientes a la Universidad que ya no se encuentran en uso (debido a su renovación, falta de potencia como PC...) para la creación de este sistema.
 
 \paragraph{Ventajas intrínsecas de la solución}
-La potencia del sistema es mucho mayor que la de cualquier otra solucion.
-Reduce dramáticamente el coste de adquisición de material y permite dar nueva vida a material universitario.
-La arquitectura es conocida
+La potencia del sistema es mucho mayor que la de cualquier otra solución considerada viable. Se reduce dramáticamente el coste de adquisición de material y permite dar un nuevo ciclo de vida a material universitario.
+La arquitectura es conocida y fiable.
 
 \paragraph{Inconvenientes intrínsecos del sistema}
-No se exploran las características únicas de otros sistemas menos ``convencionales'', tales como la utilización de sistemas embebidos.
-Consumo mayor.
-Mayor demanda de espacio.
-Debido a el mayor tamaño de los equipos, puede llegar a ser complicado implementar las soluciones de visualizacion planteadas (LEDs, etc)
+
+No se exploran las características únicas de otros sistemas menos ``convencionales'', tales como la utilización de sistemas embebidos. El consumo energético es mayor, existe una mayor demanda de espacio, que puede dificultar la implementación de diferentes aplicaciones didácticas ya planteadas como objetivo funcional del sistema.
+
 \paragraph{Facilidad de trabajo y curva de aprendizaje}
+
 Soporte completo de casi la totalidad de las distribuciones de GNU/Linux.
 Las necesidades de manipulación de hardware se minimizan.
+
 \paragraph{Prestaciones técnicas}
 Arquitectura x86/x64
 Entre 2 y 4 GB de memoria
@@ -186,17 +196,32 @@ Conectividad Ethernet, USB
 Almacenamiento en disco duro
 \paragraph{Coste econonómico}
 
+El coste económico de dichos equipos es prácticamente nulo, pues ya se cuenta con los mismos y su utilización no exige la adquisición de sustitutos, pues ya habían sido retirados de su uso.
+
 \paragraph{Escalabilidad del sistema}
-Dependiente únicamente del coste económico de la adquisición de nuevos equipos
+
+Dependiente únicamente del coste económico de la adquisición de nuevos equipos, o de la disponibilidad de equipos desechados.
+
 \paragraph{Necesidades de mantenimiento}
-Las necesarias en cualquier sistema GNU/Linux y las específicas del montaje dado (en materia de refrigeración, gestión de cableado, etc)
+
+Las necesarias en cualquier sistema GNU/Linux y las específicas del montaje dado (en materia de refrigeración, gestión de cableado, etcétera).
+
 \paragraph{Consumo energético del sistema}
 
+El típico de cualquier equipo de escritorio.
+
 \paragraph{Obsolescencia del sistema}
+
+Estos equipos tienen una antigüedad de aproximadamente 4 años. Dicha edad no impide que sean capaces de utilizar aplicaciones actuales, y en general no se prevé la incompatibilidad con ninguna aplicación.
+
 \paragraph{Material con el que se cuenta actualmente}
 La Facultad de Ciencias ya dispone de los equipos, pues se plantea la reutilización de los mismos
 
 \paragraph{Otras características}
+
+\paragraph{Análisis coste/beneficio}
+
+Si bien el coste de estos equipos es prácticamente nulo, dicho atractivo contrasta con los potenciales problemas que el uso de estos sistemas puede implicar (dificultad de desarrollo de objetivos funcionales, uso de sistemas convencionales en detrimento de soluciones más innovadoras\dots).
 
 \subsection{Clúster con equipos embebidos multimedia }
 
@@ -223,9 +248,10 @@ Alimentación por microUSB
 
 \paragraph{Coste econonómico}
 
-
+El coste de estos equipos es reducido, generalmente inferior a 30 € por unidad.
 
 \paragraph{Escalabilidad del sistema}
+
 Dependiente del coste de adquisición de nuevos equipos y las facilidades de interconexión de la plataforma (previsiblemente compleja, debido a la ausencia de sistemas de interconexión más allá de WiFi)
 
 \paragraph{Necesidades de mantenimiento}
@@ -235,7 +261,7 @@ Las derivadas del mantenimiento de un sistema Linux sumadas a posibles problemas
 
 \paragraph{Consumo energético del sistema}
 
-
+El diseño de estos equipos está orientado a la reducción del consumo, por lo que se estima reducido.
 
 \paragraph{Obsolescencia del sistema}
 
@@ -427,3 +453,20 @@ Windows 10 & Diseñado para el paradigma IoT & Sencillo de utilizar, con soporte
 \end{tabular}
 \end{table}
 \end{landscape}
+
+
+\section{Propuesta de solución definitiva}
+
+En función de la evaluación llevada a cabo se extraen las siguientes decisiones de diseño que conforman la propuesta de solución definitiva:
+
+\subsection{Hardware}
+
+Todo el sistema se construirá sobre placas \textbf{Raspberry Pi} debido a su alta versatilidad, gran potencia de cálculo, interfaces de comunicación, soporte por parte de las diferentes comunidades de desarrolladores y consumo eléctrico.
+
+\subsection{Sistema operativo}
+
+El sistema operativo a utilizar será \textbf{Arch Linux ARM}, debido a la gran comunidad de soporte con la que cuenta, compatibilidad con la gran mayoría de componentes presentes en un sistema GNU/Linux y modelo arquitectónico que apuesta por la simplicidad del sistema, \textit{limpieza} arquitectónica y eficiencia.
+
+\subsection{Herramientas de desarrollo a utilizar}
+
+Se plantea el uso del lenguaje de programación Python como herramienta principal de desarrollo, debido a su potencia de cálculo y simplicidad, que permite crear aplicaciones que consuman pocos recursos (aspecto vital, máxime cuando se utilizará sobre un sistema con un \textit{hardware} poco potente) de forma sencilla y rápida.
