@@ -196,7 +196,7 @@
       \vfill
       {\huge \bf \@title \par}
       \vfill
-      {\LARGE by \par}
+      {\LARGE por \par}
       \smallskip
       {\LARGE \authornames \par}
       \vfill
@@ -248,7 +248,7 @@
     \bigskip
     {\normalsize\bf \@title \par}
     \medskip
-    {\normalsize by \authornames \par}
+    {\normalsize por \authornames \par}
     \bigskip
   \end{center}
 }
@@ -315,7 +315,7 @@
     \cleardoublepage
 }\end{spacing}
 }
-\newcommand\listsymbolname{Abbreviations}
+\newcommand\listsymbolname{Lista de abreviaturas}
 \usepackage{longtable}
 \newcommand\listofsymbols[2]{
 \btypeout{\listsymbolname}
@@ -326,7 +326,7 @@
 \begin{longtable}[c]{#1}#2\end{longtable}\par
     \cleardoublepage
 }
-\newcommand\listconstants{Physical Constants}
+\newcommand\listconstants{Constantes físicas}
 \usepackage{longtable}
 \newcommand\listofconstants[2]{
 \btypeout{\listconstants}
@@ -337,7 +337,7 @@
 \begin{longtable}[c]{#1}#2\end{longtable}\par
     \cleardoublepage
 }
-\newcommand\listnomenclature{Symbols}
+\newcommand\listnomenclature{Símbolos}
 \usepackage{longtable}
 \newcommand\listofnomenclature[2]{
 \btypeout{\listnomenclature}
