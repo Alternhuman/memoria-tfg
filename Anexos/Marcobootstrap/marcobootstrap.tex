@@ -60,8 +60,9 @@
 
 \maketitle
 \begin{abstract}
-Marcobootstrap comprende un conjunto de utilidades que permite llevar a cabo la descarga e instalación de un sistema operativo en varios nodos sin requerir la supervisión de un administrador, incluyendo el autodescubrimiento del servidor que aloja los ficheros binarios. 
+Marcobootstrap comprende un conjunto de utilidades que permite llevar a cabo la descarga, instalación y actualización de un sistema operativo en varios nodos sin requerir la supervisión de un administrador, incluyendo el descubrimiento de los equipos necesarios para el desarrollo de dichas operaciones.
 \end{abstract}
+
 %----------------------------------------------------------------------------------------
 %   TABLE OF CONTENTS
 %----------------------------------------------------------------------------------------
@@ -73,7 +74,7 @@ Marcobootstrap comprende un conjunto de utilidades que permite llevar a cabo la 
 
 \section{Introducción}
 
-El uso de un sistema conformado por varios nodos dificulta su mantenimiento, y en particular la instalación de un conjunto de herramientas iniciales y las posteriores actualizaciones. Dicho mantenimiento, si es llevado a cabo de forma ``manual'' suele propiciar fallos humanos. Por ello, en el desarrollo del sistema se ha apostado por una herramienta que automatice la instalación del sistema operativo reduciendo al máximo el tiempo de atención que el administrador debe prestar a cada nodo.
+El uso de un sistema conformado por varios nodos dificulta su mantenimiento, y en particular la instalación de un conjunto de herramientas iniciales y las posteriores actualizaciones. Dicho mantenimiento, si es llevado a cabo de forma ``manual'' suele propiciar fallos humanos o inconsistencias en el resultado final (nodos que no cuentan con el mismo conjunto de herramientas). Por ello, en el desarrollo del sistema se ha apostado por una herramienta que automatice la instalación del sistema operativo reduciendo al máximo el tiempo de atención que el administrador debe prestar a cada nodo, facilitando además la gestión y actualización posterior..
 
 En el presente documento se detallan las decisiones de usuario llevadas a cabo en el desarrollo de la utilidad \textbf{marco-netinst}, que lleva a cabo este cometido, así como el funcionamiento de dicha herramienta.
 
@@ -83,7 +84,7 @@ Como se define en la memoria del Trabajo, las opciones típicamente utilizadas p
 
 \subsection{Estrategia inicial}
 
-El arranque de una placa \textbf{Rasbperry Pi} es llevado a cabo principalmente por la GPU de la placa. Al conectarse a la corriente eléctrica, se activa la secuencia de arranque definida en la memoria ROM de la placa. Este código busca en la primera partición de la tarjeta SD un \textit{bootloader} y lo carga, activando la memoria SDRAM y pasando al siguiente estado, en el que se carga el archivo start.elf, encargado de cargar el Kernel del sistema operativo, según los parámetros definidos en los ficheros \texttt{config.txt}, \texttt{cmdline.txt} y \textbf{bcm2835.dtb}.
+El arranque de una placa \textbf{Rasbperry Pi} es llevado a cabo principalmente por la GPU de la misma. Al conectarse a la corriente eléctrica, se activa la secuencia de arranque definida en la memoria de solo lectura. Este código busca en la primera partición de la tarjeta SD un \textit{bootloader} y lo carga, activando la memoria SDRAM y pasando al siguiente estado, en el que se carga el archivo start.elf, que carga el Kernel del sistema operativo según los parámetros definidos en los ficheros \texttt{config.txt} (pues no tiene un cargador que indique los parámetros, como ocurre en sistemas de escritorio, en los que existen opciones como GRUB o LILO), \texttt{cmdline.txt} y \textbf{bcm2835.dtb}.
 
 \begin{figure}[H]
 	\centering
@@ -109,35 +110,35 @@ Los parámetros de interés son los siguientes:
 
 Modificando el parámetro \texttt{init} es posible ejecutar un código diferente a \texttt{init} en el proceso de arranque, que realice la descarga e instalación del sistema operativo, logrando una solución de compromiso entre la instalación manual y el uso de \textbf{PXE}.
 
-Debido a la falta de experiencia en el desarrollo de herramientas similares, se han probado varios enfoques:
+Debido a la falta de experiencia en el desarrollo de herramientas similares, se han seguido varios enfoques:
 
 \section{Primer enfoque: modificación del script de inicio}
 
-En este primer intento se crea un \textit{script} y un ejecutable programado en C con un conjunto mínimo de utilidades que permitan la descarga del sistema operativo. Estos archivos son instalados en la primera partición de la tarjeta SD, siendo correctamente ejecutados. Sin embargo, no es posible llevar a cabo la instalación debido a la falta de herramientas de configuración de red.
+En este primer intento se crea un \textit{script} y un ejecutable programado en C con un conjunto mínimo de utilidades que permitan la descarga del sistema operativo. Estos archivos son instalados en la primera partición de la tarjeta SD, siendo correctamente ejecutados. Sin embargo, no es posible llevar a cabo la instalación debido a la falta de herramientas de configuración de red, y el enfoque presenta varios problemas adicionales: al carecer de un proceso \texttt{init}, el sistema operativo es muy inestable, y es difícil realizar cualquier tarea más allá de la gestión de ficheros o tareas de mantenimiento básicas.
 
 \section{Segundo enfoque: Busybox}
 
-\textbf{Busybox} es una utilidad que aglutina un conjunto de herramientas UNIX en un único ejecutable de tamaño muy reducido, reemplazando así el uso de varios paquetes, como fileutils o shellutils. Las utilidades a las que reemplaza cuentan con mucha menos funcionalidad, pero son capaces de crear un sistema utilizable con únicamente un kernel y varios ficheros de configuración\cite{aboutbusybox}. Es la opción más común a la hora de crear sistemas embebidos o para realizar operaciones sin un sistema operativo.
+\textbf{Busybox} es una utilidad que aglutina un conjunto de herramientas UNIX en un único ejecutable de tamaño muy reducido, reemplazando así el uso de varios paquetes, como fileutils o shellutils. Las utilidades a las que reemplaza cuentan con mucha menos funcionalidad, pero son capaces de crear un sistema utilizable con únicamente un kernel y varios ficheros de configuración\cite{aboutbusybox}. Es la opción más común a la hora de crear sistemas embebidos o para realizar operaciones sin un sistema operativo completo.
 
-Utilizando BusyBox es posible configurar la interfaz de red de la Raspberry Pi mediante \textbf{DHCP} gracias a la herramienta \textbf{udhcpc} así como a un conjunto de herramientas de utilidad como \textbf{wget}.\\
+Utilizando BusyBox es posible configurar la interfaz de red de la Raspberry Pi mediante \textbf{DHCP} gracias a la herramienta \textbf{udhcpc}, incluida en la distribución de BusyBox estándar, así como a un conjunto de herramientas de utilidad como \textbf{wget}.\\
 
 Incluyendo BusyBox en el código del primer proyecto es posible conseguir acceso a la red, pero el hecho de no utilizar el proceso \textbf{init} dificulta la mayor parte de operaciones, por lo que esta opción es descartada.
 
-\section{Enfoque definitivo}
+\section{Enfoque exitoso}
 
 Antes de detallar la solución definitiva al problema, es necesario detallar las herramientas de terceros valoradas y descartadas:
 
 \subsection*{Raspi-LTSP, PiNET}
 
-Estos proyectos\cite{raspiltsp, pinet} están enfocados a la centralización de toda la información en un servidor, y delegan la carga del sistema operativo al mismo, por lo que no constituyen una opción viable.
+Estos proyectos\cite{raspiltsp, pinet} están enfocados a la centralización de toda la información en un servidor, incluyendo la carga del sistema operativo, por lo que no constituyen una opción viable.
 
 \subsection*{BerryBoot}
 
-BerryBoot\cite{berryboot} es un sistema de arranque que posibilita la descarga e instalación de un sistema operativo y la coexistencia de varios en una misma tarjeta SD. Constituye una opción bastante prometedora, que sin embargo depende significativamente de una interfaz gráfica, haciendo que su uso sea inviable para el objetivo deseado.
+BerryBoot\cite{berryboot} es un sistema de arranque que posibilita la descarga e instalación de un sistema operativo y la coexistencia de varios en una misma tarjeta SD. Constituye una opción bastante prometedora, que sin embargo depende significativamente de una interfaz gráfica y de un usuario que interaccione con la misma, haciendo que su uso sea inviable para el objetivo deseado sin una intensa reestructuración.
 
 \subsection{Propuesta de solución}
 
-El proyecto \textbf{raspbian-ua-netinst}\cite{raspbian-ua-netinst} posibilita la instalación de la distribución Raspbian desde un repositorio público, realizando el particionado de la tarjeta SD, la descarga e instalación de los ficheros y el resto de tareas necesarias desde la propia máquina, únicamente instalando en la tarjeta unos 15 megabytes de información. Este proyecto ha sido adaptado a las necesidades específicas del sistema, con las siguientes modificaciones:
+El proyecto \textbf{raspbian-ua-netinst}\cite{raspbian-ua-netinst} posibilita la instalación de la distribución Raspbian desde un repositorio público, realizando el particionado de la tarjeta SD, la descarga e instalación de los ficheros y el resto de tareas necesarias desde la propia máquina, únicamente copiando en la tarjeta unos 15 \textit{megabytes} de información. Este proyecto ha sido adaptado a las necesidades específicas del sistema, con las siguientes modificaciones:
 
 \begin{itemize}
 	\item Instalación de \textbf{ArchLinux ARM} en lugar de \textbf{Raspbian}.
@@ -185,9 +186,11 @@ Estos tres \textit{scripts} deben ser ejecutados en el orden en el que han sido 
 
 Elimina todos los ficheros temporales y el resultado de las ejecuciones.
 
+La mayoría de los archivos temporales que son descargados se conservan y son reutilizados en posteriores ejecuciones, optimizando el tiempo de instalación en varias máquinas.
+
 \subsection{marco-bootstrap}
 
-Ejecutable en C++ que permite llevar a cabo el descubrimiento del servidor donde se aloja el sistema operativo mediante \textbf{MarcoPolo}. Debido a la ausencia del \textit{daemon} de \textbf{Marco} en el sistema, se utiliza una implementación básica del protocolo, denominada \textbf{marco-minimal}. Esta implementación expone la misma funcionalidad que el \textbf{binding} de Marco en C++, pero a más bajo nivel.
+Ejecutable en C++ que permite llevar a cabo el descubrimiento del servidor donde se aloja el sistema operativo mediante \textbf{MarcoPolo}. Debido a la ausencia del \textit{daemon} de \textbf{Marco} en la imagen mínima copiada a la tarjeta SD, se utiliza una implementación básica del protocolo, denominada \textbf{marco-minimal}. Esta implementación expone la misma funcionalidad que el \textbf{binding} de Marco en C++, pero a más bajo nivel.
 
 \subsection{marco-bootstrap-backend}
 
@@ -228,6 +231,41 @@ El script lleva a cabo la siguiente secuencia de tareas:
 
 Una vez ejecutado el script el nodo está preparado para integrarse en el sistema. El tiempo total de instalación es de unos 5 minutos, según el fichero de log, dependiendo del estado de la red. En pruebas realizadas, el tiempo de descarga supone aproximadamente la mitad del tiempo total de instalación, si bien mejora significativamente cuando se cuenta con un servidor local que aloje el sistema operativo.
 
+\section{Actualización}
+
+El administrador puede programar actualizaciones utilizando la herramienta de backend y enviar notificaciones a los diferentes nodos del sistema. Estos realizarán la actualización en el siguiente reinicio del sistema, o si lo desea el administrador, de forma programada o inmediata.
+
+El administrador únicamente debe subir a la interfaz web una imagen del sistema operativo a replicar, que incluirá todos los paquetes necesarios. Los nodos reemplazarán su sistema operativo por este mediante un proceso similar al de instalación.
+
+Para realizar la creación de la imagen existe la herramienta \texttt{createimage.sh}, que requiere como parámetro un descriptor de dispositivo (una tarjeta SD o un archivo .img) que contenga los archivos a copiar.
+
+Los nodos cuentan con un servicio (vinculado a MarcoPolo) que escucha peticiones (verificadas por un certificado SSL) de actualización (o cualquier otra funcionalidad que pueda ser añadida, apostando por la versatilidad en el desarrollo de la plataforma). Al recibir una petición válida (el certificado enviado pertenece a un servidor de despliegue), comienza el siguiente proceso:
+
+\begin{itemize}
+	\item Comprueban los parámetros de la petición, y actúan en consecuencia.
+	\item En el caso de que se solicite una actualización, se leen los parámetros de la petición, que incluyen el momento de reinicio y el nombre del fichero a solicitar al servidor.
+	\item Copia a la partición 1 (arranque) los ficheros kernel.img, paquetes Debian necesarios, Busybox y el script /etc/init/rcS, que en caso de ser necesario, deberá ser modificado para atender a las características propias de cada consulta.
+	\item Programa un reinicio del sistema en el momento definido por el administrador (inmediatamente, en un momento determinado o en el momento en el que se produzca un reinicio originado por otra causa).
+	\item Al reiniciarse se realiza una secuencia de pasos similar a la del proceso de instalación.
+
+\end{itemize}
+
+A fin de no eliminar la información almacenada por los usuarios, o cualquier otro tipo de datos que deban sobrevivir a este tipo de actualizaciones, se definirán particiones que no serán alteradas.
+
+\section{Tiempo}
+
+El tiempo de interacción que el administrador debe emplear por cada máquina es de aproximadamente un minuto, el tiempo necesario para conectar una tarjeta SD, ejecutar el script de carga de los paquetes de instalación, y la desconexión de la misma.
+
+El tiempo de instalación es variable, dependiente principalmente de la velocidad de descarga del sistema operativo y el tiempo de descompresión y copia de este, si bien suele ser inferior a 10 minutos (y este tiempo es paralelo para todas las máquinas, suponiendo únicamente una mayor carga para el servidor).
+
+\section{Evaluación}
+
+Se han realizado las siguientes evaluaciones de uso:
+
+\begin{itemize}
+	\item Entrevista con el Administrador de la instalación el día 13 de mayo, donde se le presenta la solución propuesta y los resultados obtenidos. Según su criterio considera que el enfoque es el adecuado.
+
+\end{itemize}
 \nocite{rpiconfig}
 
  \label{Bibliography}
