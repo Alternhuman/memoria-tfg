@@ -8,10 +8,6 @@
 % Original author:
 % Ted Pavlic (http://www.tedpavlic.com)
 %
-% Note:
-% The \lipsum[#] commands throughout this template generate dummy text
-% to fill the template out. These commands should all be removed when 
-% writing assignment content.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -60,29 +56,43 @@
 
 \maketitle
 \begin{abstract}
-Marcobootstrap comprende un conjunto de utilidades que permite llevar a cabo la descarga, instalación y actualización de un sistema operativo en varios nodos sin requerir la supervisión de un administrador, incluyendo el descubrimiento de los equipos necesarios para el desarrollo de dichas operaciones.
+El paquete Marcobootstrap comprende un conjunto de utilidades que permite llevar a cabo la descarga, instalación y actualización de un sistema operativo en varios nodos sin requerir la supervisión de un administrador, incluyendo el descubrimiento de los equipos necesarios para el desarrollo de dichas operaciones. Junto a estas se incluye una serie de aplicaciones de gestión del sistema utilizables por el administrador del sistema.
 \end{abstract}
 
 %----------------------------------------------------------------------------------------
 %   TABLE OF CONTENTS
 %----------------------------------------------------------------------------------------
 
-\setcounter{tocdepth}{1}
+%\setcounter{tocdepth}{1}
 
 \tableofcontents
 \newpage
 
 \section{Introducción}
 
-El uso de un sistema conformado por varios nodos dificulta su mantenimiento, y en particular la instalación de un conjunto de herramientas iniciales y las posteriores actualizaciones. Dicho mantenimiento, si es llevado a cabo de forma ``manual'' suele propiciar fallos humanos o inconsistencias en el resultado final (nodos que no cuentan con el mismo conjunto de herramientas). Por ello, en el desarrollo del sistema se ha apostado por una herramienta que automatice la instalación del sistema operativo reduciendo al máximo el tiempo de atención que el administrador debe prestar a cada nodo, facilitando además la gestión y actualización posterior..
+El uso de un sistema conformado por una cantidad significativa de nodos dificulta su mantenimiento, y en particular la instalación de un conjunto de herramientas iniciales y las posteriores actualizaciones de las mismas. Dicho mantenimiento, si es llevado a cabo de forma ``manual'' suele propiciar fallos humanos o inconsistencias en el resultado final (nodos que no cuentan con el mismo conjunto de herramientas o con configuraciones diferentes). Por ello, en el desarrollo del sistema se ha apostado por una herramienta que automatice la instalación del sistema operativo reduciendo al máximo el tiempo de atención que el administrador debe prestar a cada nodo, facilitando además la gestión y actualización posterior. Dichas herramientas se apoyan sobre los principios básicos de desarrollo seguidos en todo el sistema, entre los que destaca el descubrimiento automático de equipos.
 
-En el presente documento se detallan las decisiones de usuario llevadas a cabo en el desarrollo de la utilidad \textbf{marco-netinst}, que lleva a cabo este cometido, así como el funcionamiento de dicha herramienta.
+En el presente documento se detallan las decisiones de diseño llevadas a cabo en el desarrollo de las utilidades \textbf{marco-netinst}, \textbf{marco-bootstrap}, y \textbf{marco-bootstrap-backend} que llevan a cabo este cometido, así como el funcionamiento de las mismas.
 
-\section{Evaluación de alternativas}
+\section{Búsqueda de solución}
 
-Como se define en la memoria del Trabajo, las opciones típicamente utilizadas por administradores de sistemas no son viables en el sistema a construir debido a las características de la plataforma utilizada: los equipos \textbf{Rasbperry Pi} no soportan el protocolo \textbf{PXE}, por lo que es necesario crear una herramienta propia, o buscar alternativas ya existentes creadas para un problema similar.
+\textbf{marco-netinst} Es la herramienta principal del sistema, que permite realizar instalaciones y actualizaciones de un sistema operativo emulando el funcionamiento de un servidor \textbf{PXE}, requiriendo únicamente un conjunto reducido de herramientas preinstaladas en la tarjeta SD para realizar todas las tareas. Se integra con MarcoPolo, por lo que no es necesario realizar ningún tipo de configuración para realizar el proceso de instalación previamente.
 
-\subsection{Estrategia inicial}
+La complejidad del problema a resolver es significativa, pues implica la creación de una herramienta capaz de funcionar sin un sistema operativo completo, en un entorno en el cual la funcionalidad disponible es mínima.
+\subsection{Definición de requisitos}
+
+\begin{itemize}
+\item El software no debe requerir configuración por parte del administrador, debe ser capaz de detectar toda la información necesaria a partir de las herramientas provistas.
+\item El tiempo de atención humana que la ejecución de la herramienta debe ser nulo o mínimo.
+\item El sistema debe ser capaz de integrarse en el sistema sin ningún tipo de configuración posterior a la instalación.
+\item Las herramientas creadas deben ser flexibles, a fin de poder adaptarlas a nuevas situaciones.
+\end{itemize}
+
+\subsection{Evaluación de alternativas}
+
+Como se define en la memoria del Trabajo, las opciones típicamente utilizadas por administradores de sistemas no son viables en el sistema a construir debido a las características de la plataforma utilizada: los equipos \textbf{Rasbperry Pi} no soportan el protocolo \textbf{PXE}, debido a que el mismo no se incluye en el \textit{software} que provee la tarjeta de red (como suele ocurrir en equipos de escritorio, en los que se integra como módulo de la \textbf{BIOS}), por lo que es necesario crear una herramienta propia, o buscar alternativas ya existentes creadas para solucionar un problema similar.
+
+\subsubsection{Estrategia inicial}
 
 El arranque de una placa \textbf{Rasbperry Pi} es llevado a cabo principalmente por la GPU de la misma. Al conectarse a la corriente eléctrica, se activa la secuencia de arranque definida en la memoria de solo lectura. Este código busca en la primera partición de la tarjeta SD un \textit{bootloader} y lo carga, activando la memoria SDRAM y pasando al siguiente estado, en el que se carga el archivo start.elf, que carga el Kernel del sistema operativo según los parámetros definidos en los ficheros \texttt{config.txt} (pues no tiene un cargador que indique los parámetros, como ocurre en sistemas de escritorio, en los que existen opciones como GRUB o LILO), \texttt{cmdline.txt} y \textbf{bcm2835.dtb}.
 
@@ -110,29 +120,29 @@ Los parámetros de interés son los siguientes:
 
 Modificando el parámetro \texttt{init} es posible ejecutar un código diferente a \texttt{init} en el proceso de arranque, que realice la descarga e instalación del sistema operativo, logrando una solución de compromiso entre la instalación manual y el uso de \textbf{PXE}.
 
-Debido a la falta de experiencia en el desarrollo de herramientas similares, se han seguido varios enfoques:
+Debido a la falta de experiencia en el desarrollo de herramientas similares, se han seguido varios enfoques hasta dar con la solución adecuada:
 
-\section{Primer enfoque: modificación del script de inicio}
+\subsubsection{Primer enfoque: modificación del script de inicio}
 
-En este primer intento se crea un \textit{script} y un ejecutable programado en C con un conjunto mínimo de utilidades que permitan la descarga del sistema operativo. Estos archivos son instalados en la primera partición de la tarjeta SD, siendo correctamente ejecutados. Sin embargo, no es posible llevar a cabo la instalación debido a la falta de herramientas de configuración de red, y el enfoque presenta varios problemas adicionales: al carecer de un proceso \texttt{init}, el sistema operativo es muy inestable, y es difícil realizar cualquier tarea más allá de la gestión de ficheros o tareas de mantenimiento básicas.
+En este primer intento se crea un \textit{script} y un ejecutable programado en C con un conjunto mínimo de utilidades que permitan la descarga del sistema operativo (utilizando herramientas como \textbf{cURL}. Estos archivos son instalados en la primera partición de la tarjeta SD, siendo correctamente ejecutados. Sin embargo, no es posible llevar a cabo la instalación debido a la falta de herramientas de configuración de red, y el enfoque presenta varios problemas adicionales: al carecer de un proceso \texttt{init}, el sistema es muy inestable, y es difícil realizar cualquier tarea más allá de la gestión de ficheros o tareas de mantenimiento básicas.
 
-\section{Segundo enfoque: Busybox}
+\subsubsection{Segundo enfoque: Busybox}
 
-\textbf{Busybox} es una utilidad que aglutina un conjunto de herramientas UNIX en un único ejecutable de tamaño muy reducido, reemplazando así el uso de varios paquetes, como fileutils o shellutils. Las utilidades a las que reemplaza cuentan con mucha menos funcionalidad, pero son capaces de crear un sistema utilizable con únicamente un kernel y varios ficheros de configuración\cite{aboutbusybox}. Es la opción más común a la hora de crear sistemas embebidos o para realizar operaciones sin un sistema operativo completo.
+\textbf{Busybox} es una utilidad que aglutina un conjunto de herramientas UNIX en un único ejecutable de tamaño muy reducido, reemplazando así el uso de varios paquetes en unidades independientes, como \textbf{fileutils} o \textbf{shellutils}. Las utilidades a las que reemplaza cuentan con mucha menos funcionalidad, pero son capaces de crear un sistema utilizable con únicamente un \textit{kernel} y varios ficheros de configuración\cite{aboutbusybox}. Es la opción más común a la hora de crear sistemas embebidos o para realizar operaciones sin un sistema operativo completo.
 
 Utilizando BusyBox es posible configurar la interfaz de red de la Raspberry Pi mediante \textbf{DHCP} gracias a la herramienta \textbf{udhcpc}, incluida en la distribución de BusyBox estándar, así como a un conjunto de herramientas de utilidad como \textbf{wget}.\\
 
 Incluyendo BusyBox en el código del primer proyecto es posible conseguir acceso a la red, pero el hecho de no utilizar el proceso \textbf{init} dificulta la mayor parte de operaciones, por lo que esta opción es descartada.
 
-\section{Enfoque exitoso}
+\subsubsection{Enfoque exitoso}
 
 Antes de detallar la solución definitiva al problema, es necesario detallar las herramientas de terceros valoradas y descartadas:
 
-\subsection*{Raspi-LTSP, PiNET}
+\paragrah{Raspi-LTSP, PiNET}
 
 Estos proyectos\cite{raspiltsp, pinet} están enfocados a la centralización de toda la información en un servidor, incluyendo la carga del sistema operativo, por lo que no constituyen una opción viable.
 
-\subsection*{BerryBoot}
+\paragraph{BerryBoot}
 
 BerryBoot\cite{berryboot} es un sistema de arranque que posibilita la descarga e instalación de un sistema operativo y la coexistencia de varios en una misma tarjeta SD. Constituye una opción bastante prometedora, que sin embargo depende significativamente de una interfaz gráfica y de un usuario que interaccione con la misma, haciendo que su uso sea inviable para el objetivo deseado sin una intensa reestructuración.
 
@@ -192,9 +202,66 @@ La mayoría de los archivos temporales que son descargados se conservan y son re
 
 Ejecutable en C++ que permite llevar a cabo el descubrimiento del servidor donde se aloja el sistema operativo mediante \textbf{MarcoPolo}. Debido a la ausencia del \textit{daemon} de \textbf{Marco} en la imagen mínima copiada a la tarjeta SD, se utiliza una implementación básica del protocolo, denominada \textbf{marco-minimal}. Esta implementación expone la misma funcionalidad que el \textbf{binding} de Marco en C++, pero a más bajo nivel.
 
+Se apoya en la biblioteca \textbf{RapidJSON} para la generación e interpretación de cadenas \textbf{JSON}, así como en la API de sockets del sistema. Con estas dos herramientas es capaz de implementar toda la funcionalidad básica que requiere para utilizar \textbf{MarcoPolo}. La gestión de la compilación se lleva a cabo con la herramienta \textbf{Cmake}. Se integra con el script rcS mediante las salidas estándar y de error.
+
 \subsection{marco-bootstrap-backend}
 
-Interfaz de gestión de los sistemas operativos que el servidor ofrece para su descarga.
+Interfaz de gestión de los del sistema. Dicha herramienta está diseñada para el administrador de la red, y mediante la misma es posible programar operaciones de actualización en varios nodos, el reinicio de máquinas o la preparación de imágenes de instalación.
+
+La herramienta se apoya en MarcoPolo para la detección de los diferentes nodos y está construida sobre los \textit{frameworks} \textbf{Tornado} y \textbf{Django}.
+
+\subsubsection{Funcionamiento básico}
+
+La interfaz se basa en la estructura de la herramienta MarcoDeployer: un conjunto de pestañas con funcionalidad relacionada.
+
+\subsubsection{Vista principal}
+
+En la vista principal el administrador puede visualizar las diferentes imágenes disponibles para su uso, los nodos sobre los que puede realizar operaciones, y un panel desde el que puede programar acciones sobre los nodos activos.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{index}
+\caption{Vista de la interfaz inicial.}
+\label{backend:index}
+\end{figure}
+
+El administrador puede desde esta interfaz programar operaciones y enviarlas a un conjunto de nodos. Todas las operaciones pueden ser programadas para ser ejecutadas en un momento futuro.
+
+\subsubsection{Operaciones programadas}
+
+En ocasiones es necesario conocer las operaciones programadas para un nodo dado y contar con la posibilidad de cancelar las mismas. En la pestaña "Programados" es posible observar todos los eventos programados y los nodos sobre los que se aplicarán. Las operaciones se presentan en orden cronológico.
+\subsubsection{Cancelación}
+
+Todas las operaciones cuentan con un identificador único en el sistema. Utilizándolo es posible cancelar operaciones futuras.
+
+\subsubsection{Persistencia}
+
+Es necesario mantener una serie de datos de forma persistente que sirvan para conocer las operaciones a realizar y aquellas ya ejecutadas. La herramienta utiliza el gestor relacional de objetos (\textit{Object Relational Manager}) del \textit{framework} Django, que abstrae la interacción con una base de datos, además de gestionar la seguridad de las operaciones ejecutadas en la misma (en especial la protección contra el ataque conocido como ``Inyección SQL'', mitigado de forma automática por el gestor). La abstracción permite intercambiar la capa permanente de forma sencilla.
+
+Debido a la modularidad del \textbf{framework}, es posible integrar el ORM en Tornado con poco esfuerzo, realizando únicamente una serie de ajustes previos en la configuración de la aplicación.
+
+Como gestor de la base de datos se utiliza SQLite, un gestor que implementa un subconjunto del estándar SQL y que se caracteriza por su simplicidad y eficiencia. Es ideal para su uso en sistemas embebidos como las Raspberry Pi. Su simplicidad es tal que el gestor no se incluye como una pieza independiente sobre la que una serie de aplicaciones se conectan (tal es el caso de gestores de bases de datos como MySQL u Oracle Database), sino que se incluye dentro de la aplicación que hace uso de una base de datos.
+
+En la base de datos existe una única tabla, que almacena el tiempo en el que se ha programado una operación, los nodos sobre la que se ha realizado, el tipo de operación y cualquier otro parámetro adicional.
+
+\subsection{marco-bootstrap-backend-slave}
+
+Los esclavos son los encargados de llevar a cabo las operaciones programadas, así como la cancelación de las mismas en caso de que sea necesario.
+
+\subsubsection{Reinicio}
+
+El reinicio del sistema se realiza mediante la orden \textbf{shutdown} proporcionada por el sistema operativo. Se ha dispuesto una espera de dos minutos previa al reinicio a fin de que los usuarios puedan guardar su trabajo de forma segura.
+
+\subsubsection{Actualización}
+
+Cada esclavo cuenta con una imagen del conjunto de herramientas necesarias para realizar el proceso de actualización, similares a las utilizadas en el proceso de instalación del sistema operativo. Dicha imagen es instalada en la primera partición (sobreescribiendo todos los archivos allí existentes de mismo nombre) y sus contenidos son leídos por la placa al realizarse el reinicio que se programa tras la extracción. Con el objetivo de garantizar la estabilidad del sistema, los ficheros son sobreescritos en el momento posterior al reinicio, y no en el momento en el que la operación es programada.
+
+\subsubsection{Programación}
+
+Los diferentes eventos se programan en el futuro utilizando el bucle de eventos de \textbf{Tornado}.
+\subsection{Seguridad}
+
+La autenticación del administrador se realiza mediante una combinación de usuario y contraseña (almacenada como \textit{hash} SHA de 256 bits). Todas las comunicaciones (exceptuando la descarga de una imagen de sistema operativo) se realizan mediante el protocolo HTTPS, y en el caso de la programación y cancelación de operaciones la identificación de cada una de las partes se realiza mediante certificados SSL tanto en cliente como en servidor.
 
 \section{Instalación}
 
