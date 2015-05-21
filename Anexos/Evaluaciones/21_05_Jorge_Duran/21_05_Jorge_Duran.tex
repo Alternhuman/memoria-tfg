@@ -1,0 +1,80 @@
+\input{includes}
+\usepackage{float}
+\graphicspath{{Figures/}}
+\newcommand{\hmwkTitle}{Evaluación de herramientas} % Assignment title
+\newcommand{\hmwkDueDate}{Jueves,\ 21\ de\ mayo\ de\ 2015}
+\newcommand{\hmwkClassInstructor}{Rodrigo Santamaría} % Teacher/lecturer
+\newcommand{\hmwkAuthorName}{Diego Martín Arroyo} % Your name
+\newcommand{\hmwkSubject}{5} % Evaluation subject number
+
+%----------------------------------------------------------------------------------------
+%   TITLE PAGE
+%----------------------------------------------------------------------------------------
+\newcommand{\ordinalindicator}{\hspace{-1.5mm}$\phantom{a}^{\circ}$}
+\title{\hmwkTitle\\Sujetos de evaluación n\ordinalindicator \hmwkSubject}
+\author{\textbf{\hmwkAuthorName}}
+\date{21 de mayo de 2015} % Insert date here if you want it to appear below your name
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+\section{Descripción}
+
+\begin{itemize}
+	\item \textbf{Perfil}: Estudiante de la asignatura \textbf{Arquitectura de Computadores e Interacción Persona-Ordenador}.
+	\item No conocían las herramientas previamente.
+	\item Cuentan con experiencia en el desarrollo de aplicaciones con MPI en el marco de la Asignatura, así como nociones básicas de diseño de interacción.
+\end{itemize}
+
+
+\section{Introducción}
+
+En la presente evaluación se ha realizado un recorrido de interacción a través de los aspectos fundamentales del sistema, evaluando la opinión del sujeto como potencial usuario del sistema y su criterio respecto al diseño de interfaces gráficas de usuario.
+
+\section{Evaluación}
+
+\subsection{Status monitor}
+La evaluación comienza con el análisis de la herramienta \textbf{Status monitor}. Se realizan críticas a la disposición de los elementos de la interfaz, en particular textos que escapan su contenedor. Recomienda añadir una leyenda sobre los colores en los gráficos de memoria y \textit{swap}. Respecto a la información presentada, considera que es suficiente, sugiriendo únicamente añadir una monitorización del tráfico de red, el tiempo durante el que el sistema ha estado conectado (\textit{uptime}) y gráficos que muestren un histórico de los valores observados. En la salida del comando \textbf{top} sugiere indicar el porcentaje de CPU que consume cada proceso.
+
+Respecto a la solución propuesta para aceptar los certificados autofirmados o con un campo \textbf{CN} inválido, considera que es la mejor solución posible.
+
+\subsection{Deployer}
+
+El sujeto considera que la interfaz permite realizar de forma sencilla las tareas para las que ha sido diseñada, si bien eliminaría una serie de componentes:
+
+\begin{itemize}
+	\item Considera que la barra de progreso que representa la subida no debería mostrarse hasta que no comience la misma. Cree que puede crear confusión entre los usuarios.
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{progressbar}
+	\caption{Estado de la barra de progreso antes de realizar la subida}
+	\label{progressbar}
+	\end{figure}
+
+	\item Respecto a la fase de despliegue, cree que una mejora sustancial sería la adición de un mensaje de estado en cada nodo con el estado de la misma. También considera importante eliminar los paneles para la realización de la subida una vez que esta haya sido llevada a cabo (actualmente los elementos se mantienen para posibilitar realizar más despliegues con los mismos elementos).
+\end{itemize}
+\subsection{Logger}
+
+Valora la herramienta positivamente, sugiriendo únicamente la adición de un botón de interrupción de la ejecución.
+
+\subsection{General}
+
+Sugiere la adición de un icono representativo del sistema, así como modificar el esquema de colores de algunos elementos y cambiar el tamaño de varios elementos, a fin de hacerlos más significativos.
+
+
+\section{Conclusiones}
+
+A raíz de esta sesión se extraen las siguientes conclusiones y los caminos de actuación:
+
+\begin{itemize}
+	\item Se aceptan todas las sugerencias estéticas.
+	\item Implementar gráficas para reflejar el histórico.
+	\item Detención de procesos desde la máquina remota en el \textbf{logger}.
+	\item Añadir información sobre el \textit{uptime}.
+	\item Adición de los datos propuestos al \textbf{Status Monitor}.
+	\item Mantener el mecanismo de validación de certificados dado.
+\end{itemize}
+
+
+\end{document}
