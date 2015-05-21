@@ -68,3 +68,15 @@ Si bien el sistema Raspberry Pi es capaz de compilar el \textit{software} que de
 
 Un compilador cruzado (\textit{cross-compiler})es una herramienta capaz de generar código para una architectura utilizando un equipo con otra arquitectura diferente.%TODO: http://en.wikipedia.org/wiki/Cross_compiler
 El uso de compiladores cruzados 
+
+\subsection{Análisis del rendimiento}
+
+Para determinar el rendimiento del compilador se ha utilizado el mismo en la compilación de diferentes herramientas a utilizar en el sistema:
+
+\subsubsection{OpenMPI}
+
+\textbf{Tiempo de compilación en Rasbperry Pi}: 4447 seconds (1 h y 14 minutos)
+
+\textbf{Tiempo de compilación con el compilador cruzado}: 2710 seconds (45 minutos)
+
+\textbf{Tiempo de compilación con 4 trabajos paralelos (make -j4)}: 1267 seconds (21 minutos)
