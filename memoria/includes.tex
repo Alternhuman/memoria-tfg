@@ -59,7 +59,7 @@
 \newcounter{undefinedreferences}
 \setcounter{undefinedreferences}{0}
 
-\newcommand{\citationneeded}{\stepcounter{undefinedreferences}\textsuperscript{\color{blue} [Citation needed]}}
+\newcommand{\citationneeded}[1][None]{\stepcounter{undefinedreferences}\textsuperscript{\color{blue} [Citation needed]}}
 \newcommand{\checkreferences}{
 	\ifnum\value{undefinedreferences} > 0
 	\begin{center}
