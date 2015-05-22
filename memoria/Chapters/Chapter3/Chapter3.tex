@@ -315,9 +315,64 @@ La autenticación de los usuarios se realiza mediante el módulo \textbf{PAM} pr
 
 \subsection{Herramientas de gestión}
 
+\subsubsection{pam\_mkhomedir}
+\label{mkpolohomedir}
+
+\textbf{PAM} permite ampliar la funcionalidad que ofrece por defecto mediante la inclusión de \textit{módulos}, pequeñas bibliotecas compartidas de código con las acciones a realizar.
+
+Uno de los módulos incluidos en la instalación por defecto de \textbf{PAM} es \textbf{mkhomedir}, encargado de la creación de un directorio propio para el usuario en caso de que aún no se haya realizado dicha acción. El proceso consiste en una copia del directorio \textbf{skeleton} (generalmente situado en \texttt{/etc/skel}) y la correcta fijación de permisos en el mismo.
+
+Sin embargo, el directorio únicamente es creado en el nodo al que se accede. La filosofía del proyecto se basa en la creación de un sistema que se componga de varias unidades, pero se comporten como una única entidad, por lo que obligar al usuario a acceder a todos los nodos para poder trabajar en el sistema completo rome dicha transparencia. Es por ello necesario contar con un sistema que extienda la funcionalidad de \textbf{mkhomedir} para incluir el resto de nodos en la creación del directorio.
+
+Con este objetivo nace \textbf{pam\_mkpolopohomedir}, un módulo basado en \textbf{mkhomedir} que hace uso de \textbf{MarcoPolo} para detectar los nodos presentes en la red que ofrezcan el servicio \texttt{polousers} y solicitar a los mismos la creación del directorio de inicio.
+
+El módulo se implementa en C/C++ debido a que es el lenguaje con el que los módulos de PAM se construyen por defecto y utiliza por tanto el \textit{binding} de MarcoPolo para este lenguaje. Existen sin embargo herramientas para desarrollar el mismo en Python\footnote{\citationneeded{python-pam}}.
+
+Un módulo en PAM debe implementar una serie de funciones que constituirán los puntos de entrada al módulo\citationneeded{pam manpages}:
+
+\begin{itemize}
+\item \texttt{PAM\_EXTERN int pam\_sm\_open\_session(pam\_handle\_t \* pamh, int flags, int argc ,const char **argv)}\\
+
+Es la función que \textbf{PAM} invoca al incluir el módulo. Incluye en el mismo una estructura \texttt{pam\_handle\_t} con toda la información relevante sobre el usuario que ha iniciado sesión y los parámetros indicados en los ficheros de configuración de \texttt{PAM} (en el caso de este módulo, los permisos del directorio de inicio y la localización del directorio \textit{skeleton}). 
+
+%comoPpunto de entrada al móduloal inicialmente
+
+\item \texttt{PAM\_EXTERN int pam\_sm\_close\_session(pam\_handle\_t * pamh, int flags, int argc, const char **argv)}
+
+Es la función que \textbf{PAM} utiliza para indicar al módulo que la sesión ha terminado. En el caso del módulo a crear no se debe realizar ninguna acción en este evento, sin embargo es necesario implementarla debido a que PAM la requiere.
+
+\item \texttt{struct pam\_module \_pam\_mkhomedir\_modstruct}
+
+Define las características del módulo y los puntos de entrada que define.
+\end{itemize}
+
+El módulo realiza la siguiente secuencia de pasos:
+
+\begin{enumerate}
+\item Determina la información de interés a partir de los datos provistos por \textbf{PAM} y las acciones a llevar a cabo. En caso de que el directorio ya exista, se omite la creación del mismo y únicamente se solicita la creación en el resto de nodos\footnote{Este paso siempre es necesario para facilitar la expansibilidad del sistema: añadir un nuevo nodo tras la creación del directorio en el resto haría que este no fuera accesible de no ser por la repetición de este paso}.
+\item Realiza si es necesaria la creación del directorio en el nodo actual.
+\item Detecta con \textbf{MarcoPolo} el resto de nodos dispuestos a colaborar en el sistema (aquellos que oferten el servicio \textbf{polousers}).
+\item Solicita a cada uno de ellos la creación del directorio.
+\item Una vez que todos los nodos han realizado la acción solicitada, se da acceso al sistema.
+\end{enumerate}
+
+Todas las operaciones realizan escrituras en ficheros de \textbf{log} para su posterior análisis.
+
+\paragraph{Seguridad}
+
+Al tratarse de acciones llevadas a cabo por usuarios con privilegios elevados y que involucran la gestión de información personal, todas las comunicaciones se realizan utilizando conexiones cifradas mediante \textit{sockets} \textbf{TLS} (\textit{Transport Layer Security}) con certificados en ambos lados de la conexión, que son verificados por el contrario.
+
+\paragraph{Extensibilidad}
+
+El módulo ha sido diseñado con el objetivo de posibilitar la adición de nueva funcionalidad al mismo. Únicamente es necesario definir las acciones a llevar a cabo en el servicio \textbf{polousers} y solicitar su realización mediante la sintaxis de comandos de \textbf{MarcoPolo}.
+
 \subsubsection{MarcoBootstrap}
 
-\subsubsection{Marcoogger}
+Uno de los mayores problemas a la hora de gestionar un sistema con un número de componentes elevado es la instalación de todos los componentes y la actualización de los mismos. \textbf{MarcoBootstrap} es una herramienta que posibilita la instalación del sistema operativo de forma autónoma y que únicamente requiere la copia en la tarjeta SD del sistema de un pequeño conjunto de utilidades, cuyo tamaño es 33 \textit{megabytes}.
+
+%\ref{marcobootstrap}
+
+\subsubsection{Marcologger}
 \subsection{Herramientas didácticas}
 
 \subsubsection{The LED API}

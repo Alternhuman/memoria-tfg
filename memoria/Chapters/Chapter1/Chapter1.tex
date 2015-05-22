@@ -7,16 +7,16 @@ Los límites físicos de los que adolecen los computadores en la época actual\c
 
 Sin embargo, estas ganancias conllevan una serie de inconvenientes, o el aumento de la complejidad de diversas tareas. En general, un sistema distribuido requiere un conjunto de máquinas independientes, que en conjunto suponen un coste superior al de un único nodo. Además, aparecen nuevos problemas de índole técnica: problemas de comunicación, integridad y sincronización, dificultad en el desarrollo y depuración de aplicaciones, etcétera.
 
-En el apartado didáctico, el estudio del paradigma distribuido suele requerir un gran esfuerzo por parte de los estudiantes, en particular para comprender los fundamentos básicos de cualquier aplicación distribuida.
+En el apartado didáctico, el estudio del paradigma distribuido suele requerir un gran esfuerzo por parte de los estudiantes, en particular a la hora de comprender los fundamentos básicos de cualquier aplicación distribuida.
 
 \section{Motivación y objetivos}
 
-El sistema descrito en esta memoria surge inspirado en proyectos similares y se desarrolla con una serie de objetivos claros e independientes:
+El sistema descrito en esta memoria surge inspirado en proyectos similares y las diferentes necesidades identificadas como estudiante del Grado en Ingeniería Informática. El Sistema se desarrolla con una serie de objetivos claros e independientes:
 
 \begin{itemize}
-	\item Como herramienta de síntesis de los conocimientos adquiridos en la carrera, se busca la creación de un sistema completo desde sus cimientos hasta los componentes de más alto nivel, gestionando las tareas de mantenimiento, instalación y manejo del mismo, así como los protocolos de trabajo, tanto en cada uno de los componentes del sistema como en la comunicación entre los mismos. Con un enfoque más teórico, se pretende crear un sistema capaz de poder ser utilizado como herramienta de diseño y prueba de algoritmos que resuelvan problemas gracias al paradigma de la computación distribuida, así como el análisis de dichos algoritmos utilizando versiones finales del sistema.
+	\item Como herramienta de síntesis de los conocimientos adquiridos en la carrera, se busca la creación de un sistema completo desde sus cimientos hasta los componentes de más alto nivel, gestionando las tareas de mantenimiento, instalación y manejo del mismo, así como los protocolos de trabajo, tanto en cada uno de los componentes del sistema como en la comunicación entre los mismos. Con un enfoque más teórico, se pretende crear un sistema capaz de poder ser utilizado como herramienta de diseño y prueba de algoritmos que resuelvan problemas aprovechando la distribución de tareas, así como el análisis de dichos algoritmos utilizando versiones finales del sistema.
 
-	\item Potenciar el aprendizaje en las áreas de conocimiento Sistemas Operativos, Sistemas Embebidos, Redes de Computadores, Sistemas Distribuidos, Administración de Sistemas y Algoritmos.
+	\item Potenciar el aprendizaje en las áreas de conocimiento Sistemas Operativos, Sistemas Embebidos, Redes de Computadores, Sistemas Distribuidos, Administración de Sistemas y Algoritmia.
 	
 	\item Constituir una herramienta didáctica para varias asignaturas cursadas en el plan de estudios del Grado en Ingeniería Informática en la Universidad de Salamanca, analizando las asignaturas de relevancia en el Plan y buscando soluciones a las necesidades propuestas por el Profesorado, Estudiantes y Administradores del sistema en colaboración con dichas partes.
 
@@ -59,13 +59,16 @@ MarcoPolo debe conseguir un alto grado de versatilidad y aplicabilidad en un gra
 
 \subsection{Test-Driven Development}
 
-\section{Conceptos teóricos}
+El desarrollo de las diferentes herramientas \textit{software} se deberá realizar bajo los principios del desarrollo conducido por pruebas (ver \ref{tdd}) como mecanismo para la detección temprana de \textit{bugs}.
 
 \section{Situación actual (\textit{state of the art})}
 
 %Este apartado sería parecido a lo que en trabajos de grado (WHVLQDV \ WHVLV) se denomina estado del arte. En un proyecto de final de carrera de primer ciclo no parece obligada su presencia (D GLIHUHQFLD GHO VHJXQGR FLFOR GRQGH OD MXVWLILFDFLyQ WHyULFD PHGLDQWH XQ HVWDGR GHO DUWH GHEH DFRPSDxDU D ORV SURGXFWRV VRIWZDUH UHDOL]DGRV), aunque se puede dejar a juicio del tutor o tutores el incluir un pequeño resumen comentado de los trabajos y proyectos ya realizados en el campo del proyecto en curso.
 
+
 \subsection{Computadores de placa única}
+
+El uso de computadores de prestaciones reducidas como componentes de un sistema distribuido ha experimentado un gran crecimiento en los últimos años debido a la popularización y el abaratamiento de este tipo de dispositivos, existiendo gran cantidad de fabricantes y proveedores de \textit{software} para los mismos.
 
 Los computadores de placa única (\textit{Single-Board Computer}) consisten en computadores de generalmente bajas prestaciones que aglutinan todos los componentes necesarios para su funcionamiento en un único circuito integrado. Dichas placas suelen tener un coste bajo y una relación rendimiento/coste muy elevada.
 
@@ -73,24 +76,25 @@ Durante los últimos años se han popularizado como una herramienta para el estu
 
 \subsubsection{RPiCluster (Joshua Kiepert)}
 
-Joshua Kiepert, estudiante de doctorado en la universidad Boise State, crea este sistema utilizando 33 computadores \textbf{Raspberry Pi B}, con el objetivo de utilizarlo como herramienta de pruebas que sirva de alternativa al supercomputador situado en su universidad\cite{joshuarpicluster}, sobre el que trabaja de forma rutinaria, a fin de poder continuar su trabajo en periodos de mantenimiento, cierre del centro, etcétera. El sistema está diseñado para utilizar la \textit{Message Passing Interface} y además poder utilizar los diferentes puertos de las placas (GPIO, I\textsuperscript{2}C, SPI, UART), puertos generalmente ausentes en computadores como clústeres. Utiliza además un servidor \textbf{NFS} para compartir datos entre todos los nodos, y un \textit{router} dedicado para la interconexión. El sistema se complementa con un ordenador \textbf{Chromeboox} con el mismo sistema operativo (\textbf{Arch Linux}), que actúa como nodo coordinador.
+Joshua Kiepert, estudiante de doctorado en la universidad Boise State, crea este sistema utilizando 33 computadores \textbf{Raspberry Pi B}, con el objetivo de utilizarlo como herramienta de pruebas que sirva de alternativa al supercomputador situado en su universidad\cite{joshuarpicluster}, sobre el que trabaja de forma rutinaria, a fin de poder continuar su trabajo en periodos de mantenimiento, cierre del centro, etcétera. El sistema está diseñado para utilizar la \textit{Message Passing Interface} como mecanismo de comunicación y coordinación (siguiendo un esquema maestro-esclavo) y además poder utilizar los diferentes puertos de las placas (GPIO, I\textsuperscript{2}C, SPI, UART), puertos generalmente ausentes en computadores utilizados para este tipo de propósitos. Utiliza además un servidor \textbf{NFS} para compartir datos entre todos los nodos, y un \textit{router} dedicado para la interconexión. El sistema se complementa con un ordenador \textbf{Chromebook} con el mismo sistema operativo (\textbf{Arch Linux}), que actúa como nodo coordinador.
 
-%TODO: Diagram here
+Está compuesto del conjunto de nodos esclavos y coordinador, dos fuentes de alimentación y un mecanismo de refrigeración. El sistema cuenta con su propio mecanismo de distribución de la energía (diseñado por Kiepert) y de gestión de los LEDs. 
+
 % http://www.zdnet.com/article/build-your-own-supercomputer-out-of-raspberry-pi-boards/
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth]{Chapter1/Figures/structure.png}
-\caption{Estructura del sistema (Fuente: Joshua Kiepert).}
+\includegraphics[width=0.4\textwidth]{Chapter1/Figures/kiepert-main}
+\includegraphics[width=0.4\textwidth]{Chapter1/Figures/structure.png}
+\caption{Vista general y estructura del sistema (Fuente: Joshua Kiepert)}
 \label{kiepert:structure}
 \end{figure}
 
 \textbf{Coste}: 1967.21 dólares.
 
-
 \subsubsection{Dramble (Jeff Geerling)}
 
-El clúster \textit{Dramble} es un conjunto de 6 equipos \textbf{Raspberry Pi} capaces de ejecutar en conjunto el gestor de contenidos \textbf{Drupal}\footnote{\href{https://www.drupal.org/}{drupal.org}}. El sistema es utilizado como servidor de pruebas para la ejecución de instancias de \textbf{Drupal} de forma experimental o durante demonstraciones en público\cite{geerlingraspberry}.
+El clúster \textit{Dramble} es un conjunto de 6 equipos \textbf{Raspberry Pi} capaces de ejecutar en conjunto el gestor de contenidos \textbf{Drupal}\footnote{\href{https://www.drupal.org/}{drupal.org}}. El sistema es utilizado como servidor de pruebas para la ejecución de instancias de este \textit{software} de forma experimental o durante demonstraciones en público\cite{geerlingraspberry}. Se compone del conjunto de nodos Rasbperry Pi y los mecanismos de red que interconectan los nodos.
 
 \begin{figure}[H]
 \centering
@@ -99,12 +103,11 @@ El clúster \textit{Dramble} es un conjunto de 6 equipos \textbf{Raspberry Pi} c
 \label{geerling:dramble}
 \end{figure}
 
-
-\textbf{Coste (estimado)}: 35 dólares por cada Raspberry Pi\citationneeded
+\textbf{Coste (estimado)}: 35 dólares por cada Raspberry Pi mas el coste añadido de la red.
 
 \subsubsection{Bramble (GCHQ)}
 
-El organismo gubernamental \textit{Government Communication Headquarters}, agencia de inteligencia del Gobierno Británico presentó en la \textit{Big Bang Fair} de 2015 un proyecto educativo que combina 66 \textit{Raspberry Pi} en un clúster jerárquico con 8 grupos de 8 nodos, cada uno de ellos con un coordinador, y dos nodos coordinadores. El cableado se reduce gracias al uso de la tecnología \textbf{PoE} (\textit{Power over Ethernet}), y cada \textbf{Raspberr} cuenta con un conjunto de elementos adicionales, como un reloj de tiempo real, disco duro externo, cámara, punto de acceso WiFi, etcétera\cite{gchqbramble}.
+El organismo gubernamental \textit{Government Communication Headquarters}, agencia de inteligencia del Gobierno Británico presentó en la \textit{Big Bang Fair} de 2015 un proyecto educativo que combina 66 \textit{Raspberry Pi} en un clúster jerárquico con 8 grupos de 8 nodos, cada uno de ellos con un coordinador interno. El cableado se reduce gracias al uso de la tecnología \textbf{PoE} (\textit{Power over Ethernet}), y cada \textbf{Raspberr} cuenta con un conjunto de elementos adicionales, como un reloj de tiempo real, disco duro externo, cámara, o punto de acceso WiFi\cite{gchqbramble}.
 
 \begin{figure}[H]
 \centering
@@ -112,25 +115,25 @@ El organismo gubernamental \textit{Government Communication Headquarters}, agenc
 \caption{Vistazo general de la estructura del sistema}
 \label{gchq:bramble}
 
-\textbf{Coste (estimado)}\citationneeded
+\textbf{Coste} Se desconocen datos sobre el coste total del sistema.
 
 \end{figure}
 
 \subsubsection{Clúster Iridis (Simon Cox, University of Southampton)}
 
-Con el objetivo de atraer a jóvenes estudiantes al mundo de la Computación, el profesor Simon Cox crea este clúster con 64 \textbf{Raspberry Pi B} sobre una estructura de LEGO\cite{cox:raspberry}
-%TODO: http://www.i-programmer.info/news/91-hardware/8385-gchq-builds-a-raspberry-pi-cluster.html
+Con el objetivo de atraer a jóvenes estudiantes al mundo de la Computación, el profesor Simon Cox crea este clúster con 64 \textbf{Raspberry Pi B} sobre una estructura de LEGO\cite{cox:raspberry}.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.5\textwidth]{Chapters/Chapter1/Figures/iridis-pi.jpg}
 \caption{Sistema}
 \label{cox:iridis}
 
-%w
+\textbf{Coste} Se desconocen datos sobre el coste total del sistema
+
 \end{figure}
 
 \subsubsection{Paralella}
 
-%http://www.zdnet.com/article/parallella-the-99-linux-supercomputer/
+Paralella es un proyecto de la compañía Adapteva que integra en un único chip un conjunto elevado de procesadores independientes con el objetivo de incrementar la capacidad de procesamiento total del sistema a un coste muy reducido\cite{paralella}.
 
-%http://www.webstreet.com/super_computer.htm
+\textbf{Coste} 99 dólares por unidad.

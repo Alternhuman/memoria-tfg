@@ -67,7 +67,11 @@ El protocolo WebSocket \cite{rfc6455} posibilita el establecimiento de un canal 
 
 La mayoría de las interfaces web creadas utilizan este tipo de comunicación para obtener información desde los diferentes nodos del sistema, optimizando la comunicación al reducirse el intercambio de datos al momento en el que estos son necesarios (al contrario de otras estrategias) y posibilitando la difusión de eventos en directo, a diferencia de estrategias como el \textit{polling}.
 
-\subsection{PAM, LDAP, Samba}
+\subsection{PAM, LDAP}
+
+Siguiendo el objetivo funcional\citationneeded, la gestión de los usuarios está delegada al sistema de autenticación preexistente en la infraestructura en la que se integra el sistema. En ella se cuenta con un servidor \textbf{LDAP} con la información de los usuarios. Mediante la configuración del paquete LDAP es posible accedeer a los mismos, y gracias a \textbf{PAM} (\textit{Pluggable Authentication Module}) se integra con el resto de métodos de autenticación presentes en el sistema.
+
+Se ha creado un módulo para \textbf{PAM} para facilitar las tareas que el sistema debe realizar. Dicho módulo integra \textbf{MarcoPolo} y es conocido como \textbf{pam\_mkpolohomedir}\ref{mkpolohomedir}. 
 
 \subsection{OpenSSL}
 
@@ -93,6 +97,16 @@ La mayoría de las interfaces web creadas utilizan este tipo de comunicación pa
 
 \subsection{Sphinx}
 %Esta parte de la memoria tiene como objetivo presentar las técnicas metodológicas y las herramientas de desarrollo que se han utilizado para llevar a cabo el proyecto. Si se han estudiado diferentes alternativas de metodologías, herramientas, bibliotecas se puede hacer un resumen de los aspectos más destacados de cada alternativa, incluyendo comparativas entre las distintas opciones y una justificación de las elecciones realizadas. No se pretende que este apartado se convierta en un capítulo de un libro dedicado a cada una de las alternativas, sino comentar los aspectos más destacados de cada opción, con un repaso somero a los fundamentos esenciales y referencias bibliográficas para que el lector pueda ampliar su conocimiento sobre el tema
+
+\section{Herramientas para la gestión de usuarios}
+
+\subsection{SSH-HPN}
+
+Una de las características de OpenSSH es que todas las tareas se ejecutan en un único proceso y por tanto, en un único núcleo, constituyendo un cuello de botella que se hace notable en sistemas de bajas prestaciones, como el sistema a modelar.
+
+Con el objetivo de superar este límite nace SSH-HPN\citationneeded, un conjunto de modificaciones al código fuente de OpenSSH que optimiza la ejecución del mismo mediante el uso de diferentes procesos repartidos en los diferentes núcleos del sistema. El proyecto se distribuye como un archivo \texttt{.diff} que se incluye en los archivos del código fuente con la herramienta \textbf{GNU patch}.
+
+Se ha creado un paquete de Arch Linux con el código fuente ya preparado para trabajar en la arquitectura ARM, y todos los nodos del sistema utilizan esta versión en lugar del paquete \textbf{OpenSSH} original.
 
 \chapter{Técnicas}
 \lhead{\emph{Técnicas}}
