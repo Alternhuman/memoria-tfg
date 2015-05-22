@@ -23,6 +23,7 @@
 \PassOptionsToClass{a4paper}{\baseclass}
 \ProcessOptions\relax
 \LoadClass{\baseclass}
+
 \newcommand\bhrule{\typeout{------------------------------------------------------------------------------}}
 
 \newcommand\Declaration[1]{
