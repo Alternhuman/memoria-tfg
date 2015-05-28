@@ -66,6 +66,17 @@ El uso de compiladores cruzados facilita el desarrollo para diferentes plataform
 
 Una cadena de herramientas (\textit{toolchain}) se conforma del conjunto de utilidades necesarias para la construcción de un determinado producto. Generalmente estas utilidades son ejecutadas secuencialmente, utilizando la salida de una de ellas como la entrada de la siguiente. Este conjunto de herramientas comprende normalmente un compilador, un enlazador y un editor de texto, así como varias bibliotecas y un depurador, si bien puede contar con cualquier herramienta requerida para las necesidades propias del producto a crear.
 
+\subsection{En el Trabajo}
+
+Con el objetivo de posibilitar la realización de trabajos de compilación distribuida utilizando un equipo basado en la arquitectura i686 %TODO: Revisar
+se ha construido una cadena de herramientas que realiza procesos de compilación cruzada para la arquitectura ARMv7hf utilizando la herramienta \textit{crosstool-ng}\citationneeded, consiguiendo optimizar de forma significativa el tiempo de compilación.
+%TODO (ver \ref{distcc:analysis})
+%TODO: También existe una versión para la arquitectura ARMv6hf.
+%TODO, además dicha herramienta se ha utilizado para la creación de una herramienta de desarrollo con Eclipse para Raspberry Pi.
+
+\citationneeded{http://www.nongnu.org/avr-libc/user-manual/overview.html}
+\citationneeded{http://elinux.org/Toolchains}
+%TODO: http://en.wikipedia.org/wiki/Paravirtualization
 \section{Python}
 
 \lhead{\emph{Dominio del problema}}
