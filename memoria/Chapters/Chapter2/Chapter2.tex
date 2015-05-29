@@ -4,6 +4,31 @@
 
 \section{Programación orientada a eventos}
 \label{eventdriven}
+
+La programación orientada a eventos (\textit{event-driven programming}) constituye un patrón de programación en el cual el flujo del programa no se define íntegramente de forma secuencial, sino por las diversas interacciones (eventos) que el \textit{software} recibe durante su ejecución. Dichos eventos, generalmente imprevisibles, son causados por cualquier otra aplicación o entidad externa, y su naturaleza es muy variada: interacciones de ratón o teclado, conexiones de red o estímulos de sensores son claros ejemplos.
+
+La programación orientada a eventos constituye un patrón exitoso en varios tipos de aplicaciones, en particular aplicaciones con interfaz gráfica de usuario o aplicaciones de un único hilo (\textit{single-threaded applications}). 
+
+Si bien existen una gran cantidad de herramientas para el desarrollo de \textit{software} siguiendo este patrón, el funcionamiento de todas ellas se reduce a un conjunto de manejadores y disparadores de eventos. También reciben nombres similares, como señales y ranuras.
+
+\subsection{Suscriptor de eventos}
+
+Un suscriptor de eventos permite vincular un evento a un manejador. Por ejemplo:
+
+\begin{lstlisting}
+document.onmousemove=manejadorMouseMove
+\end{lstlisting}
+
+\subsection{Manejador de eventos}
+
+Un manejador (\textit{handler}) determina la acción a realizar al recibir un evento. En una gran cantidad de \textit{frameworks} se definen como funciones.
+
+\begin{lstlisting}
+function manejadorMouseMove(evento){
+	console.log(evento.pageX);
+}
+\end{lstlisting}
+
 \section{Computación distribuida}
 
 Un sistema distribuido es aquel conformado por un conjunto de nodos independientes que son percibidos como una entidad única y coherente por el usuario final. Dicha definición implica dos conceptos de importancia en el paradigma:
@@ -224,11 +249,46 @@ Existen una serie de formatos definidos que posibilitan este tipo de interconexi
 
 \section{Test-Driven Development}
 
+El desarrollo dirigido por pruebas es una estrategia de desarrollo de software basada en el desarrollo de tests de partes concisas y fácilmente desacoplables del código de una aplicación que realizan una tarea muy concreta (conocidas como pruebas unitarias). Dichas pruebas se realizan generalmente con un control exhaustivo de las condiciones que pueden influir el desarrollo de la prueba. Mediante la modificación de dichas condiciones y el análisis de la respuesta frente a un conjunto de datos de entrada se puede analizar si el comportamiento de dicho fragmento de código es el adecuado.
+
+Las pruebas consisten generalmente en una serie de aserciones sobre el resultado del fragmento de código ejecutado, o sobre un estado intermedio. Una batería de pruebas consistente debe cubrir el mayor número de resultados de salida posible, incluyendo valores que indiquen condiciones de error (verificando que dicho error deba ser devuelto para los parámetros de entrada y condiciones iniciales), excepciones y diferentes tipos de retorno válidos.
+
+Un ciclo de desarrollo basado en pruebas consiste en dos fases: inicialmente la escritura de la batería de pruebas basadas en los diferentes requisitos del \textit{software} y ejecución de dicha batería, que deberá ser completamente infructuosa. Tras esta fase comienza la etapa de refactorización, consistente en la implementación de la funcionalidad que el fragmento de código de cada test debe realizar y la ejecución de la batería de pruebas durante las diferentes etapas de implementación. Cuando un test se ejecute satisfactoriamente se garantizará que el código cumple los requisitos de la pruba definidos en la fase inicial, y por tanto, con los requisitos del \textit{software}.
+
+Esta práctica asiste al programador en el desarrollo de \textit{software} más fiable, pues todas las potenciales condiciones de fallo que se reflejan en la batería de pruebas son cubiertas durante la segunda fase del proceso (o en caso contrario el resultado test no será satisfactorio). Uno de los efectos secundarios del desarrollo dirigido por pruebas es la escritura de código de grano muy fino y muy desacoplado (al tener que desacoplar la funcionalidad para poder adaptarla a una prueba unitaria). El desarrollo dirigido por pruebas permite también controlar de forma sencilla las interdependencias entre diferentes módulos de código, pues basta con ejecutar la batería de tests tras una modificación de un componente del cual dependan otros para evaluar si dichos cambios afectan al comportamiento del resto de módulos.
+
+Si bien la escritura de código siguiendo este modelo de desarrollo suele ser sencilla, en ocasiones se dan un conjunto de condiciones que dificultan significativamente el diseño de pruebas. Generalmente dichas condiciones están relacionadas con la modificación de entidades externas, como pueden ser bases de datos o recursos en red. Para dichos casos la mayoría de herramientas de creación de tests ofrecen funcionalidad para crear ``objetos simulados'' (\textit{mock}), objetos que simulan el comportamiento del elemento al que reemplazan pero evitando los efectos de los mismos (como la modificación de una base de datos o el envío o la recepción de un paquete en red). Dichos objetos permiten simular una serie de condiciones como valores de retorno o lanzamiento de excepciones, así como el análisis de los parámetros con los que es invocado (en caso de que el objeto \textit{mock} reemplace a una función o clase) o la inclusión de parámetros únicamente relevantes durante la fase de realización de pruebas.
+
+\subsection{Utilización en el Trabajo}
+
+Varias de las las herramientas del Trabajo han sido desarrolladas siguiendo este proceso de desarrollo. No ha sido posible la aplicación en la construcción de la totalidad de las herramientas debido a la falta de conocimientos sobre este proceso de desarrollo hasta comenzar con el Trabajo. Sin embargo, se han escrito tests unitarios para casi la totalidad de las herramientas existentes anteriormente, utilizando el desarrollo dirigido por pruebas en sucesiones iteraciones dentro del ciclo de desarrollo de estas aplicaciones.
 
 \section{PAM}
 
-\section{Cross-compiling}
 
+
+
+\section{\textit{Cross-compiling}}
+
+La compilación cruzada posibilita el desarrollo de \textit{software} en plataformas diferentes a la plataforma objetivo, aquella sobre la que el programa final deberá ejecutarse. El compilador genera código máquina para la arquitectura objetivo a partir de los archivos de código fuente, en lugar del proceso común de generación de código para la arquitectura sobre la que se ejecuta el software de desarrollo (proceso conocido como compilación nativa).
+
+El uso de compiladores cruzados facilita el desarrollo para diferentes plataformas y en ocasiones es la única forma de crear aplicaciones para sistemas tales como dispositivos embebidos que no cuentan con herramientas de desarrollo. También es útil para facilitar la generación de código en entornos como granjas de servidores, generación de código para emuladores o realizar procesos de \textit{bootstrapping} (creación de las herramientas básicas de una nueva plataforma, como un sistema operativo o un enlazador).
+
+\subsection{\textit{Toolchain}}
+
+Una cadena de herramientas (\textit{toolchain}) se conforma del conjunto de utilidades necesarias para la construcción de un determinado producto. Generalmente estas utilidades son ejecutadas secuencialmente, utilizando la salida de una de ellas como la entrada de la siguiente. Este conjunto de herramientas comprende normalmente un compilador, un enlazador y un editor de texto, así como varias bibliotecas y un depurador, si bien puede contar con cualquier herramienta requerida para las necesidades propias del producto a crear.
+
+\subsection{En el Trabajo}
+
+Con el objetivo de posibilitar la realización de trabajos de compilación distribuida utilizando un equipo basado en la arquitectura i686 %TODO: Revisar
+se ha construido una cadena de herramientas que realiza procesos de compilación cruzada para la arquitectura ARMv7hf utilizando la herramienta \textit{crosstool-ng}\citationneeded, consiguiendo optimizar de forma significativa el tiempo de compilación.
+%TODO (ver \ref{distcc:analysis})
+%TODO: También existe una versión para la arquitectura ARMv6hf.
+%TODO, además dicha herramienta se ha utilizado para la creación de una herramienta de desarrollo con Eclipse para Raspberry Pi.
+
+\citationneeded{http://www.nongnu.org/avr-libc/user-manual/overview.html}
+\citationneeded{http://elinux.org/Toolchains}
+%TODO: http://en.wikipedia.org/wiki/Paravirtualization
 \section{Python}
 
 \lhead{\emph{Dominio del problema}}
