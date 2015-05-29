@@ -76,15 +76,16 @@ En el presente documento se detallan las decisiones de diseño llevadas a cabo e
 
 \section{Búsqueda de solución}
 
-\textbf{marco-netinst} Es la herramienta principal del sistema, que permite realizar instalaciones y actualizaciones de un sistema operativo emulando el funcionamiento de un servidor \textbf{PXE}, requiriendo únicamente un conjunto reducido de herramientas preinstaladas en la tarjeta SD para realizar todas las tareas. Se integra con MarcoPolo, por lo que no es necesario realizar ningún tipo de configuración para realizar el proceso de instalación previamente.
+\textbf{marco-netinst} es la herramienta principal del sistema, que permite realizar instalaciones y actualizaciones de un sistema operativo inspirándose en el funcionamiento de un servidor \textbf{PXE}, requiriendo únicamente un conjunto reducido de herramientas preinstaladas en la tarjeta SD para realizar todas las tareas. Se integra con \textbf{MarcoPolo}, por lo que no es necesario realizar ningún tipo de configuración para realizar el proceso de instalación previamente.
 
-La complejidad del problema a resolver es significativa, pues implica la creación de una herramienta capaz de funcionar sin un sistema operativo completo, en un entorno en el cual la funcionalidad disponible es mínima.
+La complejidad del problema a resolver es significativa, pues implica la creación de una herramienta que debe funcionar en red sin un sistema operativo completo, en un entorno en el cual la funcionalidad disponible es mínima.
+
 \subsection{Definición de requisitos}
 
 \begin{itemize}
-\item El software no debe requerir configuración por parte del administrador, debe ser capaz de detectar toda la información necesaria a partir de las herramientas provistas.
-\item El tiempo de atención humana que la ejecución de la herramienta debe ser nulo o mínimo.
-\item El sistema debe ser capaz de integrarse en el sistema sin ningún tipo de configuración posterior a la instalación.
+\item El software no debe requerir configuración por parte del administrador, debe ser capaz de detectar toda la información necesaria gracias a las herramientas provistas.
+\item El tiempo de interacción con la herramienta debe ser nulo o mínimo.
+\item El nodo debe ser capaz de integrarse en el sistema sin ningún tipo de configuración posterior a la instalación.
 \item Las herramientas creadas deben ser flexibles, a fin de poder adaptarlas a nuevas situaciones.
 \end{itemize}
 
@@ -138,11 +139,11 @@ Incluyendo BusyBox en el código del primer proyecto es posible conseguir acceso
 
 Antes de detallar la solución definitiva al problema, es necesario detallar las herramientas de terceros valoradas y descartadas:
 
-\paragrah{Raspi-LTSP, PiNET}
+\paragraph{Raspi-LTSP, PiNET\\}
 
 Estos proyectos\cite{raspiltsp, pinet} están enfocados a la centralización de toda la información en un servidor, incluyendo la carga del sistema operativo, por lo que no constituyen una opción viable.
 
-\paragraph{BerryBoot}
+\paragraph{BerryBoot\\}
 
 BerryBoot\cite{berryboot} es un sistema de arranque que posibilita la descarga e instalación de un sistema operativo y la coexistencia de varios en una misma tarjeta SD. Constituye una opción bastante prometedora, que sin embargo depende significativamente de una interfaz gráfica y de un usuario que interaccione con la misma, haciendo que su uso sea inviable para el objetivo deseado sin una intensa reestructuración.
 
@@ -154,9 +155,10 @@ El proyecto \textbf{raspbian-ua-netinst}\cite{raspbian-ua-netinst} posibilita la
 	\item Instalación de \textbf{ArchLinux ARM} en lugar de \textbf{Raspbian}.
 	\item Instalación del sistema operativo completo a partir de un archivo \textbf{.tar.gz} en lugar de la descarga de paquetes.
 	\item Nuevo \textit{script} de carga del \textit{software} en la tarjeta SD (en el paquete original se delega a utilidades de terceros).
-	%TODO\item Posibilidad de aplicar diferentes esquemas de particionado
 	\item Detección del servidor sin configuración previa utilizando \textbf{MarcoPolo}.
-	%TODO\item Interfaz administrativa de los sistemas operativos ofrecidos
+	\item Descarga mediante el protocolo HTTPS con validación doble de certificado.
+	\item Se añaden funcionalidades de actualización.
+	\item Interfaz administrativa.
 \end{itemize}
 
 El sistema se compone de varios componentes, como se detalla en la siguiente sección.
@@ -167,7 +169,7 @@ El sistema se compone de varios componentes, como se detalla en la siguiente sec
 
 \subsection{marco-netinst}
 
-Este módulo, basado en \textbf{raspbian-ua-netinst} únicamente comprende varios scripts, detallados a continuación:
+Este módulo, basado en \textbf{raspbian-ua-netinst} únicamente comprende varios \textit{scripts} y ficheros de configuración, detallados a continuación:
 
 \subsubsection*{update.sh}
 
@@ -180,15 +182,19 @@ Crea los archivos necesarios para la instalación, que deberán ser copiados a l
 \begin{enumerate}
 \item Copia del \textit{kernel}.
 \item Creación de los archivos de configuración.
-\item Creación de los archivos \textbf{.cpio} (uno por cada arquitectura) que aglutina todas las bibliotecas, ejecutables y otros archivos de interés, así como los \textit{scripts} que llevarán a cabo la instalación del sistema operativo. 
+\item Creación de los archivos contenedor \textbf{.cpio} (uno por cada arquitectura) que aglutina todas las bibliotecas, ejecutables y otros archivos de interés, así como los \textit{scripts} que llevarán a cabo la instalación del sistema operativo. 
 \item Creación de los parámetros de la línea de comandos.
 \item Copia de las utilidades de \textbf{MarcoPolo}.
 \item Creación de un fichero \textbf{.zip}.
 \end{enumerate}
 
+\subsubsection*{buildupdate.sh}
+
+El comportamiento es similar al del script \textbf{build.sh}, si bien este genera una imagen preparada para realizar actualizaciones del sistema en lugar de instalaciones.
+
 \subsubsection*{deploy.sh}
 
-Formatea la tarjeta SD, creando una única partición, donde descomprime el archivo \textbf{.zip} creado anteriormente.
+Elimina el esquema de particiones de la tarjeta SD y crea uno nuevo con una única partición, donde descomprime el archivo \textbf{.zip} creado anteriormente.
 
 Estos tres \textit{scripts} deben ser ejecutados en el orden en el que han sido expuestos, pues dependen de los archivos generados por el resto. En caso de que no se realice la llamada de uno sin su antecesor, este procederá a su ejecución antes de realizar la funcionalidad que le corresponde.
 
@@ -220,7 +226,7 @@ En la vista principal el administrador puede visualizar las diferentes imágenes
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\textwidth]{index}
+\includegraphics[width=0.9\textwidth]{index}
 \caption{Vista de la interfaz inicial.}
 \label{backend:index}
 \end{figure}

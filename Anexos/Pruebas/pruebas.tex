@@ -1,0 +1,139 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Structured General Purpose Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%   PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+\usepackage[T1]{fontenc} % Codificación de las fuentes utilizadas
+\usepackage[spanish]{babel} % Español como idioma principal del texto (permite hyphenation de palabras al final de una línea)
+\selectlanguage{spanish}
+\usepackage{hyperref}
+\usepackage{listings}
+
+\input{includes}
+\usepackage{float}
+%----------------------------------------------------------------------------------------
+%   NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Evaluación del rendimiento del sistema en un entorno real} % Assignment title
+\newcommand{\hmwkDueDate}{Domingo,\ 25\ de\ mayo\ de\ 2015} % Due date
+\newcommand{\hmwkAuthorName}{Diego Martín Arroyo} % Your name
+
+\graphicspath{{Figures/}}
+%----------------------------------------------------------------------------------------
+%   TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{\hmwkTitle}
+\author{\textbf{\hmwkAuthorName}}
+\date{\hmwkDueDate}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+\begin{abstract}
+Una adecuada evaluación de las herramientas, protocolos y arquitectura planteadas debe incluir un conjunto de pruebas en entornos en los que la versión final del sistema debe integrarse. Dichas pruebas deben ser preparadas de antemano.
+\end{abstract}
+
+%----------------------------------------------------------------------------------------
+%   TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+\setcounter{tocdepth}{1}
+
+\tableofcontents
+\newpage
+
+\section{Marcobootstrap}
+
+Se realizarán las siguientes pruebas
+
+\subsection*{Instalación del sistema operativo en un nodo sin asistencia del administrador, evaluando el tiempo de descarga e instalación}
+
+Sistemas utilizados
+\begin{itemize}
+\item Una Rasbperry Pi Modelo 2B
+\item Un servidor Sun
+\item Imagen creada con las versiones estables más recientes de todas las herramientas, con un tamaño de 
+\item La prueba se realiza en la infraestructura final, conectando los nodos a las tomas de red del Laboratorio de Ingeniería Informática.
+\end{itemize}
+
+Resultados
+\begin{itemize}
+\item \textbf{Tiempo de descarga}: 3 minutos, 27 segundos
+\item \textbf{Tiempo de instalación}: 11 minutos, 49 segundos
+\item \textbf{Tiempo de instalación}: 22 minutos, 37 segundos
+\end{itemize}
+
+\subsection*{Actualización del sistema operativo}
+
+Se realiza la instalación de una versión alternativa del sistema operativo, comprobando que los componentes no actualizables permanecen intactas tras el proceso (ver documentación).
+
+\subsection*{Operaciones de administración}
+
+\subsubsection*{Reinicio}
+
+\subsubsection*{Cancelación}
+
+\section{Deployer}
+
+Sistemas utilizados
+\begin{itemize}
+\item 4 Rasbperry Pis con la última versión de las herramientas a utilizar.
+\item La prueba se realiza en la infraestructura final, conectando los nodos a las tomas de red del Laboratorio de Ingeniería Informática.
+\end{itemize}
+
+\section{Logger}
+
+\begin{itemize}
+\item 4 Raspberry Pis ejecutando un programa que imprime un número elevado de mensajes en un orden dado
+\item La prueba se realiza en la infraestructura final, conectando los nodos a las tomas de red del Laboratorio de Ingeniería Informática.
+\end{itemize}
+
+\section{Status monitor}
+
+Se evalúa el rendimiento de la herramienta con los cuatro equipos, uno de ellos compilando el software MPI simultáneamente. El rendimiento de la aplicación es el esperado, contando con una frecuencia de actualización de un segundo de forma constante.
+
+\section{Compilador}
+
+Se realiza como prueba la compilación de la biblioteca openmpi (Versión 1.8.4) con los siguientes parámetros:
+
+\texttt{}
+\begin{itemize}
+\item \textbf{Tiempo de configuración}: 15 minutos
+\item \textbf{Tiempo de compilación}: 23 minutos
+\item \textbf{Tiempo de instalación}: 6 minutos
+\end{itemize}
+
+\section{Prácticas}
+
+\section{Gestión de usuarios}
+
+\section{LEDs}
+
+\section{MPI}
+
+\section{Backups}
+
+\end{document}
