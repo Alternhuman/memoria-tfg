@@ -202,7 +202,7 @@ Como se puede observar, la mayoría de primitivas tienen como objetivo el descub
 A fin de simplificar al máximo el funcionamiento de los \textit{daemons} varias utilidades que podrían tener cabida dentro del propio protocolo han sido creadas como utilidades independientes que aprovechan la funcionalidad de \textbf{MarcoPolo} para realizar su cometido, pero cuya interdependencia se limita a dichos canales de comunicación.
 
 \subsubsection{\texttt{marcodiscover}}
-
+\label{marcodiscover}
 Esta utilidad consiste en un comando que permite ejecutar consultas al sistema a través de un intérprete de órdenes. El comando posibilita realizar la mayoría de consultas de interés y cuenta con varias opciones para dar diferentes formatos a la salida por pantalla, algo que, como veremos posteriormente, es de gran utilidad para la ejecución de un conjunto particular de programas.
 
 Las opciones del comando son las siguientes:
@@ -234,6 +234,9 @@ optional arguments:
 \caption{Diferentes opciones de configuración de \texttt{marcodiscover}}
 \label{fig:marcodiscover_help}
 \end{figure}
+
+\subsubsection{Marcoinstallkey}
+\label{marcoinstallkey}
 
 \subsection{Aplicaciones construidas sobre MarcoPolo}
 
