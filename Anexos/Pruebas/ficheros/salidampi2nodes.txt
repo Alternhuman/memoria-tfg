@@ -1,0 +1,111 @@
+RAND_MAX: 2147483647
+NUM_MAX:  500000000
+UINT_MAX: 4294967295
+Semilla:  1
+
+1) Numero: 5487, Intentos: 90925802, Tiempo: 23.988055, Proceso: 4
+2) Numero: 12255, Intentos: 148268452, Tiempo: 25.290047, Proceso: 2
+3) Numero: 12540, Intentos: 142787616, Tiempo: 37.606158, Proceso: 7
+4) Numero: 1254, Intentos: 242134464, Tiempo: 40.904146, Proceso: 1
+5) Numero: 1478, Intentos: 286575772, Tiempo: 50.017148, Proceso: 3
+6) Numero: 54125, Intentos: 92192955, Tiempo: 23.632559, Proceso: 7
+7) Numero: 13255, Intentos: 113149291, Tiempo: 19.740797, Proceso: 3
+8) Numero: 14282, Intentos: 40893529, Tiempo: 10.604114, Proceso: 7
+9) Numero: 95699, Intentos: 8402027, Tiempo: 2.144537, Proceso: 7
+10) Numero: 54387, Intentos: 44511428, Tiempo: 7.659279, Proceso: 3
+11) Numero: 12549, Intentos: 137325, Tiempo: 0.021774, Proceso: 3
+12) Numero: 87375, Intentos: 95206132, Tiempo: 24.478796, Proceso: 7
+13) Numero: 12, Intentos: 402559611, Tiempo: 67.924642, Proceso: 1
+14) Numero: 96042, Intentos: 559475142, Tiempo: 95.825750, Proceso: 2
+15) Numero: 54125, Intentos: 92192955, Tiempo: 15.546406, Proceso: 1
+16) Numero: 80775, Intentos: 463214330, Tiempo: 129.487285, Proceso: 6
+17) Numero: 96602, Intentos: 171368506, Tiempo: 45.169305, Proceso: 7
+18) Numero: 50699, Intentos: 608871617, Tiempo: 161.005757, Proceso: 5
+19) Numero: 25148, Intentos: 573150457, Tiempo: 164.770826, Proceso: 4
+20) Numero: 2548, Intentos: 672803005, Tiempo: 121.250497, Proceso: 3
+21) Numero: 87475, Intentos: 45404815, Tiempo: 11.678618, Proceso: 4
+22) Numero: 85699, Intentos: 235610159, Tiempo: 64.361478, Proceso: 5
+23) Numero: 21548, Intentos: 138783999, Tiempo: 36.340146, Proceso: 4
+24) Numero: 24782, Intentos: 400130984, Tiempo: 110.265220, Proceso: 6
+25) Numero: 96942, Intentos: 65527625, Tiempo: 16.952659, Proceso: 5
+26) Numero: 12548, Intentos: 329291133, Tiempo: 65.177664, Proceso: 3
+27) Numero: 12455, Intentos: 879675878, Tiempo: 150.536212, Proceso: 1
+28) Numero: 54817, Intentos: 137438116, Tiempo: 24.104223, Proceso: 1
+29) Numero: 154, Intentos: 363528447, Tiempo: 98.924293, Proceso: 6
+30) Numero: 52487, Intentos: 755104005, Tiempo: 204.471364, Proceso: 7
+31) Numero: 75699, Intentos: 310496502, Tiempo: 54.838022, Proceso: 1
+32) Numero: 14278, Intentos: 687087817, Tiempo: 138.755296, Proceso: 3
+33) Numero: 87675, Intentos: 331414996, Tiempo: 87.393143, Proceso: 6
+34) Numero: 52125, Intentos: 714271526, Tiempo: 194.253628, Proceso: 4
+35) Numero: 12548, Intentos: 329291133, Tiempo: 79.456389, Proceso: 1
+36) Numero: 254, Intentos: 28080658, Tiempo: 7.528517, Proceso: 4
+37) Numero: 54425, Intentos: 101815346, Tiempo: 26.291920, Proceso: 6
+38) Numero: 12555, Intentos: 844738363, Tiempo: 227.308409, Proceso: 5
+39) Numero: 54287, Intentos: 71102757, Tiempo: 19.791569, Proceso: 6
+40) Numero: 65699, Intentos: 63275089, Tiempo: 16.492813, Proceso: 5
+41) Numero: 87785, Intentos: 141652681, Tiempo: 38.650522, Proceso: 6
+42) Numero: 12546, Intentos: 107076843, Tiempo: 27.765181, Proceso: 5
+43) Numero: 96642, Intentos: 82231952, Tiempo: 23.301337, Proceso: 5
+44) Numero: 12547, Intentos: 721365298, Tiempo: 199.940069, Proceso: 7
+45) Numero: 14728, Intentos: 418013599, Tiempo: 116.738413, Proceso: 4
+46) Numero: 96842, Intentos: 600351815, Tiempo: 155.683584, Proceso: 3
+47) Numero: 2254, Intentos: 246804688, Tiempo: 65.021185, Proceso: 7
+48) Numero: 25418, Intentos: 392269227, Tiempo: 107.580152, Proceso: 6
+49) Numero: 12565, Intentos: 739421509, Tiempo: 196.442823, Proceso: 1
+50) Numero: 12755, Intentos: 459979265, Tiempo: 129.729391, Proceso: 4
+51) Numero: 54487, Intentos: 339963939, Tiempo: 89.890979, Proceso: 7
+52) Numero: 55699, Intentos: 318113466, Tiempo: 85.347688, Proceso: 6
+53) Numero: 124, Intentos: 2798133238, Tiempo: 619.081173, Proceso: 2
+54) Numero: 54155, Intentos: 752574669, Tiempo: 205.198995, Proceso: 5
+55) Numero: 3254, Intentos: 51580594, Tiempo: 13.868297, Proceso: 5
+56) Numero: 54525, Intentos: 113965477, Tiempo: 30.134044, Proceso: 2
+57) Numero: 42728, Intentos: 80796535, Tiempo: 22.818377, Proceso: 2
+58) Numero: 12855, Intentos: 148260436, Tiempo: 39.036674, Proceso: 5
+59) Numero: 95642, Intentos: 363506817, Tiempo: 96.656062, Proceso: 6
+60) Numero: 12351, Intentos: 535984598, Tiempo: 149.888151, Proceso: 4
+61) Numero: 54867, Intentos: 224777834, Tiempo: 59.847702, Proceso: 2
+62) Numero: 25148, Intentos: 573150457, Tiempo: 151.630273, Proceso: 7
+63) Numero: 87975, Intentos: 305234341, Tiempo: 81.710152, Proceso: 6
+64) Numero: 14782, Intentos: 1327334265, Tiempo: 346.856628, Proceso: 3
+65) Numero: 4254, Intentos: 7426788, Tiempo: 2.025873, Proceso: 3
+66) Numero: 54425, Intentos: 101815346, Tiempo: 28.447315, Proceso: 6
+67) Numero: 87775, Intentos: 1059148846, Tiempo: 284.621437, Proceso: 1
+68) Numero: 94642, Intentos: 309986669, Tiempo: 79.692997, Proceso: 7
+69) Numero: 12548, Intentos: 329291133, Tiempo: 92.056625, Proceso: 2
+70) Numero: 35699, Intentos: 57999799, Tiempo: 14.735161, Proceso: 7
+71) Numero: 19255, Intentos: 243823283, Tiempo: 63.249712, Proceso: 3
+72) Numero: 58487, Intentos: 334620158, Tiempo: 88.180690, Proceso: 1
+73) Numero: 93642, Intentos: 103326033, Tiempo: 27.965659, Proceso: 1
+74) Numero: 12521, Intentos: 338456302, Tiempo: 89.584838, Proceso: 7
+75) Numero: 12531, Intentos: 719697628, Tiempo: 204.707340, Proceso: 4
+76) Numero: 10255, Intentos: 37469007, Tiempo: 10.967130, Proceso: 4
+77) Numero: 80775, Intentos: 463214330, Tiempo: 126.638849, Proceso: 2
+78) Numero: 45699, Intentos: 1351945719, Tiempo: 371.031872, Proceso: 5
+79) Numero: 24278, Intentos: 1000063657, Tiempo: 266.936695, Proceso: 6
+80) Numero: 8775, Intentos: 50490712, Tiempo: 13.307475, Proceso: 6
+81) Numero: 22548, Intentos: 1012232261, Tiempo: 263.238949, Proceso: 3
+82) Numero: 54325, Intentos: 805341912, Tiempo: 214.613186, Proceso: 1
+83) Numero: 91642, Intentos: 36147740, Tiempo: 9.705139, Proceso: 1
+84) Numero: 54897, Intentos: 727360832, Tiempo: 190.919872, Proceso: 2
+85) Numero: 54145, Intentos: 187723352, Tiempo: 51.455571, Proceso: 1
+86) Numero: 12055, Intentos: 111456713, Tiempo: 30.970230, Proceso: 1
+87) Numero: 22478, Intentos: 1089771678, Tiempo: 287.522575, Proceso: 4
+88) Numero: 6254, Intentos: 404450331, Tiempo: 108.138192, Proceso: 2
+89) Numero: 54807, Intentos: 123172943, Tiempo: 33.224133, Proceso: 4
+90) Numero: 21478, Intentos: 134572884, Tiempo: 36.522519, Proceso: 1
+91) Numero: 8775, Intentos: 50490712, Tiempo: 13.907314, Proceso: 4
+92) Numero: 25699, Intentos: 874723435, Tiempo: 239.993933, Proceso: 5
+93) Numero: 12541, Intentos: 234313392, Tiempo: 65.097726, Proceso: 1
+94) Numero: 22541, Intentos: 904899079, Tiempo: 252.311963, Proceso: 6
+95) Numero: 42548, Intentos: 217626359, Tiempo: 58.932584, Proceso: 4
+96) Numero: 54135, Intentos: 143698113, Tiempo: 40.746274, Proceso: 1
+97) Numero: 32548, Intentos: 1060631737, Tiempo: 270.839891, Proceso: 3
+98) Numero: 92642, Intentos: 482905905, Tiempo: 123.710049, Proceso: 5
+99) Numero: 15699, Intentos: 1057447314, Tiempo: 264.704579, Proceso: 2
+100) Numero: 5254, Intentos: 2515768767, Tiempo: 652.491734, Proceso: 7
+Intentos Acumulados: 42206944176 
+Tiempo Acumulado:    10728.003393   
+Tiempo Total:        1691.146348   
+Max Intentos:        2798133238 
+Max Tiempo:          652.491734   
+

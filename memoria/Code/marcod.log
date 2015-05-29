@@ -1,0 +1,346 @@
+2015-04-09 12:12:58,934:INFO:Starting service marcod
+2015-04-09 12:13:02,475:INFO:Stopping service marcod
+2015-04-09 20:44:06,835:INFO:Starting service marcod
+2015-04-09 20:46:41,696:INFO:Stopping service marcod
+2015-04-09 20:46:42,282:INFO:Starting service marcod
+2015-04-09 20:47:03,999:INFO:Stopping service marcod
+2015-04-09 20:47:05,913:INFO:Starting service marcod
+2015-04-09 20:47:41,247:INFO:Stopping service marcod
+2015-04-09 20:47:41,864:INFO:Starting service marcod
+2015-04-09 20:48:20,518:INFO:Stopping service marcod
+2015-04-09 20:48:23,169:INFO:Starting service marcod
+2015-04-09 20:50:59,916:DEBUG:There's a node at ('172.20.1.74', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-09 22:21:17,118:INFO:Stopping service marcod
+2015-04-09 22:30:01,135:INFO:Starting service marcod
+2015-04-09 22:31:32,426:INFO:Stopping service marcod
+2015-04-09 22:31:33,822:INFO:Starting service marcod
+2015-04-09 22:31:38,374:DEBUG:
+2015-04-09 22:31:54,034:INFO:Stopping service marcod
+2015-04-09 22:31:55,159:INFO:Starting service marcod
+2015-04-09 22:31:59,042:DEBUG:
+2015-04-09 22:32:20,073:INFO:Stopping service marcod
+2015-04-09 22:32:21,238:INFO:Starting service marcod
+2015-04-09 22:32:25,399:DEBUG:
+2015-04-09 22:32:32,551:DEBUG:
+2015-04-09 22:32:44,100:DEBUG:
+2015-04-09 22:33:08,676:INFO:Stopping service marcod
+2015-04-09 22:33:09,179:INFO:Starting service marcod
+2015-04-09 22:33:12,780:DEBUG:
+2015-04-09 22:33:27,273:INFO:Stopping service marcod
+2015-04-09 22:33:28,148:INFO:Starting service marcod
+2015-04-09 22:33:31,562:DEBUG:
+2015-04-09 22:33:53,984:INFO:Stopping service marcod
+2015-04-09 22:33:59,776:INFO:Starting service marcod
+2015-04-09 22:34:04,591:DEBUG:
+2015-04-09 22:35:54,714:DEBUG:
+2015-04-09 22:44:01,181:INFO:Stopping service marcod
+2015-04-09 22:44:42,531:INFO:Starting service marcod
+2015-04-09 22:44:47,562:DEBUG:
+2015-04-09 22:44:52,887:DEBUG:
+2015-04-09 22:47:48,323:INFO:Stopping service marcod
+2015-04-09 22:47:49,330:INFO:Starting service marcod
+2015-04-09 22:47:54,715:DEBUG:
+2015-04-09 23:05:32,516:INFO:Stopping service marcod
+2015-04-10 10:04:34,455:INFO:Starting service marcod
+2015-04-10 10:04:40,254:DEBUG:There's a node at ('172.20.1.74', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-10 10:05:24,128:DEBUG:There's a node at ('172.20.1.74', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-10 10:05:41,855:DEBUG:There's a node at ('172.20.1.74', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-10 10:06:07,570:DEBUG:There's a node at ('172.20.1.74', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-10 10:06:15,358:DEBUG:There's a node at ('172.20.1.74', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-10 10:10:26,216:INFO:Stopping service marcod
+2015-04-10 10:10:26,951:INFO:Starting service marcod
+2015-04-10 10:10:34,559:DEBUG:There's a node at ('172.20.1.74', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-10 10:12:25,391:INFO:Stopping service marcod
+2015-04-10 10:12:27,975:INFO:Starting service marcod
+2015-04-10 10:12:32,838:DEBUG:There's a node at ('172.20.1.74', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-10 10:12:42,076:DEBUG:There's a node at ('172.20.1.74', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-10 10:12:50,113:DEBUG:There's a node at ('172.20.1.74', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-10 10:13:04,034:DEBUG:There's a node at ('172.20.1.74', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-10 10:14:15,751:INFO:Stopping service marcod
+2015-04-10 10:14:31,055:INFO:Starting service marcod
+2015-04-10 10:14:35,154:DEBUG:There's a node at ('172.20.1.74', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-10 10:15:19,818:DEBUG:There's a node at ('172.20.1.74', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-10 10:15:23,846:DEBUG:There's a node at ('172.20.1.74', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-10 10:17:58,237:DEBUG:There's a node at ('172.20.1.74', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-10 11:05:45,206:INFO:Stopping service marcod
+2015-04-10 11:05:54,681:INFO:Starting service marcod
+2015-04-10 11:07:52,920:INFO:Stopping service marcod
+2015-04-10 11:07:54,698:INFO:Starting service marcod
+2015-04-10 11:08:36,784:INFO:Stopping service marcod
+2015-04-10 11:08:37,631:INFO:Starting service marcod
+2015-04-10 11:09:36,232:INFO:Stopping service marcod
+2015-04-10 11:09:37,634:INFO:Starting service marcod
+2015-04-10 11:10:20,797:INFO:Stopping service marcod
+2015-04-10 11:10:22,862:INFO:Starting service marcod
+2015-04-10 11:13:44,982:INFO:Stopping service marcod
+2015-04-10 11:13:46,312:INFO:Starting service marcod
+2015-04-10 11:18:30,271:INFO:Stopping service marcod
+2015-04-10 11:18:31,582:INFO:Starting service marcod
+2015-04-10 11:24:04,433:INFO:Stopping service marcod
+2015-04-10 11:28:05,380:INFO:Starting service marcod
+2015-04-10 11:28:20,072:INFO:Stopping service marcod
+2015-04-10 11:28:28,852:INFO:Starting service marcod
+2015-04-10 11:36:41,212:INFO:Stopping service marcod
+2015-04-10 12:09:59,801:INFO:Starting service marcod
+2015-04-10 12:55:28,467:INFO:Stopping service marcod
+2015-04-10 13:05:47,280:INFO:Starting service marcod
+2015-04-10 13:05:51,492:DEBUG:There's a node at ('172.20.1.74', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-10 13:18:21,014:INFO:Stopping service marcod
+2015-04-10 15:37:59,242:INFO:Starting service marcod
+2015-04-10 19:24:49,679:INFO:Stopping service marcod
+2015-04-11 19:42:07,513:INFO:Starting service marcod
+2015-04-11 19:42:50,685:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 19:44:49,847:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 19:45:22,585:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 19:46:37,670:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 19:46:52,694:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 19:47:04,517:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 19:47:17,101:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 19:48:18,767:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 19:49:33,696:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 22:26:54,819:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 22:27:10,799:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 22:28:29,279:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 22:28:49,241:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 22:29:53,707:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 22:30:52,938:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 22:30:59,107:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 22:31:08,085:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 22:31:58,158:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 22:32:06,968:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 22:32:25,716:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 22:33:05,893:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 22:33:49,307:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 22:33:54,009:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 22:34:10,810:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 22:34:22,518:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 22:34:54,365:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 22:35:03,326:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 22:35:26,323:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 22:38:29,187:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 22:39:32,460:DEBUG:There's a node at ('192.168.1.135', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-11 22:59:33,751:INFO:Stopping service marcod
+2015-04-11 23:21:15,309:INFO:Starting service marcod
+2015-04-11 23:21:18,915:INFO:Stopping service marcod
+2015-04-11 23:21:20,015:INFO:Starting service marcod
+2015-04-11 23:21:21,761:INFO:Stopping service marcod
+2015-04-11 23:21:23,042:INFO:Starting service marcod
+2015-04-11 23:21:43,620:INFO:Stopping service marcod
+2015-04-11 23:21:51,573:INFO:Starting service marcod
+2015-04-12 11:00:38,337:INFO:Starting service marcod
+2015-04-12 11:00:52,870:INFO:Stopping service marcod
+2015-04-12 11:00:57,164:INFO:Starting service marcod
+2015-04-12 11:00:58,806:INFO:Stopping service marcod
+2015-04-12 11:01:00,312:INFO:Starting service marcod
+2015-04-13 00:19:34,325:INFO:Stopping service marcod
+2015-04-13 09:39:30,168:INFO:Starting service marcod
+2015-04-13 09:39:33,887:INFO:Stopping service marcod
+2015-04-13 09:39:35,591:INFO:Starting service marcod
+2015-04-13 09:48:32,889:DEBUG:There's a node at ('172.20.1.119', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-13 09:49:18,045:DEBUG:There's a node at ('172.20.1.119', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-13 09:52:52,828:DEBUG:There's a node at ('172.20.1.118', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-13 09:56:26,746:DEBUG:There's a node at ('172.20.1.121', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-13 09:58:18,573:DEBUG:There's a node at ('172.20.1.119', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-13 10:00:22,254:DEBUG:There's a node at ('172.20.1.118', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-13 10:01:01,306:DEBUG:There's a node at ('172.20.1.118', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-13 10:01:46,825:DEBUG:There's a node at ('172.20.1.118', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-13 10:02:06,547:DEBUG:There's a node at ('172.20.1.118', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-13 10:06:12,641:DEBUG:There's a node at ('172.20.1.121', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-13 10:06:44,191:DEBUG:There's a node at ('172.20.1.118', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-13 10:08:45,280:INFO:Stopping service marcod
+2015-04-13 10:10:09,030:INFO:Starting service marcod
+2015-04-13 11:30:27,886:INFO:Starting service marcod
+2015-04-13 11:30:42,518:DEBUG:There's a node at ('172.20.1.118', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-13 12:23:53,998:DEBUG:There's a node at ('172.20.1.118', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-13 12:28:52,286:INFO:Stopping service marcod
+2015-04-13 15:39:23,832:INFO:Starting service marcod
+2015-04-13 15:39:27,206:INFO:Stopping service marcod
+2015-04-13 15:57:53,131:INFO:Starting service marcod
+2015-04-13 15:58:36,985:DEBUG:
+2015-04-13 16:03:03,367:INFO:Stopping service marcod
+2015-04-13 16:03:09,996:INFO:Starting service marcod
+2015-04-13 16:04:41,559:INFO:Starting service marcod
+2015-04-13 16:05:00,861:INFO:Stopping service marcod
+2015-04-13 16:05:07,929:INFO:Starting service marcod
+2015-04-13 16:07:10,386:INFO:Starting service marcod
+2015-04-13 16:07:15,421:INFO:Stopping service marcod
+2015-04-13 16:07:17,487:INFO:Starting service marcod
+2015-04-13 16:08:22,968:INFO:Stopping service marcod
+2015-04-13 16:08:33,056:INFO:Starting service marcod
+2015-04-13 16:08:53,560:INFO:Stopping service marcod
+2015-04-13 16:08:57,971:INFO:Starting service marcod
+2015-04-13 16:08:59,649:INFO:Stopping service marcod
+2015-04-13 16:09:03,887:INFO:Starting service marcod
+2015-04-13 16:09:07,291:INFO:Stopping service marcod
+2015-04-13 16:09:21,686:INFO:Starting service marcod
+2015-04-13 16:09:24,980:INFO:Stopping service marcod
+2015-04-13 16:10:23,970:INFO:Starting service marcod
+2015-04-13 16:14:11,398:INFO:Starting service marcod
+2015-04-13 16:14:16,686:INFO:Stopping service marcod
+2015-04-13 16:14:19,396:INFO:Starting service marcod
+2015-04-13 16:14:21,889:INFO:Stopping service marcod
+2015-04-13 16:14:39,555:INFO:Starting service marcod
+2015-04-13 16:14:48,700:INFO:Stopping service marcod
+2015-04-13 16:14:48,875:INFO:Starting service marcod
+2015-04-13 16:15:04,656:INFO:Stopping service marcod
+2015-04-13 16:15:05,585:INFO:Starting service marcod
+2015-04-13 16:15:20,520:INFO:Stopping service marcod
+2015-04-13 16:15:20,716:INFO:Starting service marcod
+2015-04-13 16:16:32,343:INFO:Stopping service marcod
+2015-04-13 16:16:48,857:INFO:Starting service marcod
+2015-04-13 16:17:10,368:INFO:Stopping service marcod
+2015-04-13 16:17:17,498:INFO:Starting service marcod
+2015-04-13 16:17:20,366:INFO:Stopping service marcod
+2015-04-13 16:20:05,621:INFO:Starting service marcod
+2015-04-13 16:34:24,779:INFO:Stopping service marcod
+2015-04-13 16:35:16,871:INFO:Starting service marcod
+2015-04-13 16:47:31,570:DEBUG:
+2015-04-13 16:47:43,186:DEBUG:
+2015-04-13 16:48:39,580:DEBUG:
+2015-04-13 16:49:38,386:DEBUG:There's a node at ('192.168.1.129', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-13 16:50:35,685:DEBUG:There's a node at ('192.168.1.129', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-13 17:24:46,023:DEBUG:There's a node at ('192.168.1.129', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-13 17:24:50,151:DEBUG:There's a node at ('192.168.1.129', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-13 23:59:03,139:INFO:Stopping service marcod
+2015-04-14 09:15:12,005:INFO:Starting service marcod
+2015-04-14 09:45:02,956:DEBUG:
+2015-04-14 12:45:54,178:DEBUG:There's a node at ('172.20.1.125', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-14 16:16:07,266:DEBUG:There's a node at ('172.20.2.16', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-15 00:56:41,426:INFO:Stopping service marcod
+2015-04-15 01:26:30,652:INFO:Starting service marcod
+2015-04-15 14:59:02,103:INFO:Stopping service marcod
+2015-04-15 14:59:55,453:INFO:Starting service marcod
+2015-04-15 15:05:32,556:DEBUG:
+2015-04-15 15:05:42,863:DEBUG:
+2015-04-15 15:05:46,868:DEBUG:
+2015-04-15 15:05:53,216:DEBUG:There's a node at ('172.20.1.222', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-15 15:25:02,059:INFO:Stopping service marcod
+2015-04-15 15:28:52,450:INFO:Starting service marcod
+2015-04-15 15:32:01,478:DEBUG:There's a node at ('172.20.1.11', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-15 16:36:29,449:INFO:Stopping service marcod
+2015-04-15 20:20:57,453:INFO:Starting service marcod
+2015-04-16 11:02:07,705:INFO:Stopping service marcod
+2015-04-16 11:43:03,102:INFO:Starting service marcod
+2015-04-16 11:56:50,000:DEBUG:There's a node at ('172.20.1.11', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-16 12:19:58,653:DEBUG:There's a node at ('172.20.1.11', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-16 12:20:03,477:DEBUG:There's a node at ('172.20.1.11', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-16 12:20:07,844:DEBUG:There's a node at ('172.20.1.11', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-16 12:20:14,315:DEBUG:There's a node at ('172.20.1.11', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:12:23,095:DEBUG:There's a node at ('172.20.1.11', 1337) joining the multicast group 224.0.0.112 with the services: NTPServer. Version: 1 CarreraREST. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 NTPServer. Version: 13 
+2015-04-16 13:12:33,101:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:12:37,637:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:13:02,142:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:13:59,281:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:14:30,961:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:15:37,781:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:15:45,829:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:15:52,685:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:15:56,701:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:16:49,360:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:17:44,369:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:18:42,849:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:31:01,623:DEBUG:There's a node at ('172.20.1.131', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:32:31,935:DEBUG:There's a node at ('172.20.1.131', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:35:44,551:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:35:48,971:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:35:56,283:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:36:49,387:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:36:53,402:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:36:57,417:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:37:01,431:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:37:05,448:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:37:28,317:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:40:22,866:DEBUG:There's a node at ('172.20.1.131', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:40:33,693:DEBUG:There's a node at ('172.20.1.209', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:41:55,718:DEBUG:There's a node at ('172.20.1.131', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:42:07,522:DEBUG:There's a node at ('172.20.1.209', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:42:25,674:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 13:42:54,572:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 14:02:49,990:DEBUG:There's a node at ('172.20.1.209', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 14:36:05,768:INFO:Stopping service marcod
+2015-04-16 14:54:56,095:INFO:Starting service marcod
+2015-04-16 14:56:08,377:DEBUG:There's a node at ('172.20.1.131', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 14:56:40,194:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 14:57:25,482:DEBUG:There's a node at ('172.20.1.131', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 14:57:39,398:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 14:57:52,553:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 14:58:09,836:DEBUG:There's a node at ('172.20.1.209', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 14:58:54,421:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 14:59:07,935:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 14:59:18,691:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 15:26:17,532:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 15:26:46,047:DEBUG:There's a node at ('172.20.1.209', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 15:27:04,258:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 15:27:11,622:DEBUG:There's a node at ('172.20.1.131', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 15:28:30,708:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 15:28:48,712:DEBUG:There's a node at ('172.20.1.209', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 15:29:11,584:DEBUG:There's a node at ('172.20.1.131', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 15:29:48,048:DEBUG:There's a node at ('172.20.1.209', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 15:30:06,771:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 15:31:15,240:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 15:31:41,034:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 15:32:14,376:DEBUG:There's a node at ('172.20.1.131', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 15:33:30,376:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 15:33:45,682:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 15:34:04,467:DEBUG:There's a node at ('172.20.1.131', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 15:35:12,728:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 15:42:35,955:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 15:46:05,362:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 15:55:53,232:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 16:13:25,645:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 16:13:29,659:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 16:13:33,673:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 16:13:41,139:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 16:13:45,680:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 16:13:54,191:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 16:14:06,632:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 16:14:16,521:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 16:14:39,252:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 16:15:04,789:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 16:16:42,200:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 16:16:47,640:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 16:30:03,226:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 16:30:32,971:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 16:31:05,559:DEBUG:There's a node at ('172.20.1.227', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-16 17:09:01,964:INFO:Stopping service marcod
+2015-04-16 22:57:22,173:INFO:Starting service marcod
+2015-04-17 09:32:37,951:INFO:Stopping service marcod
+2015-04-17 09:33:27,572:INFO:Starting service marcod
+2015-04-17 10:01:25,338:DEBUG:There's a node at ('172.20.1.76', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 10:01:57,142:DEBUG:There's a node at ('172.20.1.76', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 10:03:46,154:DEBUG:There's a node at ('172.20.1.76', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 10:03:50,167:DEBUG:There's a node at ('172.20.1.76', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 10:03:54,359:DEBUG:There's a node at ('172.20.1.76', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 10:03:58,372:DEBUG:There's a node at ('172.20.1.76', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 10:07:16,245:DEBUG:There's a node at ('172.20.1.76', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 10:08:44,146:DEBUG:There's a node at ('172.20.1.76', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 10:08:48,571:DEBUG:There's a node at ('172.20.1.76', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 10:08:58,368:DEBUG:There's a node at ('172.20.1.76', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 10:09:38,387:DEBUG:There's a node at ('172.20.1.76', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 10:10:24,271:DEBUG:There's a node at ('172.20.1.76', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 10:10:29,224:DEBUG:There's a node at ('172.20.1.89', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 10:11:44,651:DEBUG:There's a node at ('172.20.1.89', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 10:33:40,815:DEBUG:There's a node at ('172.20.1.89', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 10:40:47,851:DEBUG:There's a node at ('172.20.1.76', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 10:42:58,883:DEBUG:There's a node at ('172.20.1.76', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 10:43:08,380:DEBUG:There's a node at ('172.20.1.110', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 10:43:22,697:DEBUG:There's a node at ('172.20.1.76', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 10:43:43,514:DEBUG:There's a node at ('172.20.1.89', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 10:44:51,998:DEBUG:There's a node at ('172.20.1.110', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 10:47:51,322:DEBUG:There's a node at ('172.20.1.89', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 10:48:03,398:DEBUG:There's a node at ('172.20.1.89', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 10:48:42,341:DEBUG:There's a node at ('172.20.1.89', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 10:51:19,497:DEBUG:There's a node at ('172.20.1.110', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 10:52:24,183:DEBUG:There's a node at ('172.20.1.76', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 11:22:22,431:DEBUG:There's a node at ('172.20.1.89', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 11:22:37,354:DEBUG:There's a node at ('172.20.1.89', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 11:22:44,070:DEBUG:There's a node at ('172.20.1.89', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 11:22:59,645:DEBUG:There's a node at ('172.20.1.110', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 11:23:20,740:DEBUG:There's a node at ('172.20.1.76', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 13:51:22,357:INFO:Stopping service marcod
+2015-04-17 14:01:45,840:INFO:Starting service marcod
+2015-04-17 14:05:21,025:DEBUG:There's a node at ('172.20.1.89', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 14:05:31,932:DEBUG:There's a node at ('172.20.1.76', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 14:06:37,756:DEBUG:There's a node at ('172.20.1.76', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-17 14:06:53,925:DEBUG:There's a node at ('172.20.1.76', 1337) joining the multicast group 224.0.0.112 with the services: CarreraREST. Version: 1 tomcat. Version: 7 NTPServer. Version: 13 NTPServer. Version: 1 tomcat. Version: 7 statusmonitor. Version: 1 
+2015-04-19 10:44:17,947:INFO:Starting service marcod
