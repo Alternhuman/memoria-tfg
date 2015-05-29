@@ -68,13 +68,21 @@ Una ``rejilla'' (grid) es un sistema distribuido en el que los nodos del sistema
 
 \subsubsection{Sistemas descentralizados}
 
-Uno de los problemas de las arquitecturas propuestas es la dependencia de un nodo que actúe de coordinador para el resto de los nodos del sistema.
+Uno de los problemas de las arquitecturas propuestas es la dependencia de un nodo que actúe de coordinador para el resto de los nodos del sistema. Dicha dependencia dificulta o incluso impide el funcionamiento del conjunto de nodos en caso de que el nodo coordinador no cumpla adecuadamente su cometido (debido a fallos en el mismo, dificultades en la comunicación, etcétera). Las arquitecturas \textit{peer to peer} (de igual a igual) proponen una solución a dicho problema. Todos los nodos desempeñan el mismo rol colaborando entre ellos de igual forma. Este enfoque flexibiliza la escalabilidad y tolerancia a fallos del sistema, si bien incorpora una serie de desafíos adicionales. La falta de coordinador implica que los diferentes nodos deben conocerse unos a otros previamente, o de algún modo descubir la presencia del resto antes de poder cooperar. La centralización de dicho proceso es una de las soluciones propuestas para facilitar la construcción de la red de \textit{peers}.
+
+Una de las ventajas de este tipo de sistemas es la facilidad para el establecimiento de redundancias, tanto de datos como de servicios, así como la alta tolerancia a fallos (el fallo de un nodo no impide que el resto pueda continuar su cometido a menos que cuente con una serie de recursos exclusivos).
 
 \subsection{Seguridad}
 
 Las medidas de seguridad a tomar dependen de las propiedades y objetivos propios del sistema: en general sistemas utilizados dentro de una organización y una infraestructura sin interacción con entornos no controlados suelen contar con un número menor de medidas de seguridad que aquellos utilizados en entornos ``hostiles'', y la seguridad depende de la confianza depositada en la administración del sistema. Sin embargo, un sistema de este tipo es vulnerable a ataques internos por parte de usuarios o intrusiones en la infraestructura.
 
 Un sistema integrado en un entorno hostil debe además vigilar cualquier tipo de potencial ataque malicioso y controlar el acceso al sistema de forma más minuciosa.
+
+\subsection{Protocolo}
+
+Un protocolo consiste en un conjunto de formatos y reglas bien definidas y conocidas que son utilizadas para posibilitar la comunicación entre un conjunto de entidades. Un protocolo consta de dos especificaciones: la secuencia de mensajes que deben ser intercambiados en cada una de las diferentes acciones y la especificación del contenido y formato de dichos mensajes.
+
+Si un protocolo es definido de forma correcta posibilitará la comunicación entre entidades sin importar la implementación del mismo, ofreciendo un alto grado de transferencia. De esta forma es posible, por ejemplo, ofrecer un servicio web que procese una serie de datos numéricos sin importar el tipo de \textit{endianness} del cliente o el servidor o el lenguaje de programación en el que el servicio se implementa. Únicamente es necesario conocer el tipo de dato que requiere el servicio y el valor esperdo de retorno, así como los mensajes a intercambiar.
 
 \subsection{Integridad}
 
@@ -133,13 +141,84 @@ Se conoce como código móvil al \textit{software} que se transfiere entre difer
 
 La mayoría de este tipo de \textit{software} está creado sobre herramientas multiplataforma, garantizando la abstracción del sistema sobre el que se está ejecutando. Ejemplos de código móvil son los contenidos dinámicos de una web (creados mediante \textit{applets} Java, código \textbf{JavaScript} o controles \textbf{ActiveX}), código embebido en documentos PDF o en general cualquier tipo de \textit{software} descargado de una red.
 
-Sin embargo, este tipo de aplicaciones implican una serie de consideraciones adicionales de seguridad, en particular la verificación de la identidad del nodo que proporciona el paquete, la integridad del mismo durante la transferencia y \citationneeded{}
+Sin embargo, este tipo de aplicaciones implican una serie de consideraciones adicionales de seguridad, en particular la verificación de la identidad del nodo que proporciona el paquete, la integridad del mismo durante la transferencia y \citationneeded{} y el comportamiento del código en ejecución.
+
+\subsection{Compartimentación}
+
+Extendiendo los conceptos del código móvil a un contexto más amplio, como el de un sistema operativo, surge la idea de la compartimentación, consistente en la creación de entornos (compartimentos) capaces de ser migrados incluso en tiempo de ejecución entre máquinas, evitando la interrupción de un trabajo en caso de que el nodo sobre el que se está ejecutando deba ser interrumpido, entre otros muchos beneficios.
+
+\section{Sincronización}
+
+\subsection{Mecanismos de coordinación}
+
+En determinadas ocasiones es necesaria la presencia de un coordinador que lleve a cabo una serie de tareas de gobierno. La elección de dicho coordinador puede atender a una serie de criterios muy variados y los mecanismos de designación siguen varios enfoques:
+
+\subsubsection{Coordinación central}
+
+Un nodo es designado como coordinador y el resto de nodos obedecen su autoridad. Es un enfoque sencillo que sin embargo crea un punto débil en el sistema, pues un fallo en el coordinador central impediría la realización de cualquier tarea de la que dependa hasta que el nodo vuelva a estar activo.
+
+\subsubsection{Coordinación distribuida}
+
+\paragraph{Algoritmo del abusón}
+
+El algoritmo del abusón posibilita la elección de un coordinador en función del cumplimiento de un criterio cuantitativo dado, siendo elegido coordinador aquel que mejor satisfaga dicho criterio. La secuencia de pasos es la siguiente:
+
+Sea un proceso, \textit{P} que detecta la ausencia de un coordinador (en caso de que ya se haya ejecutado el algoritmo, se detecta la ausencia del anterior coordinador) y \textit{X} un valor numérico que determina el criterio para la elección del coordinador (el proceso con el valor más alto te \textit{X} será el coordinador).
+\begin{enumerate}
+\item \textit{P} envía un mensaje de elección a todos los procesos con \textit{X} más alto que \textit{X\textsuperscript{P}}.
+\item Si ningún proceso responde en un tiempo dado, \textit{P} envía un mensaje indicando que es el coordinador.
+\item En caso de que algún proceso responda al mensaje, el proceso se repetirá con el conjunto de nodos con \textit{X} mayor que \textit{X\textsuperscript{P}}.
+\end{enumerate}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{Chapter2/Figures/bully}
+\caption{Secuencia de elección de un coordinador}
+\label{fig:tanenbaum:bully}
+\end{figure}
+
+\paragraph{Algoritmo en anillo}
+
+Bajo la premisa de que todos los procesos cuentan con un orden preestablecido gracias al que conocen a su antecesor y sucesor en la cadena. El funcionamiento del algoritmo es el siguiente:
+
+\begin{enumerate}
+\item Cuando un proceso \textit{P} detecta la caída de un coordinador, envía un mensaje de elección al proceso sucesor, o en su defecto, al proceso sucesor más próximo, en caso de que se encuentre inactivo, hasta que encuentre un proceso activo.
+\item Cuando un proceso recibe el mensaje, añade al mismo su número de proceso.
+\item Una vez que el mensaje llega al creador del mismo, este construye un mensaje con el identificador del proceso que ha sido elegido como coordinador (el proceso con el identificador más alto, o aquel que satisfaga otro criterio similar) y lo envía al siguiente proceso de manera similar al mensaje inicial, si bien el contenido del mensaje no es alterado en este caso.
+\item Una vez que el mensaje ha circulado por todos los procesos, retorna a su creador y en este momento el trabajo se reanuda.
+\end{enumerate}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{Chapter2/Figures/ringalgorithm}
+\caption{Funcionamiento del algoritmo en anillo}
+\label{fig:tanenbaum:ringalgoritm}
+\end{figure} 
+
+%DOCKER
+
+\section{TLS/SSL}
+
 
 \section{Comunicación}
 
 La comunicación entre procesos dentro de un sistema distribuido constituye un aspecto clave en el diseño del mismo, y existen una gran cantidad de modelos para posibilitarlo.
 
 \section{Multicasting}
+
+Si bien las comunicaciones punto a punto consituyen un mecanismo efectivo para la comunicación entre diferentes nodos, presentan una serie de ineficiencias a la hora de distribuir el mismo contenido entre un número significativo de nodos, al tener que enviar un mensaje diferente a cada uno de los destinatarios. Utilizar difusión (\textit{broadcast}) para este tipo de aplicaciones supone una alternativa efectiva, si bien obliga a las entidades no interesadas en el mensaje a procesar el mismo en ocasiones hasta el nivel de red de la pila OSI \citationneeded.
+
+Como alternativa surge la comunicación \textit{multicast} sobre el protocolo IP. Este tipo de mensajes son enviados a una dirección en un rango reservado (en IPv4, 224.0.0.0-239.255.255.255, las direcciones con el valor 1110 en el primer octeto, conocidas como Clase D\citationneeded{RFC}), conocido como \textit{grupo}. Los nodos interesados en los mensajes publicados en dicho grupo pueden suscribirse al grupo multicast y cancelar su membresía en cualquier momento dado. Todos los mensajes son de tipo UDP, si bien existen intentos para posibilitar el uso de TCP\citationneeded.
+
+\subsection{Reliable multicast}
+
+Chapter 15
+
+\section{Serialización}
+
+Con el objetivo de posibilitar la intercomunicación entre entidades es necesario determinar mecanismos para la representación de estructuras de datos complejas de forma homogénea, definiendo una serie de reglas para la representación de datos sin importar la plataforma de cada una de las diferentes entidades partícipes.
+
+Existen una serie de formatos definidos que posibilitan este tipo de interconexión. Uno de ellos es \textbf{JSON} (\textit{JavaScript Object Notation}). JSON define estructuras de datos complejas mediante un subconjunto de la sintaxis de JavaScript que permite representar cualquier tipo de dato de forma legible por personas y fácilmente comprensible por máquinas.
 
 \section{WebSockets}
 
