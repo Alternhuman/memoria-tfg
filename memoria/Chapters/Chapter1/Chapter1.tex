@@ -1,139 +1,133 @@
 \lhead{\emph{Motivación}}
 \chapter{Motivación}
 
-\section{Introducción}
-
-Los límites físicos de los que adolecen los computadores en la época actual\citationneeded hacen de los paradigmas de Computación Distribuida y Paralela un recurso para incrementar de forma sencilla y económica el rendimiento total de un sistema, rendimiento que aumenta significativamente en problemas \textit{ridículamente paralelos}\citationneeded.
-
-Sin embargo, estas ganancias conllevan una serie de inconvenientes, o el aumento de la complejidad de diversas tareas. En general, un sistema distribuido requiere un conjunto de máquinas independientes, que en conjunto suponen un coste superior al de un único nodo. Además, aparecen nuevos problemas de índole técnica: problemas de comunicación, integridad y sincronización, dificultad en el desarrollo y depuración de aplicaciones, etcétera.
-
-En el apartado didáctico, el estudio del paradigma distribuido suele requerir un gran esfuerzo por parte de los estudiantes, en particular a la hora de comprender los fundamentos básicos de cualquier aplicación distribuida.
-
 \section{Motivación y objetivos}
 
-El sistema descrito en esta memoria surge inspirado en proyectos similares y las diferentes necesidades identificadas como estudiante del Grado en Ingeniería Informática. El Sistema se desarrolla con una serie de objetivos claros e independientes:
+El sistema descrito en esta memoria surge inspirado en proyectos similares y las diferentes necesidades identificadas como estudiante del Grado en Ingeniería Informática. Dicho sistema se desarrolla con una serie de objetivos generales claros e independientes:
 
 \begin{itemize}
 	\item Como herramienta de síntesis de los conocimientos adquiridos en la carrera, se busca la creación de un sistema completo desde sus cimientos hasta los componentes de más alto nivel, gestionando las tareas de mantenimiento, instalación y manejo del mismo, así como los protocolos de trabajo, tanto en cada uno de los componentes del sistema como en la comunicación entre los mismos. Con un enfoque más teórico, se pretende crear un sistema capaz de poder ser utilizado como herramienta de diseño y prueba de algoritmos que resuelvan problemas aprovechando la distribución de tareas, así como el análisis de dichos algoritmos utilizando versiones finales del sistema.
 
-	\item Potenciar el aprendizaje en las áreas de conocimiento Sistemas Operativos, Sistemas Embebidos, Redes de Computadores, Sistemas Distribuidos, Administración de Sistemas y Algoritmia.
+	\item Potenciar el aprendizaje en las áreas de conocimiento Sistemas Operativos, Algoritmia, Redes de Computadores, Sistemas Distribuidos, Administración de Sistemas y Sistemas Embebidos.
 	
-	\item Constituir una herramienta didáctica para varias asignaturas cursadas en el plan de estudios del Grado en Ingeniería Informática en la Universidad de Salamanca, analizando las asignaturas de relevancia en el Plan y buscando soluciones a las necesidades propuestas por el Profesorado, Estudiantes y Administradores del sistema en colaboración con dichas partes.
+	\item Constituir una herramienta didáctica para varias asignaturas del currículo del Grado en Ingeniería Informática de la Universidad de Salamanca, analizando aquellas relevantes y proponiendo soluciones a las diferentes necesidades propuestas por el Profesorado, Estudiantes y Administradores del sistema en colaboración con dichas partes.
 
-	\item Intentar elevar el \textit{state of the art} en el mundo de los sistemas distribuidos con plataformas embebidas mediante la creación de un sistema multipropósito en lugar de soluciones con un fin determinado.
-
+	\item Intentar elevar el \textit{state of the art} en el mundo de los sistemas distribuidos con plataformas embebidas mediante la creación de un sistema multipropósito en lugar de soluciones con un fin determinado, que constituye la tendencia actual.
 \end{itemize}
 
-Partiendo de la premisa de las potenciales ventajas del uso de este tipo de computadores en detrimento de otras soluciones se plantea el sistema definitivo (ver \ref{alternativas}).
+Partiendo de la premisa de las potenciales ventajas del uso de este tipo de computadores en detrimento de otras soluciones se plantea el sistema definitivo (en \ref{alternativas} se detalla el proceso de decisión), no sin antes realizar una etapa de evaluación de las diferentes alternativas.
 
 \section{Objetivos del sistema}
 
-Durante las fases de definición del proyecto, se plantean los siguientes objetivos a cumplir para la consecución del sistema:
+Durante las fases de definición del proyecto, se plantean los siguientes objetivos concretos a cumplir:
 
 \subsection{Diseño y construcción de la arquitectura física del sistema}
 
-Se deberán definir las interconexiones entre los diferentes componentes del sistema, solucionar los diferentes problemas físicos tales como la alimentación eléctrica, conexiones de red, refrigeración, entre otros, analizando los diferentes enfoques y valorando la mejor solución en función del resto de objetivos a cumplir.
+Se deberán definir las interconexiones entre los diferentes componentes del sistema, solucionar los diferentes problemas físicos tales como la alimentación eléctrica, conexiones de red o la refrigeración, entre otros, analizando los diferentes enfoques y valorando la mejor solución en función del resto de objetivos a cumplir.
 
 \subsection{Gestión del sistema}
 
-El sistema debe contar con un conjunto de herramientas que mantengan los principios de transparencia propios de un sistema distribuido\citationneeded.
+El sistema debe contar con un conjunto de herramientas que mantengan los principios de transparencia propios de un sistema distribuido (ver \ref{transparencia}).
 
 \subsection{Integración}
 
-El sistema debe integrarse en una infraestructura preexistente, sin que dicha integración comprometa el diseño básico del sistema, a fin de facilitar su adaptabilidad a otros entornos.
+El sistema debe integrarse en una infraestructura preexistente, la presente en la Facultad de Ciencias de la Universidad de Salamanca, sin que dicha integración comprometa el diseño básico del sistema a fin de facilitar su adaptabilidad a otros entornos (ver \ref{infraestructura}). Es necesario por tanto realizar pruebas que evalúen el rendimiento del sistema creado en la citada infraestructura. Con el objetivo de facilitar dicha integración, el sistema se desarrolla parcialmente aprovechando la infraestructura presente.
 
 \subsection{Uso como herramienta didáctica}
 
-El sistema debe ofrecer una serie de ventajas a las herramientas didácticas utilizadas en aquellas asignaturas donde se impartan conocimientos relacionados con la computación paralela y distribuida, ofreciendo herramientas que faciliten la comprensión de dichos paradigmas o el desarrollo, prueba y aplicación de programas basados en los mismos.
+El sistema debe ofrecer una serie de ventajas a las herramientas didácticas utilizadas en aquellas asignaturas donde se impartan conocimientos relacionados con la computación paralela y distribuida, ofreciendo facilidades que faciliten la comprensión de dichos paradigmas o el desarrollo, prueba y aplicación de programas basados en los mismos.
+
+La viabilidad de dichas facilidades deberá demostrarse mediante mecanismos de evaluación y entrevistas a todas las partes implicadas.
 
 \subsection{Evaluación}
 
-A fin de probar los objetivos definidos anteriormente, la viabilidad de sistema como herramienta didáctica y su integración en la organización deberán ser determinados por los diferentes usuarios de la misma.
-
+A fin de probar los objetivos definidos anteriormente, la viabilidad de sistema como herramienta didáctica y su integración en la organización deberán ser determinados por los diferentes usuarios de la misma y la realización de pruebas de integración.
 
 Durante el desarrollo del proyecto se añaden los siguientes objetivos funcionales:
 
 \subsection{Simplicidad de MarcoPolo}
 
-MarcoPolo debe conseguir un alto grado de versatilidad y aplicabilidad en un gran rango de aplicaciones. A fin de conseguir este objetivo, la simplicidad del sistema construido es clave. Esto conlleva el desacoplamiento y delegación de gran parte de la funcionalidad a otras capas superiores, independientes del protocolo, pero que aprovechan su funcionalidad, en lugar de ser integradas en el mismo.
+MarcoPolo debe conseguir un alto grado de versatilidad y aplicabilidad en un gran rango de aplicaciones. A fin de conseguir este objetivo, la simplicidad del sistema construido es clave. Esto conlleva el desacoplamiento y delegación de gran parte de la funcionalidad a otras capas superiores, independientes del protocolo, pero que aprovechan su funcionalidad, en lugar de ser integradas en el mismo (ver \ref{marcopolo}).
 
 \subsection{Test-Driven Development}
 
-El desarrollo de las diferentes herramientas \textit{software} se deberá realizar bajo los principios del desarrollo conducido por pruebas (ver \ref{tdd}) como mecanismo para la detección temprana de \textit{bugs}.
+El desarrollo de las diferentes herramientas \textit{software} se deberá realizar bajo los principios del desarrollo conducido por pruebas (ver \ref{tdd}) como mecanismo para la detección temprana de errores.
 
 \section{Situación actual (\textit{state of the art})}
 
-%Este apartado sería parecido a lo que en trabajos de grado (WHVLQDV \ WHVLV) se denomina estado del arte. En un proyecto de final de carrera de primer ciclo no parece obligada su presencia (D GLIHUHQFLD GHO VHJXQGR FLFOR GRQGH OD MXVWLILFDFLyQ WHyULFD PHGLDQWH XQ HVWDGR GHO DUWH GHEH DFRPSDxDU D ORV SURGXFWRV VRIWZDUH UHDOL]DGRV), aunque se puede dejar a juicio del tutor o tutores el incluir un pequeño resumen comentado de los trabajos y proyectos ya realizados en el campo del proyecto en curso.
-
+%Este apartado sería parecido a lo que en trabajos de grado (WHVLQDV \ WHVLV) se denomina estado del arte. En un proyecto de final de carrera de primer ciclo no parece obligada su presencia, aunque se puede dejar a juicio del tutor o tutores el incluir un pequeño resumen comentado de los trabajos y proyectos ya realizados en el campo del proyecto en curso.
 
 \subsection{Computadores de placa única}
 
 El uso de computadores de prestaciones reducidas como componentes de un sistema distribuido ha experimentado un gran crecimiento en los últimos años debido a la popularización y el abaratamiento de este tipo de dispositivos, existiendo gran cantidad de fabricantes y proveedores de \textit{software} para los mismos.
 
-Los computadores de placa única (\textit{Single-Board Computer}) consisten en computadores de generalmente bajas prestaciones que aglutinan todos los componentes necesarios para su funcionamiento en un único circuito integrado. Dichas placas suelen tener un coste bajo y una relación rendimiento/coste muy elevada.
+Los computadores de placa única (\textit{Single-Board Computer}) son máquinas de generalmente bajas prestaciones que aglutinan todos los componentes necesarios para su funcionamiento en un único circuito integrado. Dichas placas suelen tener un coste bajo y una relación rendimiento/coste elevada.
 
-Durante los últimos años se han popularizado como una herramienta para el estudio y creación de sistemas distribuidos con un gran rango de propósitos diferentes.
+Durante los últimos años se han popularizado como una herramienta para el estudio y creación de sistemas distribuidos con un gran rango de propósitos diferentes, debido a su versatilidad y bajo coste.
 
 \subsubsection{RPiCluster (Joshua Kiepert)}
 
-Joshua Kiepert, estudiante de doctorado en la universidad Boise State, crea este sistema utilizando 33 computadores \textbf{Raspberry Pi B}, con el objetivo de utilizarlo como herramienta de pruebas que sirva de alternativa al supercomputador situado en su universidad\cite{joshuarpicluster}, sobre el que trabaja de forma rutinaria, a fin de poder continuar su trabajo en periodos de mantenimiento, cierre del centro, etcétera. El sistema está diseñado para utilizar la \textit{Message Passing Interface} como mecanismo de comunicación y coordinación (siguiendo un esquema maestro-esclavo) y además poder utilizar los diferentes puertos de las placas (GPIO, I\textsuperscript{2}C, SPI, UART), puertos generalmente ausentes en computadores utilizados para este tipo de propósitos. Utiliza además un servidor \textbf{NFS} para compartir datos entre todos los nodos, y un \textit{router} dedicado para la interconexión. El sistema se complementa con un ordenador \textbf{Chromebook} con el mismo sistema operativo (\textbf{Arch Linux}), que actúa como nodo coordinador.
+Joshua Kiepert, estudiante de doctorado en la universidad Boise State, crea este sistema utilizando 33 computadores \textbf{Raspberry Pi B}, con el objetivo de utilizarlo como herramienta de pruebas que sirva de alternativa al supercomputador con el que su universidad cuenta\cite{joshuarpicluster} y sobre el que trabaja de forma rutinaria, con el objetivo de poder continuar su trabajo en periodos de mantenimiento, cierre del centro, etcétera. El sistema está diseñado para utilizar la \textit{Message Passing Interface} como mecanismo de comunicación y coordinación (siguiendo un esquema maestro-esclavo) y además poder utilizar los diferentes puertos de las placas (GPIO, I\textsuperscript{2}C, SPI, UART), puertos generalmente ausentes en computadores utilizados para este tipo de propósito. Utiliza además un servidor \textbf{NFS} para compartir datos entre todos los nodos, y un \textit{router} dedicado para la interconexión. El sistema se completa con un portátil \textbf{Chromebook} con el mismo sistema operativo que los nodos del sistema, (\textbf{Arch Linux}), que actúa como nodo coordinador.
 
-Está compuesto del conjunto de nodos esclavos y coordinador, dos fuentes de alimentación y un mecanismo de refrigeración. El sistema cuenta con su propio mecanismo de distribución de la energía (diseñado por Kiepert) y de gestión de los LEDs. 
+Está compuesto del conjunto de nodos esclavos y coordinador, dos fuentes de alimentación y un mecanismo de refrigeración. El sistema cuenta con su propio mecanismo de distribución de la energía (diseñado por Kiepert) y de gestión de los LEDs que utiliza como elemento estético y como mecanismo de análisis visual del comportamiento de los algoritmos.
 
-% http://www.zdnet.com/article/build-your-own-supercomputer-out-of-raspberry-pi-boards/
+%TODO: http://www.zdnet.com/article/build-your-own-supercomputer-out-of-raspberry-pi-boards/
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=0.4\textwidth]{Chapter1/Figures/kiepert-main}
-\includegraphics[width=0.4\textwidth]{Chapter1/Figures/structure.png}
-\caption{Vista general y estructura del sistema (Fuente: Joshua Kiepert)}
-\label{kiepert:structure}
+	\centering
+	\includegraphics[width=0.36\textwidth]{Chapter1/Figures/kiepert-main}
+	\includegraphics[width=0.4\textwidth]{Chapter1/Figures/structure.png}
+	\caption{Vista general y estructura del sistema (Fuente: Joshua Kiepert)}
+	\label{kiepert:structure}
 \end{figure}
 
-\textbf{Coste}: 1967.21 dólares.
+El coste total del proyecto es de 1967.21 dólares.
 
 \subsubsection{Dramble (Jeff Geerling)}
 
 El clúster \textit{Dramble} es un conjunto de 6 equipos \textbf{Raspberry Pi} capaces de ejecutar en conjunto el gestor de contenidos \textbf{Drupal}\footnote{\href{https://www.drupal.org/}{drupal.org}}. El sistema es utilizado como servidor de pruebas para la ejecución de instancias de este \textit{software} de forma experimental o durante demonstraciones en público\cite{geerlingraspberry}. Se compone del conjunto de nodos Rasbperry Pi y los mecanismos de red que interconectan los nodos.
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=0.5\textwidth]{Chapters/Chapter1/Figures/raspberry-pi-dramble-cluster-wired.jpg}
-\caption{El \textit{Dramble} en ejecución}
-\label{geerling:dramble}
+	\centering
+	\includegraphics[width=0.5\textwidth]{Chapters/Chapter1/Figures/raspberry-pi-dramble-cluster-wired.jpg}
+	\caption{El \textit{Dramble} en ejecución}
+	\label{geerling:dramble}
 \end{figure}
 
-\textbf{Coste (estimado)}: 35 dólares por cada Raspberry Pi mas el coste añadido de la red.
+El coste estimado es de 35 dólares por cada Raspberry Pi mas el coste añadido de la red y el cableado de alimentación, aroximadamente 300 dólares.
 
 \subsubsection{Bramble (GCHQ)}
 
-El organismo gubernamental \textit{Government Communication Headquarters}, agencia de inteligencia del Gobierno Británico presentó en la \textit{Big Bang Fair} de 2015 un proyecto educativo que combina 66 \textit{Raspberry Pi} en un clúster jerárquico con 8 grupos de 8 nodos, cada uno de ellos con un coordinador interno. El cableado se reduce gracias al uso de la tecnología \textbf{PoE} (\textit{Power over Ethernet}), y cada \textbf{Raspberr} cuenta con un conjunto de elementos adicionales, como un reloj de tiempo real, disco duro externo, cámara, o punto de acceso WiFi\cite{gchqbramble}.
+El organismo gubernamental \textit{Government Communication Headquarters}, agencia de inteligencia del Gobierno Británico presentó en la \textit{Big Bang Fair} de 2015 un proyecto educativo que combina 66 \textit{Raspberry Pi} en un clúster jerárquico con 8 grupos de 8 nodos, cada uno de ellos con un coordinador interno. El cableado se reduce gracias al uso de la tecnología \textbf{PoE} (\textit{Power over Ethernet}), y cada \textbf{Raspberry} cuenta con un conjunto de elementos adicionales, como un reloj de tiempo real, disco duro externo, cámara, o punto de acceso WiFi\cite{gchqbramble}.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth]{Chapters/Chapter1/Figures/bramblegchq}
+\includegraphics[width=0.8\textwidth]{Chapters/Chapter1/Figures/bramblegchq}
 \caption{Vistazo general de la estructura del sistema}
 \label{gchq:bramble}
-
-\textbf{Coste} Se desconocen datos sobre el coste total del sistema.
-
 \end{figure}
+
+Se desconocen datos sobre el coste total del sistema.
 
 \subsubsection{Clúster Iridis (Simon Cox, University of Southampton)}
 
-Con el objetivo de atraer a jóvenes estudiantes al mundo de la Computación, el profesor Simon Cox crea este clúster con 64 \textbf{Raspberry Pi B} sobre una estructura de LEGO\cite{cox:raspberry}.
+Con el objetivo de atraer a jóvenes estudiantes al mundo de la Computación, el profesor Simon Cox crea este clúster con 64 \textbf{Raspberry Pi B} sobre una estructura construida con LEGO\cite{cox:raspberry}.
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth]{Chapters/Chapter1/Figures/iridis-pi.jpg}
+\includegraphics[width=0.8\textwidth]{Chapters/Chapter1/Figures/iridis-pi.jpg}
 \caption{Sistema}
 \label{cox:iridis}
-
-\textbf{Coste} Se desconocen datos sobre el coste total del sistema
-
 \end{figure}
+
+Coste se desconocen datos sobre el coste total del sistema.
 
 \subsubsection{Paralella}
 
 Paralella es un proyecto de la compañía Adapteva que integra en un único chip un conjunto elevado de procesadores independientes con el objetivo de incrementar la capacidad de procesamiento total del sistema a un coste muy reducido\cite{paralella}.
 
-\textbf{Coste} 99 dólares por unidad.
+El coste es de 99 dólares por unidad.
+
+
+\subsubsection{Virtualización}
+
+Uno de los mecanismos para crear este tipo de herramientas de forma distribuida es la utilización de mecanismos de virtualización, que evitan el uso de diferentes unidades de \textit{hardware}. Estas soluciones se han popularizado en los últimos años principalmente en entornos empresariales, existiendo gran cantidad de proveedores de servicios y herramientas para la creación de un sistema propio (ver \ref{teoria:virtualizacion}).
