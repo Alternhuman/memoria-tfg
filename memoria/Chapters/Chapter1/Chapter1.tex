@@ -77,7 +77,7 @@ Está compuesto del conjunto de nodos esclavos y coordinador, dos fuentes de ali
 	\centering
 	\includegraphics[width=0.36\textwidth]{Chapter1/Figures/kiepert-main}
 	\includegraphics[width=0.4\textwidth]{Chapter1/Figures/structure.png}
-	\caption{Vista general y estructura del sistema (Fuente: Joshua Kiepert)}
+	\caption[RPiCluster]{Vista general y estructura del sistema (Fuente: Joshua Kiepert)}
 	\label{kiepert:structure}
 \end{figure}
 
@@ -90,7 +90,7 @@ El clúster \textit{Dramble} es un conjunto de 6 equipos \textbf{Raspberry Pi} c
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\textwidth]{Chapters/Chapter1/Figures/raspberry-pi-dramble-cluster-wired.jpg}
-	\caption{El \textit{Dramble} en ejecución}
+	\caption[Dramble]{El \textit{Dramble} en ejecución}
 	\label{geerling:dramble}
 \end{figure}
 
@@ -103,7 +103,7 @@ El organismo gubernamental \textit{Government Communication Headquarters}, agenc
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{Chapters/Chapter1/Figures/bramblegchq}
-\caption{Vistazo general de la estructura del sistema}
+\caption[Bramble]{Vistazo general de la estructura del sistema Bramble}
 \label{gchq:bramble}
 \end{figure}
 
@@ -111,23 +111,21 @@ Se desconocen datos sobre el coste total del sistema.
 
 \subsubsection{Clúster Iridis (Simon Cox, University of Southampton)}
 
-Con el objetivo de atraer a jóvenes estudiantes al mundo de la Computación, el profesor Simon Cox crea este clúster con 64 \textbf{Raspberry Pi B} sobre una estructura construida con LEGO\cite{cox:raspberry}.
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.8\textwidth]{Chapters/Chapter1/Figures/iridis-pi.jpg}
-\caption{Sistema}
-\label{cox:iridis}
-\end{figure}
+Con el objetivo de atraer a jóvenes estudiantes al mundo de la Computación, el profesor Simon Cox crea este clúster con 64 \textbf{Raspberry Pi B} sobre una estructura construida con LEGO\cite{cox:raspberry}. El sistema está diseñado para ejecutar aplicaciones sobre MPI. Se desconocen datos sobre el coste total del sistema.
 
-Coste se desconocen datos sobre el coste total del sistema.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Chapters/Chapter1/Figures/iridis-pi.jpg}
+	\caption[Iridis]{Clúster Iridis}
+	\label{cox:iridis}
+\end{figure}
 
 \subsubsection{Paralella}
 
-Paralella es un proyecto de la compañía Adapteva que integra en un único chip un conjunto elevado de procesadores independientes con el objetivo de incrementar la capacidad de procesamiento total del sistema a un coste muy reducido\cite{paralella}.
-
-El coste es de 99 dólares por unidad.
-
+Paralella es un proyecto de la compañía Adapteva que integra en un único chip un conjunto elevado de procesadores independientes con el objetivo de incrementar la capacidad de procesamiento total del sistema a un coste muy reducido\cite{paralella}. El coste es de 99 dólares por unidad.
 
 \subsubsection{Virtualización}
 
 Uno de los mecanismos para crear este tipo de herramientas de forma distribuida es la utilización de mecanismos de virtualización, que evitan el uso de diferentes unidades de \textit{hardware}. Estas soluciones se han popularizado en los últimos años principalmente en entornos empresariales, existiendo gran cantidad de proveedores de servicios y herramientas para la creación de un sistema propio (ver \ref{teoria:virtualizacion}).
+
+%TODO
