@@ -96,22 +96,23 @@ Uno de los modelos típicos en el desarrollo de sistemas distribuidos es el ``di
 \write18{wget -P Chapters/Chapter2/Figures/ -nc http://upload.wikimedia.org/wikipedia/commons/6/6d/Mapreduce.png}
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{Chapter2/Figures/Mapreduce.png}
-\caption{\textbf{MapReduce} se basa en el principio de la distribución de los datos sobre diferentes nodos (\textit{Map}) y la recopilación de los datos procesados (\textit{Reduce})}
-\label{fig:mapreduce}
+  \centering
+  \includegraphics[width=0.7\textwidth]{Chapter2/Figures/Mapreduce.png}
+  \caption{\textbf{MapReduce} se basa en el principio de la distribución de los datos sobre diferentes nodos (\textit{Map}) y la recopilación de los datos procesados (\textit{Reduce})}
+  \label{fig:mapreduce}
 \end{figure}
 
 \subsection{Autoadministración}
 
 %2.4 SELF -MANAGEMENT IN DISTRIBUTED SYSTEMS 
+Un sistema distribuido debe proporcionar mecanismos que resuelvan de forma transparente todos los problemas asociados con la gestión de los mecanismos de interconexión entre los diferentes integrantes. Dichos mecanismos están diseñados para ser adaptativos y si bien el diseño suele ser genérico, es habitual encontrar soluciones \textit{ad-hoc}.
 
 \section{Programación orientada a eventos}
 \label{teoria:eventdriven}
 
-La programación orientada a eventos (\textit{event-driven programming}) constituye un patrón de programación en el cual el flujo del programa no se define íntegramente de forma secuencial, sino por las diversas interacciones (eventos) que el \textit{software} recibe durante su ejecución. Dichos eventos, generalmente imprevisibles, son causados por cualquier otra aplicación o entidad externa, y su naturaleza es muy variada. Interacciones de ratón o teclado, conexiones de red o estímulos de sensores son claros ejemplos.
+La programación orientada a eventos (\textit{event-driven programming}) constituye un patrón de programación en el cual el flujo del programa no se define íntegramente de forma secuencial, sino por las diversas interacciones (eventos) que el \textit{software} recibe durante su ejecución. Dichos eventos, generalmente impredecibles, son causados por cualquier otra aplicación o entidad externa, y su naturaleza es muy variada. Interacciones de ratón o teclado, conexiones de red o estímulos de sensores son claros ejemplos, pero también son eventos notificaciones de finalización de un trabajo o llamadas periódicas.
 
-La programación orientada a eventos constituye un patrón exitoso en varios tipos de aplicaciones, en particular aplicaciones con interfaz gráfica de usuario, donde la interacción es completamente imprevisible o aplicaciones de un único hilo (\textit{single-threaded applications}), que utilizan los eventos para establecer mecanismos de sincronización. 
+La programación orientada a eventos es un patrón exitoso en varios tipos de aplicaciones, en particular aquellas con interfaz gráfica de usuario, donde la interacción es completamente imprevisible o aplicaciones de un único hilo (\textit{single-threaded applications}), que utilizan los eventos para establecer mecanismos de coordinación. 
 
 Si bien existen una gran cantidad de herramientas para el desarrollo de \textit{software} siguiendo este patrón, el funcionamiento de todas ellas se reduce a un conjunto de manejadores y disparadores de eventos. También reciben nombres similares, como señales y ranuras.
 
@@ -145,19 +146,21 @@ Ejemplos de herramientas que utilicen este paradigma son \textbf{Node.js}, \text
 
 En el proyecto se utiliza este patrón para la creación de la mayoría de las herramientas, en particular en combinación con el modelo de aplicaciones de un único hilo (ver \ref{teoria:singlethread}).
 
-\section{Paralelización, \textit{threads} y procesos}
+\section{Paralelización, hilos y procesos}
 
-Uno de los mecanismos para conseguir paralelizar tareas es su distribución en procesos independientes. Cada proceso cuenta con un espacio de memoria y asignación de recursos por parte del sistema operativo (CPU, acceso a recursos\dots) completamente independiente. Sin embargo, dicha independencia implica la reserva de un segmento de memoria y el almacenamiento de los valores de ejecución (contador de programa, valores de registros, puntero de pila, etcétera) cuando la CPU debe realizar un cambio de contexto para permitir la ejecución de otro proceso. Dicho cambio y la reserva de estos recursos implican un coste computacional en ocasiones alto, en particular cuando el número de cambios de contexto es elevado. Como solución se plantea el uso de hilos (\textit{threads}), ejecuciones de fragmentos de código independientes del resto de hilos pero con un nivel de transparencia menor si el el mantenimiento de esta afecta al rendimiento del conjunto de hilos.
+Uno de los mecanismos para conseguir paralelizar tareas es su distribución en procesos independientes. Cada proceso cuenta con un espacio de memoria y asignación de recursos por parte del sistema operativo (CPU, descriptores de fichero abiertos\dots) completamente independiente. Sin embargo, dicha independencia implica la reserva de un segmento de memoria y el almacenamiento de los valores de ejecución (contador de programa, valores de registros, puntero de pila, etcétera) cuando la CPU debe realizar un cambio de contexto para permitir la ejecución de otro proceso. Dicha alternancia y la reserva de estos recursos implican un coste computacional en ocasiones alto, en particular cuando el número de cambios de contexto es elevado. Como solución se plantea el uso de hilos (\textit{threads}), ejecuciones de fragmentos de código independientes del resto de hilos pero con un nivel de transparencia menor si el mantenimiento de la misma afecta al rendimiento del conjunto de hilos.
 
-Un tercer enfoque es desarrollo de aplicaciones dirigidas por eventos (\textit{event-driven}) en un único hilo. Para conseguir paralelizar las diferentes tareas se deben ejecutar de forma no bloqueante, cediendo la CPU a otra tarea en caso de que se deba esperar a que una tarea sea realizada (generalmente, operaciones de entrada-salida, que presentan un gran tiempo de espera sin consumo de CPU).
+Un tercer enfoque es desarrollo de aplicaciones dirigidas por eventos (\textit{event-driven}) en un único hilo (\textit{single-threaded application}). Para conseguir paralelizar las diferentes tareas se deben ejecutar de forma no bloqueante, cediendo la CPU a otra tarea en caso de que se deba esperar a que una tarea sea realizada (generalmente, operaciones de entrada-salida, que presentan un gran tiempo de espera sin consumo de CPU, como la descarga de información en red o el acceso al almacenamiento secundario).
+
+%TODO: Node I/O example
 
 Mediante rellamadas (\textit{callbacks}) una tarea que termina una operación de este tipo indica al hilo gestor que requiere de nuevo tiempo de computación, y este añadirá la tarea de nuevo a la cola de acceso a la CPU.
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{Chapter2/Figures/threadcomparison}
-\caption{Comparación de los diferentes modelos de paralelización\citationneeded{Twisted book}}
-\label{fig:threadcomparison}
+  \centering
+  \includegraphics[width=0.7\textwidth]{Chapter2/Figures/threadcomparison}
+  \caption{Comparación de los diferentes modelos de paralelización\citationneeded{Twisted book}}
+  \label{fig:threadcomparison}
 \end{figure}
 
 \subsection{Patrón Reactor}
@@ -173,9 +176,11 @@ El patrón de diseño reactor\cite{Coplien95reactor} consiste en un sistema de g
 
 \section{Virtualización}
 \label{teoria:virtualizacion}
+
 Virtualizar consiste en la abstracción de la plataforma física sobre la que un conjunto de \textit{software} es ejecutado. La virtualización de diferentes capas de un sistema facilita la compatibilidad entre componentes de características muy variadas, y posibilita la creación de diferentes unidades independientes sobre un único equipo físico, la abstracción de diferentes capas (hardware, sistema operativo, bibliotecas) de la implementación de la aplicación final.
 
 \section{Código móvil}
+\label{teoria:codigomovil}
 
 Se conoce como código móvil al \textit{software} que se transfiere entre diferentes unidades (distribuido en una red, generalmente). Este tipo de aplicaciones ofrecen una serie de ventajas (principalmente la sencilla distribución del mismo, en ocasiones transparente al usuario final) muy atractivas a la hora de crear sistemas distribuidos.
 
@@ -201,7 +206,7 @@ Un nodo es designado como coordinador y el resto de nodos obedecen su autoridad.
 
 \paragraph{Algoritmo del abusón}
 
-El algoritmo del abusón posibilita la elección de un coordinador en función del cumplimiento de un criterio cuantitativo dado, siendo elegido coordinador aquel que mejor satisfaga dicho criterio. La secuencia de pasos es la siguiente:
+El algoritmo del abusón\citationneeded posibilita la elección de un coordinador en función del cumplimiento de un criterio cuantitativo dado, siendo elegido coordinador aquel que mejor satisfaga dicho criterio. La secuencia de pasos es la siguiente:
 
 Sea un proceso, \textit{P} que detecta la ausencia de un coordinador (en caso de que ya se haya ejecutado el algoritmo, se detecta la ausencia del anterior coordinador) y \textit{X} un valor numérico que determina el criterio para la elección del coordinador (el proceso con el valor más alto te \textit{X} será el coordinador).
 \begin{enumerate}
@@ -211,10 +216,10 @@ Sea un proceso, \textit{P} que detecta la ausencia de un coordinador (en caso de
 \end{enumerate}
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=0.8\textwidth]{Chapter2/Figures/bully}
-\caption{Secuencia de elección de un coordinador}
-\label{fig:tanenbaum:bully}
+  \centering
+  \includegraphics[width=0.8\textwidth]{Chapter2/Figures/bully}
+  \caption{Secuencia de elección de un coordinador}
+  \label{fig:tanenbaum:bully}
 \end{figure}
 
 \paragraph{Algoritmo en anillo}
@@ -222,23 +227,24 @@ Sea un proceso, \textit{P} que detecta la ausencia de un coordinador (en caso de
 Bajo la premisa de que todos los procesos cuentan con un orden preestablecido gracias al que conocen a su antecesor y sucesor en la cadena. El funcionamiento del algoritmo es el siguiente:
 
 \begin{enumerate}
-\item Cuando un proceso \textit{P} detecta la caída de un coordinador, envía un mensaje de elección al proceso sucesor, o en su defecto, al proceso sucesor más próximo, en caso de que se encuentre inactivo, hasta que encuentre un proceso activo.
-\item Cuando un proceso recibe el mensaje, añade al mismo su número de proceso.
-\item Una vez que el mensaje llega al creador del mismo, este construye un mensaje con el identificador del proceso que ha sido elegido como coordinador (el proceso con el identificador más alto, o aquel que satisfaga otro criterio similar) y lo envía al siguiente proceso de manera similar al mensaje inicial, si bien el contenido del mensaje no es alterado en este caso.
-\item Una vez que el mensaje ha circulado por todos los procesos, retorna a su creador y en este momento el trabajo se reanuda.
+  \item Cuando un proceso \textit{P} detecta la caída de un coordinador, envía un mensaje de elección al proceso sucesor, o en su defecto, al proceso sucesor más próximo, en caso de que se encuentre inactivo, hasta que encuentre un proceso activo.
+  \item Cuando un proceso recibe el mensaje, añade al mismo su número de proceso.
+  \item Una vez que el mensaje llega al creador del mismo, este construye un mensaje con el identificador del proceso que ha sido elegido como coordinador (el proceso con el identificador más alto, o aquel que satisfaga otro criterio similar) y lo envía al siguiente proceso de manera similar al mensaje inicial, si bien el contenido del mensaje no es alterado en este caso.
+  \item Una vez que el mensaje ha circulado por todos los procesos, retorna a su creador y en este momento el trabajo se reanuda.
 \end{enumerate}
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=0.8\textwidth]{Chapter2/Figures/ringalgorithm}
-\caption{Funcionamiento del algoritmo en anillo}
-\label{fig:tanenbaum:ringalgoritm}
+  \centering
+  \includegraphics[width=0.8\textwidth]{Chapter2/Figures/ringalgorithm}
+  \caption{Funcionamiento del algoritmo en anillo}
+  \label{fig:tanenbaum:ringalgoritm}
 \end{figure} 
 
 %DOCKER
 
 \section{TLS/SSL}
 
+El protocolo \textit{Transport Layer Security} permite establecer conexiones seguras sobre un canal inseguro (proclive a ataques pasivos como el uso de \textit{sniffing}\citationneeded o activos, como técnicas de \textit{spoofing}\citationneeded)
 
 \section{Comunicación}
 
