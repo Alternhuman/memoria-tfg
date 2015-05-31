@@ -281,8 +281,8 @@
 }\end{spacing}
 }
 \renewcommand\listoffigures{
-\btypeout{List of Figures}
-\addtotoc{List of Figures}
+\btypeout{Lista de figuras}
+\addtotoc{Lista de figuras}
 \begin{spacing}{1}{
     \setlength{\parskip}{1pt}
     \if@twocolumn
