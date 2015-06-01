@@ -26,7 +26,7 @@ Otro concepto importante en el desarrollo de sistemas distribuidos es la ``apert
 
 \subsection{Escalabilidad}
 
-La escalabilidad del sistema en ocasiones se ve afectada por las decisiones de diseño llevadas a cabo. En arquitecturas centralizadas el punto principal del sistema consituye un ``cuello de botella'' evidente que define un límite en el crecimiento del sistema. La disposición geográfica exige una serie de consideraciones adicionales, entre las que se encuentra la latencia del sistema. En arquitecturas constituidas por componentes pequeños o fácilmente adaptables la flexibilidad del sistema se incrementa significativamente, facilitando la escalabilidad del mismo.
+La escalabilidad del sistema se ve afectada por las decisiones de diseño llevadas a cabo. En arquitecturas centralizadas el punto principal del sistema consituye un ``cuello de botella'' evidente que define un límite en el crecimiento del sistema. La disposición geográfica exige una serie de consideraciones adicionales, entre las que se encuentra la latencia del sistema. En arquitecturas constituidas por componentes pequeños o fácilmente adaptables la flexibilidad del sistema se incrementa significativamente, facilitando la escalabilidad del mismo.
 
 \subsection{Algoritmos distribuidos}
 
@@ -38,6 +38,9 @@ Un algoritmo distribuido es aquel que realiza una tarea de forma distribuida, cu
   \item El fallo de un nodo no provoca el fallo del sistema (principio de transparencia).
   \item No hay una asunción implícita de que existe un reloj global (principio de autonomía).
 \end{itemize}
+
+
+\subsection{\textit{Middleware}}
 
 %TODO
 
@@ -118,31 +121,21 @@ Si bien existen una gran cantidad de herramientas para el desarrollo de \textit{
 
 \subsection{Suscriptor de eventos}
 
-Un suscriptor de eventos permite vincular un evento a un manejador. Por ejemplo:
+Un suscriptor de eventos permite vincular un evento a un manejador (\textit{handler}), que determina la acción a realizar al recibir un evento. En una gran cantidad de \textit{frameworks} se definen como funciones. Por ejemplo:
 
-\begin{figure}
-\centering
-  \begin{lstlisting}
-  document.onmousemove=manejadorMouseMove
-  \end{lstlisting}
-\caption[Evento]{El evento ``onmousemove'', que se dispara en el momento en el que el ratón se desplaza es vinculado a la función \texttt{manejadorMouseMove} en una página web.}
-\end{figure}
-
-\subsection{Manejador de eventos}
-
-Un manejador (\textit{handler}) determina la acción a realizar al recibir un evento. En una gran cantidad de \textit{frameworks} se definen como funciones.
-
-\begin{figure}
+\begin{figure}[H]
 \centering
   \begin{lstlisting}
   function manejadorMouseMove(evento){
-  	console.log(evento.pageX);
+    console.log(evento.pageX);
   }
+  document.onmousemove=manejadorMouseMove
   \end{lstlisting}
-\caption[Manejador]{Implementación de la funcionalidad a realizar cuando el ratón es desplazado.}
+\caption[Evento y manejador]{El evento ``onmousemove'', que se dispara en el momento en el que el ratón se desplaza, es vinculado a la función \texttt{manejadorMouseMove} en una página web.}
 \end{figure}
 
-Ejemplos de herramientas que utilicen este paradigma son \textbf{Node.js}, \textbf{Tornado web}, \textbf{Twisted} o la gran mayoría de los \textit{frameworks} para creación de interfaces gráficas \textbf{Cocoa}, \textbf{Windows Presentation Framework} o \textbf{Qt}, entre otros.
+
+Ejemplos de herramientas que utilicen este paradigma son \textbf{Node.js}, \textbf{Tornado web}, \textbf{Twisted} o la gran mayoría de los \textit{frameworks} para creación de interfaces gráficas, como \textbf{Cocoa}, \textbf{Windows Presentation Framework} o \textbf{Qt}, entre otros.
 
 En el proyecto se utiliza este patrón para la creación de la mayoría de las herramientas, en particular en combinación con el modelo de aplicaciones de un único hilo (ver \ref{teoria:singlethread}).
 
@@ -150,7 +143,8 @@ En el proyecto se utiliza este patrón para la creación de la mayoría de las h
 
 Uno de los mecanismos para conseguir paralelizar tareas es su distribución en procesos independientes. Cada proceso cuenta con un espacio de memoria y asignación de recursos por parte del sistema operativo (CPU, descriptores de fichero abiertos\dots) completamente independiente. Sin embargo, dicha independencia implica la reserva de un segmento de memoria y el almacenamiento de los valores de ejecución (contador de programa, valores de registros, puntero de pila, etcétera) cuando la CPU debe realizar un cambio de contexto para permitir la ejecución de otro proceso. Dicha alternancia y la reserva de estos recursos implican un coste computacional en ocasiones alto, en particular cuando el número de cambios de contexto es elevado. Como solución se plantea el uso de hilos (\textit{threads}), ejecuciones de fragmentos de código independientes del resto de hilos pero con un nivel de transparencia menor si el mantenimiento de la misma afecta al rendimiento del conjunto de hilos.
 
-Un tercer enfoque es desarrollo de aplicaciones dirigidas por eventos (\textit{event-driven}) en un único hilo (\textit{single-threaded application}). Para conseguir paralelizar las diferentes tareas se deben ejecutar de forma no bloqueante, cediendo la CPU a otra tarea en caso de que se deba esperar a que una tarea sea realizada (generalmente, operaciones de entrada-salida, que presentan un gran tiempo de espera sin consumo de CPU, como la descarga de información en red o el acceso al almacenamiento secundario).
+\label{teoria:singlethread}
+Un tercer enfoque es desarrollo de aplicaciones dirigidas por eventos (\textit{event-driven}) en un único hilo (\textit{single-threaded application}). Para conseguir paralelizar las diferentes tareas se deben ejecutar de forma no bloqueante, cediendo la CPU a otra tarea en caso de que se deba esperar a que otr sea realizada (generalmente, operaciones de entrada-salida, que presentan un gran tiempo de espera sin consumo de CPU, como la descarga de información en red o el acceso al almacenamiento secundario).
 
 %TODO: Node I/O example
 
@@ -159,11 +153,13 @@ Mediante rellamadas (\textit{callbacks}) una tarea que termina una operación de
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.7\textwidth]{Chapter2/Figures/threadcomparison}
-  \caption[Modelos de paralelización]{Comparación de los diferentes modelos de paralelización\citationneeded{Twisted book}}
+  \caption[Modelos de paralelización]{Comparación de los diferentes modelos de paralelización\citationneeded[Twisted book]}
   \label{fig:threadcomparison}
 \end{figure}
 
 \subsection{Patrón Reactor}
+
+El patrón de diseño reactor\cite{Coplien95reactor} consiste en un sistema de gestión de peticiones de servicio distribuidas de forma concurrente en un esquema cliente-servidor. En el servidor existe un manejador de eventos que distribuye (demultiplexa) los diferentes eventos a manejadores de los mismos, distribuyendo el tiempo de proceso entre ellos de forma síncrona mediante un bucle ejecutado de forma continua.
 
 \begin{figure}[H]
   \centering
@@ -171,8 +167,6 @@ Mediante rellamadas (\textit{callbacks}) una tarea que termina una operación de
   \caption[Diagrama UML del patrón reactor]{Diagrama UML del patrón reactor\label{Coplien95reactor}.}
   \label{fig:reactoruml}
 \end{figure}
-
-El patrón de diseño reactor\cite{Coplien95reactor} consiste en un sistema de gestión de peticiones de servicio distribuidas de forma concurrente en un esquema cliente-servidor. En el servidor existe un manejador de eventos que distribuye (demultiplexa) los diferentes eventos a manejadores de los mismos, distribuyendo el tiempo de proceso entre ellos de forma síncrona mediante un bucle ejecutado de forma continua.
 
 \section{Virtualización}
 \label{teoria:virtualizacion}
@@ -184,9 +178,9 @@ Virtualizar consiste en la abstracción de la plataforma física sobre la que un
 
 Se conoce como código móvil al \textit{software} que se transfiere entre diferentes unidades (distribuido en una red, generalmente). Este tipo de aplicaciones ofrecen una serie de ventajas (principalmente la sencilla distribución del mismo, en ocasiones transparente al usuario final) muy atractivas a la hora de crear sistemas distribuidos.
 
-La mayoría de este tipo de \textit{software} está creado sobre herramientas multiplataforma, garantizando la abstracción del sistema sobre el que se está ejecutando. Ejemplos de código móvil son los contenidos dinámicos de una web (creados mediante \textit{applets} Java, código \textbf{JavaScript} o controles \textbf{ActiveX}), código embebido en documentos PDF o en general cualquier tipo de \textit{software} descargado de una red.
+La mayoría de este tipo de \textit{software} está creado sobre herramientas multiplataforma, garantizando la abstracción del sistema sobre el que se está ejecutando. Ejemplos de código móvil son los contenidos dinámicos de una web (creados mediante \textbf{applets} Java, código \textbf{JavaScript} o controles \textbf{ActiveX}), código embebido en documentos PDF o en general cualquier tipo de \textit{software} descargado de una red.
 
-Sin embargo, este tipo de aplicaciones implican una serie de consideraciones adicionales de seguridad, en particular la verificación de la identidad del nodo que proporciona el paquete, la integridad del mismo durante la transferencia y \citationneeded{} y el comportamiento del código en ejecución.
+Sin embargo, este tipo de aplicaciones implican una serie de consideraciones adicionales de seguridad, en particular la verificación de la identidad del nodo que proporciona el paquete, la integridad del mismo durante la transferencia y \citationneeded y el comportamiento del código en ejecución.
 
 \subsection{Compartimentación}
 
@@ -200,13 +194,17 @@ En determinadas ocasiones es necesaria la presencia de un coordinador que lleve 
 
 \subsubsection{Coordinación central}
 
-Un nodo es designado como coordinador y el resto de nodos obedecen su autoridad. Es un enfoque sencillo que sin embargo crea un punto débil en el sistema, pues un fallo en el coordinador central impediría la realización de cualquier tarea de la que dependa hasta que el nodo vuelva a estar activo.
+Un nodo, o instancia de un programa es designado como coordinador, cuya autoridad es obedecida por el resto de integrantes del sistema. Es un enfoque sencillo de implementar que sin embargo crea un punto de fallo en el sistema, pues la caída del coordinador central impedirá la realización de cualquier tarea en la que sea necesaria su intervención hasta que vuelva a estar activo.
 
+El coordinador puede designarse mediante diferentes mecanismos. En algoritmos como OSPF\cite{rfc2328} la política de elección del \textit{router} designado es aquel que cuente con el mayor valor de prioridad.
+%TODO: Completar
 \subsubsection{Coordinación distribuida}
+
+Con objeto de solventar los problemas que la coordinación centralizada conlleva se proponen algoritmos que permiten designar un coordinador y reemplazarlo en caso de fallo del mismo.
 
 \paragraph{Algoritmo del abusón}
 
-El algoritmo del abusón\citationneeded posibilita la elección de un coordinador en función del cumplimiento de un criterio cuantitativo dado, siendo elegido coordinador aquel que mejor satisfaga dicho criterio. La secuencia de pasos es la siguiente:
+El algoritmo del abusón (descrito en \cite{Coulouris:2011:DSC:2029110:Ch15}) posibilita la elección de un coordinador en función del cumplimiento de un criterio cuantitativo dado, siendo elegido coordinador aquel que mejor satisfaga dicho criterio. La secuencia de pasos es la siguiente:
 
 Sea un proceso, \textit{P} que detecta la ausencia de un coordinador (en caso de que ya se haya ejecutado el algoritmo, se detecta la ausencia del anterior coordinador) y \textit{X} un valor numérico que determina el criterio para la elección del coordinador (el proceso con el valor más alto te \textit{X} será el coordinador).
 \begin{enumerate}
@@ -224,7 +222,7 @@ Sea un proceso, \textit{P} que detecta la ausencia de un coordinador (en caso de
 
 \paragraph{Algoritmo en anillo}
 
-Bajo la premisa de que todos los procesos cuentan con un orden preestablecido gracias al que conocen a su antecesor y sucesor en la cadena. El funcionamiento del algoritmo es el siguiente:
+El algoritmo funciona bajo la premisa de que todos los procesos cuentan con un orden preestablecido, conociendo a su antecesor y sucesor en la cadena\cite{Tanenbaum:2006:DSP:1202502:Ch6}. El funcionamiento del algoritmo es el siguiente:
 
 \begin{enumerate}
   \item Cuando un proceso \textit{P} detecta la caída de un coordinador, envía un mensaje de elección al proceso sucesor, o en su defecto, al proceso sucesor más próximo, en caso de que se encuentre inactivo, hasta que encuentre un proceso activo.
@@ -243,8 +241,6 @@ Bajo la premisa de que todos los procesos cuentan con un orden preestablecido gr
 %DOCKER
 
 \section{Protocolos criptográficos}
-
-
 
 \subsection{Criptografía asimétrica}
 
@@ -312,7 +308,7 @@ La comunicación entre procesos dentro de un sistema distribuido constituye un a
 
 Si bien las comunicaciones punto a punto consituyen un mecanismo efectivo para la comunicación entre diferentes nodos, presentan una serie de ineficiencias a la hora de distribuir el mismo contenido entre un número significativo de nodos, al tener que enviar un mensaje diferente a cada uno de los destinatarios. Utilizar difusión (\textit{broadcast}) para este tipo de aplicaciones supone una alternativa efectiva, si bien obliga a las entidades no interesadas en el mensaje a procesar el mismo en ocasiones hasta el nivel de red de la pila OSI \citationneeded.
 
-Como alternativa surge la comunicación \textit{multicast} sobre el protocolo IP. Este tipo de mensajes son enviados a una dirección en un rango reservado (en IPv4, 224.0.0.0-239.255.255.255, las direcciones con el valor 1110 en el primer octeto, conocidas como Clase D\citationneeded{RFC}), conocido como \textit{grupo}. Los nodos interesados en los mensajes publicados en dicho grupo pueden suscribirse al grupo multicast y cancelar su membresía en cualquier momento dado. Todos los mensajes son de tipo UDP, si bien existen intentos para posibilitar el uso de TCP\citationneeded.
+Como alternativa surge la comunicación \textit{multicast} sobre el protocolo IP. Este tipo de mensajes son enviados a una dirección en un rango reservado (en IPv4, 224.0.0.0-239.255.255.255, las direcciones con el valor 1110 en el primer octeto, conocidas como Clase D\cite{rfc791}), conocido como \textit{grupo}. Los nodos interesados en los mensajes publicados en dicho grupo pueden suscribirse al grupo multicast y cancelar su membresía en cualquier momento dado. Todos los mensajes son de tipo UDP, si bien existen extensiones al protocolo TCP para posibilitar su uso en aplicaciones multicast, si bien de forma experimental\cite{1019386, mysore2001ftp, Barcellos01efficienttcp-like, Visoottiviseth01m/tcp:the, talpadereliablemulticast}.
 
 \subsection{Reliable multicast}
 

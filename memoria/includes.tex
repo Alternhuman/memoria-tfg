@@ -63,10 +63,12 @@
 \newcommand{\checkreferences}{
 	\ifnum\value{undefinedreferences} > 0
 	\begin{center}
-	\includegraphics[width=\textwidth]{protester.png}
+		\immediate\write18{wget -O Figures/protester.png -nc http://imgs.xkcd.com/comics/wikipedian_protester.png}
+		\includegraphics[width=\textwidth]{protester.png}\\
+		There are \arabic{undefinedreferences} undefined references
 	\end{center}
 	\else
-	Cool!
+	No undefined references. Good!
 	\fi
 }
 
