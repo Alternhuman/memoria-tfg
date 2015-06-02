@@ -308,22 +308,23 @@ La comunicación entre procesos dentro de un sistema distribuido constituye un a
 
 Si bien las comunicaciones punto a punto consituyen un mecanismo efectivo para la comunicación entre diferentes nodos, presentan una serie de ineficiencias a la hora de distribuir el mismo contenido entre un número significativo de nodos, al tener que enviar un mensaje diferente a cada uno de los destinatarios. Utilizar difusión (\textit{broadcast}) para este tipo de aplicaciones supone una alternativa efectiva, si bien obliga a las entidades no interesadas en el mensaje a procesar el mismo en ocasiones hasta el nivel de red de la pila OSI \citationneeded.
 
-Como alternativa surge la comunicación \textit{multicast} sobre el protocolo IP. Este tipo de mensajes son enviados a una dirección en un rango reservado (en IPv4, 224.0.0.0-239.255.255.255, las direcciones con el valor 1110 en el primer octeto, conocidas como Clase D\cite{rfc791}), conocido como \textit{grupo}. Los nodos interesados en los mensajes publicados en dicho grupo pueden suscribirse al grupo multicast y cancelar su membresía en cualquier momento dado. Todos los mensajes son de tipo UDP, si bien existen extensiones al protocolo TCP para posibilitar su uso en aplicaciones multicast, si bien de forma experimental\cite{1019386, mysore2001ftp, Barcellos01efficienttcp-like, Visoottiviseth01m/tcp:the, talpadereliablemulticast}.
-
-\subsection{Reliable multicast}
-
-Chapter 15
+Como alternativa surge la comunicación \textit{multicast} sobre el protocolo IP. Este tipo de mensajes son enviados a una dirección en un rango reservado (en IPv4, 224.0.0.0-239.255.255.255, las direcciones con el valor 1110 en el primer octeto, conocidas como Clase D\cite{rfc791}), conocido como \textit{grupo}. Los nodos interesados en los mensajes publicados en dicho grupo pueden suscribirse al grupo multicast y cancelar su membresía en cualquier momento dado. Todos los mensajes son de tipo UDP, si bien existen extensiones al protocolo TCP para posibilitar su uso en aplicaciones multicast, si bien de forma experimental\cite{1019386, mysore2001ftp, Barcellos01efficienttcp-like, Visoottiviseth01m/tcp:the, talpadereliablemulticast} o soluciones que permiten realizar multicast fiable (con diferentes grados de fiabilidad) sobre UDP\cite{rfc2887}.
 
 \section{Serialización}
-
+\label{seralization}
 Con el objetivo de posibilitar la intercomunicación entre entidades es necesario determinar mecanismos para la representación de estructuras de datos complejas de forma homogénea, definiendo una serie de reglas para la representación de datos sin importar la plataforma de cada una de las diferentes entidades partícipes.
 
-Existen una serie de formatos definidos que posibilitan este tipo de interconexión. Uno de ellos es \textbf{JSON} (\textit{JavaScript Object Notation}). JSON define estructuras de datos complejas mediante un subconjunto de la sintaxis de JavaScript que permite representar cualquier tipo de dato de forma legible por personas y fácilmente comprensible por máquinas.
+Existen una serie de formatos definidos que posibilitan este tipo de interconexión. Uno de ellos es \textbf{JSON} (\textit{JavaScript Object Notation})\cite{rfc7159}. \textbf{JSON} define estructuras de datos complejas, tales como objetos, listas o diccionarios clave-valor, mediante un subconjunto de la sintaxis de \textbf{JavaScript} que permite representar cualquier tipo de dato de forma legible por personas y fácilmente comprensible por máquinas. Existen implementaciones de procesadores de JSON en la mayoría de lenguajes de programación, lo cual permite el intercambio de información entre diferentes programas de forma sencilla.
+
+\subsection{Utilización en el Trabajo}
+
+Toda comunicación entre dos entidades se realiza gracias a cadenas con formato \textbf{JSON} (salvo casos concretos, como los programas ejecutados sobre MPI, donde el entorno proporciona un mecanismo claramente más efectivo de comunicación) utilizando bibliotecas de terceros para el procesamiento de las mismas.
 
 \section{WebSockets}
 
 \section{Test-Driven Development}
 \label{tdd}
+
 El desarrollo dirigido por pruebas es una estrategia de desarrollo de software basada en el desarrollo de tests de partes concisas y fácilmente desacoplables del código de una aplicación que realizan una tarea muy concreta (conocidas como pruebas unitarias). Dichas pruebas se realizan generalmente con un control exhaustivo de las condiciones que pueden influir el desarrollo de la prueba. Mediante la modificación de dichas condiciones y el análisis de la respuesta frente a un conjunto de datos de entrada se puede analizar si el comportamiento de dicho fragmento de código es el adecuado.
 
 Las pruebas consisten generalmente en una serie de aserciones sobre el resultado del fragmento de código ejecutado, o sobre un estado intermedio. Una batería de pruebas consistente debe cubrir el mayor número de resultados de salida posible, incluyendo valores que indiquen condiciones de error (verificando que dicho error deba ser devuelto para los parámetros de entrada y condiciones iniciales), excepciones y diferentes tipos de retorno válidos.
@@ -340,7 +341,45 @@ Varias de las las herramientas del Trabajo han sido desarrolladas siguiendo este
 
 \section{PAM}
 
+El \textit{Linux Pluggable Authentication Module}\cite{opengroup:rfc86.0} es un componente integrable en el mecanismo de autenticación del sistema operativo para combinar diferentes mecanismos de identificación que puedan ser aprovechados por aplicaciones de alto nivel, abstrayendo las características del sistema de autenticación presente en la máquina, proporcionando una interfaz única. \textbf{PAM} se apoya en diferentes fuentes de datos configurables, tales como los ficheros \texttt{/etc/passwd} y \textbf{/etc/shadow}, directorios \textbf{LDAP} (ver \ref{teoria:ldap}), autenticación mediante clave pública, (ver \ref{teoria:ldap}).
 
+\begin{figure}[H]
+\centering
+\immediate\write18{if ! [ -f Chapters/Chapter2/Figures/pamstructure.png ];then wget -O Chapters/Chapter2/Figures/pamstructure.gif -nc http://pubs.opengroup.org/onlinepubs/8329799/sso0401.gif; convert Chapters/Chapter2/Figures/pamstructure.gif Chapters/Chapter2/Figures/pamstructure.png;rm Chapters/Chapter2/Figures/pamstructure.gif;fi}
+\includegraphics[width=0.6\textwidth]{Chapter2/Figures/pamstructure.png}
+\caption[Esquema de la arquitectura de PAM]{Esquema de la arquitectura de PAM (fuente \cite{opengroup:rfc86.0})}
+\end{figure}
+
+PAM está diseñado para definir su comportamiento mediante el uso de módulos, pequeñas piezas de código que definen las acciones a llevar a cabo dadas un conjunto de circunstancias, como el cambio de una contraseña, la modificación de un parámetro en la información del usuario o el acceso al sistema de un usuario. Mediante los parámetros de configuración de \textbf{PAM} se definen aquellas circunstancias que requieren del uso del módulo definido.
+
+\begin{figure}[H]
+\centering
+\begin{lstlisting}
+service module_type control_flag module_path         options
+------- ----------- ------------ -----------         -------
+login   auth        required     pam_unix_auth.so    nowarn
+login   session     required     pam_unix_session.so
+login   account     required     pam_unix_account.so
+ftp     auth        required     pam_skey_auth.so    debug
+ftp     session     required     pam_unix_session.so
+telnet  session     required     pam_unix_session.so
+login   password    required     pam_unix_passwd.so
+passwd  password    required     pam_unix_passwd.so
+OTHER   auth        required     pam_unix_auth.so
+OTHER   session     required     pam_unix_session.so
+OTHER   account     required     pam_unix_account.so
+\end{lstlisting}
+
+\caption[Fichero de configuración de PAM]{Un fichero de configuración de PAM con diferentes módulos definidos para el acceso al sistema mediante un terminal (\textit{login}), FTP, Kerberos o telnet, así como acciones a realizar cuando una entrada del fichero \texttt{/etc/passwd} es modificada (\textit{passwd})}.
+\end{figure}
+
+\subsection{En el Trabajo}
+
+La gestión de usuarios está delegada al módulo PAM, utilizando los mecanismos de autenticación que provee en las diferentes aplicaciones del sistema, como en \textbf{Deployer}.
+
+Con el objetivo de garantizar diversas propiedades de transparencia del sistema, se ha creado un módulo de PAM que se integra con \textbf{MarcoPolo} para la realización de tareas de gestión en el conjunto de nodos del sistema (ver \ref{pam_mkpolohomedir}).
+
+%TODO: PAM para cambiar el directorio HOME
 
 
 \section{\textit{Cross-compiling}}
@@ -349,12 +388,13 @@ La compilación cruzada posibilita el desarrollo de \textit{software} en platafo
 
 El uso de compiladores cruzados facilita el desarrollo para diferentes plataformas y en ocasiones es la única forma de crear aplicaciones para sistemas tales como dispositivos embebidos que no cuentan con herramientas de desarrollo. También es útil para facilitar la generación de código en entornos como granjas de servidores, generación de código para emuladores o realizar procesos de \textit{bootstrapping} (creación de las herramientas básicas de una nueva plataforma, como un sistema operativo o un enlazador).
 
+
 \subsection{\textit{Toolchain}}
 
 Una cadena de herramientas (\textit{toolchain}) se conforma del conjunto de utilidades necesarias para la construcción de un determinado producto. Generalmente estas utilidades son ejecutadas secuencialmente, utilizando la salida de una de ellas como la entrada de la siguiente. Este conjunto de herramientas comprende normalmente un compilador, un enlazador y un editor de texto, así como varias bibliotecas y un depurador, si bien puede contar con cualquier herramienta requerida para las necesidades propias del producto a crear.
 
 \subsection{En el Trabajo}
-
+%\subsec
 Con el objetivo de posibilitar la realización de trabajos de compilación distribuida utilizando un equipo basado en la arquitectura i686 %TODO: Revisar
 se ha construido una cadena de herramientas que realiza procesos de compilación cruzada para la arquitectura ARMv7hf utilizando la herramienta \textit{crosstool-ng}\citationneeded, consiguiendo optimizar de forma significativa el tiempo de compilación.
 %TODO (ver \ref{distcc:analysis})
@@ -364,9 +404,10 @@ se ha construido una cadena de herramientas que realiza procesos de compilación
 \citationneeded{http://www.nongnu.org/avr-libc/user-manual/overview.html}
 \citationneeded{http://elinux.org/Toolchains}
 %TODO: http://en.wikipedia.org/wiki/Paravirtualization
-\section{Python}
 
 \section{LDAP}
 \label{teoria:ldap}
+
+El protocolo \textit{Lightweight Directory Access Protocol} posibilita el acceso a directorios de información en un entorno distribuido siguiendo un esquema cliente-servidor.
 
 %TODO: http://es.wikipedia.org/wiki/Protocolo_Ligero_de_Acceso_a_Directorios. Incluir los campos necesarios para explicar X.509
