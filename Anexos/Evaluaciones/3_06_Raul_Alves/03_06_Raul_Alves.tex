@@ -1,0 +1,56 @@
+\input{includes}
+
+\newcommand{\hmwkTitle}{Entrevista sobre las herramientas creadas para MPI} % Assignment title
+\newcommand{\hmwkDueDate}{Miércoles,\ 3\ de\ junio\ de\ 2015}
+\newcommand{\hmwkClassInstructor}{Rodrigo Santamaría} % Teacher/lecturer
+\newcommand{\hmwkAuthorName}{Diego Martín Arroyo} % Your name
+\newcommand{\hmwkSubject}{3, 4} % Evaluation subject number
+
+%----------------------------------------------------------------------------------------
+%   TITLE PAGE
+%----------------------------------------------------------------------------------------
+\newcommand{\ordinalindicator}{\hspace{-1.5mm}$\phantom{a}^{\circ}$}
+\title{\hmwkTitle\\Evaluación de las herramientas con el profesor Raúl Alves}
+\author{\textbf{\hmwkAuthorName}}
+\date{3 de junio de 2015} % Insert date here if you want it to appear below your name
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+\section{Descripción}
+
+\begin{itemize}
+	\item \textbf{Perfil}: Profesor de la asignatura \textbf{Arquitectura de Computadores}, encargado de varios grupos de prácticas.
+	\item No conocía las herramientas previamente.
+\end{itemize}
+
+
+\section{Introducción}
+
+Junto a las evaluaciones de usuario realizadas a diferentes alumnos de la asignatura, es necesario contar con la opinión del profesor respecto a la integración de las herramientas. Para ello, se ha optado por realizar una entrevista en la que se muestran todas las herramientas creadas y su potencial integración en la asignatura.
+
+\section{Entrevista}
+
+Se muestra la versión actual del sistema ejecutando una serie de aplicaciones que utilizan MPI junto con la API \textbf{quick2wire-cpp-api}, enfatizando las diferentes características que podrían aportar mejoras en el desarrollo de las prácticas de la asignatura.
+
+Posteriormente se detallan las características de MarcoPolo y como es posible integrarlo en las prácticas de la asignatura para, entre otras funciones, facilitar el descubrimiento de los diferentes nodos.
+
+Se muestran las diferentes aplicaciones que utilizan MarcoPolo, en particular el \textbf{Deployer}, que podría facilitar el despliegue en diferentes nodos y la evaluación del rendimiento de los programas ejecutados con \textbf{Status Monitor}, así como permitir opciones de depuración con el \textbf{Logger}.
+
+
+\section{Resultados}
+
+El profesor considera que el uso de las placas Raspberry en la asignatura no supone una mejora significativa en la asignatura, debido a la sencillez de las prácticas que aprovechan \textbf{MPI}.
+
+Sin embargo, considera que las herramientas mostradas son de gran utilidad, en particular \textbf{MarcoPolo}, \textbf{marcoinstalkey} y \textbf{Deployer}, y en caso de que sean integradas en las aulas de informática, las utilizará en la asignatura, pues solucionan dos de los problemas típicos durante el desarrollo: el descubrimiento de las máquinas y la instalación de la clave pública. Además, cree que las herramientas como \textbf{Deployer}, \textbf{Logger} y \textbf{Status Monitor} facilitarían el desarrollo a los alumnos.
+
+\section{Conclusiones}
+
+A raíz de esta sesión se extraen las siguientes conclusiones y los caminos de actuación:
+
+\begin{itemize}
+	\item Se instalará MarcoPolo en varios equipos de un aula de informática para la realización de pruebas.
+\end{itemize}
+
+\end{document}
