@@ -1,9 +1,9 @@
 \lhead{\emph{Dominio del problema}}
 \chapter{Dominio del problema}
 
-La utilización de algoritmos distribuidos implica mejoras sustanciales en una gran cantidad de aplicaciones, incrementando la capacidad global de computación de un sistema mediante la unión de varios dispositivos de cómputo que trabajan como una única unidad mantieniendo simultáneamente un alto grado de independencia y una tolerancia global a fallos muy alta. Sin embargo, el desarrollo de aplicaciones distribuidas implica el uso de un conjunto de nodos cuyo coste y mantenimiento es costoso.
+La utilización de algoritmos distribuidos implica mejoras sustanciales en una gran cantidad de aplicaciones, incrementando la capacidad global de computación de un sistema mediante la unión de varios dispositivos de cómputo que trabajan como una única unidad manteniendo simultáneamente un alto grado de independencia y una tolerancia global a fallos muy alta. Sin embargo, el desarrollo de aplicaciones distribuidas implica el uso de un conjunto de nodos cuyo coste y mantenimiento es costoso.
 
-Dicho aumento de la potencia implica una mayor complejidad en el desarrollo de algoritmos que puedan aprovechar de forma óptima este tipo de sistemas. Varios factores como la sincronización y la comunicación entre partes, o errores tales como condiciones de carrera son mucho más comunes que en otro tipo de aplicaciones. Dichas dircunstancias no solo dificultan el desarrollo de este sistema, sino también la comprensión de los fundamentos básicos de la Computación Distribuida. %cite http://ceit.aut.ac.ir/~amirkhani/Downloads/patterson_book.pdf
+Dicho aumento de la potencia implica una mayor complejidad en el desarrollo de algoritmos que puedan aprovechar de forma óptima este tipo de sistemas. Varios factores como la sincronización y la comunicación entre partes, o errores tales como condiciones de carrera son mucho más comunes que en otro tipo de aplicaciones. Dichas circunstancias no solo dificultan el desarrollo de este sistema, sino también la comprensión de los fundamentos básicos de la Computación Distribuida. %cite http://ceit.aut.ac.ir/~amirkhani/Downloads/patterson_book.pdf
 
 Si bien la mayoría de las aplicaciones en las que el paradigma de computación distribuida introduce mejoras suelen exigir una gran capacidad de cálculo, su desarrollo únicamente requiere un conjunto de instancias independientes de un software (sistema operativo, contenedor de servicios...) con las que trabajar. Dicha característica implica que la utilización de nodos de precio reducido (o incluso reutilizados) para el diseño, análisis y evaluación de este tipo de algoritmos constituye una alternativa válida frente a sistemas de precio superior.
 
@@ -35,7 +35,7 @@ El sistema se ubica en una Facultad universitaria con aproximadamente 600 alumno
 
 \subsection{Sistema actual: Infraestructura de la Facultad de Ciencias}
 \label{infraestructura}
-La Facultad cuenta con varias aulas y laboratorios informáticos donde los alumnos disponen de la intraestructura necesaria para realizar los ejercicios y prácticas asignadas. Dichos espacios permiten utilizar cualquier equipo como nodo, pues se integran en la misma red, siendo incluso factible la comunicación directa entre equipos situados en diferentes aulas o incluso edificios. La conexión es relativamente rápida, contando con un cableado capaz de soportar teóricamente transferencias de hasta 100Mb/s de forma bidireccional (\textit{full-duplex}) (\textbf{Cita requerida}). La gestión de un sistema de autenticación se realiza mediante el protocolo LDAP (\textit{Lightweight Directory Access Protocol}) \cite{RFC4516-comment}, contando con un sistema de ficheros centralizado que permite acceder a la información de un usuario desde cualquier equipo, facilitando las tareas de replicación de la información entre nodos.
+La Facultad cuenta con varias aulas y laboratorios informáticos donde los alumnos disponen de la infraestructura necesaria para realizar los ejercicios y prácticas asignadas. Dichos espacios permiten utilizar cualquier equipo como nodo, pues se integran en la misma red, siendo incluso factible la comunicación directa entre equipos situados en diferentes aulas o incluso edificios. La conexión es relativamente rápida, contando con un cableado capaz de soportar teóricamente transferencias de hasta 100Mb/s de forma bidireccional (\textit{full-duplex}) (\textbf{Cita requerida}). La gestión de un sistema de autenticación se realiza mediante el protocolo LDAP (\textit{Lightweight Directory Access Protocol}) \cite{RFC4516-comment}, contando con un sistema de ficheros centralizado que permite acceder a la información de un usuario desde cualquier equipo, facilitando las tareas de replicación de la información entre nodos.
 
 La mayoría de las prácticas asignadas a los alumnos son desarrolladas en el lenguaje \textbf{Java}, ya conocido por la totalidad de los estudiantes gracias a asignaturas previamente cursadas\citationneeded y que facilita el despliegue y la compatibilidad entre diferentes equipos de trabajo sustancialmente. En ocasiones es necesario el uso de lenguajes como C y se plantean alternativas a \textit{Java} como Python o C\#.
 
@@ -54,7 +54,7 @@ Si bien la infraestructura existente es capaz de proveer a los estudiantes de lo
 \begin{itemize}
 
   \item Estudiantes de tercero y cuarto curso del Grado en Ingeniería Informática.
-  \item Doctentes de las asignaturas Arquitectura de Computadores y Sistemas Distribuidos.
+  \item Docentes de las asignaturas Arquitectura de Computadores y Sistemas Distribuidos.
   \item Administradores del Sistema.
 \end{itemize}
 
@@ -76,7 +76,7 @@ Si bien la infraestructura existente es capaz de proveer a los estudiantes de lo
 \subsection{Administrador}
 
 \begin{itemize}
-  \item Sistema integrable en la intraestructura actual cuyo mantenimiento sea sencillo y cuyo enfoque garantice la escalabilidad y su durabilidad.
+  \item Sistema integrable en la infraestructura actual cuyo mantenimiento sea sencillo y cuyo enfoque garantice la escalabilidad y su durabilidad.
 \end{itemize}
 
 \section{Propuestas para la búsqueda de necesidades}
@@ -148,9 +148,9 @@ Si bien el trabajo con cada una de las instancias es previsiblemente sencillo, d
 
 Las prestaciones técnicas con las que se contaría, de llevarse a cabo este proyecto, son las de los equipos ya dispuestos para fines similares a este en el Centro: %TODO: Andrés. 
 
-\paragraph{Coste econonómico}
+\paragraph{Coste económico}
 
-El coste econónomico es muy reducido si ya se cuenta con los equipos a utilizar y las licencias \textit{software} que fueran necesarias para realizar la virtualización.
+El coste económico es muy reducido si ya se cuenta con los equipos a utilizar y las licencias \textit{software} que fueran necesarias para realizar la virtualización.
 
 \paragraph{Escalabilidad del sistema}
 
@@ -194,7 +194,7 @@ Arquitectura x86/x64
 Entre 2 y 4 GB de memoria
 Conectividad Ethernet, USB
 Almacenamiento en disco duro
-\paragraph{Coste econonómico}
+\paragraph{Coste económico}
 
 El coste económico de dichos equipos es prácticamente nulo, pues ya se cuenta con los mismos y su utilización no exige la adquisición de sustitutos, pues ya habían sido retirados de su uso.
 
@@ -229,7 +229,7 @@ Utilización de equipos embebidos diseñados para aplicaciones multimedia en el 
 
 \paragraph{Ventajas intrínsecas de la solución}
 
-Relacion potencia/precio presumiblemente superior a soluciones de coste similar como las placas Raspberry Pi.
+Relación potencia/precio presumiblemente superior a soluciones de coste similar como las placas Raspberry Pi.
 
 \paragraph{Inconvenientes intrínsecos del sistema}
 
@@ -246,7 +246,7 @@ Arquitectura ARM
 Almacenamiento: 2 GB no expandibles
 Alimentación por microUSB
 
-\paragraph{Coste econonómico}
+\paragraph{Coste económico}
 
 El coste de estos equipos es reducido, generalmente inferior a 30 € por unidad.
 
@@ -279,7 +279,7 @@ Utilización de equipos embebidos diseñados para aplicaciones multimedia en el 
 
 \paragraph{Ventajas intrínsecas de la solución}
 
-Relacion potencia/precio presumiblemente superior a soluciones de coste similar como las placas Raspberry Pi.
+Relación potencia/precio presumiblemente superior a soluciones de coste similar como las placas Raspberry Pi.
 
 \paragraph{Inconvenientes intrínsecos del sistema}
 
@@ -296,7 +296,7 @@ Arquitectura ARM
 Almacenamiento: 2 GB no expandibles
 Alimentación por microUSB
 
-\paragraph{Coste econonómico}
+\paragraph{Coste económico}
 
 
 
@@ -333,7 +333,7 @@ Gran comunidad de desarrolladores alrededor de la plataforma.
 
 \paragraph{Inconvenientes intrínsecos del sistema}
 
-La potencia del sistema es pequeña (ver seccion prestaciones técnicas)
+La potencia del sistema es pequeña (ver sección prestaciones técnicas)
 
 \paragraph{Facilidad de trabajo y curva de aprendizaje}
 
@@ -351,7 +351,7 @@ Conectividad Ethernet, I2C, GPIO
 Alimentación por microUSB/GPIO
 Almacenamiento entre 1 GB y 256 GB mediante tarjetas MicroSD/SD
 
-\paragraph{Coste econonómico}
+\paragraph{Coste económico}
 
 \paragraph{Escalabilidad del sistema}
 
@@ -429,9 +429,9 @@ Otros & Modelo descatalogado, el soporte oficial y proporcionado por la comunida
 \begin{tabular}{|p{2cm}|p{4cm}|p{5cm}|p{3cm}|p{4cm}|p{4cm}|}
 \hline
 Nombre & Enfoque & Características notables & Ventajas & Inconvenientes & Software disponible\\ \hline
-ArchLinux ARM & Distribucion ligera centrada en el minimalismo y la disponibilidad de software novedoso. Requiere sin embargo que el usuario conozca el entorno GNU/Linux antes de utilizarlo & Muy optimizado con un ciclo de desarrollo que permite contar con software puntero en poco tiempo & Eficiente, gran comunidad alrededor, relativamente sencillo de utilizar & En ocasiones puede ser complejo su uso. Ya no se incluye en las distribuciones por defecto de la Fundacion Raspberry Pi, lo cual puede suponer falta de soporte oficial & 8700 paquetes disponibles en los repositorios oficiales, más pequeño que para otras distribuciones, si bien no se ha encontrado aun software no compatible\\ \hline
+ArchLinux ARM & Distribucion ligera centrada en el minimalismo y la disponibilidad de software novedoso. Requiere sin embargo que el usuario conozca el entorno GNU/Linux antes de utilizarlo & Muy optimizado con un ciclo de desarrollo que permite contar con software puntero en poco tiempo & Eficiente, gran comunidad alrededor, relativamente sencillo de utilizar & En ocasiones puede ser complejo su uso. Ya no se incluye en las distribuciones por defecto de la Fundación Raspberry Pi, lo cual puede suponer falta de soporte oficial & 8700 paquetes disponibles en los repositorios oficiales, más pequeño que para otras distribuciones, si bien no se ha encontrado aun software no compatible\\ \hline
 
-Ubuntu Snappy Core & Centrado en la facilidad de uso & Es la distribución más popular (en equipos de escritorio) con gran cantidad de paquetes disponible & Fácil de configurar, gran cantidad de soporte & Aún no ha sido probado en la Raspberry de forma intensiva.El rendimiento de ubuntu suele ser menor al de otros sistemas operativos debido a la gran cantidad de paquetes incluidos por defecto. & \\ \hline 
+Ubuntu Snappy Core & Centrado en la facilidad de uso & Es la distribución más popular (en equipos de escritorio) con gran cantidad de paquetes disponible & Fácil de configurar, gran cantidad de soporte & Aún no ha sido probado en la Raspberry de forma intensiva.El rendimiento de Ubuntu suele ser menor al de otros sistemas operativos debido a la gran cantidad de paquetes incluidos por defecto. & \\ \hline 
 
 Raspbian & & & & &\\ \hline
 \end{tabular}
@@ -448,7 +448,7 @@ RISC OS & Diseñado específicamente para la arquitectura ARM, aprovechando las 
 
 Gentoo & Diseñado para permitir la personalización del sistema al máximo nivel posible & Enfocado en la personalizacion, siendo el sistema compilado en la maquina sobre la que se va a utilizar en vez de ser descargado como archivo binario & Permite ser modificado de forma sencilla & Poco soportado en Raspberry Pi & \\ \hline
 
-Windows 10 & Diseñado para el paradigma IoT & Sencillo de utilizar, con soporte (previsiblemente) del \textit{framework} .NET & Aún no se encuentra disponible\cite{windows10raspberry}. Esta diseñado para un proposito especifico. No compatible con software para Linux de forma nativa & & \\ \hline
+Windows 10 & Diseñado para el paradigma IoT & Sencillo de utilizar, con soporte (previsiblemente) del \textit{framework} .NET & Aún no se encuentra disponible\cite{windows10raspberry}. Esta diseñado para un propósito especifico. No compatible con software para Linux de forma nativa & & \\ \hline
 
 \end{tabular}
 \end{table}
