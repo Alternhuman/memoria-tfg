@@ -1,388 +1,472 @@
-\lhead{\emph{Herramientas}}
-\chapter{Herramientas}
+\lhead{\emph{Dominio del problema}}
+\chapter{Dominio del problema}
 
-La complejidad que acarrea el uso de aplicaciones distribuidas hace necesario el uso de herramientas que permitan el desarrollo de forma cómoda del propio sistema, su uso posterior como herramienta de prueba de aplicaciones distribuidas y por último, facilitar el aprendizaje de algoritmos y herramientas distribuidas.
+La utilización de algoritmos distribuidos implica mejoras sustanciales en una gran cantidad de aplicaciones, incrementando la capacidad global de computación de un sistema mediante la unión de varios dispositivos de cómputo que trabajan como una única unidad mantieniendo simultáneamente un alto grado de independencia y una tolerancia global a fallos muy alta. Sin embargo, el desarrollo de aplicaciones distribuidas implica el uso de un conjunto de nodos cuyo coste y mantenimiento es costoso.
 
-Muchas de las aplicaciones distribuidas utilizadas incluyen varias herramientas para facilitar su uso. Sin embargo estas soluciones suelen ser diseñadas para el propósito específico de dicha aplicación, y son difíciles de adaptar a otros contextos. Debido a esta carencia, se han creado varias herramientas propias que permiten aprovechar al máximo este sistema.
+Dicho aumento de la potencia implica una mayor complejidad en el desarrollo de algoritmos que puedan aprovechar de forma óptima este tipo de sistemas. Varios factores como la sincronización y la comunicación entre partes, o errores tales como condiciones de carrera son mucho más comunes que en otro tipo de aplicaciones. Dichas dircunstancias no solo dificultan el desarrollo de este sistema, sino también la comprensión de los fundamentos básicos de la Computación Distribuida. %cite http://ceit.aut.ac.ir/~amirkhani/Downloads/patterson_book.pdf
 
-\section{MarcoPolo, el protocolo de descubrimiento de servicios}
-\label{marcopolo}
-Uno de los problemas típicos a la hora de crear un sistema distribuido es la localización de cada uno de los nodos que lo conforman. Soluciones como servicios de nombres (DNS) permiten crear estructuras jerárquicas donde cada nodo está identificado por un nombre previamente conocido. También existen protocolos inspirados en este como \textbf{mDNS} (\textit{Multicast Domain Name Service}) donde la necesidad de un servidor de nombres desaparece, y los nodos son capaces de encontrarse entre ellos mediante multicast\cite{rfc6762}. Otras alternativas como Bonjour, Avahi o AppleTalk (ya descontinuado) también han sido evaluadas.
+Si bien la mayoría de las aplicaciones en las que el paradigma de computación distribuida introduce mejoras suelen exigir una gran capacidad de cálculo, su desarrollo únicamente requiere un conjunto de instancias independientes de un software (sistema operativo, contenedor de servicios...) con las que trabajar. Dicha característica implica que la utilización de nodos de precio reducido (o incluso reutilizados) para el diseño, análisis y evaluación de este tipo de algoritmos constituye una alternativa válida frente a sistemas de precio superior.
 
-Sin embargo, estas y otras soluciones similares no responden a una de las necesidades básicas del sistema a construir: la condición de que la información que conoce cada nodo sobre el resto en el arranque del sistema es nula. Si bien con \textbf{mDNS} evitamos contar con un servidor de nombres, debemos conocer el nombre de cada máquina o esta debe anunciarse en la red antes de poder estar disponible (mDNS Probing). Dicho inconveniente se suma al hecho de que \textbf{DNS} y protocolos similares son creados con el único propósito de resolver la correspondencia nombre - dirección de red de un equipo, y son difícilmente extensibles a otro tipo de aplicaciones. Además, la mayoría de los protocolos asumen que la información de un nodo presente de una red local es de interés para el resto de nodos de la red, lo cual dificulta la independencia de un conjunto de equipos frente al resto.
+Sumada a dicha motivación existe el potencial aprovechamiento de este sistema como herramienta didáctica que facilite el aprendizaje de conceptos como el reparto de procesos, balance de carga o la compartición de recursos en asignaturas centradas en este tipo de conceptos dentro de los planes de estudio de Ingeniería Informática o titulaciones afines.
 
-Una de las piezas clave del sistema consiste en la escalabilidad del mismo en tiempo real: no es necesario conocer qué nodos participan en el sistema hasta que no se vayan a utilizar. Además, se pretende optimizar al máximo cada uno de los nodos del sistema por separado, por lo que dedicar uno de ellos como ``autoridad'' frente a la que el resto de nodos se registren y esta actúe posteriormente como nodo coordinador y ``resolver'' supone una dedicación de recursos innecesaria y que dificulta la escalabilidad del sistema. Además, la gestión del espacio de direcciones de la red en la que se integra el sistema no es gestionado por este y además es compartido con una gran cantidad de equipos adicionales. Esto implica que las direcciones de cada nodo son asignadas por un servidor DHCP (\textit{Dynamic Host Configuration Protocol}) sobre el que no se tiene control, y cuyas direcciones son asignadas para intervalos de tiempo pequeños\footnote{Durante el desarrollo del sistema se observa que las direcciones son asignadas por periodos de tiempo pequeños y no suelen repetirse a menos que dicha dirección no haya sido asignada anteriormente, fenómeno que suele darse con bastante frecuencia.}. %TODOEsto implica que no es posible contar con un nodo coordinador sin un espacio de nombres anteriormente definido.
-Por otro lado, la clave de este sistema no la constituye la disponibilidad de un nodo, sino las aplicaciones distribuidas que pueden utilizarse en el mismo (de ahora en adelante denominaremos a estas ``servicios''). Un nodo puede contar con un conjunto de servicios diferente al de sus vecinos, y por tanto colaborará en unas tareas y en otras no en virtud de dicha disponibilidad. Este requisito no es satisfecho por la mayoría de los sistemas anteriormente mencionados.
+Con el presente proyecto se plantea la creación de un sistema con estas características aprovechando el bajo coste de los componentes del mismo que permita en primer lugar su utilización como herramienta de análisis y diseño (o incluso su utilización como plataforma definitiva) de aplicaciones distribuidas y en segundo lugar la posibilidad de uso como herramienta educativa.
 
-Motivada por esta serie de características surge la necesidad de crear un pequeño protocolo de descubrimiento de nodos basado principalmente en los servicios que dichos nodos pueden (y desean) ofrecer al conjunto de la malla. Además, siendo uno de los objetivos funcionales del sistema el aprovechamiento del mismo como herramienta didáctica, surge la necesidad de que dos conjuntos de nodos puedan trabajar en la misma red de forma independiente. Como aproximación para satisfacer estas necesidades surge el procolo de descubrimiento de servicios \textbf{MarcoPolo}
+A la hora de crear el sistema se realiza un análisis de las diferentes alternativas, a fin de escoger la alternativa que mejor satisfaga los objetivos definidos.
 
-\subsection{MarcoPolo: Introducción}
+Figura: Tabla de alternativas
 
-MarcoPolo es un protocolo de descubrimiento de servicios cuya dinámica y nombre se inspiran en el juego homónimo\citationneeded, en el cual uno de los integrantes debe encontrar al resto privado de visión mediante ecolocalización (gritando la palabra clave ``Marco'', cuya respuesta por parte del resto de jugadores es ``Polo''). El protocolo se compone de dos roles claramente diferenciados (y prácticamente independientes aún siendo ejecutados en el mismo nodo): \textbf{Marco}, encargado de enviar consultas a la red y \textbf{Polo}, que emite una respuesta a dichos comandos y gestiona la información de cada nodo.\citationneeded %TODO: http://en.wikipedia.org/wiki/Marco_Polo_%28game%29#cite_note-play-1.http://www.wisegeek.com/what-is-the-game-marco-polo.htm
+\section{Objetivos del proyecto}
 
-Con el objetivo de posibilitar la coexistencia de varias ``mallas'' de nodos independientes (donde los servicios ofrecidos por un nodo únicamente sean conocidos y consecuentemente aprovechables por el resto de sus vecinos) a la vez que las consultas son realizadas a todos los integrantes sin necesidad de conocer su identificador en la red (dirección a nivel de red o enlace, nombre \textit{DNS}) se utilizan mensajes uno-a-muchos, conocidos generalmente con el nombre \textit{multicast}, donde cada una de las \textit{mallas} se comunicará con el resto de integrantes de la misma a través de un grupo preestablecido (o consensuado por dichos nodos).
-
-\subsubsection{Objetivos}
-\begin{itemize}%TODO
-	\item Independencia
-	El protocolo debe ser compatible con el mayor número de aplicaciones posible, adaptándose. Dicho objetivo se consigue delegando una gran parte de la funcionalidad a aplicaciones que se apoyan sobre el protocolo, en vez de implementar dicha funcionalidad en este. Dicho desacoplamiento permite, gracias a la mayor simplicidad del protocolo, poder ser compatible con un mayor número de casos de uso.
-	\item \textit{Zeroconf}.
-	El protocolo funciona en una red sin requerir ningún tipo de configuración por parte del usuario, y en una gran cantidad de casos, sin gran esfuerzo por parte del administrador. %TODO: http://en.wikipedia.org/wiki/Zero-configuration_networking
-	\item Segmentación
-	Varias instancias del protocolo pueden ejecutarse en una misma red de forma independiente, permitiendo la creación de varias ``mallas'' de equipos. Dicha segmentación no debe alterar en absoluto el esquema de la red preexistente.
-	\item Conectable
-	Las diferentes aplicaciones presentes en los diferentes nodos deben poder aprovechar la funcionalidad del protocolo mediante una serie de elementos conectores (interfaces).
-	\item Seguro
-	En aquellos casos en los que la información compartida por los nodos sea confidencial, el protocolo debe implementar las medidas oportunas para la protección de la misma.
-	\item Independiente de plataforma e implementación
-	Toda la comunicación entre elementos del protocolo se realizará a través de tecnologías que no dependan de una implementación concreta, tales como un lenguaje de programación o un sistema operativo dado. El único elemento que puede presentar tal dependencia es el conector final con otro código fuente, así como cualquier otro punto final (comandos, ficheros de configuración, etc).
-	\item Independiente del espacio de direcciones, nombres de red y cualquier otro elemento
-	El protocolo debe funcionar en cualquier espacio de direcciones dado, sin considerar en cualquier caso la dependencia con protocolos como \textbf{DHCP} o \textbf{DNS}.
-	\item Simplicidad
-	Los comandos del protocolo deben ser simples y, en caso de que sea posible, deben ser similares a otros ya conocidos por los usuarios del sistema, a fin de que estos ya estén familiarizados con los mismos.
-	\item Descentralización
-	El protocolo no debe en ningún momento generar un ``cuello de botella'', a menos que sea la opción más adecuada para la una tarea dada\footnote{Como se detalla más adelante, dichas situaciones se han desplazado a las aplicaciones que utilizan MarcoPolo}.
-	\item Visibilidad
-	\item Optimización de la red
-	\item Sin conexión
-	\item Extensible
-	\item Extensible a diferente hardware
+Este proyecto cuenta con varios objetivos muy diferentes entre sí, que se agrupan en tres categorías:
+\begin{itemize}
+  \item Arquitectura subyacente\\
+  Definición de los componentes hardware a utilizar en el sistema, interconexión de los mismos, soluciones de alimentación eléctrica, almacenamiento\dots.
+  \item Servicios a proveer\\
+  Conjunto de servicios que podrán ser aprovechados por diferentes clientes para explotar la capacidad de cálculo de las máquinas.
+  \item Componente didáctico\\
+  Creación de aplicaciones, herramientas y documentación como alternativa a las instalaciones típicas utilizadas actualmente.
 \end{itemize}
 
-\subsection{Comandos}
+\section{Definiciones}
 
-El protocolo consiste en una serie de mensajes (a partir de ahora denominados \textit{comandos}) que contienen las consultas sobre la información de uno o varios servicios, nodos o información sobre la propia \textit{malla} que un nodo desee conocer, así como la respuesta a dichas consultas. Dichos mensajes son enviados como cadenas de texto que almacenan la información en estructuras de datos JSON (\textit{JavaScript Object Notation}) debido a la gran legibilidad de estas por humanos y la gran cantidad de herramientas disponibles para su creación y procesado.
+\subsection{Definición del dominio del problema}
 
-Los comandos de MarcoPolo constituyen las primitivas del protocolo. Actualmente se cuenta con las siguientes primitivas y las correspondientes respuestas:
+El sistema se ubica en una Facultad universitaria con aproximadamente 600 alumnos\citationneeded con varias asignaturas en las que se imparten áreas de conocimiento relacionados con la Computación Distribuida, en particular las asignaturas \textbf{Arquitectura de Computadores} y \textbf{Sistemas Distribuidos} \cite{DIA15GuiaAcademica}.
+
+\subsection{Sistema actual: Infraestructura de la Facultad de Ciencias}
+\label{infraestructura}
+La Facultad cuenta con varias aulas y laboratorios informáticos donde los alumnos disponen de la intraestructura necesaria para realizar los ejercicios y prácticas asignadas. Dichos espacios permiten utilizar cualquier equipo como nodo, pues se integran en la misma red, siendo incluso factible la comunicación directa entre equipos situados en diferentes aulas o incluso edificios. La conexión es relativamente rápida, contando con un cableado capaz de soportar teóricamente transferencias de hasta 100Mb/s de forma bidireccional (\textit{full-duplex}) (\textbf{Cita requerida}). La gestión de un sistema de autenticación se realiza mediante el protocolo LDAP (\textit{Lightweight Directory Access Protocol}) \cite{RFC4516-comment}, contando con un sistema de ficheros centralizado que permite acceder a la información de un usuario desde cualquier equipo, facilitando las tareas de replicación de la información entre nodos.
+
+La mayoría de las prácticas asignadas a los alumnos son desarrolladas en el lenguaje \textbf{Java}, ya conocido por la totalidad de los estudiantes gracias a asignaturas previamente cursadas\citationneeded y que facilita el despliegue y la compatibilidad entre diferentes equipos de trabajo sustancialmente. En ocasiones es necesario el uso de lenguajes como C y se plantean alternativas a \textit{Java} como Python o C\#.
+
+\paragraph{Problemas conocidos}
+
+Si bien la infraestructura existente es capaz de proveer a los estudiantes de los recursos necesarios, identificamos una serie de problemas inicialmente:
+
+\begin{itemize}
+  \item Cada grupo de alumnos necesita tres estaciones de trabajo para poder realizar algunos de los ejercicios propuestos.
+  \item El servidor LDAP constituye un ``cuello de botella'', pues todos los alumnos acceden a él de forma intensiva, provocando el fallo por exceso de peticiones del mismo.
+  \item Las técnicas de programación utilizadas hasta la fecha tienen un rendimiento bajo y son en ocasiones relativamente complejas.
+\end{itemize}
+
+\subsection{Identificación de usuarios participantes}
+
+\begin{itemize}
+
+  \item Estudiantes de tercero y cuarto curso del Grado en Ingeniería Informática.
+  \item Doctentes de las asignaturas Arquitectura de Computadores y Sistemas Distribuidos.
+  \item Administradores del Sistema.
+\end{itemize}
+
+\section{Identificación de las necesidades de cada parte}
+\subsection{Necesidades de los alumnos}
+
+\begin{itemize}
+  \item Entorno de trabajo sencillo que agilice el desarrollo de sus prácticas.
+  \item Posibilidad de observar los resultados de las ejecuciones de forma sencilla.
+  \item Facilidades para el despliegue de los diferentes ejecutables en todas las máquinas, así como el consumo de los servicios que estos implementen.
+\end{itemize}
+
+\subsection{Necesidades de los docentes}
+
+\begin{itemize}
+  \item Entorno versátil sobre el cual puedan llevarse a cabo la totalidad de las prácticas y ejercicios propuestos, aportando si es posible algún tipo de ventaja sobre el sistema en uso.
+\end{itemize}
+
+\subsection{Administrador}
+
+\begin{itemize}
+  \item Sistema integrable en la intraestructura actual cuyo mantenimiento sea sencillo y cuyo enfoque garantice la escalabilidad y su durabilidad.
+\end{itemize}
+
+\section{Propuestas para la búsqueda de necesidades}
+
+\begin{itemize}
+  \item Encuestas o entrevistas a todas las partes.
+  \item Evaluación de la experiencia de uso en las diferentes etapas de desarrollo del sistema.
+\end{itemize}
+
+\section{Identificación de requisitos}
+
+\subsection{Requisitos de almacenamiento de la información}
+
+\begin{itemize}
+  \item Gestión de usuarios (credenciales de autenticación)
+  \item Gestión de los datos de cada usuario
+  \item \textit{Logs} del sistema
+\end{itemize}
+
+\subsection{Identificación de requisitos funcionales}
+
+
+\subsection{Identificación de requisitos no funcionales}
+
+\begin{itemize}
+  \item El \textit{software} debe ser mantenible y robusto\footnote{Siendo dicha robustez garantizada mediante el uso de \textit{software} utilizado por una base de usuarios significativa, una arquitectura conocida, pruebas realizadas sobre él o un equipo de desarrollo en activo, entre otras}.
+  \item Reducción de los costes de desarrollo.
+  \item Definición de los protocolos de comunicación.
+  \item Definición de los protocolos de seguridad y confidencialidad.
+  \item Definición de la interacción con el usuario.
+  \item Integridad del sistema y fiabilidad (\textit{uptime}, recuperación frente a fallos).
+  \item Productos a crear.
+  \item Compatibilidad con las prácticas y ejercicios.
+\end{itemize}
+
+\section{Evaluación de alternativas}
+\label{alternativas}
+A la hora de evaluar las diferentes opciones que satisfagan los requisitos descritos, se consideran los siguientes aspectos:
+
+\begin{itemize}
+  \item Coste económico.
+  \item Prestaciones técnicas (potencia de procesamiento, entrada/salida, capacidad de almacenamiento,facilidad de interconexión con otros materiales...).
+  \item Facilidad de trabajo y de aprendizaje (documentación disponible, proyectos similares ya realizados, conocimiento sobre la plataforma en cuestión...).
+  \item Escalabilidad del sistema.
+  \item Necesidades de mantenimiento del sistema.
+  \item Consumo del sistema (consumo eléctrico).
+  \item Obsolescencia del sistema (número de años en los que el sistema podrá ser actualizado (tanto en hardware como software) y será capaz de seguir siendo una herramienta adecuada para el propósito planteado).
+
+\end{itemize}
+
+\subsection{Propuesta de solución: Virtualización de entornos de trabajo}
+
+Crear un conjunto de nodos virtuales dentro de una máquina que simulen un sistema distribuido
+
+\paragraph{Ventajas intrínsecas de la solución}
+
+Simplificación del sistema (reduce las necesidades de adquisición y mantenimiento de hardware).
+Gestión de varias partes del sistema (sistema de ficheros centralizado, gestión de usuarios...) de forma mas sencilla. El coste se reduce significativamente.
+
+\paragraph{Inconvenientes intrínsecos del sistema}
+
+No se exploran apenas las posibilidades de un sistema distribuido formado por varios equipos físicamente independientes.
+
+\paragraph{Facilidad de trabajo y curva de aprendizaje}
+
+Si bien el trabajo con cada una de las instancias es previsiblemente sencillo, debido a la eliminación de la gran parte del mantenimiento de la capa física subyacente, el uso de este tipo de sistema requiere una etapa de formación previa en materia de virtualización.
+
+\paragraph{Prestaciones técnicas}
+
+Las prestaciones técnicas con las que se contaría, de llevarse a cabo este proyecto, son las de los equipos ya dispuestos para fines similares a este en el Centro: %TODO: Andrés. 
+
+\paragraph{Coste econonómico}
+
+El coste econónomico es muy reducido si ya se cuenta con los equipos a utilizar y las licencias \textit{software} que fueran necesarias para realizar la virtualización.
+
+\paragraph{Escalabilidad del sistema}
+
+Dependiente de las capacidades de virtualización del equipo disponible, y el número de nodos y usuarios a gestionar (previsiblemente alto)
+
+\paragraph{Necesidades de mantenimiento}
+
+Las necesidades propias de un sistema GNU/Linux junto a las específicas de la virtualización de los equipos.
+
+\paragraph{Consumo energético del sistema}
+\paragraph{Obsolescencia del sistema}
+
+\paragraph{Material con el que se cuenta actualmente}
+Se plantea el aprovechamiento de equipos pertenecientes a la Universidad, por lo que se estima un coste muy pequeño a la hora de adquirir material.
+\paragraph{Otras características}
+
+\paragraph{Análisis coste/beneficio}
+
+Si bien el coste de esta solución es muy atractivo, presenta una serie de carencias que dificultan significativamente el desarrollo del sistema en el mismo. 
+
+
+\subsection{Propuesta de solución: Clúster con equipos de escritorio}
+
+Se plantea la reutilización de equipos de escritorio pertenecientes a la Universidad que ya no se encuentran en uso (debido a su renovación, falta de potencia como PC...) para la creación de este sistema.
+
+\paragraph{Ventajas intrínsecas de la solución}
+La potencia del sistema es mucho mayor que la de cualquier otra solución considerada viable. Se reduce dramáticamente el coste de adquisición de material y permite dar un nuevo ciclo de vida a material universitario.
+La arquitectura es conocida y fiable.
+
+\paragraph{Inconvenientes intrínsecos del sistema}
+
+No se exploran las características únicas de otros sistemas menos ``convencionales'', tales como la utilización de sistemas embebidos. El consumo energético es mayor, existe una mayor demanda de espacio, que puede dificultar la implementación de diferentes aplicaciones didácticas ya planteadas como objetivo funcional del sistema.
+
+\paragraph{Facilidad de trabajo y curva de aprendizaje}
+
+Soporte completo de casi la totalidad de las distribuciones de GNU/Linux.
+Las necesidades de manipulación de hardware se minimizan.
+
+\paragraph{Prestaciones técnicas}
+Arquitectura x86/x64
+Entre 2 y 4 GB de memoria
+Conectividad Ethernet, USB
+Almacenamiento en disco duro
+\paragraph{Coste econonómico}
+
+El coste económico de dichos equipos es prácticamente nulo, pues ya se cuenta con los mismos y su utilización no exige la adquisición de sustitutos, pues ya habían sido retirados de su uso.
+
+\paragraph{Escalabilidad del sistema}
+
+Dependiente únicamente del coste económico de la adquisición de nuevos equipos, o de la disponibilidad de equipos desechados.
+
+\paragraph{Necesidades de mantenimiento}
+
+Las necesarias en cualquier sistema GNU/Linux y las específicas del montaje dado (en materia de refrigeración, gestión de cableado, etcétera).
+
+\paragraph{Consumo energético del sistema}
+
+El típico de cualquier equipo de escritorio.
+
+\paragraph{Obsolescencia del sistema}
+
+Estos equipos tienen una antigüedad de aproximadamente 4 años. Dicha edad no impide que sean capaces de utilizar aplicaciones actuales, y en general no se prevé la incompatibilidad con ninguna aplicación.
+
+\paragraph{Material con el que se cuenta actualmente}
+La Facultad de Ciencias ya dispone de los equipos, pues se plantea la reutilización de los mismos
+
+\paragraph{Otras características}
+
+\paragraph{Análisis coste/beneficio}
+
+Si bien el coste de estos equipos es prácticamente nulo, dicho atractivo contrasta con los potenciales problemas que el uso de estos sistemas puede implicar (dificultad de desarrollo de objetivos funcionales, uso de sistemas convencionales en detrimento de soluciones más innovadoras\dots).
+
+\subsection{Clúster con equipos embebidos multimedia }
+
+Utilización de equipos embebidos diseñados para aplicaciones multimedia en el sistema (ejemplos son Chromecast, Apple TV, Amazon Fire TV...)
+
+\paragraph{Ventajas intrínsecas de la solución}
+
+Relacion potencia/precio presumiblemente superior a soluciones de coste similar como las placas Raspberry Pi.
+
+\paragraph{Inconvenientes intrínsecos del sistema}
+
+Dificultad de conexión (generalmente la conexión a red se realiza de forma inalámbrica, ausencia casi absoluta de cualquier conexión cuya finalidad no sea la emisión de vídeo o conexión con sistemas de almacenamiento mediante USB), falta de puertos GPIO, I2C...
+
+\paragraph{Facilidad de trabajo y curva de aprendizaje}
+Es difícil determinar la viabilidad de esta solución, pues no se cuenta con experiencia previa ni una documentación amplia al respecto.
+Es probable que sea necesaria la manipulación del sistema a muy bajo nivel. Lo cual incrementa el grado de complejidad de la solución.
+
+\paragraph{Prestaciones técnicas}
+Arquitectura ARM
+2 núcleos a 1.2 GHz
+512 MB de RAM
+Almacenamiento: 2 GB no expandibles
+Alimentación por microUSB
+
+\paragraph{Coste econonómico}
+
+El coste de estos equipos es reducido, generalmente inferior a 30 € por unidad.
+
+\paragraph{Escalabilidad del sistema}
+
+Dependiente del coste de adquisición de nuevos equipos y las facilidades de interconexión de la plataforma (previsiblemente compleja, debido a la ausencia de sistemas de interconexión más allá de WiFi)
+
+\paragraph{Necesidades de mantenimiento}
+
+Dependiente del número de modificaciones que se realicen a las capas más bajas. En el peor de los casos puede que el administrador del sistema tenga que someterse a una etapa de formación para realizar un mantenimiento adecuado del sistema sin depender de desarrolladores previos.
+Las derivadas del mantenimiento de un sistema Linux sumadas a posibles problemas de interconexión si se utiliza una red inalámbrica (conexión a  la LAN de la infraestructura local, interferencias...).
+
+\paragraph{Consumo energético del sistema}
+
+El diseño de estos equipos está orientado a la reducción del consumo, por lo que se estima reducido.
+
+\paragraph{Obsolescencia del sistema}
+
+Difícil de determinar: no se cuenta con una gran cantidad de software para este tipo de sistemas más allá de las aplicaciones multimedia. No obstante, el sistema subyacente es conocido (Linux)
+
+\paragraph{Material con el que se cuenta actualmente}
+
+No se dispone de material de estas o similares características
+
+\paragraph{Otras características}
+
+\subsection{Clúster con equipos embebidos multimedia }
+
+Utilización de equipos embebidos diseñados para aplicaciones multimedia en el sistema (ejemplos son Chromecast, Apple TV, Amazon Fire TV...)
+
+\paragraph{Ventajas intrínsecas de la solución}
+
+Relacion potencia/precio presumiblemente superior a soluciones de coste similar como las placas Raspberry Pi.
+
+\paragraph{Inconvenientes intrínsecos del sistema}
+
+Dificultad de conexión (generalmente la conexión a red se realiza de forma inalámbrica, ausencia casi absoluta de cualquier conexión cuya finalidad no sea la emisión de vídeo o conexión con sistemas de almacenamiento mediante USB), falta de puertos GPIO, I2C...
+
+\paragraph{Facilidad de trabajo y curva de aprendizaje}
+Es difícil determinar la viabilidad de esta solución, pues no se cuenta con experiencia previa ni una documentación amplia al respecto.
+Es probable que sea necesaria la manipulación del sistema a muy bajo nivel. Lo cual incrementa el grado de complejidad de la solución.
+
+\paragraph{Prestaciones técnicas}
+Arquitectura ARM
+2 núcleos a 1.2 GHz
+512 MB de RAM
+Almacenamiento: 2 GB no expandibles
+Alimentación por microUSB
+
+\paragraph{Coste econonómico}
+
+
+
+\paragraph{Escalabilidad del sistema}
+Dependiente del coste de adquisición de nuevos equipos y las facilidades de interconexión de la plataforma (previsiblemente compleja, debido a la ausencia de sistemas de interconexión más allá de WiFi)
+
+\paragraph{Necesidades de mantenimiento}
+
+Dependiente del número de modificaciones que se realicen a las capas más bajas. En el peor de los casos puede que el administrador del sistema tenga que someterse a una etapa de formación para realizar un mantenimiento adecuado del sistema sin depender de desarrolladores previos.
+Las derivadas del mantenimiento de un sistema Linux sumadas a posibles problemas de interconexión si se utiliza una red inalámbrica (conexión a  la LAN de la infraestructura local, interferencias...).
+
+\paragraph{Consumo energético del sistema}
+
+
+
+\paragraph{Obsolescencia del sistema}
+
+Difícil de determinar: no se cuenta con una gran cantidad de software para este tipo de sistemas más allá de las aplicaciones multimedia. No obstante, el sistema subyacente es conocido (Linux)
+
+\paragraph{Material con el que se cuenta actualmente}
+
+No se dispone de material de estas o similares características
+
+\paragraph{Otras características}
+
+\subsection{Clúster con Raspberry Pi}
+
+Utilizar la plataforma de hardware libre Raspberry Pi para la creación del sistema, disponiendo los diferentes equipos en un pequeño ``rack'' con un sistema de alimentación propio centralizado y una conexión directa a la infraestructura local.
+
+\paragraph{Ventajas intrínsecas de la solución}
+Existen varias soluciones similares bien documentadas.
+El hardware es flexible, barato y el consumo es pequeño.
+Gran comunidad de desarrolladores alrededor de la plataforma.
+
+\paragraph{Inconvenientes intrínsecos del sistema}
+
+La potencia del sistema es pequeña (ver seccion prestaciones técnicas)
+
+\paragraph{Facilidad de trabajo y curva de aprendizaje}
+
+Ya se cuenta con experiencia en el manejo de estas placas.
+Amplia documentación de las prestaciones de la misma.
+Proyectos similares ya realizados.
+Soporte completo de varias distribuciones de GNU/Linux
+
+\paragraph{Prestaciones técnicas}
+
+Arquitectura ARM
+Entre 512 MB y 1 GB de memoria
+1 o 4 Núcleos a 700 o 900 MHz (overclock a 1 GHz de forma segura)
+Conectividad Ethernet, I2C, GPIO
+Alimentación por microUSB/GPIO
+Almacenamiento entre 1 GB y 256 GB mediante tarjetas MicroSD/SD
+
+\paragraph{Coste econonómico}
+
+\paragraph{Escalabilidad del sistema}
+
+Dependiente únicamente del coste económico de la adquisición de nuevos equipos
+
+\paragraph{Necesidades de mantenimiento}
+
+Las mismas que cualquier sistema GNU/Linux de iguales características.
+Pueden surgir problemas con la fuente de alimentación, dado que es una solución propia.
+
+\paragraph{Consumo energético del sistema}
+
+Variable según modelo, entre 3 y 4 W, con 5V de tensión y un amperaje variable entre 0.6 y 0.8 A
+
+\paragraph{Obsolescencia del sistema}
+
+El software de terceros (sistema operativo, bibliotecas, etc) a incluir está respaldado por una comunidad extensa que provee actualizaciones de forma continua, por lo que previsiblemente el sistema podrá estar actualizado durante varios años.
+Las necesidades que el sistema cubre no demandarán previsiblemente una mayor potencia de cálculo.
+ 
+
+\paragraph{Material con el que se cuenta actualmente}
+
+El Departamento de Informática y Automática cuenta con varios de estos equipos se plantea la reutilización de los mismos
+
+\paragraph{Otras características}
+
+
+
+\subsection{Elección de la solución}
+
+\subsection{Raspberry Pi: Elección de las características básicas del sistema}
+Comparativa de las características relevantes de los diferentes modelos de Raspberry Pi.
+Quedan descartados los modelos A y A+ por la carencia de puerto Ethernet (amén de otras características necesarias).
 \begin{landscape}
-\begin{table}[H]
-\begin{tabular}{|p{1.5cm}|p{1.2cm}|p{5cm}|p{5cm}|p{5cm}|p{3.5cm}|}
+\begin{table}[h]
+\begin{tabular}{|p{3cm}|p{6cm}|p{6cm}|p{6cm}|}
 \hline
-Nombre & Emisor & Función & Información & Respuesta esperada & Protocolo y puerto\\ \hline
-\textbf{Marco} & Marco & Descubrir todos los nodos presentes en la \textit{malla} & Únicamente se incluye el nombre del comando & Un comando \textit{Polo} por cada nodo disponible en la red, incluyendo como parámetros opcionales información sobre el nodo o \textit{ninguna} si no existe ningún nodo disponible. & UDP \textit{multicast} al puerto 1338.\\ \hline
-\textbf{Polo} & Polo & Informar a un nodo de la existencia del emisor & Información sobre el nodo opcional (servicios disponibles, información sobre el nodo o la instancia de Polo\dots) & \textit{Ninguna} &  UDP \textit{unicast} al puerto efímero del mensaje de pregunta.\\ \hline
-\textbf{Request-For} & Marco & Conocer todos los nodos que ofrecen un servicio identificado por su nombre único en el sistema & Identificador unívoco del servicio a descubrir & \textbf{OK} con información opcional sobre el nodo o el servicio & UDP \textit{multicast} al puerto 1338.\\ \hline
-\textbf{OK} & Polo & Comando utilizado para emitir una respuesta a una petición, siendo la información de interés contenida en los parámetros de respuesta. & Respuesta a un comando con la información solicitada & \textit{Ninguna} & UDP \textit{unicast} al puerto efímero de la pregunta.\\ \hline
-\textbf{Services} & Marco & Descubrir todos los servicios ofrecidos por un nodo & No se envía información adicional con el comando & \textbf{OK} con una lista de los identificadores del servicio o \textit{ninguna} si el nodo no está en la red. & UDP \textit{unicast} al puerto 1338.\\ \hline
+ & Modelo B & Modelo B+ & Modelo B 2\\ \hline
+Procesador & ARMv6 1 Núcleo, 700 MHz (safe overclock hasta 1GHz) & ARMv6 1 Núcleo, 700 MHz (safe overclock hasta 1GHz) & ARMv7 4 Núcleos a 900 MHz \\ \hline
+Memoria           & 512 MB compartidos con GPU & 512 MB compartidos con GPU & 1 GB compartido con GPU\\ \hline
+Evaluación de rendimiento con LINPACK \cite{hackaday:benchmarkpi2,gist:linpackbenchmark,elinux:benchmark} & 40.64 & 40.64 & 92.88\\ \hline
+Conexiones & 2 USB, GPIO de 8 pines. Ethernet 10/100 & 4 USB, GPIO de 17 pines. Ethernet 10/100 & 4 USB, GPIO de 17 pines. Ethernet 10/100\\ \hline
+Consumo medio \citationneeded & 700 mA, 5 V (3.5 W) & 600 mA, 5 V (3 W) & 800 mA, 5 V (4 W)\\ \hline
+Almacenamiento & SD & MicroSD & MicroSD\\ \hline
+Alimentación & Mediante MicroUSB o los pines GPIO & Mediante MicroUSB o los pines GPIO &Mediante MicroUSB o los pines GPIO\\ \hline
+Sistemas operativos compatibles & 
+%\begin{itemize}
+% \setlength\itemsep{0.005em}
+Archlinux ARM, OpenELEC, Puppy Linux, Raspbmc, RISC OS, Raspbian, XBian, openSUSE, Slackware ARM, FreeBSD, Plan 9, Kali Linux, Sailfish OS, Pidora (Fedora Remix), Lista completa en \citationneeded & Los mismos que para el modelo B & Hasta la fecha, únicamente:
+%\end{itemize} 
+
+%\begin{itemize}
+
+Ubuntu Snappy Core, Raspbian, OpenELEC, RISC OS, Según la web de ArchLinux, también soporta este sistema operativo \footnote{\href{http://archlinuxarm.org/platforms/armv7/broadcom/raspberry-pi-2}{archlinuxarm.org/platforms/armv7/broadcom/raspberry-pi-2}} \\
+%\end{itemize}\\ 
+\hline % 
+
+Otros & Modelo descatalogado, el soporte oficial y proporcionado por la comunidad probablemente será menor que para los modelos más recientes en el futuro. &  & Lleva poco tiempo en el mercado (apenas un mes). Se conocen pequeños fallos en el hardware (fotosensibilidad de algún componente).\\ \hline
+
 \end{tabular}
 \end{table}
 \end{landscape}
 
-\subsection{Esquemas de comunicación}
 
-\subsubsection{Comando \textbf{Marco}}
+% \verb{[1] Software para Raspberry Pi http://en.wikipedia.org/wiki/Raspberry_Pi#Software
+% [3] Comparativa de placas https://learn.adafruit.com/embedded-linux-board-comparison/performance
+% [4] Comparativa de modelos (B+ contra Rev 2) https://learn.adafruit.com/introducing-the-raspberry-pi-2-model-b/performance-improvements
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{Diagrams/Sequence/marcocompleto}
-\caption[Interacción al enviar el comando \textbf{Marco}]{Interacción al enviar el comando \textbf{Marco}. Los mensajes a grupos \textit{multicast} se indican con ``*''}
-\label{fig:secuencia_marco}
-\end{figure}
+% [8]  RasPiTV - 
+% How Much Less Power does the Raspberry Pi B+ use than the old model B? http://raspi.tv/2014/how-much-less-power-does-the-raspberry-pi-b-use-than-the-old-model-b}
+\begin{landscape}
+\subsection{Elección del sistema operativo}
+\label{os:evaluation}
+\begin{table}[h]
+\begin{tabular}{|p{2cm}|p{4cm}|p{5cm}|p{3cm}|p{4cm}|p{4cm}|}
+\hline
+Nombre & Enfoque & Características notables & Ventajas & Inconvenientes & Software disponible\\ \hline
+ArchLinux ARM & Distribucion ligera centrada en el minimalismo y la disponibilidad de software novedoso. Requiere sin embargo que el usuario conozca el entorno GNU/Linux antes de utilizarlo & Muy optimizado con un ciclo de desarrollo que permite contar con software puntero en poco tiempo & Eficiente, gran comunidad alrededor, relativamente sencillo de utilizar & En ocasiones puede ser complejo su uso. Ya no se incluye en las distribuciones por defecto de la Fundacion Raspberry Pi, lo cual puede suponer falta de soporte oficial & 8700 paquetes disponibles en los repositorios oficiales, más pequeño que para otras distribuciones, si bien no se ha encontrado aun software no compatible\\ \hline
 
-El comando Marco se envía al grupo \textit{multicast} definido en la configuración de la instancia local de \textbf{Marco}. Los nodos suscritos a dicho grupo (aquellos que pertenecen a la ``malla'') reciben el mensaje y emiten una respuesta \textbf{Polo}. Debido a la falta de una conexión entre los nodos (debido a que todos los mensajes son intercambiados utilizando el protocolo UDP) se fija un tiempo de espera de respuesta, durante el cual se reciben y acumulan todas las respuestas. Al final dicho tiempo de espera, se retornan los resultados y el resto de respuestas son ignoradas.
+Ubuntu Snappy Core & Centrado en la facilidad de uso & Es la distribución más popular (en equipos de escritorio) con gran cantidad de paquetes disponible & Fácil de configurar, gran cantidad de soporte & Aún no ha sido probado en la Raspberry de forma intensiva.El rendimiento de ubuntu suele ser menor al de otros sistemas operativos debido a la gran cantidad de paquetes incluidos por defecto. & \\ \hline 
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth]{Diagrams/Sequence/request_for}
-	\caption[Interacción al enviar el comando \textbf{Request-For}]{Diagrama de interacción al enviar el comando \textbf{Request-For}. Los nodos comprueban si deben ofrecer el servicio identificado por la clave \textit{s}. En caso de que la búsqueda sea exitosa se retorna un mensaje indicando la disponibilidad de dicho nodo. En caso contrario no habrá respuesta alguna.
-	Los mensajes enviados a grupos \textit{multicast} se indican con ``*''}
-	\label{fig:secuencia_request_for}
-\end{figure}
+Raspbian & & & & &\\ \hline
+\end{tabular}
+\end{table}
+\end{landscape}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth]{Diagrams/Sequence/services}
-	\caption[Diagrama de interacción al enviar el comando \textbf{Services}]{Diagrama de interacción al enviar el comando \textbf{Services}. El nodo al que se le envía el comando consulta la información sobre los servicios que posee y posteriormente envía una respuesta a la instancia de Marco que ha realizado la consulta. Obsérvese toda la información es enviada en modo \textit{unicast}}
-	\label{fig:secuencia_services}
-\end{figure}
+\begin{landscape}
+\begin{table}[h]
+\begin{tabular}{|p{2cm}|p{4cm}|p{5cm}|p{3cm}|p{4cm}|p{4cm}|}
+\hline
+Nombre & Enfoque & Características notables & Ventajas & Inconvenientes & Software disponible\\ \hline
 
-\subsection{Arquitectura en detalle}
+RISC OS & Diseñado específicamente para la arquitectura ARM, aprovechando las posibilidades de dicha arquitectura & Eficiente, basado en el RISCOS original, incluyendo características del mismo. Sistema monousuario con multitarea cooperativa (en contraste con multihilo o multitarea apropriativa) & Muy eficiente & No esta basado en un sistema conocido previamente. Relativamente desfasado en cuanto a la arquitectura del Sistema Operativo. El software suele ser programado en BBC BASIC & \\ \hline
 
-La funcionalidad del protocolo se segmenta en dos roles claramente definidos e identificados: \textbf{Marco} y \textbf{Polo}. Dicha funcionalidad se implementa en dos ejecutables completamente independientes, que pueden por tanto coexistir o ser ejecutados sin presencia del otro elemento.
+Gentoo & Diseñado para permitir la personalización del sistema al máximo nivel posible & Enfocado en la personalizacion, siendo el sistema compilado en la maquina sobre la que se va a utilizar en vez de ser descargado como archivo binario & Permite ser modificado de forma sencilla & Poco soportado en Raspberry Pi & \\ \hline
 
-Dichos ejecutables son iniciados al arranque el equipo, aprovechando para ello las herramientas que el sistema operativo provee\footnote{Los ejecutables han sido configurados para ser compatibles con el inicializador \textbf{init} y el más reciente \textbf{systemd}.}, y se ejecutan en segundo plano de forma continua (es por ello pueden ser categorizados como procesos \textit{daemon}).
+Windows 10 & Diseñado para el paradigma IoT & Sencillo de utilizar, con soporte (previsiblemente) del \textit{framework} .NET & Aún no se encuentra disponible\cite{windows10raspberry}. Esta diseñado para un proposito especifico. No compatible con software para Linux de forma nativa & & \\ \hline
 
-Toda la funcionalidad se ejecuta en un único proceso que se encarga de la creación de los diferentes canales de comunicación (utilizando la API de \textit{sockets} de Berkeley). Dichos canales de comunicación son gestionados por la utilidad \textbf{Twisted}\stepcounter{undefinedreferences}, que simplifica el trabajo con la API, en particular a la hora de crear \textit{sockets} asíncronos.
+\end{tabular}
+\end{table}
+\end{landscape}
 
-\subsubsection{Configuración}
 
-Todos los aspectos modificables de cada rol, tales como el grupo \textit{multicast} al que suscribirse o el tiempo de espera predeterminado se definen en un archivo de configuración alojado en el directorio \texttt{/etc/marcopolo} (siguiendo la estructura definida en el \textit{Filesystem Hierarchy Standard} \cite{fhs}).
+\section{Propuesta de solución definitiva}
 
-\begin{figure}[H]
-	\centering
-	\VerbatimInput{/home/martin/TFG/Documentación/memoria-tfg/memoria/Code/confdir.txt} %TODO
-	\caption{Árbol de directorios dentro del directorio de configuración}
-	\label{fig:arbol_marcopoloconf}
-\end{figure}
+En función de la evaluación llevada a cabo se extraen las siguientes decisiones de diseño que conforman la propuesta de solución definitiva:
 
-Los archivos de configuración de cada uno de los \textit{daemons} sigue la típica estructura clave-valor presente en archivos de configuración de servicios del sistema. Por el contrario, la información de todos los servicios a ofrecer sigue la sintaxis de un fichero \textbf{JSON}\footnote{La razón de esta decisión de diseño es la facilidad de interpretación de dicho formato y la legibilidad que ofrecen.}. Todos estos ficheros son leídos al arrancar el ejecutable, y su modificación no tendrá efectos hasta la próxima vez que se inicie el servicio (salvo excepciones que veremos a continuación).
+\subsection{Hardware}
 
-\javascriptcode{statusmonitor}{Un archivo que describe el servicio status monitor}{1}{4}
+Todo el sistema se construirá sobre placas \textbf{Raspberry Pi} debido a su alta versatilidad, gran potencia de cálculo, interfaces de comunicación, soporte por parte de las diferentes comunidades de desarrolladores y consumo eléctrico.
 
-\subsubsection{Archivos auxiliares}
+\subsection{Sistema operativo}
 
-\paragraph{Log}
-Toda la información sobre la ejecución de los \textit{daemons} se refleja en los archivos de \textit{log} presentes en el directorio \texttt{/var/log/marcopolo}. El nivel de log se configura en el parámetro \texttt{LOGLEVEL} de cada uno de los \textit{daemons} y puede tomar uno de los siguientes valores:
+El sistema operativo a utilizar será \textbf{Arch Linux ARM}, debido a la gran comunidad de soporte con la que cuenta, compatibilidad con la gran mayoría de componentes presentes en un sistema GNU/Linux y modelo arquitectónico que apuesta por la simplicidad del sistema, \textit{limpieza} arquitectónica y eficiencia.
 
-\begin{itemize}
-\item \textbf{Error} Errores internos durante la ejecución.
-\item \textbf{Warn} Advertencias sobre posibles situaciones atípicas.
-\item \textbf{Info} Información de interés sobre el funcionamiento del sistema.
-\item \textbf{Debug} Información de depuración.
-\end{itemize}
+\subsection{Herramientas de desarrollo a utilizar}
 
-%\logcode{/home/martin/TFG/Documentación/memoria-tfg/memoria/Code/marcod}{Caption}{1}{3} %TODO
-
-\paragraph{Registro de ejecución}
-
-En ocasiones es necesario conocer el identificador del proceso \textbf{PID} del \textit{daemon}. Para ello se almacena en el directorio \texttt{/var/run/marcopolo/(marco.pid|polo.pid)} dicho identificador, que puede ser aprovechado por el gestor de arranque del proceso.
-
-\subsection{Integración de los \textit{daemons} en el sistema operativo}
-
-Los \textit{daemons} se integran en el arranque del sistema a través de los ficheros de configuración de \texttt{init}\citationneeded{} o \texttt{systemd} dependiendo del gestor disponible en el sistema operativo sobre el que se ejecuten los procesos.
-
-Por defecto los \textit{daemons} se ejecutan durante todo el ciclo de vida del computador, pero pueden ser reiniciados o detenidos arbitrariamente por voluntad del administrador:
-
-\begin{lstlisting}
-systemctl start (marco|polo)
-systemctl stop (marco|polo)
-systemctl restart (marco|polo)
-systemctl reload polo #Orden exclusiva de Polo
-\end{lstlisting}
-
-El comando \texttt{reload} permite actualizar la lista de servicios que \textbf{Polo} ofrece sin tener que detener todo el proceso para ello. Dicho comportamiento se consigue de forma similar al comando \texttt{reload} de Apache, enviando la señal \texttt{SIGUSR1} al proceso. 
-
-\subsection{Conexiones con MarcoPolo (\textit{Bindings})}
-
-La funcionalidad de \textbf{MarcoPolo} no se limita al descubrimiento de los servicios del sistema, por lo que es necesario proveer a los usuarios del clúster de herramientas que permitan integrar sus aplicaciones distribuidas con estos servicios. Dichas herramientas, conocidas generalmente como \textit{bindings}, permiten exponer públicamente la funcionalidad de \textbf{MarcoPolo} para que pueda ser aprovechada por otros usuarios.
-
-Se han creado \textit{bindings} para los lenguajes de programación \textbf{Python} y \textbf{Java} y se plantea crear uno para el lenguaje \textbf{C}. Todos ellos son consistentes entre sí, y utilizan la misma sintaxis para realizar el mismo tipo de operación a la vez que aprovechan las características propias de cada lenguaje. Dicha filosofía está inspirada en el funcionamiento de las primitivas de la API de resolución de nombres en red (\texttt{netdb.h})\cite{netdb}, por lo que los \texttt{bindings} se comunican con la instancia local de Marco o Polo a través de \textit{sockets} vinculados a la dirección IP local (127.0.1.1).
-
-Todos los \textit{bindings} deben implementar el mismo conjunto de primitivas, a saber:
-
-\paragraph{Primitivas en el \textit{binding} de Marco}
-\begin{itemize}
-\item \texttt{request\_for(service, timeout=None)}
-Retorna una lista de nodos que ofrecen el servicio indicado en \texttt{service}. Esta función bloquea la ejecución del proceso hasta que el tiempo de espera de nuevas respuestas se cumple (si bien esto no constituye un problema para la mayoría de aplicaciones, es importante que sea conocido por el programador). Si se especifica un \texttt{timeout}, este se utiliza en lugar del determinado por defecto en los parámetros de configuración de \textbf{MarcoPolo}. Se lanza una excepción o un código de error en caso de que la comunicación con la instancia de \textbf{Marco} sea infructuosa (generalmente este tipo de problemas se originan debido a un fallo en el arranque del servicio). Toda la información es transferida en cadenas JSON codificadas en UTF-8.
-
-
-\item \texttt{getOneNode(criteria=None, timeout=None)}
-
-Retorna un nodo elegido aleatoriamente entre las respuestas (en concreto, el nodo cuya respuesta llegue primero). Si se especifica un criterio en la variable \texttt{criteria} se elegirá el nodo que mejor satisfaga dicho criterio. %TODO in sphinx and MarcoPolo
-
-\item \texttt{getAllNodes(timeout=None)}
-Retorna todos los nodos disponibles en la \textit{malla} sin considerar los servicios ofertados. Se lanza una excepción o un código de error en caso de que la comunicación con la instancia de \textbf{Marco} sea infructuosa.
-
-\item \texttt{getNodeInfo(ip)} %TODO Timeout
-Obtiene la información de un nodo identificado por su \texttt{ip} si este está disponible en la red.
-
-\end{itemize}
-
-\paragraph{Primitivas en el \textit{binding} de Polo}
-
-\begin{itemize}
-\item \texttt{register\_service(service, params=None)}
-
-Añade un nuevo servicio al conjunto de servicios ofertados. El servicio únicamente será ofertado durante el ciclo de vida de la instancia local de Polo. Si esta es detenida o reiniciada se procederá a la eliminación del registro. Para registrar un servicio de forma permanente es necesario definirlo en el directorio \texttt{/etc/marcopolo} %TODO add section reference.
-
-\item \texttt{remove\_service(service)}
-Elimina un servicio de la lista de ofertados. Para poder realizar este proceso es necesario ser el ``propietario'' del servicio. Esto es, el único proceso que puede eliminar un servicio es aquel que lo creó o en su defecto la instancia de \textbf{Polo}. En caso de que esta restricción sea quebrantada, una excepción o código de error será retornado.
-
-\item \texttt{have\_service(service)}
-Indica si el servicio está ofertado o no.
-
-\end{itemize}
-
-Como se puede observar, la mayoría de primitivas tienen como objetivo el descubrimiento y publicación de servicios. Sin embargo, varias de ellas permiten realizar consultas sobre la información del propio nodo y se plantea la creación de más primitivas que sigan dicha filosofía.
-
-\section{Aplicaciones construidas sobre MarcoPolo}
- 
-\subsection{Utilidades}
-
-A fin de simplificar al máximo el funcionamiento de los \textit{daemons} varias utilidades que podrían tener cabida dentro del propio protocolo han sido creadas como utilidades independientes que aprovechan la funcionalidad de \textbf{MarcoPolo} para realizar su cometido, pero cuya interdependencia se limita a dichos canales de comunicación.
-
-\subsubsection{\texttt{marcodiscover}}
-\label{marcodiscover}
-Esta utilidad consiste en un comando que permite ejecutar consultas al sistema a través de un intérprete de órdenes. El comando posibilita realizar la mayoría de consultas de interés y cuenta con varias opciones para dar diferentes formatos a la salida por pantalla, algo que, como veremos posteriormente, es de gran utilidad para la ejecución de un conjunto particular de programas.
-
-Las opciones del comando son las siguientes:
-
-\begin{figure}[H]
-\centering
-\begin{lstlisting}
-usage: marcodiscover.py [-h] [-d [ADDRESS]] [-s [SERVICE]] [-S [SERVICES]]
-                        [-n [NODE]] [--sh [SHELL]]
-
-Discovery of MarcoPolo nodes in the subnet
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -d [ADDRESS], --discover [ADDRESS]
-                        Multicast group where to discover
-  -s [SERVICE], --service [SERVICE]
-                        Name of the service to look for
-  -S [SERVICES], --services [SERVICES]
-                        Discover all services in a node
-  -n [NODE], --node [NODE]
-                        Perform the discovery on only one node, identified by
-                        its ip/dns name
-  --sh [SHELL], --shell [SHELL]
-                        Print output so it can be used as an interable list in
-                        a shell
-
-\end{lstlisting}
-\caption{Opciones de configuración de \texttt{marcodiscover}}
-\label{fig:marcodiscover_help}
-\end{figure}
-
-\subsubsection{Marcoinstallkey}
-\label{marcoinstallkey}
-
-\subsection{Aplicaciones construidas sobre MarcoPolo}
-
-A fin de aprovechar la funcionalidad de \textbf{MarcoPolo} dentro del sistema, se crean las siguientes utilidades
-
-\subsubsection{Status Monitor}
-
-El monitor de estado consiste en una aplicación con interfaz web que permite observar las estadísticas de uso del \textit{hardware} y de diversos procesos. Utiliza para la detección de los diferentes nodos el \textit{binding} de \textbf{Marco} en Python que realiza una consulta para descubrir que nodos están dispuestos a ofrecer el servicio \texttt{statusmonitor}. La respuesta de dicho comando es enviada al cliente, que establece conexiones directas a cada uno de los nodos a través de \textit{Websockets}\citationneeded. Esto es posible debido a que según la especificación del estándard de websockets, la \textit{Same-Origin Policy}\cite{rfc6455} no es utilizada de la misma forma que en peticiones HTTP,\cite{rfc6454}.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{Diagrams/Sequence/statusmonitor}
-\caption[Interacción completa del usuario con \textbf{Statusmonitor}]{Interacción completa del usuario con \textbf{statusmonitor}. Los mensajes a grupos \textit{multicast} se indican con ``*''}. El usuario se conecta a la página web, que en respuesta envía un código \textit{JavaScript} (además del código HTML y CSS) que solicita la lista de nodos disponibles. Una vez recibida la petición de los nodos disponibles, el servidor solicita dicha información a través de su instancia local de \textbf{Marco} (utilizando para ello un \textit{binding}. Cuando la instancia de \textbf{Marco} termina de recoger las respuestas, retorna la información al servidor, que a su vez retorna dicha información al cliente. Al recibir dicha información, el nodo crea una conexión \textit{Websocket} con el servicio statusmonitor que se encarga de enviar por dicha conexión la información local a intervalos de tiempo definidos.)
-\label{fig:secuencia_statusmonitor}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth]{Chapter4/Figures/statusmonitor}
-	\caption[Vista de la interfaz web de \textbf{Statusmonitor} una vez obtenidos los nodos]{Vista de la interfaz web una vez obtenidos los nodos y establecida la conexión a los mismos. Se observa el porcentaje de memoria y principal y de intercambio utilizadas, la temperatura del procesador, los procesos con más consumo de CPU} %TODO: y el porcentaje de CPU utilizado en cada núcleo.
-	\label{fig:vista_statusmonitor}
-\end{figure}
-
-Para conocer la información sobre el sistema el proceso servidor utiliza varios comandos y ficheros auxiliares, destacando:
-
-\begin{itemize}
-\item \texttt{top} Para conocer la información sobre los procesos más activos
-\item El directorio \texttt{/proc} para conocer estadísticas del sistema como la memoria total, libre y en caché
-\item El directorio \texttt{/sys} para conocer características del hardware como la temperatura
-\item Comandos como \texttt{uptime} o \texttt{hostname} para conocer diversos parámetros del sistema.
-\item Herramientas como \texttt{awk}, \texttt{grep} o \texttt{cut} para obtener las cadenas de interés dentro del comando de respuesta.
-\end{itemize}
-
-Dichos comandos son ejecutados periódicamente mediante el gestor de eventos \texttt{ioloop} de \textbf{Tornado}.
-
-La implementación del servicio está realizada íntegramente en Tornado\footnote{Más información sobre el proyecto puede encontrarse en \href{http://www.tornadoweb.org/en/stable/}{tornadoweb.org/en/stable}}, un servidor web ligero asíncrono implementado íntegramente en Python y mantenido por Facebook.
-
-\subsubsection{Deployer}
-
-El \textbf{Deployer} es una herramienta concebida a partir de la necesidad observada entre los estudiantes de las asignaturas Sistemas Distribuidos y Arquitectura de Computadores (como se refleja en las diferentes evaluaciones\citationneeded %TODO
-realizadas), de replicar de una forma sencilla un ejecutable entre los diferentes nodos que conformarán el sistema distribuido.
-
-Actualmente la infraestructura cuenta con un servidor NFS que posibilita la disponibilidad de la información en varios nodos de forma sencilla, mediante la copia a uno de los directorios alojados en el servidor. Sin embargo, este enfoque presenta varios inconvenientes: en el aspecto técnico supone una gran cantidad de ancho de banda consumido de forma continua (debido a que todos los estudiantes utilizan la misma infraestructura y realizan un gran número de operaciones de lectura y escritura a estos directorios, ralentizando el funcionamiento general del sistema enormemente) y en el aspecto didáctico, fomenta un mal hábito, pues los estudiantes no conocen otra forma de realizar despliegues más allá de la copia utilizando una interfaz gráfica y accediendo físicamente al nodo (si bien esta situación se mitiga en la asignatura Sistemas Distribuidos, donde deben automatizar los despliegues). Además, es necesario disponer de acceso físico a cada uno de los nodos, o en su defecto, conocer sus direcciones de red para realizar un acceso remoto.
-
-Con el objetivo de proporcionar una alternativa adecuada a las necesidades y problemas descritos, surge esta herramienta, que aprovecha la funcionalidad de \textbf{MarcoPolo} para realizar su cometido.
-
-La herramienta permite realizar las siguientes tareas de forma sencilla:
-
-\begin{itemize}
-\item Conocer todos los nodos disponibles sobre los que se podrá realizar el despliegue y seleccionar sobre cuáles de ellos trabajar.
-%\item Conocer la situación de cada nodo en tiempo real, aprovechando la herramienta \textbf{statusmonitor}, cuya funcionalidad se integra en este sistema.
-\item Permitir la copia a dichos nodos.
-\item Posibilitar la ejecución de comandos de forma remota una vez que el despliegue ha sido realizado.
-\item Facilitar la integración con contenedores de servicios, tales como \textbf{Apache Tomcat}.
-\end{itemize}
-
-La aplicación es accesible a través de un panel web %TODO: o del comando marcodeploy
-. La interfaz web permite además conocer el estado de cada nodo en tiempo real, funcionalidad que a través de la línea de órdenes está disponible a través de los comandos %TODO: marcostatus
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{Chapter4/Figures/deployer}
-\caption[Interfaz web del deployer]{Interfaz web del deployer. A la izquierda figuran los controles y a la derecha la lista de nodos sobre los que se puede realizar el despliegue}
-\label{fig:vista_deployer}
-\end{figure}
-
-Al igual que en el caso de la aplicación \textbf{statusmonitor} el \textbf{deployer} está creado utilizando el servidor web \textbf{Tornado} y todo el contenido enviado al usuario se reduce a archivos HTML, CSS y JavaScript. La comunicación entre el cliente y el servidor se realiza a través de peticiones \textit{AJAX} y \textit{Websockets}. Todo el control de la interfaz se delega a hojas de estilo CSS y JavaScript utilizando la biblioteca jQuery\footnote{\href{https://jquery.com/}{jquery.com/}}.
-
-\paragraph{Autenticación}
-
-La autenticación de los usuarios se realiza mediante el módulo \textbf{PAM} presente en cada nodo\citationneeded{}, utilizando \textbf{python-pam} para el acceso al mismo desde \textbf{Python}\cite{python-am}.
-
-%TODO: \begin{figure}[H]
-% \centering
-% %\includegraphics[width=\textwidth]{Chapter4/Sequence}
-% %\caption{Diagrama de secuencia de la interacción}
-% %\label{fig:sequence_deployer}
-% \end{figure}
-
-\subsection{Herramientas de gestión}
-
-\subsubsection{pam\_mkhomedir}
-\label{pam_mkpolohomedir}
-
-\textbf{PAM} permite ampliar la funcionalidad que ofrece por defecto mediante la inclusión de \textit{módulos}, pequeñas bibliotecas compartidas de código con las acciones a realizar.
-
-Uno de los módulos incluidos en la instalación por defecto de \textbf{PAM} es \textbf{mkhomedir}, encargado de la creación de un directorio propio para el usuario en caso de que aún no se haya realizado dicha acción. El proceso consiste en una copia del directorio \textbf{skeleton} (generalmente situado en \texttt{/etc/skel}) y la correcta fijación de permisos en el mismo.
-
-Sin embargo, el directorio únicamente es creado en el nodo al que se accede. La filosofía del proyecto se basa en la creación de un sistema que se componga de varias unidades, pero se comporten como una única entidad, por lo que obligar al usuario a acceder a todos los nodos para poder trabajar en el sistema completo rome dicha transparencia. Es por ello necesario contar con un sistema que extienda la funcionalidad de \textbf{mkhomedir} para incluir el resto de nodos en la creación del directorio.
-
-Con este objetivo nace \textbf{pam\_mkpolopohomedir}, un módulo basado en \textbf{mkhomedir} que hace uso de \textbf{MarcoPolo} para detectar los nodos presentes en la red que ofrezcan el servicio \texttt{polousers} y solicitar a los mismos la creación del directorio de inicio.
-
-El módulo se implementa en C/C++ debido a que es el lenguaje con el que los módulos de PAM se construyen por defecto y utiliza por tanto el \textit{binding} de MarcoPolo para este lenguaje. Existen sin embargo herramientas para desarrollar el mismo en Python\footnote{\citationneeded{python-pam}}.
-
-Un módulo en PAM debe implementar una serie de funciones que constituirán los puntos de entrada al módulo\citationneeded{pam manpages}:
-
-\begin{itemize}
-\item \texttt{PAM\_EXTERN int pam\_sm\_open\_session(pam\_handle\_t \* pamh, int flags, int argc ,const char **argv)}\\
-
-Es la función que \textbf{PAM} invoca al incluir el módulo. Incluye en el mismo una estructura \texttt{pam\_handle\_t} con toda la información relevante sobre el usuario que ha iniciado sesión y los parámetros indicados en los ficheros de configuración de \texttt{PAM} (en el caso de este módulo, los permisos del directorio de inicio y la localización del directorio \textit{skeleton}). 
-
-%comoPpunto de entrada al móduloal inicialmente
-
-\item \texttt{PAM\_EXTERN int pam\_sm\_close\_session(pam\_handle\_t * pamh, int flags, int argc, const char **argv)}
-
-Es la función que \textbf{PAM} utiliza para indicar al módulo que la sesión ha terminado. En el caso del módulo a crear no se debe realizar ninguna acción en este evento, sin embargo es necesario implementarla debido a que PAM la requiere.
-
-\item \texttt{struct pam\_module \_pam\_mkhomedir\_modstruct}
-
-Define las características del módulo y los puntos de entrada que define.
-\end{itemize}
-
-El módulo realiza la siguiente secuencia de pasos:
-
-\begin{enumerate}
-\item Determina la información de interés a partir de los datos provistos por \textbf{PAM} y las acciones a llevar a cabo. En caso de que el directorio ya exista, se omite la creación del mismo y únicamente se solicita la creación en el resto de nodos\footnote{Este paso siempre es necesario para facilitar la expansibilidad del sistema: añadir un nuevo nodo tras la creación del directorio en el resto haría que este no fuera accesible de no ser por la repetición de este paso}.
-\item Realiza si es necesaria la creación del directorio en el nodo actual.
-\item Detecta con \textbf{MarcoPolo} el resto de nodos dispuestos a colaborar en el sistema (aquellos que oferten el servicio \textbf{polousers}).
-\item Solicita a cada uno de ellos la creación del directorio.
-\item Una vez que todos los nodos han realizado la acción solicitada, se da acceso al sistema.
-\end{enumerate}
-
-Todas las operaciones realizan escrituras en ficheros de \textbf{log} para su posterior análisis.
-
-\paragraph{Seguridad}
-
-Al tratarse de acciones llevadas a cabo por usuarios con privilegios elevados y que involucran la gestión de información personal, todas las comunicaciones se realizan utilizando conexiones cifradas mediante \textit{sockets} \textbf{TLS} (\textit{Transport Layer Security}) con certificados en ambos lados de la conexión, que son verificados por el contrario.
-
-\paragraph{Extensibilidad}
-
-El módulo ha sido diseñado con el objetivo de posibilitar la adición de nueva funcionalidad al mismo. Únicamente es necesario definir las acciones a llevar a cabo en el servicio \textbf{polousers} y solicitar su realización mediante la sintaxis de comandos de \textbf{MarcoPolo}.
-
-\subsubsection{MarcoBootstrap}
-
-Uno de los mayores problemas a la hora de gestionar un sistema con un número de componentes elevado es la instalación de todos los componentes y la actualización de los mismos. \textbf{MarcoBootstrap} es una herramienta que posibilita la instalación del sistema operativo de forma autónoma y que únicamente requiere la copia en la tarjeta SD del sistema de un pequeño conjunto de utilidades, cuyo tamaño es 33 \textit{megabytes}.
-
-%\ref{marcobootstrap}
-
-\subsubsection{Marcologger}
-\subsection{Herramientas didácticas}
-
-\subsubsection{The LED API}
-
-\subsubsection{MusicPI}
-
-
-\subsection{Pruebas de concepto}
-
-%\includegraphics{Chapter4/ScreenShot.png}http://www.bootc.net/archives/2012/05/26/how-to-build-a-cross-compiler-for-your-raspberry-pi/
+Se plantea el uso del lenguaje de programación Python como herramienta principal de desarrollo, debido a su potencia de cálculo y simplicidad, que permite crear aplicaciones que consuman pocos recursos (aspecto vital, máxime cuando se utilizará sobre un sistema con un \textit{hardware} poco potente) de forma sencilla y rápida.
