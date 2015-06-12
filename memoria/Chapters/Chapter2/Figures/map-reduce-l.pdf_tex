@@ -1,0 +1,100 @@
+%% Creator: Inkscape inkscape 0.48.4, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'map-reduce-l.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{1200bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.43333333)%
+    \put(0,0){\includegraphics[width=\unitlength]{map-reduce-l.pdf}}%
+    \put(0.25053459,0.3578793){\color[rgb]{0.64313725,0,0}\makebox(0,0)[b]{\smash{<key1, val1>}}}%
+    \put(0.3599266,0.35747794){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{map}}}%
+    \put(0.25053459,0.32671708){\color[rgb]{0.64313725,0,0}\makebox(0,0)[b]{\smash{<key2, val2>}}}%
+    \put(0.3599266,0.32631572){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{map}}}%
+    \put(0.61532617,0.3323362){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{reduce}}}%
+    \put(0.70364299,0.33324082){\color[rgb]{0.30588235,0.60392157,0.02352941}\makebox(0,0)[lb]{\smash{<okey1, oval1>}}}%
+    \put(0.61532613,0.30117399){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{reduce}}}%
+    \put(0.70364299,0.30207861){\color[rgb]{0.30588235,0.60392157,0.02352941}\makebox(0,0)[lb]{\smash{<okey2, oval2>}}}%
+    \put(0.25053459,0.28193651){\color[rgb]{0.64313725,0,0}\makebox(0,0)[b]{\smash{<key3, val3>}}}%
+    \put(0.3599266,0.28153516){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{map}}}%
+    \put(0.25053465,0.16729435){\color[rgb]{0.64313725,0,0}\makebox(0,0)[b]{\smash{<key500, val500>}}}%
+    \put(0.35992664,0.16689299){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{map}}}%
+    \put(0.49298922,0.13623374){\color[rgb]{0.1254902,0.29019608,0.52941176}\makebox(0,0)[b]{\smash{<ikey2, ival521>}}}%
+    \put(0.25053459,0.13613214){\color[rgb]{0.64313725,0,0}\makebox(0,0)[b]{\smash{<key501, val501>}}}%
+    \put(0.3599266,0.13573077){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{map}}}%
+    \put(0.61548568,0.13532912){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{reduce}}}%
+    \put(0.69175757,0.13623374){\color[rgb]{0.30588235,0.60392157,0.02352941}\makebox(0,0)[lb]{\smash{<okey150, oval150>}}}%
+    \put(0.25069407,0.10507153){\color[rgb]{0.64313725,0,0}\makebox(0,0)[b]{\smash{<key502, val502>}}}%
+    \put(0.36008606,0.10467017){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{map}}}%
+    \put(0.49314868,0.10507153){\color[rgb]{0.1254902,0.29019608,0.52941176}\makebox(0,0)[b]{\smash{<ikey150, ival522>}}}%
+    \put(0.45859981,0.3578793){\color[rgb]{0.1254902,0.29019608,0.52941176}\makebox(0,0)[lb]{\smash{<ikey1, ival1>}}}%
+    \put(0.45859981,0.32671708){\color[rgb]{0.1254902,0.29019608,0.52941176}\makebox(0,0)[lb]{\smash{<ikey2, ival2>}}}%
+    \put(0.45859981,0.29555487){\color[rgb]{0.1254902,0.29019608,0.52941176}\makebox(0,0)[lb]{\smash{<ikey1, ival3>}}}%
+    \put(0.45859981,0.26572599){\color[rgb]{0.1254902,0.29019608,0.52941176}\makebox(0,0)[lb]{\smash{<ikey2, ival4>}}}%
+    \put(0.49298926,0.16729435){\color[rgb]{0.1254902,0.29019608,0.52941176}\makebox(0,0)[b]{\smash{<ikey150, ival520>}}}%
+    \put(0.09274538,0.39600415){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Input}}}%
+    \put(0.25019051,0.39600415){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Input
+Pairs}}}%
+    \put(0.49277039,0.39600415){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Intermediate
+Pairs}}}%
+    \put(0.74100138,0.39600415){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Output
+Pairs}}}%
+    \put(0.90676245,0.39600415){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Output}}}%
+    \put(0.1356748,0.05606059){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Step 1:
+Split
+(Framework)}}}%
+    \put(0.37074589,0.05606059){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Step 2:
+Map}}}%
+    \put(0.53397595,0.05606059){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Step 3:
+Collect & Sort
+(Framework)}}}%
+    \put(0.65926746,0.05606059){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Step 4:
+Reduce}}}%
+    \put(0.86212337,0.05606059){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Step 5:
+Store
+(Framework)}}}%
+  \end{picture}%
+\endgroup%

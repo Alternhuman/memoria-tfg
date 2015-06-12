@@ -4,8 +4,7 @@
 
 % Set up the document
 
-%input includes
-\documentclass[a4paper, 11pt, oneside]{Thesis}  % Use the "Thesis" style, based on the ECS Thesis style by Steve Gunn
+\documentclass[a4paper, 11pt]{Thesis}  % Use the "Thesis" style, based on the ECS Thesis style by Steve Gunn
 
 \input{includes}
 
@@ -38,7 +37,7 @@ Raspberry Pi, y estudio comparativo del mismo frente a otras soluciones}
             {\href{tfg.martinarroyo.net}{Diego Martín Arroyo}}
             {Diego Martín Arroyo}
             }
-\addresses  {\groupname\\\deptname\\\univname}  % Do not change this here, instead these must be set in the "Thesis.cls" file, please look through it instead
+\addresses  {\groupname\\\deptname\\\univname}  % These must be set in the "Thesis.cls" file
 \date       {\today}
 \subject    {}
 \keywords   {}
@@ -158,7 +157,7 @@ The acknowledgements and the people to thank go here, don't forget to include yo
 
 %\input{Appendices/AppendixC} % Appendix Title
 
-%\addtocontents{toc}{\vspace{2em}}  % Add a gap in the Contents, for aesthetics
+\addtocontents{toc}{\vspace{2em}}  % Add a gap in the Contents, for aesthetics
 \backmatter
 \nocite{Coulouris:2011:DSC:2029110}
 \nocite{insideappletalk}
