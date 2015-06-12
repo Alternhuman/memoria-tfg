@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.5-0.9999.3 (TeX Live 2013/Debian) (format=xelatex 2015.4.7)  12 JUN 2015 20:13
+This is XeTeX, Version 3.1415926-2.5-0.9999.3 (TeX Live 2013/Debian) (format=xelatex 2015.4.7)  12 JUN 2015 23:20
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -969,286 +969,287 @@ Overfull \hbox (79.69481pt too wide) in paragraph at lines 22--23
 con apro-xi-ma-da-men-te 600 alumnos$[]$con
  []
 
-[34] [35] [36]
-Overfull \hbox (2.7757pt too wide) in paragraph at lines 133--134
+[34] [35] [36] [37]
+Overfull \hbox (2.7757pt too wide) in paragraph at lines 146--147
 \T1/cmr/m/n/10.95 las de los equi-pos ya dis-pues-tos pa-ra fi-nes si-mi-la-res
  a es-te en el Centro$[]$: 
  []
 
-[37]
-Overfull \hbox (0.89383pt too wide) in paragraph at lines 145--146
+
+Overfull \hbox (0.89383pt too wide) in paragraph at lines 158--159
 [] \T1/cmr/m/n/10.95 Las ne-ce-si-da-des pro-pias de un sis-te-ma ope-ra-ti-vo 
 mul-ti-usua-rio (pre-vi-si-ble-men-te \T1/cmr/bx/n/10.95 GNU/-
  []
 
 [38] [39] [40]
-Overfull \hbox (9.65918pt too wide) in paragraph at lines 238--239
+Overfull \hbox (9.65918pt too wide) in paragraph at lines 251--252
 \T1/cmr/bx/n/10.95 Goo-gle Chro-me-cast$[]$ 
  []
 
+[41]
 Missing character: There is no € in font ecrm1095!
-[41] [42] [43] [44]
-Underfull \hbox (badness 10000) in paragraph at lines 400--400
+ [42] [43] [44] [45]
+Underfull \hbox (badness 10000) in paragraph at lines 413--413
 []\T1/cmr/bx/n/10.95 LINPACK \T1/cmr/m/n/10.95 [[]--
  []
 
 
-Underfull \hbox (badness 1383) in paragraph at lines 404--404
+Underfull \hbox (badness 1383) in paragraph at lines 417--417
 []\T1/cmr/m/n/10.95 Mediante micro-USB o los pi-nes
  []
 
 
-Underfull \hbox (badness 1383) in paragraph at lines 404--404
+Underfull \hbox (badness 1383) in paragraph at lines 417--417
 []\T1/cmr/m/n/10.95 Mediante micro-USB o los pi-nes
  []
 
 
-Underfull \hbox (badness 1383) in paragraph at lines 404--404
+Underfull \hbox (badness 1383) in paragraph at lines 417--417
 []\T1/cmr/m/n/10.95 Mediante micro-USB o los pi-nes
  []
 
 
-Underfull \hbox (badness 1253) in paragraph at lines 405--405
+Underfull \hbox (badness 1253) in paragraph at lines 418--418
 []\T1/cmr/bx/n/10.95 Sistemas ope-ra-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 405--405
+Underfull \hbox (badness 10000) in paragraph at lines 418--418
 \T1/cmr/bx/n/10.95 ti-vos com-pa-ti-
  []
 
 
-Underfull \hbox (badness 6691) in paragraph at lines 407--407
+Underfull \hbox (badness 6691) in paragraph at lines 420--420
 []\T1/cmr/m/n/10.95 Arch Li-nux ARM, Ope-nE-LEC,
  []
 
 
-Underfull \hbox (badness 1917) in paragraph at lines 407--407
+Underfull \hbox (badness 1917) in paragraph at lines 420--420
 \T1/cmr/m/n/10.95 do-ra Re-mix), Lis-ta com-ple-ta en
  []
 
 
-Underfull \hbox (badness 2376) in paragraph at lines 409--410
+Underfull \hbox (badness 2376) in paragraph at lines 422--423
 []\T1/cmr/m/n/10.95 Ubuntu Snappy Co-re, Rasp-bian,
  []
 
 
-Underfull \hbox (badness 1365) in paragraph at lines 413--413
+Underfull \hbox (badness 1365) in paragraph at lines 426--426
 []\T1/cmr/m/n/10.95 Modelo des-ca-ta-lo-ga-do, el so-por-te
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[45]
-Overfull \hbox (206.73584pt too wide) in paragraph at lines 420--424
+[46]
+Overfull \hbox (206.73584pt too wide) in paragraph at lines 433--437
 []$[]$ $[]$
  []
 
 
-Overfull \hbox (3.64227pt too wide) in paragraph at lines 420--424
+Overfull \hbox (3.64227pt too wide) in paragraph at lines 433--437
 []$
  []
 
-[46
+[47
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 432--432
+Underfull \hbox (badness 10000) in paragraph at lines 445--445
 []\T1/cmr/bx/n/10.95 Arch Li-
  []
 
 
-Underfull \hbox (badness 2671) in paragraph at lines 432--432
+Underfull \hbox (badness 2671) in paragraph at lines 445--445
 \T1/cmr/m/n/10.95 de soft-wa-re no-ve-do-so.
  []
 
 
-Underfull \hbox (badness 3078) in paragraph at lines 432--432
+Underfull \hbox (badness 3078) in paragraph at lines 445--445
 \T1/cmr/m/n/10.95 Re-quie-re sin em-bar-go
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 432--432
+Underfull \hbox (badness 10000) in paragraph at lines 445--445
 []\T1/cmr/m/n/10.95 Eficiente, gran
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 432--432
+Underfull \hbox (badness 10000) in paragraph at lines 445--445
 \T1/cmr/m/n/10.95 co-mu-ni-dad al-re-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 432--432
+Underfull \hbox (badness 10000) in paragraph at lines 445--445
 \T1/cmr/m/n/10.95 de-dor, re-la-ti-va-
  []
 
 
-Underfull \hbox (badness 1253) in paragraph at lines 432--432
+Underfull \hbox (badness 1253) in paragraph at lines 445--445
 \T1/cmr/m/n/10.95 ofi-cia-les, más pe-que-ño
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 434--434
+Underfull \hbox (badness 10000) in paragraph at lines 447--447
 []\T1/cmr/bx/n/10.95 Ubuntu
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 434--434
+Underfull \hbox (badness 10000) in paragraph at lines 447--447
 \T1/cmr/bx/n/10.95 Snappy
  []
 
 
-Underfull \hbox (badness 1158) in paragraph at lines 434--434
+Underfull \hbox (badness 1158) in paragraph at lines 447--447
 \T1/cmr/m/n/10.95 in-ten-si-va.El ren-di-mien-
  []
 
 
-Underfull \hbox (badness 6157) in paragraph at lines 436--436
+Underfull \hbox (badness 6157) in paragraph at lines 449--449
 []\T1/cmr/m/n/10.95 La ins-ta-la-ción bá-si-ca
  []
 
 
-Overfull \hbox (12.98752pt too wide) in paragraph at lines 429--438
+Overfull \hbox (12.98752pt too wide) in paragraph at lines 442--451
 [][] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[47
+[48
 
-] [48]
-Underfull \hbox (badness 10000) in paragraph at lines 448--448
+] [49]
+Underfull \hbox (badness 10000) in paragraph at lines 461--461
 []\T1/cmr/m/n/10.95 Diseñado es-pe-cí-fi-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 448--448
+Underfull \hbox (badness 10000) in paragraph at lines 461--461
 \T1/cmr/m/n/10.95 ca-men-te pa-ra la
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 448--448
+Underfull \hbox (badness 10000) in paragraph at lines 461--461
 \T1/cmr/m/n/10.95 ar-qui-tec-tu-ra ARM,
  []
 
 
-Underfull \hbox (badness 5302) in paragraph at lines 448--448
+Underfull \hbox (badness 5302) in paragraph at lines 461--461
 \T1/cmr/m/n/10.95 apro-ve-chan-do las po-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 448--448
+Underfull \hbox (badness 10000) in paragraph at lines 461--461
 \T1/cmr/m/n/10.95 si-bi-li-da-des de di-cha
  []
 
 
-Underfull \hbox (badness 1436) in paragraph at lines 448--448
+Underfull \hbox (badness 1436) in paragraph at lines 461--461
 \T1/cmr/m/n/10.95 mo-no-usua-rio con mul-ti-ta-rea
  []
 
 
-Underfull \hbox (badness 2903) in paragraph at lines 448--448
+Underfull \hbox (badness 2903) in paragraph at lines 461--461
 \T1/cmr/m/n/10.95 sis-te-ma co-no-ci-do pre-
  []
 
 
-Underfull \hbox (badness 1642) in paragraph at lines 450--450
+Underfull \hbox (badness 1642) in paragraph at lines 463--463
 []\T1/cmr/m/n/10.95 Permite ser mo-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 450--450
+Underfull \hbox (badness 10000) in paragraph at lines 463--463
 []\T1/cmr/m/n/10.95 Poco so-por-ta-do en
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 452--452
+Underfull \hbox (badness 10000) in paragraph at lines 465--465
 []\T1/cmr/bx/n/10.95 Windows
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 452--452
+Underfull \hbox (badness 10000) in paragraph at lines 465--465
 []\T1/cmr/m/n/10.95 Soporta con
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 452--452
+Underfull \hbox (badness 10000) in paragraph at lines 465--465
 \T1/cmr/m/n/10.95 un con-jun-to
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 452--452
+Underfull \hbox (badness 10000) in paragraph at lines 465--465
 \T1/cmr/m/n/10.95 de tec-no-lo-gías
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 452--452
+Underfull \hbox (badness 10000) in paragraph at lines 465--465
 \T1/cmr/m/n/10.95 co-no-ci-das no
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 452--452
+Underfull \hbox (badness 10000) in paragraph at lines 465--465
 \T1/cmr/m/n/10.95 com-pa-ti-bles con
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 452--452
+Underfull \hbox (badness 10000) in paragraph at lines 465--465
 \T1/cmr/m/n/10.95 nin-gu-na otra
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 452--452
+Underfull \hbox (badness 10000) in paragraph at lines 465--465
 \T1/cmr/m/n/10.95 al-ter-na-ti-va. Si
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 452--452
+Underfull \hbox (badness 10000) in paragraph at lines 465--465
 \T1/cmr/m/n/10.95 el so-por-te de
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 452--452
+Underfull \hbox (badness 10000) in paragraph at lines 465--465
 \T1/cmr/m/n/10.95 cons-ti-tui-ría una
  []
 
 
-Underfull \hbox (badness 2426) in paragraph at lines 452--452
+Underfull \hbox (badness 2426) in paragraph at lines 465--465
 []\T1/cmr/m/n/10.95 Aún no se en-cuen-tra
  []
 
 
-Overfull \hbox (12.98752pt too wide) in paragraph at lines 444--455
+Overfull \hbox (12.98752pt too wide) in paragraph at lines 457--468
 [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 14.52702pt on input line 456.
+LaTeX Warning: Float too large for page by 14.52702pt on input line 469.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[49]) [50
+[50] [51
+
+
+
+] [52]) [53]
+\openout2 = `Chapters/Chapter4/Chapter4.aux'.
+
+ (./Chapters/Chapter4/Chapter4.tex [54
 
 
 
 ]
-\openout2 = `Chapters/Chapter4/Chapter4.aux'.
-
- (./Chapters/Chapter4/Chapter4.tex
 Cap\'{\i }tulo 5.
 ------------------------------------------------------------------------------
  5 Análisis
 ------------------------------------------------------------------------------
-) [51
-
-
-
-]
+) [55]
 \openout2 = `Chapters/Chapter5/Chapter5.aux'.
 
- (./Chapters/Chapter5/Chapter5.tex [52
+ (./Chapters/Chapter5/Chapter5.tex [56
 
 
 
@@ -1257,10 +1258,10 @@ Cap\'{\i }tulo 6.
 ------------------------------------------------------------------------------
  6 Arquitectura física
 ------------------------------------------------------------------------------
-) [53]
+) [57]
 \openout2 = `Chapters/Chapter6/Chapter6.aux'.
 
- (./Chapters/Chapter6/Chapter6.tex [54
+ (./Chapters/Chapter6/Chapter6.tex [58
 
 
 
@@ -1269,13 +1270,13 @@ Cap\'{\i }tulo 7.
 ------------------------------------------------------------------------------
  7 Arquitectura software
 ------------------------------------------------------------------------------
-[55] [56]
+[59] [60]
 File: Chapters/Chapter6/Figures/LDAP.pdf Graphic file (type QTm)
- <use  "Chapters/Chapter6/Figures/LDAP.pdf" > [57] [58]) [59]
+ <use  "Chapters/Chapter6/Figures/LDAP.pdf" > [61] [62]) [63]
 \openout2 = `Chapters/Chapter7/Chapter7.aux'.
 
 
-(./Chapters/Chapter7/Chapter7.tex [60
+(./Chapters/Chapter7/Chapter7.tex [64
 
 
 
@@ -1284,7 +1285,7 @@ Cap\'{\i }tulo 8.
 ------------------------------------------------------------------------------
  8 Servicios del sistema operativo
 ------------------------------------------------------------------------------
-[61] [62] [63] [64] [65]
+[65] [66] [67] [68] [69]
 Underfull \hbox (badness 10000) in paragraph at lines 62--62
 []\T1/cmr/m/n/10.95 UDP \T1/cmr/m/it/10.95 mul-ti-cast \T1/cmr/m/n/10.95 al
  []
@@ -1304,13 +1305,13 @@ Overfull \hbox (1.40424pt too wide) in paragraph at lines 66--66
 []\T1/cmr/bx/n/10.95 Services| 
  []
 
-[66
+[70
 
 ]
 Overfull \vbox (9.64772pt too high) has occurred while \output is active []
 
 
-[67]
+[71]
 File: Diagrams/Sequence/marcocompleto.pdf Graphic file (type QTm)
  <use  "Diagrams/Sequence/marcocompleto.pdf" >
 File: Diagrams/Sequence/request_for.pdf Graphic file (type QTm)
@@ -1318,7 +1319,7 @@ File: Diagrams/Sequence/request_for.pdf Graphic file (type QTm)
 <use  "Diagrams/Sequence/request_for.pdf" >
 File: Diagrams/Sequence/services.pdf Graphic file (type QTm)
 
-<use  "Diagrams/Sequence/services.pdf" > [68
+<use  "Diagrams/Sequence/services.pdf" > [72
 
 ]
 Missing character: There is no ├ in font ectt0900!
@@ -1352,26 +1353,26 @@ Missing character: There is no ─ in font ectt0900!
 Missing character: There is no └ in font ectt0900!
 Missing character: There is no ─ in font ectt0900!
 Missing character: There is no ─ in font ectt0900!
- [69] (./Code/statusmonitor.json)
-[70]
+ [73] (./Code/statusmonitor.json)
+[74]
 Overfull \hbox (59.79306pt too wide) in paragraph at lines 138--139
 \T1/cmr/bx/n/10.95 PID \T1/cmr/m/n/10.95 del \T1/cmr/m/it/10.95 dae-mon\T1/cmr/
 m/n/10.95 . Pa-ra ello se al-ma-ce-na en el di-rec-to-rio \T1/cmtt/m/n/10.95 /v
 ar/run/marcopolo/(marco.pid|polo.pid)
  []
 
-[71] [72]
+[75] [76]
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/cmtt/m/n' tried instead on input line 204.
- [73]
+ [77]
 File: Diagrams/Sequence/statusmonitor.pdf Graphic file (type QTm)
- <use  "Diagrams/Sequence/statusmonitor.pdf" > [74]
+ <use  "Diagrams/Sequence/statusmonitor.pdf" > [78]
 File: Chapters/Chapter7/Figures/statusmonitor.jpg Graphic file (type QTm)
 
-<use  "Chapters/Chapter7/Figures/statusmonitor.jpg" > [75] [76] [77]
+<use  "Chapters/Chapter7/Figures/statusmonitor.jpg" > [79] [80] [81]
 File: Chapters/Chapter7/Figures/deployer.png Graphic file (type QTm)
 
-<use  "Chapters/Chapter7/Figures/deployer.png" > [78]
+<use  "Chapters/Chapter7/Figures/deployer.png" > [82]
 Overfull \hbox (0.32959pt too wide) in paragraph at lines 337--338
 []\T1/cmtt/m/n/10.95 PAM_EXTERN int pam_sm_open_session(pam_handle_t \OMS/cmsy/
 m/n/10.95 ^^B \T1/cmtt/m/n/10.95 pamh, int flags, int
@@ -1388,10 +1389,10 @@ Overfull \hbox (11.64633pt too wide) in paragraph at lines 343--344
 nt flags, int
  []
 
-[79]) [80] [81]
+[83]) [84] [85]
 \openout2 = `Chapters/Chapter8/Chapter8.aux'.
 
- (./Chapters/Chapter8/Chapter8.tex [82
+ (./Chapters/Chapter8/Chapter8.tex [86
 
 
 
@@ -1400,10 +1401,10 @@ Cap\'{\i }tulo 9.
 ------------------------------------------------------------------------------
  9 Aplicaciones
 ------------------------------------------------------------------------------
-) [83]
+) [87]
 \openout2 = `Chapters/Chapter9/Chapter9.aux'.
 
- (./Chapters/Chapter9/Chapter9.tex [84
+ (./Chapters/Chapter9/Chapter9.tex [88
 
 
 
@@ -1418,13 +1419,13 @@ Overfull \hbox (134.4371pt too wide) in paragraph at lines 13--14
 wiki.archlinux.org/index.php/The_Arch_Way. 
  []
 
-[85]
+[89]
 Overfull \hbox (51.80191pt too wide) in paragraph at lines 15--16
 \T1/cmr/m/n/10.95 es-te ti-po de computadores$[]$http://distrowatch.com/search.
 php?architecture=arm. 
  []
 
-[86]
+[90]
 Underfull \hbox (badness 5970) in paragraph at lines 36--36
 []\T1/cmr/m/n/10.95 Orientación a ob-je-tos,
  []
@@ -1439,25 +1440,25 @@ Underfull \hbox (badness 6477) in paragraph at lines 42--42
 []\T1/cmr/m/n/10.95 Multiplataforma, po-pu-
  []
 
-[87
+[91
 
 ]
 
-LaTeX Warning: Reference `eventdriven' on page 88 undefined on input line 52.
+LaTeX Warning: Reference `eventdriven' on page 92 undefined on input line 52.
 
-[88
+[92
 
-] [89] [90]
+] [93] [94] [95] [96
+
+]
 Cap\'{\i }tulo 11.
 ------------------------------------------------------------------------------
  11 Técnicas
 ------------------------------------------------------------------------------
-) [91
-
-]
+) [97]
 \openout2 = `Chapters/Chapter10/Chapter10.aux'.
 
- (./Chapters/Chapter10/Chapter10.tex [92
+ (./Chapters/Chapter10/Chapter10.tex [98
 
 
 
@@ -1466,10 +1467,10 @@ Cap\'{\i }tulo 12.
 ------------------------------------------------------------------------------
  12 Metodología de desarrollo
 ------------------------------------------------------------------------------
-) [93]
+) [99]
 \openout2 = `Chapters/Chapter11/Chapter11.aux'.
 
- (./Chapters/Chapter11/Chapter11.tex [94
+ (./Chapters/Chapter11/Chapter11.tex [100
 
 
 
@@ -1478,10 +1479,10 @@ Cap\'{\i }tulo 13.
 ------------------------------------------------------------------------------
  13 Evaluación de usuarios
 ------------------------------------------------------------------------------
-) [95]
+) [101]
 \openout2 = `Chapters/Conclusion/Conclusion.aux'.
 
- (./Chapters/Conclusion/Conclusion.tex [96
+ (./Chapters/Conclusion/Conclusion.tex [102
 
 
 
@@ -1490,7 +1491,7 @@ Cap\'{\i }tulo 14.
 ------------------------------------------------------------------------------
  14 Conclusiones
 ------------------------------------------------------------------------------
-) [97] [98
+) [103] [104
 
 
 ]
@@ -1521,7 +1522,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 19--22
 erry _ Pi _ supercomputer _
  []
 
-[99
+[105
 
 ]
 Underfull \hbox (badness 2799) in paragraph at lines 113--117
@@ -1535,7 +1536,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 113--117
 tualizado % 202-[]10-[]14 . pdf$[][]\T1/cmr/m/n/10.95 ,
  []
 
-[100]
+[106]
 Underfull \hbox (badness 3826) in paragraph at lines 134--138
 []\T1/cmr/m/n/10.95 W. A. Team, ``Win-dows 10 Co-ming to Rasp-berry Pi 2.'' Pre
 ss Re-lea-
@@ -1553,14 +1554,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 160--162
 https : / / github . com / debian-[]pi /
  []
 
-[101])
+[107])
 runsystem(wget -O Figures/protester.png -nc http://imgs.xkcd.com/comics/wikiped
 ian_protester.png)...executed.
 
 File: Figures/protester.png Graphic file (type QTm)
  <use  "Figures/protester.png" >
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 176.
- [102]
+ [108]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 176.
  (./main.aux
 LaTeX Info: Redefining \. on input line 23.
@@ -1585,12 +1586,12 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 176.
  ) 
 Here is how much of TeX's memory you used:
- 14896 strings out of 495604
- 212191 string characters out of 6186570
- 334886 words of memory out of 5000000
+ 14895 strings out of 495604
+ 212183 string characters out of 6186570
+ 334884 words of memory out of 5000000
  17637 multiletter control sequences out of 15000+600000
- 37748 words of font info for 88 fonts, out of 8000000 for 9000
+ 37062 words of font info for 87 fonts, out of 8000000 for 9000
  40 hyphenation exceptions out of 8191
  49i,18n,48p,1717b,1076s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (122 pages).
+Output written on main.pdf (128 pages).

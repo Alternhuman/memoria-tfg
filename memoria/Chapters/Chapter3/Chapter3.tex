@@ -33,19 +33,27 @@ Si bien la infraestructura existente es capaz de proveer a los estudiantes de lo
   %TODO\item Las técnicas de programación utilizadas hasta la fecha tienen un rendimiento bajo y son en ocasiones relativamente complejas.
 \end{itemize}
 
-\section{Identificación de usuarios participantes}
+\section{Identificación de \textit{stakeholders}}
+
+Un \textit{stakeholder} es cualquier grupo o individuo que tiene es afectado o afecta a la consecución de los objetivos de un proyecto marcados por una organización, así como un particular interés en el devenir del mismo. Claros ejemplos de este tipo de entidades son los diferentes usuarios finales del sistema, potenciales clientes o el equipo de desarrollo, entre muchos otros.
+
+En el proyecto en cuestión se identifican los siguientes \textit{stakeholders} y su motivación.
 
 \begin{itemize}
-  \item Estudiantes de tercer y cuarto curso del Grado en Ingeniería Informática.
-  \item Profesores de las asignaturas Arquitectura de Computadores y Sistemas Distribuidos.
-  \item Administradores del sistema.
+  \item Equipo de desarrollo. Su motivación es la consecución de todos los objetivos marcados en el sistema.
+  \item Estudiantes de tercer y cuarto curso del Grado en Ingeniería Informática, que podrán utilizar el sistema como herramienta didáctica.
+  \item Profesores de las asignaturas Arquitectura de Computadores y Sistemas Distribuidos, que aprovecharán el sistema final dichas asignaturas.
+  \item Administradores del sistema, que deberán hacerse cargo del mantenimiento del sistema a largo plazo.
 \end{itemize}
 
 \subsection{Identificación de las necesidades de cada parte}
+
+Basándose en la motivación de cada parte es posible definir las demandas de cada una de las partes. Otros mecanismos, como la realización de entrevistas u observaciones permiten complementan dicho proceso.
+
 \subsubsection{Alumnos}
 
 \begin{itemize}
-  \item Entorno de trabajo sencillo que agilice el desarrollo de sus prácticas.
+  \item Entorno de trabajo intuitivo y documentado que agilice el desarrollo de sus prácticas.
   \item Posibilidad de observar los resultados de las ejecuciones de forma sencilla.
   \item Depuración sencilla.
   \item Facilidades para el despliegue de los diferentes ejecutables en todas las máquinas, así como el consumo de los servicios que estos implementen.
@@ -57,10 +65,12 @@ Si bien la infraestructura existente es capaz de proveer a los estudiantes de lo
   \item Entorno versátil sobre el cual puedan llevarse a cabo la totalidad de las prácticas y ejercicios propuestos, aportando si es posible algún tipo de ventaja sobre el sistema en uso.
 \end{itemize}
 
-\subsection{Administrador}
+\subsection{Administradores}
 
 \begin{itemize}
-  \item Sistema integrable en la infraestructura actual cuyo mantenimiento sea sencillo y cuyo enfoque garantice la escalabilidad y su durabilidad.
+  \item Sistema integrable en la infraestructura actual cuyo mantenimiento sea sencillo y cuyo enfoque garantice la escalabilidad y su durabilidad. Documentación extensa sobre el funcionamiento interno del sistema.
+  \item Instalación y configuración simple.
+  \item Mantenimiento sencillo.
 \end{itemize}
 
 \section{Propuestas para la búsqueda de necesidades}
@@ -76,9 +86,10 @@ Si bien la infraestructura existente es capaz de proveer a los estudiantes de lo
 \subsection{Requisitos de almacenamiento de la información}
 
 \begin{itemize}
-  \item Gestión de usuarios (credenciales de autenticación)
-  \item Gestión de los datos de cada usuario
+  \item Gestión de usuarios (credenciales de autenticación).
+  \item Gestión de los datos de cada usuario.
   \item \textit{Logs} del sistema
+  \item Ficheros de configuración, bases de datos de gestión\dots
 \end{itemize}
 
 \subsection{Identificación de requisitos funcionales}
@@ -86,16 +97,18 @@ Si bien la infraestructura existente es capaz de proveer a los estudiantes de lo
 
 \subsection{Identificación de requisitos no funcionales}
 
-\begin{itemize}
-  \item El \textit{software} debe ser mantenible y robusto\footnote{Siendo dicha robustez garantizada mediante el uso de \textit{software} utilizado por una base de usuarios significativa, una arquitectura conocida, pruebas realizadas sobre él o un equipo de desarrollo en activo, entre otras}.
-  \item Reducción de los costes de desarrollo.
-  \item Definición de los protocolos de comunicación.
-  \item Definición de los protocolos de seguridad y confidencialidad.
-  \item Definición de la interacción con el usuario.
-  \item Integridad del sistema y fiabilidad (\textit{uptime}, recuperación frente a fallos).
-  \item Productos a crear.
-  \item Compatibilidad con las prácticas y ejercicios.
-\end{itemize}
+\subsubsection{Mantenimiento y robustez}
+
+El \textit{software} debe ser mantenible y robusto, siendo dicha robustez garantizada mediante el uso de \textit{software} utilizado por una base de usuarios significativa, una arquitectura conocida, pruebas realizadas sobre él o un equipo de desarrollo en activo, entre otras.
+
+\subsubsection{Reducción de los costes de desarrollo}
+\subsubsection{Definición de los protocolos de comunicación}
+\subsubsection{Definición de los protocolos de seguridad y confidencialidad}
+\subsubsection{Definición de la interacción con el usuario}
+\subsubsection{Integridad del sistema y fiabilidad (\textit{uptime}, recuperación frente a fallos)}
+\subsubsection{Productos a crear}
+\subsubsection{Compatibilidad con las prácticas y ejercicios}
+
 
 \section{Evaluación de alternativas}
 \label{alternativas}
@@ -457,15 +470,56 @@ Ubuntu Snappy Core, Raspbian, OpenELEC, RISC OS, Según la web de Arch Linux, ta
 \end{landscape}
 
 
-\section{Propuesta de solución definitiva}
+\section{Ingeniería de sistemas: propuesta de solución definitiva}
 
-En función de la evaluación llevada a cabo se extraen las siguientes decisiones de diseño que conforman la propuesta de solución definitiva:
+En esta sección se describen los aspectos a alto nivel sobre todos los componentes que se integrarán en el sistema final (tanto \textit{hardware} como \textit{software}), así como las relaciones entre los mismos. En función de la evaluación llevada a cabo se extraen las siguientes decisiones de diseño que conforman la propuesta de solución definitiva:
 
-\subsection{Hardware}
-Todo el sistema se construirá sobre placas \textbf{Raspberry Pi} debido a su alta versatilidad, gran potencia de cálculo, interfaces de comunicación, soporte por parte de las diferentes comunidades de desarrolladores y consumo eléctrico.
+\subsection{\textit{Hardware}}
 
-\subsection{Sistema operativo}
+\subsubsection{Nodos}
+
+Todo el sistema se construirá sobre placas \textbf{Raspberry Pi 2} debido a su alta versatilidad, gran potencia de cálculo, interfaces de comunicación, soporte por parte de las diferentes comunidades de desarrolladores y consumo eléctrico.
+
+\subsubsection{Equipos auxiliares}
+
+En caso de que sea necesario integrar algún nodo en el sistema se utilizarán equipos \textbf{COTS} en desuso presentes en la infraestructura. La utilización de este tipo de nodos se realizará siempre con carácter auxiliar (e.g. para ofrecer un servicio que sea difícil de soportar por los nodos principales).
+
+\subsubsection{Interconexión física}
+
+El sistema deberá interconectar los diferentes nodos utilizando la red presente en la infraestructura (basada en el protocolo IP). No obstante se plantea el uso de dispositivos de enrutado o conmutación como medida de mejora del rendimiento.
+
+\subsubsection{Alimentación}
+
+La alimentación del sistema deberá proceder de una única fuente, a fin de minimizar las cantidades de  cableado, transformadores u otro tipo de elementos.
+
+\subsubsection{Estructura}
+
+Se deberá diseñar una estructura propia que recoja todos los componentes del sistema, a fin de facilitar la instalación en su ubicación final.
+
+\subsection{\textit{Software}}
+
+\subsubsection{Sistema operativo}
+
 El sistema operativo a utilizar será \textbf{Arch Linux ARM}, debido a la gran comunidad de soporte con la que cuenta, compatibilidad con la gran mayoría de componentes presentes en un sistema GNU/Linux y modelo arquitectónico que apuesta por la simplicidad, \textit{limpieza} y eficiencia del sistema.
 
-\subsection{Herramientas de desarrollo a utilizar}
-Se plantea el uso del lenguaje de programación Python como herramienta principal de desarrollo, debido a su potencia de cálculo y simplicidad, que permite crear aplicaciones que consuman pocos recursos (aspecto vital, máxime cuando se utilizará sobre un sistema con un \textit{hardware} poco potente) de forma sencilla y rápida. También se plantea el uso de los lenguajes de programación C y C++ para el desarrollo de herramientas a bajo nivel, así como herramientas web para el desarrollo de aplicaciones utilizadas por el usuario.
+Se partirá de la instalación base provista por el proyecto, debido a que incluye el conjunto más pequeño de herramientas con el que el sistema operativo es capaz de trabajar, incluyendo posteriormente aquellas herramientas necesarias para la construcción del sistema. Este enfoque evita la inclusión de paquetes innecesarios que afectarían negativamente al rendimiento de la solución final.
+
+\subsubsection{Componentes del sistema operativo}
+
+Se crearán un conjunto de componentes que se integrarán en el sistema operativo y podrán ser aprovechados por aplicaciones creadas por usuarios o por herramientas internas del propio sistema. Dichos servicios incluyen mecanismos de descubrimiento, coordinación, acuerdo, autoconfiguración de componentes o gestión de usuarios, entre otros.
+
+\subsubsection{Interfaces de conexión entre componentes}
+
+Aquellos servicios ofrecidos por el sistema operativo que sean aprovechables por los usuarios finales deberán ofrecer una interfaz de conexión con los mismos. Dicha interfaz deberá apoyarse en mecanismos de interconexión conocidos y deberá ofrecerse en el mayor número de plataformas y lenguajes de programación posible.
+
+\subsubsection{Servicios}
+
+El sistema se plantea como un conjunto de nodos que ofertan servicios consumibles por otros componentes del sistema o por terceras partes. Dichos servicios deberán contar con una serie de puntos de acceso claramente definidos que constituirán las interfaces de uso de dichos servicios.
+
+\subsubsection{Instalación y mantenimiento}
+
+El sistema final se compondrá de un conjunto elevado de nodos, por lo que se espera que la instalación y configuración de los mismos sea un proceso tedioso. A fin de minimizar dicha carga de trabajo se crearán herramientas que automaticen dichas etapas, idealmente, de forma completa.
+
+\subsubsection{Herramientas de desarrollo a utilizar}
+
+Se plantea el uso del lenguaje de programación Python\footnote{\href{http://www.python.org}{http://python.org}} como herramienta principal de desarrollo, debido a su potencia de cálculo y simplicidad, que permite crear aplicaciones que consuman pocos recursos (aspecto vital, máxime cuando se utilizará sobre un sistema con un \textit{hardware} poco potente) de forma sencilla y rápida. También se plantea el uso de los lenguajes de programación C y C++ para el desarrollo de herramientas a bajo nivel, así como herramientas web para el desarrollo de aplicaciones utilizadas por el usuario.

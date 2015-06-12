@@ -26,9 +26,7 @@
 
 \newcommand\bhrule{\typeout{------------------------------------------------------------------------------}}
 
-\newcommand{\universityseal}[1]{
-  \newcommand{\universitysealvar}{#1}
-}
+
 
 \newcommand\Declaration[1]{
 \btypeout{Declaración de Autoría}
@@ -150,9 +148,8 @@
 \newcommand*{\FACULTY}[1]{\def\FACNAME{#1}}
 \newcommand*{\subject}[1]{\def\subjectname{#1}}
 \newcommand*{\keywords}[1]{\def\keywordnames{#1}}
+\newcommand*{\universityseal}[1]{\newcommand{\universitysealvar}{#1}}
 
-%\usepackage{color}
-%\definecolor{red}{RGB}{0,0,0}
 
 \supervisor  {}
 \examiner    {}
