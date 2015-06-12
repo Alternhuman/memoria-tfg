@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.5-0.9999.3 (TeX Live 2013/Debian) (format=xelatex 2015.4.7)  12 JUN 2015 23:20
+This is XeTeX, Version 3.1415926-2.5-0.9999.3 (TeX Live 2013/Debian) (format=xelatex 2015.4.7)  13 JUN 2015 00:03
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1234,19 +1234,19 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
-] [52]) [53]
+] [52] [53]) [54]
 \openout2 = `Chapters/Chapter4/Chapter4.aux'.
 
- (./Chapters/Chapter4/Chapter4.tex [54
-
-
-
-]
+ (./Chapters/Chapter4/Chapter4.tex
 Cap\'{\i }tulo 5.
 ------------------------------------------------------------------------------
  5 Análisis
 ------------------------------------------------------------------------------
-) [55]
+) [55
+
+
+
+]
 \openout2 = `Chapters/Chapter5/Chapter5.aux'.
 
  (./Chapters/Chapter5/Chapter5.tex [56
@@ -1549,7 +1549,7 @@ Underfull \hbox (badness 2368) in paragraph at lines 134--138
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 160--162
+Underfull \hbox (badness 10000) in paragraph at lines 165--167
 []\T1/cmr/m/n/10.95 Rasbpian, ``raspbian-ua-netinst.'' [][]$\T1/cmtt/m/n/10.95 
 https : / / github . com / debian-[]pi /
  []
@@ -1586,10 +1586,10 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 176.
  ) 
 Here is how much of TeX's memory you used:
- 14895 strings out of 495604
- 212183 string characters out of 6186570
+ 14899 strings out of 495604
+ 212294 string characters out of 6186570
  334884 words of memory out of 5000000
- 17637 multiletter control sequences out of 15000+600000
+ 17641 multiletter control sequences out of 15000+600000
  37062 words of font info for 87 fonts, out of 8000000 for 9000
  40 hyphenation exceptions out of 8191
  49i,18n,48p,1717b,1076s stack positions out of 5000i,500n,10000p,200000b,80000s

@@ -472,7 +472,19 @@ Ubuntu Snappy Core, Raspbian, OpenELEC, RISC OS, Según la web de Arch Linux, ta
 
 \section{Ingeniería de sistemas: propuesta de solución definitiva}
 
-En esta sección se describen los aspectos a alto nivel sobre todos los componentes que se integrarán en el sistema final (tanto \textit{hardware} como \textit{software}), así como las relaciones entre los mismos. En función de la evaluación llevada a cabo se extraen las siguientes decisiones de diseño que conforman la propuesta de solución definitiva:
+En esta sección se describen los aspectos a alto nivel sobre todos los componentes que se integrarán en el sistema final (tanto \textit{hardware} como \textit{software}), así como las relaciones entre los mismos. En función de la evaluación llevada a cabo se extraen las siguientes decisiones de diseño que conforman la propuesta de solución definitiva.
+
+%TODO: IS 1 T2 Pg 34
+Fases
+\begin{itemize}
+  \item Definición de requisitos
+  \item Diseño
+  \item Desarrollo de subsistemas
+  \item Instalación del sistema
+  \item instalación del sistema
+  \item Evolución del sistema
+  \item Desmantelamiento del sistema
+\end{itemize}
 
 \subsection{\textit{Hardware}}
 
@@ -523,3 +535,29 @@ El sistema final se compondrá de un conjunto elevado de nodos, por lo que se es
 \subsubsection{Herramientas de desarrollo a utilizar}
 
 Se plantea el uso del lenguaje de programación Python\footnote{\href{http://www.python.org}{http://python.org}} como herramienta principal de desarrollo, debido a su potencia de cálculo y simplicidad, que permite crear aplicaciones que consuman pocos recursos (aspecto vital, máxime cuando se utilizará sobre un sistema con un \textit{hardware} poco potente) de forma sencilla y rápida. También se plantea el uso de los lenguajes de programación C y C++ para el desarrollo de herramientas a bajo nivel, así como herramientas web para el desarrollo de aplicaciones utilizadas por el usuario.
+
+\section{Integración}
+
+\section{Proceso}
+
+La determinación del proceso de desarrollo del sistema influirá significativamente en la consecución de los diferentes objetivos del sistema.
+
+Las particulares características cada proyecto propician la elección de un proceso u otro. En el caso concreto del proyecto en cuestión se deben considerar las siguientes características:
+
+\begin{itemize}
+
+\item No se cuenta con experiencia previa en la construcción de varios componentes cruciales del sistema. Serán necesarias etapas de aprendizaje y la tolerancia a decisiones erróneas deberá ser alta, permitiendo rectificar posteriormente.
+
+\item El proyecto tiene un alto componente de experimentalidad: el sistema final será el resultado de los diferentes procesos de investigación y prueba de soluciones para cada uno de los problemas planteados. La incertidumbre es por tanto alta, y por ello la toma de decisiones debe ser reversible, a fin de poder cambiar el enfoque aplicado a un problema si se detecta que los resultados del mismo serán infructuosos. Dicha reversibilidad implica principalmente la capacidad de poder rectificar en un periodo de tiempo pequeño, debido principalmente a la restricción de tiempo que el proyecto incluye.
+
+\item Es esperable que los requisitos definidos en las diferentes fases del proyecto deban ser modificados debido a la gran incertidumbre con la que se debe lidiar.
+
+\end{itemize}
+
+Es por todo ello que es necesaria la determinación de un proceso de desarrollo que deje espacio a etapas de aprendizaje y experimientación, así como la modificación de los diferentes requisitos preestablecidos. 
+
+\subsection{Elección del proceso}
+
+En virtud de las razones expuestas se opta por un proceso ágil basado en prototipos.
+
+Un prototipo es un componente \textit{software} que implementa un subconjunto de la funcionalidad del sistema final y es funcional. El desarrollo de prototipos permite realizar evaluaciones de la funcionalidad implementada de forma efectiva ahorrando costes y tiempo de desarrollo. En el caso concreto de este proyecto posibilitan la evaluación de una alternativa sobre el resto, así como la viabilidad de una solución sobre el resto. Se apuesta por un modelo de desarrollo de prototipos evolutivo\cite{10.1109/TSE.1975.6312870}, creando prototipos que paulatinamente comprendan una mayor cantidad de información. 
