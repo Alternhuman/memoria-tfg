@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.5-0.9999.3 (TeX Live 2013/Debian) (format=xelatex 2015.4.7)  12 JUN 2015 15:20
+This is XeTeX, Version 3.1415926-2.5-0.9999.3 (TeX Live 2013/Debian) (format=xelatex 2015.4.7)  12 JUN 2015 17:21
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -962,207 +962,206 @@ Cap\'{\i }tulo 4.
 
 
 ]
-Overfull \hbox (79.69481pt too wide) in paragraph at lines 34--35
+Overfull \hbox (79.69481pt too wide) in paragraph at lines 22--23
 []\T1/cmr/m/n/10.95 El sis-te-ma se ubi-ca en una Fa-cul-tad uni-ver-si-ta-ria 
 con apro-xi-ma-da-men-te 600 alumnos$[]$con
  []
 
-[34] [35] [36] [37] [38] [39] [40]
+[34] [35] [36]
+Overfull \hbox (2.7757pt too wide) in paragraph at lines 133--134
+\T1/cmr/m/n/10.95 las de los equi-pos ya dis-pues-tos pa-ra fi-nes si-mi-la-res
+ a es-te en el Centro$[]$: 
+ []
+
+[37]
+Overfull \hbox (0.89383pt too wide) in paragraph at lines 145--146
+[] \T1/cmr/m/n/10.95 Las ne-ce-si-da-des pro-pias de un sis-te-ma ope-ra-ti-vo 
+mul-ti-usua-rio (pre-vi-si-ble-men-te \T1/cmr/bx/n/10.95 GNU/-
+ []
+
+[38] [39] [40]
+Overfull \hbox (9.65918pt too wide) in paragraph at lines 238--239
+\T1/cmr/bx/n/10.95 Goo-gle Chro-me-cast$[]$ 
+ []
+
 Missing character: There is no € in font ecrm1095!
- [41] [42] [43] [44]
-Underfull \hbox (badness 10000) in paragraph at lines 395--395
-[]\T1/cmr/m/n/10.95 Evaluación de
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 395--395
-\T1/cmr/m/n/10.95 ren-di-mien-to
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 395--395
-\T1/cmr/m/n/10.95 con LIN-PACK
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 397--397
+[41] [42] [43] [44]
+Underfull \hbox (badness 10000) in paragraph at lines 389--389
 []\T1/cmr/m/n/10.95 Consumo me-dio
  []
 
 
-Overfull \hbox (3.18135pt too wide) in paragraph at lines 397--397
+Overfull \hbox (3.18135pt too wide) in paragraph at lines 389--389
 []$| 
  []
 
 
-Underfull \hbox (badness 2134) in paragraph at lines 399--399
+Underfull \hbox (badness 2134) in paragraph at lines 391--391
 []\T1/cmr/m/n/10.95 Mediante Mi-cro-USB o los pi-nes
  []
 
 
-Underfull \hbox (badness 2134) in paragraph at lines 399--399
+Underfull \hbox (badness 2134) in paragraph at lines 391--391
 []\T1/cmr/m/n/10.95 Mediante Mi-cro-USB o los pi-nes
  []
 
 
-Underfull \hbox (badness 2134) in paragraph at lines 399--399
+Underfull \hbox (badness 2134) in paragraph at lines 391--391
 []\T1/cmr/m/n/10.95 Mediante Mi-cro-USB o los pi-nes
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 403--403
+Underfull \hbox (badness 10000) in paragraph at lines 395--395
 []\T1/cmr/m/n/10.95 Archlinux ARM, Ope-nE-LEC,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 403--403
+Underfull \hbox (badness 10000) in paragraph at lines 395--395
 \T1/cmr/m/n/10.95 Puppy Li-nux, Raspbmc, RISC
  []
 
 
-Underfull \hbox (badness 2856) in paragraph at lines 403--403
+Underfull \hbox (badness 2856) in paragraph at lines 395--395
 \T1/cmr/m/n/10.95 Slack-wa-re ARM, FreeBSD, Plan
  []
 
 
-Underfull \hbox (badness 2376) in paragraph at lines 408--410
+Underfull \hbox (badness 2376) in paragraph at lines 400--402
 []\T1/cmr/m/n/10.95 Ubuntu Snappy Co-re, Rasp-bian,
  []
 
 
-Underfull \hbox (badness 1365) in paragraph at lines 412--412
+Underfull \hbox (badness 1365) in paragraph at lines 404--404
 []\T1/cmr/m/n/10.95 Modelo des-ca-ta-lo-ga-do, el so-por-te
  []
 
+[45
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[45]
-Underfull \hbox (badness 10000) in paragraph at lines 432--432
+]
+Underfull \hbox (badness 10000) in paragraph at lines 424--424
 []\T1/cmr/m/n/10.95 ArchLinux
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 432--432
+Underfull \hbox (badness 10000) in paragraph at lines 424--424
 []\T1/cmr/m/n/10.95 Eficiente, gran
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 432--432
+Underfull \hbox (badness 10000) in paragraph at lines 424--424
 \T1/cmr/m/n/10.95 co-mu-ni-dad al-re-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 432--432
+Underfull \hbox (badness 10000) in paragraph at lines 424--424
 \T1/cmr/m/n/10.95 de-dor, re-la-ti-va-
  []
 
 
-Underfull \hbox (badness 1253) in paragraph at lines 432--432
+Underfull \hbox (badness 1253) in paragraph at lines 424--424
 \T1/cmr/m/n/10.95 ofi-cia-les, más pe-que-ño
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 434--434
+Underfull \hbox (badness 10000) in paragraph at lines 426--426
 []\T1/cmr/m/n/10.95 Ubuntu
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 434--434
+Underfull \hbox (badness 10000) in paragraph at lines 426--426
 \T1/cmr/m/n/10.95 Snappy
  []
 
 
-Underfull \hbox (badness 1496) in paragraph at lines 434--434
+Underfull \hbox (badness 1496) in paragraph at lines 426--426
 \T1/cmr/m/n/10.95 ma in-ten-si-va.El ren-di-
  []
 
 
-Overfull \hbox (12.98752pt too wide) in paragraph at lines 429--438
+Overfull \hbox (12.98752pt too wide) in paragraph at lines 421--430
 [][] 
  []
 
 [46
 
 
-
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 447--447
+Underfull \hbox (badness 10000) in paragraph at lines 439--439
 []\T1/cmr/m/n/10.95 Diseñado es-pe-cí-fi-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 447--447
+Underfull \hbox (badness 10000) in paragraph at lines 439--439
 \T1/cmr/m/n/10.95 ca-men-te pa-ra la
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 447--447
+Underfull \hbox (badness 10000) in paragraph at lines 439--439
 \T1/cmr/m/n/10.95 ar-qui-tec-tu-ra ARM,
  []
 
 
-Underfull \hbox (badness 5302) in paragraph at lines 447--447
+Underfull \hbox (badness 5302) in paragraph at lines 439--439
 \T1/cmr/m/n/10.95 apro-ve-chan-do las po-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 447--447
+Underfull \hbox (badness 10000) in paragraph at lines 439--439
 \T1/cmr/m/n/10.95 si-bi-li-da-des de di-cha
  []
 
 
-Underfull \hbox (badness 2903) in paragraph at lines 447--447
+Underfull \hbox (badness 2903) in paragraph at lines 439--439
 \T1/cmr/m/n/10.95 sis-te-ma co-no-ci-do pre-
  []
 
 
-Underfull \hbox (badness 2608) in paragraph at lines 449--449
+Underfull \hbox (badness 2608) in paragraph at lines 441--441
 []\T1/cmr/m/n/10.95 Diseñado pa-ra per-mi-
  []
 
 
-Underfull \hbox (badness 1642) in paragraph at lines 449--449
+Underfull \hbox (badness 1642) in paragraph at lines 441--441
 []\T1/cmr/m/n/10.95 Permite ser mo-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 449--449
+Underfull \hbox (badness 10000) in paragraph at lines 441--441
 []\T1/cmr/m/n/10.95 Poco so-por-ta-do en
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 451--451
+Underfull \hbox (badness 10000) in paragraph at lines 443--443
 []\T1/cmr/m/n/10.95 Windows
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 451--451
+Underfull \hbox (badness 10000) in paragraph at lines 443--443
 \T1/cmr/m/n/10.95 Es-ta di-se-ña-do
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 451--451
+Underfull \hbox (badness 10000) in paragraph at lines 443--443
 \T1/cmr/m/n/10.95 es-pe-ci-fi-co. No
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 451--451
+Underfull \hbox (badness 10000) in paragraph at lines 443--443
 \T1/cmr/m/n/10.95 com-pa-ti-ble con
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 451--451
+Underfull \hbox (badness 10000) in paragraph at lines 443--443
 \T1/cmr/m/n/10.95 soft-wa-re pa-ra
  []
 
 
-Underfull \hbox (badness 3907) in paragraph at lines 451--451
+Underfull \hbox (badness 3907) in paragraph at lines 443--443
 \T1/cmr/m/n/10.95 Li-nux de for-ma
  []
 
 
-Overfull \hbox (12.98752pt too wide) in paragraph at lines 443--454
+Overfull \hbox (12.98752pt too wide) in paragraph at lines 435--446
 [][] 
  []
 

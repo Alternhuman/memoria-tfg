@@ -1,69 +1,53 @@
 \lhead{\emph{Dominio del problema}}
 \chapter{Dominio del problema}
 
-La utilización de algoritmos distribuidos implica mejoras sustanciales en una gran cantidad de aplicaciones, incrementando la capacidad global de computación de un sistema mediante la unión de varios dispositivos de cómputo que trabajan como una única unidad manteniendo simultáneamente un alto grado de independencia y una tolerancia global a fallos muy alta. Sin embargo, el desarrollo de aplicaciones distribuidas implica el uso de un conjunto de nodos cuyo coste y mantenimiento es costoso.
+La utilización de algoritmos distribuidos implica mejoras sustanciales en una gran cantidad de aplicaciones, incrementando la capacidad global de cómputo de un sistema mediante la unión de varios dispositivos que trabajan como una única unidad manteniendo simultáneamente un alto grado de independencia y una tolerancia global a fallos muy alta. Sin embargo, el coste de la adquisición istalación y mantenimiento de dicho conjunto de nodos suele ser elevado. Además, los beneficios citados implican una mayor complejidad en el desarrollo de algoritmos que puedan aprovechar de forma óptima este tipo de sistemas. Varios factores como la sincronización y la comunicación entre partes, o errores tales como condiciones de carrera son mucho más comunes que en otro tipo de aplicaciones. Dichas circunstancias no solo dificultan el desarrollo de este sistema, sino también la comprensión de los fundamentos básicos de la Computación Distribuida, aspecto de relevancia para estudiantes de Ciencias de la Computación.
 
-Dicho aumento de la potencia implica una mayor complejidad en el desarrollo de algoritmos que puedan aprovechar de forma óptima este tipo de sistemas. Varios factores como la sincronización y la comunicación entre partes, o errores tales como condiciones de carrera son mucho más comunes que en otro tipo de aplicaciones. Dichas circunstancias no solo dificultan el desarrollo de este sistema, sino también la comprensión de los fundamentos básicos de la Computación Distribuida. %cite http://ceit.aut.ac.ir/~amirkhani/Downloads/patterson_book.pdf
+Si bien la mayoría de las aplicaciones en las que el paradigma de computación distribuida introduce mejoras suelen exigir una gran capacidad de cálculo, su desarrollo únicamente requiere un conjunto de instancias independientes de un \textit{software} (sistema operativo, contenedor de servicios\dots) con las que trabajar. Dicha característica implica que la utilización de nodos de precio reducido (o incluso equipos ya presentes en una infraestructura) para el diseño, análisis y evaluación de este tipo de algoritmos constituye una alternativa válida frente a sistemas de precio superior.
 
-Si bien la mayoría de las aplicaciones en las que el paradigma de computación distribuida introduce mejoras suelen exigir una gran capacidad de cálculo, su desarrollo únicamente requiere un conjunto de instancias independientes de un software (sistema operativo, contenedor de servicios...) con las que trabajar. Dicha característica implica que la utilización de nodos de precio reducido (o incluso reutilizados) para el diseño, análisis y evaluación de este tipo de algoritmos constituye una alternativa válida frente a sistemas de precio superior.
+Sumada a dicha motivación existe el potencial aprovechamiento de este sistema como herramienta didáctica que facilite el aprendizaje de conceptos como el reparto de procesos, balance de carga o la compartición de recursos en asignaturas centradas en este tipo de conceptos dentro de los planes de estudio de Ingeniería Informática o titulaciones similares.
 
-Sumada a dicha motivación existe el potencial aprovechamiento de este sistema como herramienta didáctica que facilite el aprendizaje de conceptos como el reparto de procesos, balance de carga o la compartición de recursos en asignaturas centradas en este tipo de conceptos dentro de los planes de estudio de Ingeniería Informática o titulaciones afines.
+En el presente proyecto se realiza un análisis de las diferentes alternativas que permitan satisfacer los objetivos definidos previamente.
 
-Con el presente proyecto se plantea la creación de un sistema con estas características aprovechando el bajo coste de los componentes del mismo que permita en primer lugar su utilización como herramienta de análisis y diseño (o incluso su utilización como plataforma definitiva) de aplicaciones distribuidas y en segundo lugar la posibilidad de uso como herramienta educativa.
-
-A la hora de crear el sistema se realiza un análisis de las diferentes alternativas, a fin de escoger la alternativa que mejor satisfaga los objetivos definidos.
-
-Figura: Tabla de alternativas
-
-\section{Objetivos del proyecto}
-
-Este proyecto cuenta con varios objetivos muy diferentes entre sí, que se agrupan en tres categorías:
-\begin{itemize}
-  \item Arquitectura subyacente\\
-  Definición de los componentes hardware a utilizar en el sistema, interconexión de los mismos, soluciones de alimentación eléctrica, almacenamiento\dots.
-  \item Servicios a proveer\\
-  Conjunto de servicios que podrán ser aprovechados por diferentes clientes para explotar la capacidad de cálculo de las máquinas.
-  \item Componente didáctico\\
-  Creación de aplicaciones, herramientas y documentación como alternativa a las instalaciones típicas utilizadas actualmente.
-\end{itemize}
+%TODOFigura: Tabla de alternativas
 
 \section{Definiciones}
 
 \subsection{Definición del dominio del problema}
 
-El sistema se ubica en una Facultad universitaria con aproximadamente 600 alumnos\citationneeded con varias asignaturas en las que se imparten áreas de conocimiento relacionados con la Computación Distribuida, en particular las asignaturas \textbf{Arquitectura de Computadores} y \textbf{Sistemas Distribuidos} \cite{DIA15GuiaAcademica}.
+%TODO
 
 \subsection{Sistema actual: Infraestructura de la Facultad de Ciencias}
 \label{infraestructura}
-La Facultad cuenta con varias aulas y laboratorios informáticos donde los alumnos disponen de la infraestructura necesaria para realizar los ejercicios y prácticas asignadas. Dichos espacios permiten utilizar cualquier equipo como nodo, pues se integran en la misma red, siendo incluso factible la comunicación directa entre equipos situados en diferentes aulas o incluso edificios. La conexión es relativamente rápida, contando con un cableado capaz de soportar teóricamente transferencias de hasta 100Mb/s de forma bidireccional (\textit{full-duplex}) (\textbf{Cita requerida}). La gestión de un sistema de autenticación se realiza mediante el protocolo LDAP (\textit{Lightweight Directory Access Protocol}) \cite{RFC4516-comment}, contando con un sistema de ficheros centralizado que permite acceder a la información de un usuario desde cualquier equipo, facilitando las tareas de replicación de la información entre nodos.
+El sistema se ubica en una Facultad universitaria con aproximadamente 600 alumnos\citationneeded con varias asignaturas en las que se imparten áreas de conocimiento relacionados con la Computación Distribuida, en particular las asignaturas \textbf{Arquitectura de Computadores} y \textbf{Sistemas Distribuidos} \cite{DIA15GuiaAcademica}. La Facultad cuenta con varias aulas y laboratorios de informática donde los alumnos disponen de la infraestructura necesaria para realizar los ejercicios y prácticas asignadas. Dichos espacios permiten utilizar cualquier equipo como nodo, pues se integran en la misma red, siendo incluso factible la comunicación directa entre equipos situados en diferentes aulas o incluso edificios. Todos los edificios cuentan con un cableado capaz de soportar teóricamente transferencias de hasta 100Mb/s de forma bidireccional\citationneeded. La gestión de un sistema de autenticación se realiza mediante el protocolo \textbf{LDAP} (\textit{Lightweight Directory Access Protocol})\cite{RFC4516-comment}, contando con un sistema de ficheros centralizado que permite acceder a la información de un usuario desde cualquier equipo, facilitando las tareas de replicación de la información entre nodos.
 
-La mayoría de las prácticas asignadas a los alumnos son desarrolladas en el lenguaje \textbf{Java}, ya conocido por la totalidad de los estudiantes gracias a asignaturas previamente cursadas\citationneeded y que facilita el despliegue y la compatibilidad entre diferentes equipos de trabajo sustancialmente. En ocasiones es necesario el uso de lenguajes como C y se plantean alternativas a \textit{Java} como Python o C\#.
+La mayoría de las prácticas asignadas a los alumnos en las asignaturas de interés son desarrolladas en los lenguajes de programación \textbf{C} y \textbf{Java}, ya conocidos por la totalidad de los estudiantes gracias a asignaturas previamente cursadas.
 
 \paragraph{Problemas conocidos}
 
-Si bien la infraestructura existente es capaz de proveer a los estudiantes de los recursos necesarios, identificamos una serie de problemas inicialmente:
+Si bien la infraestructura existente es capaz de proveer a los estudiantes de los recursos necesarios, se identifican una serie de problemas inicialmente:
 
 \begin{itemize}
   \item Cada grupo de alumnos necesita tres estaciones de trabajo para poder realizar algunos de los ejercicios propuestos.
-  \item El servidor LDAP constituye un ``cuello de botella'', pues todos los alumnos acceden a él de forma intensiva, provocando el fallo por exceso de peticiones del mismo.
-  \item Las técnicas de programación utilizadas hasta la fecha tienen un rendimiento bajo y son en ocasiones relativamente complejas.
+  \item El servidor \textbf{LDAP} constituye un ``cuello de botella'', pues todos los alumnos acceden a él de forma intensiva, provocando el fallo por exceso de peticiones del mismo.
+  %TODO\item Las técnicas de programación utilizadas hasta la fecha tienen un rendimiento bajo y son en ocasiones relativamente complejas.
 \end{itemize}
 
-\subsection{Identificación de usuarios participantes}
+\section{Identificación de usuarios participantes}
 
 \begin{itemize}
-
-  \item Estudiantes de tercero y cuarto curso del Grado en Ingeniería Informática.
-  \item Docentes de las asignaturas Arquitectura de Computadores y Sistemas Distribuidos.
-  \item Administradores del Sistema.
+  \item Estudiantes de tercer y cuarto curso del Grado en Ingeniería Informática.
+  \item Profesores de las asignaturas Arquitectura de Computadores y Sistemas Distribuidos.
+  \item Administradores del sistema.
 \end{itemize}
 
-\section{Identificación de las necesidades de cada parte}
-\subsection{Necesidades de los alumnos}
+\subsection{Identificación de las necesidades de cada parte}
+\subsubsection{Alumnos}
 
 \begin{itemize}
   \item Entorno de trabajo sencillo que agilice el desarrollo de sus prácticas.
   \item Posibilidad de observar los resultados de las ejecuciones de forma sencilla.
+  \item Depuración sencilla.
   \item Facilidades para el despliegue de los diferentes ejecutables en todas las máquinas, así como el consumo de los servicios que estos implementen.
 \end{itemize}
 
@@ -83,6 +67,7 @@ Si bien la infraestructura existente es capaz de proveer a los estudiantes de lo
 
 \begin{itemize}
   \item Encuestas o entrevistas a todas las partes.
+  \item Observación.
   \item Evaluación de la experiencia de uso en las diferentes etapas de desarrollo del sistema.
 \end{itemize}
 
@@ -118,266 +103,273 @@ A la hora de evaluar las diferentes opciones que satisfagan los requisitos descr
 
 \begin{itemize}
   \item Coste económico.
-  \item Prestaciones técnicas (potencia de procesamiento, entrada/salida, capacidad de almacenamiento,facilidad de interconexión con otros materiales...).
-  \item Facilidad de trabajo y de aprendizaje (documentación disponible, proyectos similares ya realizados, conocimiento sobre la plataforma en cuestión...).
+  \item Prestaciones técnicas (potencia de procesamiento, entrada/salida, capacidad de almacenamiento,facilidad de interconexión con otros elementos\dots).
+  \item Facilidad de trabajo y de aprendizaje (documentación disponible, proyectos similares ya realizados, conocimiento previo sobre la plataforma en cuestión\dots).
   \item Escalabilidad del sistema.
   \item Necesidades de mantenimiento del sistema.
-  \item Consumo del sistema (consumo eléctrico).
-  \item Obsolescencia del sistema (número de años en los que el sistema podrá ser actualizado (tanto en hardware como software) y será capaz de seguir siendo una herramienta adecuada para el propósito planteado).
-
+  \item Consumo eléctrico.
+  \item Obsolescencia del sistema (periodo de tiempo en el que el \textit{hardware} y \textit{software} del sistema podrán ser actualizados y ser capaces de satisfacer los requisitos para los que fue creado).
 \end{itemize}
 
 \subsection{Propuesta de solución: Virtualización de entornos de trabajo}
 
 Crear un conjunto de nodos virtuales dentro de una máquina que simulen un sistema distribuido
 
-\paragraph{Ventajas intrínsecas de la solución}
+\paragraph{Ventajas intrínsecas de la solución\\}
 
 Simplificación del sistema (reduce las necesidades de adquisición y mantenimiento de hardware).
-Gestión de varias partes del sistema (sistema de ficheros centralizado, gestión de usuarios...) de forma mas sencilla. El coste se reduce significativamente.
+Gestión de varias partes del sistema (sistema de ficheros centralizado, gestión de usuarios\dots) de forma mas sencilla. El coste se reduce significativamente.
 
-\paragraph{Inconvenientes intrínsecos del sistema}
+\paragraph{Inconvenientes intrínsecos del sistema\\}
 
-No se exploran apenas las posibilidades de un sistema distribuido formado por varios equipos físicamente independientes.
+No se exploran apenas las posibilidades de un sistema distribuido formado por varios equipos físicamente independientes e impide aprovechar dicha independencia para los objetivos didácticos del sistema.
 
-\paragraph{Facilidad de trabajo y curva de aprendizaje}
+\paragraph{Facilidad de trabajo y curva de aprendizaje\\}
 
 Si bien el trabajo con cada una de las instancias es previsiblemente sencillo, debido a la eliminación de la gran parte del mantenimiento de la capa física subyacente, el uso de este tipo de sistema requiere una etapa de formación previa en materia de virtualización.
 
-\paragraph{Prestaciones técnicas}
+\paragraph{Prestaciones técnicas\\}
 
-Las prestaciones técnicas con las que se contaría, de llevarse a cabo este proyecto, son las de los equipos ya dispuestos para fines similares a este en el Centro: %TODO: Andrés. 
+Las prestaciones técnicas con las que se contaría, de llevarse a cabo este proyecto, son las de los equipos ya dispuestos para fines similares a este en el Centro\citationneeded[Andrés]{}: %TODO: Andrés. 
 
-\paragraph{Coste económico}
+\paragraph{Coste económico\\}
 
-El coste económico es muy reducido si ya se cuenta con los equipos a utilizar y las licencias \textit{software} que fueran necesarias para realizar la virtualización.
+El coste económico es muy reducido si ya se cuenta con los equipos a utilizar y las licencias del \textit{software} de virtualización necesarias.
 
-\paragraph{Escalabilidad del sistema}
+\paragraph{Escalabilidad del sistema\\}
 
-Dependiente de las capacidades de virtualización del equipo disponible, y el número de nodos y usuarios a gestionar (previsiblemente alto)
+Dependiente de las capacidades de virtualización del equipo disponible, y el número de nodos y usuarios a gestionar.
 
-\paragraph{Necesidades de mantenimiento}
+\paragraph{Necesidades de mantenimiento\\}
 
-Las necesidades propias de un sistema GNU/Linux junto a las específicas de la virtualización de los equipos.
+Las necesidades propias de un sistema operativo multiusuario (previsiblemente \textbf{GNU/Linux}) junto a las específicas de la virtualización de los equipos (monitor de máquinas virtuales).
 
-\paragraph{Consumo energético del sistema}
-\paragraph{Obsolescencia del sistema}
+\paragraph{Consumo energético del sistema\\}
 
-\paragraph{Material con el que se cuenta actualmente}
-Se plantea el aprovechamiento de equipos pertenecientes a la Universidad, por lo que se estima un coste muy pequeño a la hora de adquirir material.
-\paragraph{Otras características}
+\citationneeded[Andrés]{}
 
-\paragraph{Análisis coste/beneficio}
+\paragraph{Obsolescencia del sistema\\}
+
+Se estima una larga vida útil del sistema. Las máquinas virtuales instaladas en un sistema físico son fácilmente trasladables a otro equipo, por lo que la dependencia de la parte física del sistema es muy baja.
+
+\paragraph{Material con el que se cuenta actualmente\\}
+
+Se plantea el aprovechamiento de equipos ya presentes en la infraestructura en la que trabajar, por lo que se estima un coste muy pequeño a la hora de adquirir material.
+
+\paragraph{Prestaciones técnicas\\}
+
+\citationneeded[Andrés]{}
+
+\paragraph{Análisis coste/beneficio\\}
 
 Si bien el coste de esta solución es muy atractivo, presenta una serie de carencias que dificultan significativamente el desarrollo del sistema en el mismo. 
 
 
 \subsection{Propuesta de solución: Clúster con equipos de escritorio}
 
-Se plantea la reutilización de equipos de escritorio pertenecientes a la Universidad que ya no se encuentran en uso (debido a su renovación, falta de potencia como PC...) para la creación de este sistema.
+Se plantea la reutilización de equipos de escritorio pertenecientes a la Universidad que ya no se encuentran en uso (debido a su renovación, falta de potencia como PC\dots) para la creación de este sistema.
 
-\paragraph{Ventajas intrínsecas de la solución}
-La potencia del sistema es mucho mayor que la de cualquier otra solución considerada viable. Se reduce dramáticamente el coste de adquisición de material y permite dar un nuevo ciclo de vida a material universitario.
-La arquitectura es conocida y fiable.
+\paragraph{Ventajas intrínsecas de la solución\\}
 
-\paragraph{Inconvenientes intrínsecos del sistema}
+La potencia del sistema es mucho mayor que la de cualquier otra solución considerada. Se reduce dramáticamente el coste de adquisición de material y permite dar un nuevo ciclo de vida a material universitario. La arquitectura es conocida y fiable.
 
-No se exploran las características únicas de otros sistemas menos ``convencionales'', tales como la utilización de sistemas embebidos. El consumo energético es mayor, existe una mayor demanda de espacio, que puede dificultar la implementación de diferentes aplicaciones didácticas ya planteadas como objetivo funcional del sistema.
+\paragraph{Inconvenientes intrínsecos del sistema\\}
 
-\paragraph{Facilidad de trabajo y curva de aprendizaje}
+No se exploran las características únicas de otros sistemas menos ``convencionales'', tales como la utilización de sistemas embebidos. El consumo energético es mayor y existe una mayor demanda de espacio.%que puede dificultar la implementación de diferentes aplicaciones didácticas ya planteadas como objetivo funcional del sistema.
 
-Soporte completo de casi la totalidad de las distribuciones de GNU/Linux.
-Las necesidades de manipulación de hardware se minimizan.
+\paragraph{Facilidad de trabajo y curva de aprendizaje\\}
+
+Soporte completo de casi la totalidad de las distribuciones de GNU/Linux. Las necesidades de manipulación de hardware se minimizan.
 
 \paragraph{Prestaciones técnicas}
-Arquitectura x86/x64
-Entre 2 y 4 GB de memoria
-Conectividad Ethernet, USB
-Almacenamiento en disco duro
-\paragraph{Coste económico}
+\begin{itemize}
+\item Arquitectura x86/x86-64 (dependiendo de los equipos a utilizar finalmente).
+\item Entre 2 y 4 GB de memoria principal.
+\item Conectividad Ethernet, USB.
+\item Almacenamiento en disco duro.
+\end{itemize}
 
-El coste económico de dichos equipos es prácticamente nulo, pues ya se cuenta con los mismos y su utilización no exige la adquisición de sustitutos, pues ya habían sido retirados de su uso.
+\paragraph{Coste económico\\}
 
-\paragraph{Escalabilidad del sistema}
+El coste económico de estos equipos es prácticamente nulo, pues ya se cuenta con los mismos y su utilización no exige la adquisición de nuevos equipos que los sustituyan. Estos equipos ya han sido retirados y no están empleados actualmente en ninguna tarea.
 
-Dependiente únicamente del coste económico de la adquisición de nuevos equipos, o de la disponibilidad de equipos desechados.
+\paragraph{Escalabilidad del sistema\\}
 
-\paragraph{Necesidades de mantenimiento}
+Dependiente únicamente del coste económico de la adquisición de nuevos equipos, o de la disponibilidad de equipos que no estén utilizados.
 
-Las necesarias en cualquier sistema GNU/Linux y las específicas del montaje dado (en materia de refrigeración, gestión de cableado, etcétera).
+\paragraph{Necesidades de mantenimiento\\}
 
-\paragraph{Consumo energético del sistema}
+Las propias de cualquier sistema multiusuario y las específicas del montaje dado (en materia de refrigeración, gestión de cableado, etcétera).
+
+\paragraph{Consumo energético del sistema\\}
 
 El típico de cualquier equipo de escritorio.
 
-\paragraph{Obsolescencia del sistema}
+\paragraph{Obsolescencia del sistema\\}
 
-Estos equipos tienen una antigüedad de aproximadamente 4 años. Dicha edad no impide que sean capaces de utilizar aplicaciones actuales, y en general no se prevé la incompatibilidad con ninguna aplicación.
+Estos equipos tienen una antigüedad de aproximadamente 4 años. Dicha edad no impide que sean capaces de utilizar aplicaciones actuales, y en general no se prevé la incompatibilidad con ninguna aplicación. No obstante, son equipos relativamente antiguos que han sido utilizados de forma intensiva, por lo que la probabilidad de fallo en los mismos puede ser elevada.
 
-\paragraph{Material con el que se cuenta actualmente}
-La Facultad de Ciencias ya dispone de los equipos, pues se plantea la reutilización de los mismos
+\paragraph{Material con el que se cuenta actualmente\\}
 
-\paragraph{Otras características}
+Se cuenta con un número suficiente de equipos para la creación del sistema final.
 
-\paragraph{Análisis coste/beneficio}
+\paragraph{Análisis coste/beneficio\\}
 
-Si bien el coste de estos equipos es prácticamente nulo, dicho atractivo contrasta con los potenciales problemas que el uso de estos sistemas puede implicar (dificultad de desarrollo de objetivos funcionales, uso de sistemas convencionales en detrimento de soluciones más innovadoras\dots).
+Si bien el coste de estos equipos es prácticamente nulo, dicho atractivo contrasta con los potenciales problemas que el uso de estos sistemas puede implicar (obsolescencia, uso de sistemas convencionales en detrimento de soluciones más innovadoras\dots).
 
-\subsection{Clúster con equipos embebidos multimedia }
+\subsection{Clúster con equipos embebidos multimedia}
 
-Utilización de equipos embebidos diseñados para aplicaciones multimedia en el sistema (ejemplos son Chromecast, Apple TV, Amazon Fire TV...)
+Utilización de equipos embebidos diseñados para aplicaciones multimedia en el sistema (ejemplos de alternativas comerciales son \textbf{Chromecast}, \textbf{Apple TV}, \textbf{Amazon Fire TV}\dots).
 
-\paragraph{Ventajas intrínsecas de la solución}
+\paragraph{Ventajas intrínsecas de la solución\\}
 
-Relación potencia/precio presumiblemente superior a soluciones de coste similar como las placas Raspberry Pi.
+Relación potencia/precio presumiblemente similar o superior a soluciones de coste similar como las placas Raspberry Pi.
 
-\paragraph{Inconvenientes intrínsecos del sistema}
+\paragraph{Inconvenientes intrínsecos del sistema\\}
 
-Dificultad de conexión (generalmente la conexión a red se realiza de forma inalámbrica, ausencia casi absoluta de cualquier conexión cuya finalidad no sea la emisión de vídeo o conexión con sistemas de almacenamiento mediante USB), falta de puertos GPIO, I2C...
+Dificultad de conexión (generalmente la conexión a red se realiza de forma inalámbrica, ausencia casi absoluta de cualquier conexión cuya finalidad no sea la emisión de contenido multimedia o la conexión con sistemas de almacenamiento), falta de puertos \textbf{GPIO}, \textbf{I\textsuperscript{2}C}\dots
 
-\paragraph{Facilidad de trabajo y curva de aprendizaje}
-Es difícil determinar la viabilidad de esta solución, pues no se cuenta con experiencia previa ni una documentación amplia al respecto.
-Es probable que sea necesaria la manipulación del sistema a muy bajo nivel. Lo cual incrementa el grado de complejidad de la solución.
+\paragraph{Facilidad de trabajo y curva de aprendizaje\\}
 
-\paragraph{Prestaciones técnicas}
-Arquitectura ARM
-2 núcleos a 1.2 GHz
-512 MB de RAM
-Almacenamiento: 2 GB no expandibles
-Alimentación por microUSB
+Es difícil determinar la viabilidad de esta solución, pues no se cuenta con experiencia previa ni una documentación amplia al respecto. Además, es probable que sea necesaria la manipulación del sistema a muy bajo nivel, lo cual incrementa el grado de complejidad de la solución.
 
-\paragraph{Coste económico}
+\paragraph{Prestaciones técnicas\\}
+
+Como referencia se utilizan las prestaciones de uno de los equipos más populares, el \textbf{Google Chromecast}\citationneeded[https://wikidevi.com/wiki/Google\_Chromecast\_\%28H2G2-42\%29]
+\begin{itemize}
+  \item Procesador ARM de 2 núcleos a 1.2 GHz.
+  \item 512 MB de memoria principal.
+  \item 2 GB de almacenamiento no expandibles.
+  \item Alimentación por MicroUSB.
+  \item Utiliza un sistema operativo basado en \textbf{Google TV}, \textbf{ChromeOS} y \textbf{Android}.
+\end{itemize}
+
+\paragraph{Coste económico\\}
 
 El coste de estos equipos es reducido, generalmente inferior a 30 € por unidad.
 
-\paragraph{Escalabilidad del sistema}
+\paragraph{Escalabilidad del sistema\\}
 
-Dependiente del coste de adquisición de nuevos equipos y las facilidades de interconexión de la plataforma (previsiblemente compleja, debido a la ausencia de sistemas de interconexión más allá de WiFi)
+Dependiente del coste de adquisición de nuevos equipos y las facilidades de interconexión de la plataforma (previsiblemente compleja, debido a la ausencia de sistemas de interconexión más allá de conexiones inalámbricas).
 
-\paragraph{Necesidades de mantenimiento}
+\paragraph{Necesidades de mantenimiento\\}
 
-Dependiente del número de modificaciones que se realicen a las capas más bajas. En el peor de los casos puede que el administrador del sistema tenga que someterse a una etapa de formación para realizar un mantenimiento adecuado del sistema sin depender de desarrolladores previos.
-Las derivadas del mantenimiento de un sistema Linux sumadas a posibles problemas de interconexión si se utiliza una red inalámbrica (conexión a  la LAN de la infraestructura local, interferencias...).
+Dependiente del número de modificaciones que se realicen a las capas más bajas. En el peor de los casos puede que el administrador del sistema tenga que someterse a una etapa de formación para realizar un mantenimiento adecuado del sistema sin depender de los desarrolladores del mismo.
+Otras necesidades son aquellas derivadas del mantenimiento de un sistema multiusuario sumadas a posibles problemas de interconexión si se utiliza una red inalámbrica (conexión a la LAN de la infraestructura local, interferencias\dots).
 
-\paragraph{Consumo energético del sistema}
+\paragraph{Consumo energético del sistema\\}
 
-El diseño de estos equipos está orientado a la reducción del consumo, por lo que se estima reducido.
+El diseño de estos equipos está orientado a la minimización del consumo energético, por lo que se estima reducido.
 
-\paragraph{Obsolescencia del sistema}
+\paragraph{Obsolescencia del sistema\\}
 
-Difícil de determinar: no se cuenta con una gran cantidad de software para este tipo de sistemas más allá de las aplicaciones multimedia. No obstante, el sistema subyacente es conocido (Linux)
+La obsolescencia del sistema es difícil de determinar: no se cuenta con una gran cantidad de \textit{software} para este tipo de sistemas más allá de las aplicaciones multimedia.%TODO No obstante, el sistema subyacente es conocido (Linux).
 
-\paragraph{Material con el que se cuenta actualmente}
+\paragraph{Material con el que se cuenta actualmente\\}
 
-No se dispone de material de estas o similares características
+No se dispone de material de estas o similares características.
 
-\paragraph{Otras características}
+% \subsection{Clúster con equipos embebidos multimedia\\}
 
-\subsection{Clúster con equipos embebidos multimedia }
+% Utilización de equipos embebidos diseñados para aplicaciones multimedia en el sistema (ejemplos son Chromecast, Apple TV, Amazon Fire TV\dots)
 
-Utilización de equipos embebidos diseñados para aplicaciones multimedia en el sistema (ejemplos son Chromecast, Apple TV, Amazon Fire TV...)
+% \paragraph{Ventajas intrínsecas de la solución}
 
-\paragraph{Ventajas intrínsecas de la solución}
+% Relación potencia/precio presumiblemente superior a soluciones de coste similar como las placas Raspberry Pi.
 
-Relación potencia/precio presumiblemente superior a soluciones de coste similar como las placas Raspberry Pi.
+% \paragraph{Inconvenientes intrínsecos del sistema}
 
-\paragraph{Inconvenientes intrínsecos del sistema}
+% Dificultad de conexión (generalmente la conexión a red se realiza de forma inalámbrica, ausencia casi absoluta de cualquier conexión cuya finalidad no sea la emisión de vídeo o conexión con sistemas de almacenamiento mediante USB), falta de puertos GPIO, I2C\dots
 
-Dificultad de conexión (generalmente la conexión a red se realiza de forma inalámbrica, ausencia casi absoluta de cualquier conexión cuya finalidad no sea la emisión de vídeo o conexión con sistemas de almacenamiento mediante USB), falta de puertos GPIO, I2C...
+% \paragraph{Facilidad de trabajo y curva de aprendizaje}
+% Es difícil determinar la viabilidad de esta solución, pues no se cuenta con experiencia previa ni una documentación amplia al respecto.
+% Es probable que sea necesaria la manipulación del sistema a muy bajo nivel. Lo cual incrementa el grado de complejidad de la solución.
 
-\paragraph{Facilidad de trabajo y curva de aprendizaje}
-Es difícil determinar la viabilidad de esta solución, pues no se cuenta con experiencia previa ni una documentación amplia al respecto.
-Es probable que sea necesaria la manipulación del sistema a muy bajo nivel. Lo cual incrementa el grado de complejidad de la solución.
+% \paragraph{Prestaciones técnicas}
+% Arquitectura ARM
+% 2 núcleos a 1.2 GHz
+% 512 MB de RAM
+% Almacenamiento: 2 GB no expandibles
+% Alimentación por microUSB
 
-\paragraph{Prestaciones técnicas}
-Arquitectura ARM
-2 núcleos a 1.2 GHz
-512 MB de RAM
-Almacenamiento: 2 GB no expandibles
-Alimentación por microUSB
-
-\paragraph{Coste económico}
+% \paragraph{Coste económico}
 
 
+% \paragraph{Escalabilidad del sistema}
+% Dependiente del coste de adquisición de nuevos equipos y las facilidades de interconexión de la plataforma (previsiblemente compleja, debido a la ausencia de sistemas de interconexión más allá de WiFi)
 
-\paragraph{Escalabilidad del sistema}
-Dependiente del coste de adquisición de nuevos equipos y las facilidades de interconexión de la plataforma (previsiblemente compleja, debido a la ausencia de sistemas de interconexión más allá de WiFi)
+% \paragraph{Necesidades de mantenimiento}
 
-\paragraph{Necesidades de mantenimiento}
+% Dependiente del número de modificaciones que se realicen a las capas más bajas. En el peor de los casos puede que el administrador del sistema tenga que someterse a una etapa de formación para realizar un mantenimiento adecuado del sistema sin depender de desarrolladores previos.
+% Las derivadas del mantenimiento de un sistema Linux sumadas a posibles problemas de interconexión si se utiliza una red inalámbrica (conexión a  la LAN de la infraestructura local, interferencias\dots).
 
-Dependiente del número de modificaciones que se realicen a las capas más bajas. En el peor de los casos puede que el administrador del sistema tenga que someterse a una etapa de formación para realizar un mantenimiento adecuado del sistema sin depender de desarrolladores previos.
-Las derivadas del mantenimiento de un sistema Linux sumadas a posibles problemas de interconexión si se utiliza una red inalámbrica (conexión a  la LAN de la infraestructura local, interferencias...).
-
-\paragraph{Consumo energético del sistema}
-
+% \paragraph{Consumo energético del sistema}
 
 
-\paragraph{Obsolescencia del sistema}
+% \paragraph{Obsolescencia del sistema}
 
-Difícil de determinar: no se cuenta con una gran cantidad de software para este tipo de sistemas más allá de las aplicaciones multimedia. No obstante, el sistema subyacente es conocido (Linux)
+% Difícil de determinar: no se cuenta con una gran cantidad de software para este tipo de sistemas más allá de las aplicaciones multimedia. No obstante, el sistema subyacente es conocido (Linux)
 
-\paragraph{Material con el que se cuenta actualmente}
+% \paragraph{Material con el que se cuenta actualmente}
 
-No se dispone de material de estas o similares características
+% No se dispone de material de estas o similares características
 
-\paragraph{Otras características}
+% \paragraph{Otras características}
 
-\subsection{Clúster con Raspberry Pi}
+\subsection{Clúster con sistemas embebidos}
 
-Utilizar la plataforma de hardware libre Raspberry Pi para la creación del sistema, disponiendo los diferentes equipos en un pequeño ``rack'' con un sistema de alimentación propio centralizado y una conexión directa a la infraestructura local.
+Recientemente han surgido en el mercado sistemas embebidos con capacidad de cómputo elevada y precio muy reducido (en torno a los 40 euros por unidad). Estos equipos destacan además por su versatilidad. La mayoría de ellos son capaces de ejecutar una gran variedad de sistemas operativos (GNU/Linux, RISC OS, BSD, Windows\dots), incluyen una gran cantidad de mecanismos de interconexión y soportan la mayoría de herramientas presentes en equipos de escritorio y servidores.
 
-\paragraph{Ventajas intrínsecas de la solución}
+Se plantea utilizar este tipo de plataformas para la creación del sistema, disponiendo los diferentes equipos en un pequeño ``rack'' con un sistema de alimentación propio centralizado y una conexión directa a la infraestructura local.
+
+\paragraph{Ventajas intrínsecas de la solución\\}
+
 Existen varias soluciones similares bien documentadas.
 El hardware es flexible, barato y el consumo es pequeño.
 Gran comunidad de desarrolladores alrededor de la plataforma.
 
-\paragraph{Inconvenientes intrínsecos del sistema}
+\paragraph{Inconvenientes intrínsecos del sistema\\}
 
-La potencia del sistema es pequeña (ver sección prestaciones técnicas)
+La potencia del sistema es pequeña.
 
-\paragraph{Facilidad de trabajo y curva de aprendizaje}
+\paragraph{Facilidad de trabajo y curva de aprendizaje\\}
 
-Ya se cuenta con experiencia en el manejo de estas placas.
-Amplia documentación de las prestaciones de la misma.
-Proyectos similares ya realizados.
-Soporte completo de varias distribuciones de GNU/Linux
+Existe una amplia documentación del \textit{hardware} de este tipo de equipos, así como numerosos proyectos basados en los mismos, entre los que se incluyen sistemas similares a la solución planteada. Se cuenta además con experiencia en el manejo de estas placas.
 
 \paragraph{Prestaciones técnicas}
 
-Arquitectura ARM
-Entre 512 MB y 1 GB de memoria
-1 o 4 Núcleos a 700 o 900 MHz (overclock a 1 GHz de forma segura)
-Conectividad Ethernet, I2C, GPIO
-Alimentación por microUSB/GPIO
-Almacenamiento entre 1 GB y 256 GB mediante tarjetas MicroSD/SD
+\begin{itemize}
+  \item Generalemnte basados en la arquitectura ARM.
+  \item Entre 512 MB y 2 GB de memoria principal.
+  \item Conectividad \textbf{Ethernet},\textbf{I\textsuperscript{2}C}, \textbf{GPIO}, \textbf{USB}.
+  \item Alimentación a través de \textbf{USB}/\textbf{GPIO}.
+  \item Almacenamiento secundario basado en tarjetas MicroSD/SD, expandible a través de USB.
+\end{itemize}
 
-\paragraph{Coste económico}
+\paragraph{Coste económico\\}
 
-\paragraph{Escalabilidad del sistema}
+Muy reducido, con un coste por nodo de entre 20 y 40 euros, al que se debe añadir los mecanismos de alimentación e interconexión.
 
-Dependiente únicamente del coste económico de la adquisición de nuevos equipos
+\paragraph{Escalabilidad del sistema\\}
 
-\paragraph{Necesidades de mantenimiento}
+Dependiente únicamente del coste económico de la adquisición de nuevos equipos.
 
-Las mismas que cualquier sistema GNU/Linux de iguales características.
-Pueden surgir problemas con la fuente de alimentación, dado que es una solución propia.
+\paragraph{Necesidades de mantenimiento\\}
 
-\paragraph{Consumo energético del sistema}
+Las mismas que cualquier sistema multiusuario.
 
-Variable según modelo, entre 3 y 4 W, con 5V de tensión y un amperaje variable entre 0.6 y 0.8 A
+\paragraph{Consumo energético del sistema\\}
 
-\paragraph{Obsolescencia del sistema}
+Variable según modelo, entre 3 y 4 W, con 5V de tensión y un amperaje variable entre 0.6 y 0.8 A.
+
+\paragraph{Obsolescencia del sistema\\}
 
 El software de terceros (sistema operativo, bibliotecas, etc) a incluir está respaldado por una comunidad extensa que provee actualizaciones de forma continua, por lo que previsiblemente el sistema podrá estar actualizado durante varios años.
-Las necesidades que el sistema cubre no demandarán previsiblemente una mayor potencia de cálculo.
- 
+Se prevee que las necesidades que el sistema cubre no demandarán una mayor potencia de cálculo en el futuro.
 
-\paragraph{Material con el que se cuenta actualmente}
+\paragraph{Material con el que se cuenta actualmente\\}
 
-El Departamento de Informática y Automática cuenta con varios de estos equipos se plantea la reutilización de los mismos
-
-\paragraph{Otras características}
-
+El Departamento de Informática y Automática cuenta con varios de estos equipos actualmente que podrían disponerse para el uso en el proyecto.
 
 
 \subsection{Elección de la solución}
@@ -392,7 +384,7 @@ Quedan descartados los modelos A y A+ por la carencia de puerto Ethernet (amén 
  & Modelo B & Modelo B+ & Modelo B 2\\ \hline
 Procesador & ARMv6 1 Núcleo, 700 MHz (safe overclock hasta 1GHz) & ARMv6 1 Núcleo, 700 MHz (safe overclock hasta 1GHz) & ARMv7 4 Núcleos a 900 MHz \\ \hline
 Memoria           & 512 MB compartidos con GPU & 512 MB compartidos con GPU & 1 GB compartido con GPU\\ \hline
-Evaluación de rendimiento con LINPACK \cite{hackaday:benchmarkpi2,gist:linpackbenchmark,elinux:benchmark} & 40.64 & 40.64 & 92.88\\ \hline
+LINPACK \cite{hackaday:benchmarkpi2,gist:linpackbenchmark,elinux:benchmark} & 40.64 & 40.64 & 92.88\\ \hline
 Conexiones & 2 USB, GPIO de 8 pines. Ethernet 10/100 & 4 USB, GPIO de 17 pines. Ethernet 10/100 & 4 USB, GPIO de 17 pines. Ethernet 10/100\\ \hline
 Consumo medio \citationneeded & 700 mA, 5 V (3.5 W) & 600 mA, 5 V (3 W) & 800 mA, 5 V (4 W)\\ \hline
 Almacenamiento & SD & MicroSD & MicroSD\\ \hline
