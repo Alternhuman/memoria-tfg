@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.5-0.9999.3 (TeX Live 2013/Debian) (format=xelatex 2015.4.7)  12 JUN 2015 19:39
+This is XeTeX, Version 3.1415926-2.5-0.9999.3 (TeX Live 2013/Debian) (format=xelatex 2015.4.7)  12 JUN 2015 20:13
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -678,9 +678,10 @@ LaTeX Info: Redefining \. on input line 25.
 LaTeX Info: Redefining \% on input line 25.
 
 ------------------------------------------------------------------------------
- Title Page
+ Título
 ------------------------------------------------------------------------------
-[1
+File: Figures/logousalcolor.pdf Graphic file (type QTm)
+<use  "Figures/logousalcolor.pdf" > [1
 
 
 
@@ -720,7 +721,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 30--30
 
  (./preface/abstract.tex
 ------------------------------------------------------------------------------
- Abstract Page
+ Resumen
 ------------------------------------------------------------------------------
 [5
 
@@ -728,7 +729,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 30--30
 
 ])
 ------------------------------------------------------------------------------
- Acknowledgements
+ Reconocimientos
 ------------------------------------------------------------------------------
 [6
 
@@ -772,7 +773,7 @@ File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 
 ]
 ------------------------------------------------------------------------------
- List of Tables
+ Lista de tablas
 ------------------------------------------------------------------------------
 (./main.lot
 LaTeX Info: Redefining \. on input line 1.
@@ -820,7 +821,7 @@ LaTeX Info: Redefining \% on input line 2.
 
 ])
 ------------------------------------------------------------------------------
- Dedicatory
+ Dedicatoria
 ------------------------------------------------------------------------------
 [19
 
@@ -1558,9 +1559,9 @@ ian_protester.png)...executed.
 
 File: Figures/protester.png Graphic file (type QTm)
  <use  "Figures/protester.png" >
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 175.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 176.
  [102]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 175.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 176.
  (./main.aux
 LaTeX Info: Redefining \. on input line 23.
 LaTeX Info: Redefining \% on input line 23.
@@ -1575,19 +1576,19 @@ LaTeX Info: Redefining \% on input line 27.
 (./Chapters/Chapter7/Chapter7.aux) (./Chapters/Chapter8/Chapter8.aux)
 (./Chapters/Chapter9/Chapter9.aux) (./Chapters/Chapter10/Chapter10.aux)
 (./Chapters/Chapter11/Chapter11.aux) (./Chapters/Conclusion/Conclusion.aux))
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 175.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 175.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 176.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 176.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 175.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 176.
  ) 
 Here is how much of TeX's memory you used:
- 14892 strings out of 495604
- 212118 string characters out of 6186570
- 334881 words of memory out of 5000000
- 17634 multiletter control sequences out of 15000+600000
+ 14896 strings out of 495604
+ 212191 string characters out of 6186570
+ 334886 words of memory out of 5000000
+ 17637 multiletter control sequences out of 15000+600000
  37748 words of font info for 88 fonts, out of 8000000 for 9000
  40 hyphenation exceptions out of 8191
  49i,18n,48p,1717b,1076s stack positions out of 5000i,500n,10000p,200000b,80000s

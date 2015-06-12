@@ -26,6 +26,10 @@
 
 \newcommand\bhrule{\typeout{------------------------------------------------------------------------------}}
 
+\newcommand{\universityseal}[1]{
+  \newcommand{\universitysealvar}{#1}
+}
+
 \newcommand\Declaration[1]{
 \btypeout{Declaración de Autoría}
 \addtotoc{Declaración de Autoría}
@@ -146,13 +150,17 @@
 \newcommand*{\FACULTY}[1]{\def\FACNAME{#1}}
 \newcommand*{\subject}[1]{\def\subjectname{#1}}
 \newcommand*{\keywords}[1]{\def\keywordnames{#1}}
+
+%\usepackage{color}
+%\definecolor{red}{RGB}{0,0,0}
+
 \supervisor  {}
 \examiner    {}
 \degree      {}
 \authors     {}
-\university  {\texorpdfstring{\href{University Web Site URL Here (include http://)}
-                {University Name}}
-                {University Name}}
+\university  {\texorpdfstring{\href{http://www.usal.es}
+                {UNIVERSIDAD DE SALAMANCA}}
+                {UNIVERSIDAD DE SALAMANCA}}
 \UNIVERSITY  {\texorpdfstring{\href{http://www.usal.es}
                 {UNIVERSIDAD DE SALAMANCA}}
                 {UNIVERSIDAD DE SALAMANCA}}
@@ -178,7 +186,7 @@
 \subject     {}
 \keywords    {}
 \renewcommand\maketitle{
-  \btypeout{Title Page}
+  \btypeout{Título}
   \hypersetup{pdftitle={\@title}}
   \hypersetup{pdfsubject=\subjectname}
   \hypersetup{pdfauthor=\authornames}
@@ -189,10 +197,12 @@
     \let\footnoterule\relax
     \let \footnote \thanks
     \setcounter{footnote}{0}
-    \null\vfil
-    \vskip 60\p@
+    %\null\vfil
+    %\vskip 60\p@
     \begin{center}
       \setlength{\parskip}{0pt}
+      {\includegraphics[width=0.6\textwidth]{\universitysealvar}}
+      \vfill
       {\large\textbf{\UNIVNAME}\par}
       \vfill
       {\huge \bf \@title \par}
@@ -233,14 +243,14 @@
 }
 \newenvironment{abstract}
 {
-  \btypeout{Abstract Page}
+  \btypeout{Resumen}
   \thispagestyle{empty}
   \null\vfil
   \begin{center}
     \setlength{\parskip}{0pt}
     {\normalsize \UNIVNAME \par}
     \bigskip
-    {\huge{\textit{Abstract}} \par}
+    {\huge{\textit{Resumen}} \par}
     \bigskip
     {\normalsize \facname \par}
     {\normalsize \deptname \par}
@@ -299,8 +309,8 @@
 }\end{spacing}
 }
 \renewcommand\listoftables{
-\btypeout{List of Tables}
-\addtotoc{List of Tables}
+\btypeout{Lista de tablas}
+\addtotoc{Lista de tablas}
 \begin{spacing}{1}{
     \setlength{\parskip}{1pt}
     \if@twocolumn
@@ -350,16 +360,16 @@
     \cleardoublepage
 }
 \newcommand\acknowledgements[1]{
-\btypeout{Acknowledgements}
-\addtotoc{Acknowledgements}
+\btypeout{Reconocimientos}
+\addtotoc{Reconocimientos}
 \thispagestyle{plain}
-\begin{center}{\huge{\textit{Acknowledgements}} \par}\end{center}
+\begin{center}{\huge{\textit{Reconocimientos}} \par}\end{center}
 {\normalsize #1}
 \vfil\vfil\null
 
 }
 \newcommand\dedicatory[1]{
-\btypeout{Dedicatory}
+\btypeout{Dedicatoria}
 \thispagestyle{plain}
 \null\vfil
 \vskip 60\p@
