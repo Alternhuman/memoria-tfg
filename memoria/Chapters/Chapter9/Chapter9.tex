@@ -1,2 +1,122 @@
-\lhead{Estructura física}
-\chapter{Estructura física}
+\chapter{Herramientas de terceros}
+\lhead{\emph{Herramientas de terceros}}
+
+\section{Herramientas utilizadas para la creación del sistema}
+
+\subsection{Arch Linux ARM}
+\label{archlinux:description}
+
+\textbf{Arch Linux} es una distribución del sistema operativo GNU/Linux creado y mantenido por una comunidad de usuarios. Entre los objetivos principales del proyecto figuran el minimalismo del sistema, siguiendo el principio de diseño \textbf{KISS} (\textit{Keep It Simple, Stupid})\citationneeded{http://people.apache.org/~fhanik/kiss.html}. Dicho minimalismo se traduce en una arquitectura basada en paquetes que conforman en su conjunto un sistema fácil de comprender por el usuario, y que cuentan con una gran cantidad de documentación fácilmente accesible. La consecuencia directa de este minimalismo es el rendimiento del sistema. Una instalación de Arch Linux se limita al conjunto de paquetes mínimo para contar con un sistema completamente funcional, delegando al usuario la adición de nuevos paquetes. Este enfoque permite optimizar de forma sencilla el rendimiento del sistema, al no contar con paquetes innecesarios.
+
+Además, Arch Linux apuesta por un modelo de desarrollo de liberación continua (\textit{rolling releases}). El sistema operativo no se distribuye en versiones, sino en imágenes con las últimas versiones de los paquetes disponibles, lo cual posibilita contar con las últimas versiones de las herramientas presentes en el sistema operativo poco tiempo (o de forma inmediata) a su liberación. El modelo de desarrollo sigue este principio de forma tan estricta, que basta una actualización de todos los paquetes del sistema mediante el gestor propio de la distribución (\textbf{pacman}) para actualizar el sistema operativo (en contraste con operaciones específicas para este cometido, como ocurre con otros sistemas operativos).
+
+El sistema operativo delega la responsabilidad del mantenimiento de todos los componentes al usuario en un grado mayor que el que pueden ofrecer otras distribuciones. Esto permite a los usuarios contar con completa libertad para modificar componentes del sistema en función de sus intereses a cualquier nivel\citationneeded{https://wiki.archlinux.org/index.php/The\_Arch\_Way}.
+
+Arch Linux ARM es un proyecto derivado de Arch Linux que tiene como objetivo portar el sistema operativo a dispositivos basados en la arquitectura ARM (pues este proyecto está enfocado únicamente en las arquitecturas i686 y x68\_64\citationneeded), generalmente sistemas embebidos, habiendo conseguido la compatibilidad con las versiones v5te, v6h y v7h de la arquitectura\citationneeded. El proyecto mantiene la misma filosofía de diseño que su progenitor, siendo el buen rendimiento del sistema operativo uno de los aspectos que propician el uso de esta distribución en sistemas con un capacidad de cómputo reducida, siendo por ello una de las principales opciones a la hora de realizar proyectos con este tipo de computadores\citationneeded{http://distrowatch.com/search.php?architecture=arm}.%TODO: Revisar
+
+Además, la comunidad de Arch Linux es famosa por la gran y exhaustiva cantidad de documentación que mantiene, así como las diferentes opciones de soporte a cualquier nivel que ofrece a través de diferentes canales\citationneeded.
+
+El proceso de elección del sistema operativo puede observarse en \ref{os:evaluation}.
+
+\subsection{Lenguajes de programación}
+
+\subsubsection{Python}
+Python es un lenguaje de programación interpretado de propósito general que prioriza la legibilidad del  código y la rapidez de desarrollo, manteniendo estas propiedades en proyectos de cualquier escala. Python soporta diferentes paradigmas de programación, entre ellos la orientación a objetos, programación imperativa y la programación funcional. Automatiza la gestión de memoria y utiliza un sistema de tipado dinámico rígido\citationneeded.
+
+\subsubsection{Lenguajes}
+
+Python se ha elegido como lenguaje principal en el desarrollo de herramientas para el sistema en detrimento de otras opciones:
+
+\begin{landscape}
+\begin{table}[H]
+\begin{tabular}{|p{1.5cm}|p{4.2cm}|p{4.2cm}|p{4.2cm}|p{4.2cm}|}
+\hline
+Nombre & Características notables & Pros & Contras & Inclusión en el sistema\\ \hline
+
+\textbf{Python} & Orientación a objetos, portable & Portable, buen rendimiento & Necesidad de un intérprete & Se incluye en los componentes de alto nivel del sistema.\\ \hline
+
+\textbf{C} & Imperativo, acceso a características de muy bajo nivel de forma sencilla & El desarrollo en el lenguaje suele ser más complejo que en otros lenguajes de más alto nivel & Se incluye en componentes que trabajan con entornos tediosos donde el rendimiento es crucial, o no se puede contar con un intérprete. & \\ \hline
+
+\textbf{C}++ & Orientado a objetos & Gran rendimiento, acceso a todas las características de C & No es portable fácilmente en algunos casos & Se incluye en conjunción con C.\\ \hline
+
+\textbf{Java} & Orientado a objetos & Multiplataforma, popular y sencillo de utilizar & El rendimiento del lenguaje y su \textit{JVM} en el sistema son inferiores al de otras alternativas & Se utiliza en los paquetes \textit{software} que hacen uso de \textbf{Tomcat} o \textbf{Hadoop}.\\ \hline
+\textbf{Perl} & & & & \\ \hline
+\end{tabular}
+\end{table}
+\end{landscape}
+
+\section{Herramientas utilizadas para la creación de \textit{software}}
+
+\subsection{Twisted}
+
+\textbf{Twisted} \citationneeded{https://twistedmatrix.com/} es un motor dirigido por eventos para la creación de aplicaciones basadas en red. Uno de los principales beneficios de la programación orientada a eventos es la capacidad del sistema de optimizar el tiempo de CPU y evitar cambios de contexto, pues todo el código se ejecuta en un único hilo. Twisted se basa en el patrón de diseño \textbf{reactor}\cite{Coplien95reactor}, que se basa en la gestión de diferentes eventos, su demultiplexación y el envío a los manejadores apropiados de forma síncrona (ver \ref{eventdriven}).
+
+Twisted permite crear de forma sencilla sockets asíncronos a bajo nivel en los protocolos UDP y TCP y aplicaciones que utilizan protocolos bien definidos, como HTTP o DNS. Es capaz de trabajar con protocolos como \textbf{multicast} o \textbf{TLS} e integra funcionalidades para el desarrollo dirigido por pruebas (\textit{test-driven development}).
+
+\textbf{Twisted} se ha utilizado para la creación de la herramienta de descubrimiento de servicios \textbf{MarcoPolo} (ver \ref{marcopolo}).
+
+\subsection{Tornado}
+
+\textbf{Tornado} es un \textit{framework} web y una biblioteca para aplicaciones en red que utiliza mecanismos de entrada/salida asíncrona, permitiendo crear herramientas como \textbf{WebSockets} de forma sencilla y escalable. Todo el código, a menos que explícitamente se indique lo contrario se ejecuta en un único hilo.
+
+\textbf{Tornado} se utiliza en todas las interfaces web creadas, en ocasiones en conjunción con \textbf{Django} y se integra con \textbf{MarcoPolo} a través del \textit{binding} para Python.
+
+\subsection{Websockets}
+
+El protocolo WebSocket \cite{rfc6455} posibilita el establecimiento de un canal bidireccional en una arquitectura cliente-servidor sobre el protocolo HTTP/HTTPS evitando el uso de peticiones asíncronas (XmlHttpRequest, <iframe>) y \textit{polling}.
+
+La mayoría de las interfaces web creadas utilizan este tipo de comunicación para obtener información desde los diferentes nodos del sistema, optimizando la comunicación al reducirse el intercambio de datos al momento en el que estos son necesarios (al contrario de otras estrategias) y posibilitando la difusión de eventos en directo, a diferencia de estrategias como el \textit{polling}.
+
+\subsection{PAM, LDAP}
+
+Siguiendo el objetivo funcional\citationneeded, la gestión de los usuarios está delegada al sistema de autenticación preexistente en la infraestructura en la que se integra el sistema. En ella se cuenta con un servidor \textbf{LDAP} con la información de los usuarios. Mediante la configuración del paquete LDAP es posible accedeer a los mismos, y gracias a \textbf{PAM} (\textit{Pluggable Authentication Module}) se integra con el resto de métodos de autenticación presentes en el sistema.
+
+Se ha creado un módulo para \textbf{PAM} para facilitar las tareas que el sistema debe realizar. Dicho módulo integra \textbf{MarcoPolo} y es conocido como \textbf{pam\_mkpolohomedir}\ref{pam_mkpolohomedir}. 
+
+\subsection{OpenSSL}
+
+\subsection{Distcc}
+
+\subsection{Hadoop}
+
+\subsection{\textit{Message Passing Interface}}
+
+La necesidad de una herramienta de comunicación independiente de la plataforma derivó en la especificación del estándar MPI\cite{MPISpec}, un conjunto de interfaces para la creación de aplicaciones paralelas mediante la gestión de las operaciones de entrada-salida, definición de tipos de datos, grupos de proceso, creación y gestión de procesos, interfaces externas, etcétera. La especificación se define independientemente del lenguaje, si bien incluye implementaciones en C, C++, Fortran 77 y Fortran 95.
+
+MPI se ha convertido con el paso de los años en la interfaz de referencia para la creación de aplicaciones distribuidas, contando con varias implementaciones como \textbf{MPICH} (la implementación original) u \textbf{OpenMPI} (presente en la mayoría de supercomputadores), de tipo libre, o implementaciones propietarias, tales como IBM MPI, Intel MPI, Cray MPI, Microsoft MPI, Myricom MPI.
+
+MPI es utilizado en el sistema como herramienta de desarrollo de aplicaciones distribuidas, utilizando \textbf{MarcoPolo} para simplificar el proceso de descubrimiento de nodos (ver \ref{marcodiscover}). Además se han creado herramientas accesorias para facilitar varias tareas generalmente necesarias durante el desarrollo con la biblioteca (ver \ref{marcoinstallkey}).
+
+\subsection{Tomcat}
+
+\section{Herramientas utilizadas para la gestión de código, calidad de \textit{software} y el proyecto}
+
+\subsection{Git}
+
+\subsection{Redmine}
+
+\subsection{Unittest, CppUnit, Trial}
+
+\section{Herramientas utilizadas para la documentación del proyecto}
+
+\subsection{\LaTeX}
+
+\subsection{Sphinx}
+%Esta parte de la memoria tiene como objetivo presentar las técnicas metodológicas y las herramientas de desarrollo que se han utilizado para llevar a cabo el proyecto. Si se han estudiado diferentes alternativas de metodologías, herramientas, bibliotecas se puede hacer un resumen de los aspectos más destacados de cada alternativa, incluyendo comparativas entre las distintas opciones y una justificación de las elecciones realizadas. No se pretende que este apartado se convierta en un capítulo de un libro dedicado a cada una de las alternativas, sino comentar los aspectos más destacados de cada opción, con un repaso somero a los fundamentos esenciales y referencias bibliográficas para que el lector pueda ampliar su conocimiento sobre el tema
+
+\section{Herramientas para la gestión de usuarios}
+
+\subsection{SSH-HPN}
+
+Una de las características de OpenSSH es que todas las tareas se ejecutan en un único proceso y por tanto, en un único núcleo, constituyendo un cuello de botella que se hace notable en sistemas de bajas prestaciones, como el sistema a modelar.
+
+Con el objetivo de superar este límite nace SSH-HPN\citationneeded, un conjunto de modificaciones al código fuente de OpenSSH que optimiza la ejecución del mismo mediante el uso de diferentes procesos repartidos en los diferentes núcleos del sistema. El proyecto se distribuye como un archivo \texttt{.diff} que se incluye en los archivos del código fuente con la herramienta \textbf{GNU patch}.
+
+Se ha creado un paquete de Arch Linux con el código fuente ya preparado para trabajar en la arquitectura ARM, y todos los nodos del sistema utilizan esta versión en lugar del paquete \textbf{OpenSSH} original.
+
+\chapter{Técnicas}
+\lhead{\emph{Técnicas}}
+
+\section{Otras tecnologías de terceros}
+
+Archivo BibTeX con todas las referencias de las RFCs: \href{http://tm.uka.de/~bless/bibrfcindex.html}{http://tm.uka.de/~bless/bibrfcindex.html}
