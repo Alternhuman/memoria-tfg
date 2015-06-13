@@ -1,0 +1,23 @@
+\chapter{Modelo de proceso}
+
+La metodología de desarrollo de un proyecto es crucial para la planificación de las diferentes tareas a realizar, y su elección debe realizarse en función de las propiedades de las diferentes tareas a llevar a cabo, así como una serie de factores también condicionantes.
+
+En el caso del proyecto descrito las características son las siguientes:
+
+\begin{itemize}
+
+\item Proyecto de una envergadura media (tiempo de desarrollo de aproximadamente 4 meses, con un conjunto significativo de requisitos).
+\item Área de conocimiento ``experimental'' (existen pocas referencias a proyectos con requisitos similares).
+\item Conocimientos del equipo: el desarrollador cuenta con conocimientos para comenzar el desarrollo del proyecto de forma inmediata, si bien una gran parte del mismo requerirá de fases de aprendizaje.
+\item Grado de incertidumbre elevado: la falta de referencias hace necesaria la búsqueda de alternativas para un problema dado. Discernir la mejor alternativa es una tarea que en ocasiones se podrá realizar únicamente mediante operaciones de prototipado.
+\end{itemize}
+
+\section{Desarrollo cíclico}
+
+La metodología de desarrollo elegida consiste en ciclos de desarrollo de duración corta y definida en los cuales se preestablecen una serie de objetivos a cumplir en el tiempo de desarrollo. Dichos objetivos están relacionados entre sí, siendo por tanto iteraciones que cubren un gran número de tareas, si bien interrelacionadas. Dicha dinámica posibilita el desarrollo en paralelo de diferentes componentes reduciendo la probabilidad de aparición de potenciales ``retardos'' debido a la necesidad de un componente aún no implementado o poco maduro para poder continuar con una de las tareas definidas en el proceso. El uso de iteraciones pequeñas permite identificar de forma rápida la inviabilidad de una tarea debido a factores tales como la elección de una estrategia errónea, cambios en los requisitos, etcétera y potencia la realización de análisis durante el ciclo y al finalizar el mismo.
+
+Se han realizado numerosas reuniones, generalmente tras la finalización de cada ciclo entre los diferentes \textit{stakeholders}, que han sido de gran utilidad para la evaluación del desarrollo realizado y la definición de objetivos para la siguiente iteración.
+
+Las etapas de aprendizaje siguen un modelo de desarrollo basado en prototipos: tras la adquisición de conocimientos teóricos necesarios se modela una pequeña herramienta \textit{software} a fin de comprobar la correcta comprensión del principio de funcionamiento de la técnica a dominar. Dicho prototipo es diseñado con el objetivo de implementar parte de la funcionalidad a cubrir con la versión final del producto que se desea realizar, y en caso de que la fase de implementación sea exitosa (mediante procesos de evaluación y prueba), el prototipo será incluido en la siguiente iteración como base para el desarrollo del producto final. En caso contrario, existen dos vías: la implementación desde %from scratch del proyecto final siguiendo la dinámica cíclica definida anteriormente o la evaluación de viabilidad de otra técnica mejor siguiendo el mismo proceso de prototipado. Este modelo de desarrollo se conoce como modelado basado en prototipos mixto, pues se consideran productos desechables y evolutivos.
+
+

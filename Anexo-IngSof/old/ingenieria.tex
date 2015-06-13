@@ -1,0 +1,146 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Structured General Purpose Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%   PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage{graphicx} % Required to insert images
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+\usepackage[T1]{fontenc} % Codificación de las fuentes utilizadas
+\usepackage[spanish]{babel} % Español como idioma principal del texto (permite hyphenation de palabras al final de una línea)
+\selectlanguage{spanish}
+\usepackage{hyperref}
+\usepackage{listings}
+
+\input{includes}
+   
+\graphicspath{{Figures/}}
+
+%----------------------------------------------------------------------------------------
+%   NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Ingeniería del software} % Assignment title
+\newcommand{\hmwkDueDate}{Viernes,\ 1\ de\ mayo\ de\ 2015} % Due date
+\newcommand{\hmwkAuthorName}{Diego Martín Arroyo} % Your name
+
+%----------------------------------------------------------------------------------------
+%   TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title{\hmwkTitle}
+\author{\textbf{\hmwkAuthorName}}
+\date{1 de mayo de 2015}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%   TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+\setcounter{tocdepth}{1}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Introducción}
+
+Un aspecto clave en la definición de una pieza de \textit{software} es la especificación de su funcionalidad de forma inequívoca, abarcando la secuencia de acciones que el mismo lleva a cabo, relaciones entre componentes, del sistema, etcétera. Otro componente a tener en cuenta durante el diseño y desarrollo del \textit{software} son las diferentes interacciones que diferentes perfiles de usuario llevarán a cabo en el sistema.
+
+Por ello, en este anexo se recoge la etapa de ingeniería del \textit{software} llevada a cabo en el desarrollo de los diferentes componentes del sistema, con el fin de definir de forma clara los objetivos de cada uno de los móulos creados, justificar las diferentes decisiones de diseño tomadas, y facilitar la comprensión de dichos componentes de forma sencilla por nuevos desarrolladores, usuarios y administradores del sistema.
+
+
+\section{Metodología de trabajo}
+
+\section{Componentes}
+
+El estudio del conjunto de componentes creados para conformar el sistema exige el análisis de las propiedades de cada uno de ellos así como las relaciones entre los mismos.
+
+\subsection{MarcoPolo}
+
+En esta sección se describe el funcionamiento de \textbf{MarcoPolo} en detalle.
+
+\subsubsection{Requisitos}
+
+
+\section{Ingeniería del sistema}
+
+En este apartado se describen las características del sistema como un todo, así como el proceso de construcción e integración de componentes llevado a cabo en el mismo.
+
+Definición de requisitos
+
+\subsection{Hardware}
+
+\subsection{Software}
+
+Identificación de subsistemas
+
+Los subsistemas pueden ser divididos en dos categorías: aquellos creados por terceros y los creados durante el desarrollo del trabajo:
+
+\subsubsection MarcoPolo
+
+MarcoPolo es el protocolo de descubrimiento de servicios sobre el que se apoyan la totalidad de las aplicaciones construidas y aquellas de terceros donde la integración facilita el uso de dicha herramienta en el sistema. MarcoPolo se compone de dos módulos independientes, Marco y Polo:
+
+Marco es el encargado de la ejecución de las operaciones de descubrimiento, ofreciendo una interfaz interna consumible a través de \textit{bindings} en diferentes plataformas. Dichos puntos de entrada se corresponden con las diferentes acciones que Marco puede llevar a cabo, y aceptan como parámetros de entrada información relevante para la realización de la búsqueda.
+
+Polo contiene toda la información sobre un nodo, incluyendo los servicios que ofrece. Los puntos de entrada al subsistema están constituidos por los \textit{bindings} que permiten publicitar servicios y las conexiones \textit{multicast}.
+\item MarcoDeployer
+\item MarcoStatusMonitor
+\item MarcoLogger
+\item MarcoManager
+\item Polousers
+\item MarcoBootstrap
+\end{itemize}
+
+\begin{itemize}
+\item PAM
+\item LDAP
+\item NFS
+\item MPI
+\item Hadoop
+\item Tomcat
+\end{itemize}
+
+\subsection{Etapa de integración}
+
+Se ha apostado por un modelo incremental de integración, construyendo de forma gradual los diferentes sistemas, añadiéndolos a los creados anteriormente. Se comienza con las herramientas que constituyen la base sobre las que el resto se apoyan, a fin de posibilitar el funcionamiento de estas últimas sin realizar las modificaciones necesarias al no contar con parte de las dependencias (por ejemplo, mediante el uso de \textit{mocks}).
+
+\subsection{Instalación}
+
+Prácticamente la totalidad del desarrollo se ha realizado sobre componentes hardware del sistema real, lo cual ha reducido significativamente la realización de pruebas tras la instalación, al cumplirse el objetivo de escalabilidad del sistema.
+
+
+
+
+\label{Bibliography}
+\lhead{\emph{Bibliography}}  % Change the left side page header to "Bibliography"
+\bibliographystyle{ieeetr}  % Use the "unsrtnat" BibTeX style for formatting the Bibliography
+\bibliography{ingenieria}  % The references (distcc) information are stored in the file named "distcc.bib"
+
+\end{document}
