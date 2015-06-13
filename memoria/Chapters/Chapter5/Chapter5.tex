@@ -1,2 +1,82 @@
 \lhead{Arquitectura física}
 \chapter{Arquitectura física}
+
+\section{Introducción}
+
+El sistema a crear, si bien de carácter distribuido, localiza el conjunto de nodos principales en una única ubicación, externalizando únicamente los componentes secundarios.
+
+Esta centralización apoya uno de los objetivos principales del proyecto. Al contar con todo el sistema en una única ubicación es posible comprender mejor los mecanismos de distribución de tareas de forma más efectiva que en un sistema distribuido por toda la infraestructura. Esta decisión aporta además una serie de ventajas técnicas, entre las que figuran las siguientes:
+
+\begin{itemize}
+\item Centralización del sistema de alimentación eléctrica.
+\item Reducción del cableado de red.
+\item Favorece la organización de todos los componentes del sistema.
+\item Facilita el traslado del sistema a otra ubicación.
+\item Simplifica el mantenimiento del sistema.
+\end{itemize}
+
+\section{Requisitos}
+
+\subsection{Coste}
+
+El coste de la estructura debe reducirse al máximo sin que esto comprometa el resultado final.
+
+\section{Propuestas de solución}
+
+A fin de minimizar el coste, se buscan soluciones que permitan ahorrar en el coste final.
+
+\subsection{Primera propuesta}
+
+En las primeras fases del proyecto se plantea la utilización de separadores de nylon atornillados a los orificios que las placas disponen para tal fin, creando una pequeña estructura en forma de torre. Dicha solución se acepta debido a su efectividad con un precio bajo.
+
+\subsection{Segunda propuesta}
+
+La segunda propuesta apuesta por mejorar la versatilidad del diseño. Se plantea un diseño en forma de estantería que incluya una bahía para cada nodo, permitiendo la extracción de cada uno de ellos de forma independiente, así como la instalación de nuevos nodos. Se decide desestimar el primer prototipo en pro de esta solución.
+
+\subsubsection{Elección de materiales}
+
+Inicialmente se valora el uso de metal para la construcción del esqueleto de la estructura, sin embargo finalmente se opta por el metacrilato como material, pues mejora la visualización de cada uno de los nodos y añade un mayor atractivo estético al proyecto.
+
+Se utilizará latón como material de unión entre los diferentes componentes de metacrilato, utilizando tornillos a menos que estos deterioren la estética de la estructura, en cuyo caso se utilizarán adhesivos.
+
+\subsubsection{Construcción}
+
+La fase de construcción se extiende durante aproximadamente dos semanas (junto con el resto de tareas de desarrollo. El tiempo de desarrollo asciende a 20 horas).
+
+\begin{figure}[H]
+\centering
+\includegraphics{Chapter5/Figures/prototipo1vistageneral}
+\includegraphics{Chapter5/Figures/prototipo1vistaperfil}
+\caption[Vista general del primer prototipo]{Vista general de la estructura del primer prototipo y vista de perfil del mismo.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics{Chapter5/Figures/prototipo1vistadetalle}
+\caption[Vista en detalle de los ``raíles'' del primer prototipo.]{Vista en detalle de los ``raíles'' creados para cada uno de los nodos.}
+\end{figure}
+
+Este prototipo es considerado aceptable, y se decide partir del mismo para elaborar la solución final.
+
+\subsection{Tercera propuesta}
+
+A pesar del éxito del segundo prototipo, durante las siguientes fases de desarrollo se plantea la viabilidad del prototipo para albergar una serie de componentes que acompañen a los nodos. Utilizar, como se planteaba, un ladrón USB %TODO
+para la alimentación del sistema parece una solución poco efectiva (incrementa la cantidad de cableado a utilizar). La conexión a la red también genera incertidumbre, pues se planteaba inicialmente la conexión a la misma de forma individual para cada nodo. Esta decisión complicaría la gestión del cableado.
+
+Además, se observan errores en las medidas iniciales para cada uno de los raíles, pues no se contó con el espacio que los conjuntos de diodos LED consumirían.
+
+Por ello, se plantea la elaboración de un tercer prototipo basado en el anterior que tenga las siguientes propiedades:
+
+\begin{itemize}
+
+\item La estructura albergará a todos los nodos así como los diferentes componentes que estos requieran para su funcionamiento.
+
+\item El sistema deberá centralizar en un único mecanismo de alimentación el suministro de energía eléctrica a los nodos y a cualquier otro componente integrado en la estructura.
+
+\item La conexión a la red de datos deberá estar centralizada.
+
+\end{itemize}
+
+\subsubsection{Elección de materiales}
+
+Se mantienen las 
