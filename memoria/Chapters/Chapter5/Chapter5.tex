@@ -45,14 +45,14 @@ La fase de construcción se extiende durante aproximadamente dos semanas (junto 
 
 \begin{figure}[H]
 \centering
-\includegraphics{Chapter5/Figures/prototipo1vistageneral}
-\includegraphics{Chapter5/Figures/prototipo1vistaperfil}
+\includegraphics[width=0.635\textwidth]{Chapter5/Figures/prototipo1vistageneral}
+\includegraphics[width=0.2\textwidth]{Chapter5/Figures/prototipo1vistaperfil}
 \caption[Vista general del primer prototipo]{Vista general de la estructura del primer prototipo y vista de perfil del mismo.}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics{Chapter5/Figures/prototipo1vistadetalle}
+\includegraphics[width=0.2\textwidth]{Chapter5/Figures/prototipo1vistadetalle}
 \caption[Vista en detalle de los ``raíles'' del primer prototipo.]{Vista en detalle de los ``raíles'' creados para cada uno de los nodos.}
 \end{figure}
 
@@ -79,4 +79,34 @@ Por ello, se plantea la elaboración de un tercer prototipo basado en el anterio
 
 \subsubsection{Elección de materiales}
 
-Se mantienen las 
+Se mantienen las decisiones de materiales realizadas para el segundo prototipo, y se intentará reutilizar todo el material posible del mismo.
+
+Para la alimentación eléctrica se decide utilizar una fuente de alimentación de 5 V capaz de suministrar hasta 100 W de energía permitiendo la conexión a la red eléctrica presente en la infraestructura.
+
+Las conexiones de red se centralizarán en un switch con velocidades de hasta 100 Mb/s paralelos.
+
+Sin embargo, queda aún una incógnita por resolver: si bien la fuente de alimentación es capaz de suministrar energía a los nodos, es necesario definir cómo se suministrará dicha energía. Se plantean dos opciones:
+
+\paragraph{Alimentación a través del puerto GPIO\\}
+
+El puerto \textbf{GPIO} de la Raspberry Pi es utilizado comúnmente para la alimentación de periféricos conectados a la misma, a través de varios pines dispuestos para tal fin. Sin embargo, es posible alimentar a la propia placa a través de los mismos\citationneeded[http://raspberrypi.stackexchange.com/questions/1617/how-do-i-supply-power-through-the-gpio]. Extendiendo dos cable desde la fuente de alimentación hasta los pines 1 y 3 (+5V y neutro) es posible alimentar la placa.
+
+Sin embargo dicha solución implica un riesgo considerable, al no disponer el puerto GPIO de una serie de mecanismos de protección ante un uso como este (en el caso de la alimentación por USB se cuenta con dicha protección). En caso de una sobrecarga eléctrica la placa sería dañada de forma irreversible. Se plantea el uso de fusibles de 2 amperios para proteger a las placas de este tipo de sobrecargas.
+
+\paragraph{Alimentación a través del puerto USB\\}
+
+Es posible adaptar la propuesta de solución anterior a una alternativa más prometedora. Aprovechando los mecanismos de protección frente a sobrecargas del puerto USB se decide adquirir y modificar cabezas micro-USB macho para soldarlas a cables conectados a la fuente de alimentación. Dichas cabezas se conectarán a cada una de las placas. Se mantienen no obstante los fusibles ya adquiridos como medida preventiva conectando uno a cada cable de corriente positiva.
+
+Esta solución permite centralizar todos los cables de alimentación en un único punto a la vez que se mantienen los mecanismos de protección que integran las placas, manteniendo a efectos prácticos el sistema de alimentación que se ideó para la Raspberry Pi.
+
+Gestión de la red:
+
+Se crearán cables ethernet a medida para cada uno de los raíles.
+
+LEDs
+
+Situar los diodos supone un problema significativo. Utilizar cualquier tipo de cableado complicaría el diseño de forma significativa, por lo que es necesario buscar una alternativa.
+
+Como solución se decide crear placas con circuitos impresos que conecten los diferentes diodos al puerto GPIO, utilizando una tira GPIO soldada al circuito que se conectará a los pines de la Raspberry. De esta forma se evita cualquier tipo de cableado y se evita realizar soldaduras a la placa.
+
+A fin de ahorrar espacio, los LED se situarán sobre la Raspberry cubriendo la parte inferior de la misma.
