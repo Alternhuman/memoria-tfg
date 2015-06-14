@@ -1,4 +1,7 @@
 {
     "id": "statusmonitor",
-    "version": "1"
+    "params":{
+    	"port":1342
+    },
+    "groups":["224.0.0.112", "224.0.0.114"]
 }

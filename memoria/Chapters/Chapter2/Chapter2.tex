@@ -312,7 +312,7 @@ En caso de que alguno de los pasos sea infructuoso, la conexión terminará.
 El protocolo HTTPS\cite{rfc2818} utiliza TLS para cifrar las conexiones realizadas mediante el protocolo HTTP. La combinación de ambos protocolos se realiza superponiendo TLS al protocolo HTTP, por lo que las cabeceras y datos transmitidos no son alterados, siendo por tanto compatibles entre sí. Este protocolo (o combinación de protocolos, al consistir en la simple combinación de varios) es utilizado en recursos web para garantizar la identidad del servidor que envía los datos y establecer un canal seguro sobre una red no segura.
 
 \subsection{Autenticación mutua}
-
+\label{teoria:autenticacionmutua}
 El uso más común de los protocolos previamente definidos es verificar la identidad del servidor al que se está conectando un cliente. Sin embargo, en ocasiones es necesario que el servidor confíe en el cliente, como en situaciones donde el cliente no dispone de otro mecanismo de autenticación, como puede ser un par usuario-contraseña. El \textit{handshake} es similar al utilizado tradicionalmente, únicamente se añade el paso de validación del certificado que el cliente debe enviar al servidor.
 
 En el sistema este proceso de autenticación se utiliza en aquellas aplicaciones sin interfaz de usuario o que realizan operaciones que puedan comprometer la integridad del sistema de forma significativa (por ejemplo, solicitar la realización de operaciones con privilegios de administrador en \textbf{pam\_mkpolohomedir} o la descarga de un sistema operativo que contiene todas las claves privadas, que deben ser confidenciales).
