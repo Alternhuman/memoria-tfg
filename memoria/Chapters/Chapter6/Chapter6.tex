@@ -462,3 +462,27 @@ Muchas de las aplicaciones distribuidas utilizadas incluyen varias herramientas 
 \section{Bibliotecas}
 
 \subsection{quick2wire-cpp-api}
+
+Uno de los periféricos de interés en el desarrollo del sistema es el puerto \textbf{GPIO} \textit{General Purpose Input-Output} presente en la Raspberry Pi. Dicho puerto permite a los usuarios del sistema analizar de forma visual el comportamiento de una aplicación distribuida, ser utilizado como indicador del estado de la máquina, etcétera.
+
+El funcionamiento del puerto presenta un problema para el desarrollo del proyecto. El acceso al hardware se consigue mediante el acceso a una serie de direcciones de memoria sobre las que se definen diferentes valores (dirección de cada uno de los pines, valor, etcétera). Dichas direcciones de memoria se definen en el fichero \texttt{/dev/mem}, que representa la memoria física presente en todo el nodo, así como este tipo de periféricos.
+
+Debido al riesgo que conlleva el acceso a este dispositivo por cualquier usuario, únicamente el superusuario tiene permisos para manipular el mismo (poder modificar este fichero implica ganar control absoluto sobre la memoria del sistema). Esto implica que el acceso al puerto \textbf{GPIO} está restringido al superusuario o alguien con permisos para acceder al mismo (mediante la herramienta \texttt{sudo}).
+
+Quedando descartada la opción de elevar los privilegios de todos los usuario para que puedan hacer uso del puerto, es necesario buscar alternativas. Se busca una solución más eficaz que otorgar permisos de forma temporal o mediante supervisión de un administrador.
+
+Tras la revisión de las diferentes alternativas de terceros existentes que proporcionan el acceso al puerto GPIO, \textbf{wiringPi2}\footnote{\citationneeded}, \textbf{RPi.GPIO}\footnote{\citationneeded} y \textbf{quick2wire}\footnote{\citationneeded}, únicamente esta última implementa un mecanismo que permite a los usuarios utilizar el puerto GPIO sin permisos. Por desgracia, esta biblioteca está implementada únicamente en Python, y el uso del puerto en el sistema está inicialmente planteado para el uso en aplicaciones creadas en C/C++ debido a que son los lenguajes utilizados en la asignatura \textbf{Arquitectura de Computadores}. Se valora la posibilidad de crear una traducción de la biblioteca quick2wire-python-api a C/C++, y dicha propuesta es admitida como camino de solución tras un prototipo inicial.
+
+\subsubsection{Funcionamiento}
+
+La biblioteca original aprovecha otro producto de \textbf{quick2wire}, la aplicación \textbf{gpio-admin}. Escrita en C, dicha aplicación permite realizar operaciones sobre las direcciones de memoria que se corresponden con el puerto \textbf{GPIO}. Mediante el uso de del bit de usuario \citationneeded{revisar} es posible hacer que el usuario ejecutor sea a efectos de acceso a \texttt{/dev/mem} el superusuario. Este sistema es similar al de la herramienta \textbf{passwd}.
+
+La herramienta establece una correspondencia (\textit{``mapping''}) entre las direcciones asociadas al GPIO y un directorio virtual en \texttt{/sys/class/gpio}\footnote{En la biblioteca original, escrita para Raspbian, la correspondencia se realizaba con \texttt{}\citationneeded{Buscar}. Se ha modificado el código para posibilitar la compatibilidad con Arch Linux}.
+
+Posteriormente es necesario únicamente utilizar esta herramienta mediante llamadas al sistema a través de la biblioteca. Es por ello que \textbf{quick2wire-cpp-api} (y la implementación original en Python) pueden considerarse wrappers de esta utilidas, aportando poca funcionalidad más allá de una capa de abstracción.
+
+\subsubsection{Descripción del código}
+
+La biblioteca es compatible con C y C++ ofreciendo un conjunto de llamadas similares a la implementación original en Python. Sólo se ha implementado aquella funcionalidad necesaria para posibiltar el acceso a los pines GPIO (y actualmente únicamente en modo salida) %TODO hacer GPIO in
+
+La interfaz con I\textsuperscript{2}C y SPI aún no está implementada.
