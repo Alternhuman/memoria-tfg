@@ -69,11 +69,14 @@ Se ha creado un módulo para \textbf{PAM} para facilitar las tareas que el siste
 
 \subsection{OpenSSL}
 
-OpenSSL es la implementación de código abierto más popular de los protocolos SSL y TSL. En el sistema se utiliza de forma intensiva para garantizar la confidencialidad de las transmisiones entre partes así como para verificar la identidad de dos partes. 
+OpenSSL es la implementación de código abierto más popular de los protocolos SSL y TSL. En el sistema se utiliza de forma intensiva para garantizar la confidencialidad de las transmisiones entre partes así como para verificar la identidad en ambos lados de un canal de comunicación. La biblioteca proporciona bindings a C, C++, Java y Python, por lo que su integración en cualquiera de las herramientas creadas ha sido trivial. 
 
 \subsection{Distcc}
 
+Distcc es la herramienta utilizada para el desarrollo del compilador distribuido. %TODO
+
 \subsection{Hadoop}
+%TODO
 
 \subsection{\textit{Message Passing Interface}}
 
@@ -85,20 +88,65 @@ MPI es utilizado en el sistema como herramienta de desarrollo de aplicaciones di
 
 \subsection{Tomcat}
 
+Las prácticas de la asignatura Sistemas Distribuidos se realizan sobre el contenedor de servicios Tomcat. Por ello el sistema ofrece instancias de Tomcat a todos los usuarios sin que estos deban realizar ningún tipo de configuración. Además, se habilita el uso de Tomcat en herramientas como \textbf{deployer} para facilitar el desarrollo de las prácticas.
+
 \section{Herramientas utilizadas para la gestión de código, calidad de \textit{software} y el proyecto}
 
 \subsection{Git}
 
+Git es un sistema de control de versiones capaz de gestionar proyectos de cualquier escala, diseñado para flujos de trabajo distribuidos. Git permite realizar operaciones de reversión de cambios, bifurcaciones y uniones de flujos de desarrollo y gestión de varias copias independientes sin conflictos. Es una de las herramientas de gestión de código más utilizadas, siendo diseñada originalmente para la coordinación en el desarrollo del núcleo Linux.
+
+Las diferentes herramientas que componen el sistema son creadas en repositorios independientes de código. Dicho código es almacenado en un servidor con el objetivo de facilitar la movilidad del código entre las diferentes máquinas que componen el sistema y a modo de copia de seguridad. Se sigue un modelo de desarrollo basado en ramas que representan características a añadir a la versión estable, revisión de código, documentación o mantenimiento y solución a \textit{bugs}.
+
+Todos los repositorios de código originales pueden consultarse en \href{https://bitbucket.org/Alternhuman}{https://bitbucket.org/Alternhuman}
+
 \subsection{Redmine}
 
-\subsection{Unittest, CppUnit, Trial}
+Redmine es una herramienta de gestión de proyectos basada en web que permite a un equipo mantener un registro de todo el trabajo realizado y planificado en un proyecto, con una serie de herramientas como diagramas de Gantt, Wiki o integración con sistemas de control de versiones.
+
+El proyecto cuenta con una instancia de Redmine alojada en \href{http://redmine.martinarroyo.net/}{http://redmine.martinarroyo.net/projects/tfg}. En dicha instancia se han registrado todos los avances en el desarrollo del proyecto desde las fases iniciales del mismo.
+
+
+\subsection{2to3, 3to2}
+
+Las versiones del lenguaje Python 2 y 3 son incompatibles entre sí. Sin embargo, las diferencias entre ambas versiones radican en una serie de variaciones sintácticas, nombres de tipos y localización de las bibliotecas básicas del sistema, por lo que escribiendo código que tenga en cuenta dichas variaciones, bien incluyendo sentencias condicionales en función de la versión o bien utilizando mecanismos que sean compatibles con ambas versiones es posible generar código compatible con ambas versiones. Este aspecto de las herramientas es importante si se tiene en cuenta que la transición a la versión 3 aún no está completa.
+
+2to3 y 3to2 son herramientas que ayudan al programador en la verificación de la compatibilidad entre versiones, generando una lista de modificaciones que posibilitan la ejecución el código en otra versión. Utilizando ambas herramientas es posible crear código ambivalente de forma sencilla.
+
+\subsection{Pylint}
+
+Pylint es una herramienta de verificación de código, que evalúa la calidad de un código siguiendo una serie de criterios tales como la presencia de errores sintácticos, sangrado del código, convenciones de nombrado y de estilo, errores en la importación de paquetes, etcétera. Pylint incluye además la herramienta pyreverse, útil en la generación de diagramas UML.
+
+\subsection{Desarrollo dirigido por pruebas: Unittest, CppUnit, Trial}
+
+Uno de los mecanismos para la detección temprana de errores es el desarrollo dirigido por pruebas (ver \ref{teoria:tdd}). En el proyecto se utilizan diferentes \textit{frameworks} para cada una de las aplicaciones y bibliotecas creadas. Los tests unitarios se incluyen en cada uno de los paquetes para poder ser ejecutados por cualquier usuario en caso de que lo estime oportuno.
+
+\section{Herramientas de modelado}
+
+Junto a Pylint se ha utilizado Visual Paradigm para la generación de todos los diagramas UML.
+
 
 \section{Herramientas utilizadas para la documentación del proyecto}
 
 \subsection{\LaTeX}
 
+El sistema de composición de textos \LaTeX es utilizado para crear todos los documentos incluidos en el desarrollo del sistema. Se utiliza el motor \XeLaTeX para el compilado de los ficheros, debido a su mayor variedad de fuentes y la utilización por defecto de la codificación UTF-8 (útil en idiomas que utilizan un alfabeto diferente al del inglés).
+
 \subsection{Sphinx}
+
+Sphinx es un sistema de creación y generación de documentación capaz de crear documentos en diferentes formatos (HTML, \LaTeX, ePub\dots) a partir de una serie de archivos en el formato reStructuredText. Es además capaz de crear documentación sobre código Python (lenguaje para el que la herramienta fue creada) a partir de los comentarios presentes en el código (conocidos como \textbf{docstrings}). Junto con Doxygen, se ha conseguido documentar código en C, C++ y %TODO Java
+utilizando Sphinx. Soporta además referencias a diferentes proyectos creados con esta herramienta.
+
+Los resultados generados por la herramienta son incluidos como documentación técnica de cada una de las herramientas, y están disponibles en \href{marcopolo.martinarroyo.net}.
+
+
 %Esta parte de la memoria tiene como objetivo presentar las técnicas metodológicas y las herramientas de desarrollo que se han utilizado para llevar a cabo el proyecto. Si se han estudiado diferentes alternativas de metodologías, herramientas, bibliotecas se puede hacer un resumen de los aspectos más destacados de cada alternativa, incluyendo comparativas entre las distintas opciones y una justificación de las elecciones realizadas. No se pretende que este apartado se convierta en un capítulo de un libro dedicado a cada una de las alternativas, sino comentar los aspectos más destacados de cada opción, con un repaso somero a los fundamentos esenciales y referencias bibliográficas para que el lector pueda ampliar su conocimiento sobre el tema
+
+\subsection{Doxygen}
+
+Doxygen es un sistema similar a Sphinx utilizado en proyectos escritos en C, C++ y Java entre otros muchos lenguajes. Constituye el estándar \textit{de facto} para la generación de documentación.
+
+En el proyecto Doxygen es utilizado para documentar aquellas partes del proyecto que Sphinx no puede procesar (actualmente el soporte de dicha herramienta se limita a Python). Posteriormente la documentación de ambas herramientas se combina mediante ficheros XML generados por Doxygen que Sphinx puede procesar.
 
 \section{Herramientas para la gestión de usuarios}
 
@@ -110,9 +158,8 @@ Con el objetivo de superar este límite nace SSH-HPN\citationneeded, un conjunto
 
 Se ha creado un paquete de Arch Linux con el código fuente ya preparado para trabajar en la arquitectura ARM, y todos los nodos del sistema utilizan esta versión en lugar del paquete \textbf{OpenSSH} original.
 
-\subsection{3to2}
 
-\subsection{Pylint}
+
 
 \chapter{Técnicas}
 \lhead{\emph{Técnicas}}
