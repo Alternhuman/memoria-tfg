@@ -16,21 +16,28 @@ Python se ha elegido como lenguaje principal en el desarrollo de herramientas pa
 
 \begin{landscape}
 \begin{table}[H]
-\begin{tabular}{|p{1.5cm}|p{4.2cm}|p{4.2cm}|p{4.2cm}|p{4.2cm}|}
+\begin{tabular}{|p{1.3cm}|p{4.8cm}|p{4.8cm}|p{4.8cm}|p{4.8cm}|}
 \hline
 Nombre & Características notables & Pros & Contras & Inclusión en el sistema\\ \hline
 
 \textbf{Python} & Orientación a objetos, portable & Portable, buen rendimiento & Necesidad de un intérprete & Se incluye en los componentes de alto nivel del sistema.\\ \hline
 
-\textbf{C} & Imperativo, acceso a características de muy bajo nivel de forma sencilla & El desarrollo en el lenguaje suele ser más complejo que en otros lenguajes de más alto nivel & Se incluye en componentes que trabajan con entornos tediosos donde el rendimiento es crucial, o no se puede contar con un intérprete. & \\ \hline
+\textbf{C} & Imperativo, acceso a características de muy bajo nivel de forma sencilla & El desarrollo en el lenguaje suele ser más complejo que en otros lenguajes de más alto nivel & Se incluye en componentes que trabajan con entornos tediosos donde el rendimiento es crucial, o no se puede contar con un intérprete de Python. & \\ \hline
 
-\textbf{C}++ & Orientado a objetos & Gran rendimiento, acceso a todas las características de C & No es portable fácilmente en algunos casos & Se incluye en conjunción con C.\\ \hline
+\textbf{C}++ & Orientado a objetos & Gran rendimiento, acceso a todas las características de C & No es portable fácilmente en algunos casos & Se han creado los bindings de MarcoPolo para este lenguaje, así como las herramientas \textbf{marcobootstrap}\\ \hline
 
 \textbf{Java} & Orientado a objetos & Multiplataforma, popular y sencillo de utilizar & El rendimiento del lenguaje y su \textit{JVM} en el sistema son inferiores al de otras alternativas & Se utiliza en los paquetes \textit{software} que hacen uso de \textbf{Tomcat} o \textbf{Hadoop}.\\ \hline
-\textbf{Perl} & & & & \\ \hline
+\textbf{Perl} & Multiplataforma y multiparadigma & Portable, sencillo de utilizar, diseñado para la administración de sistemas & El uso de Perl como lenguaje de programación principal puede dificultar la realización de una serie de tareas clave. & Ninguna\\ \hline
 \end{tabular}
+\caption{Lenguajes de programación utilizados en el sistema}
 \end{table}
 \end{landscape}
+
+\paragraph{Otros lenguajes\\}
+
+Todas las interfaces web han sido programadas utilizando HTML, CSS y JavaScript en el lado del cliente. Dicha combinación evita la dependencia con cualquier herramienta no incluida por defecto en la totalidad de los navegadores mayoritarios (tales como Flash, ActiveX\dots).
+
+Para la realización de diversas tareas de administración del sistema se utilizan \textit{scripts} de \textbf{bash}. 
 
 \section{Herramientas utilizadas para la creación de \textit{software}}
 
@@ -61,6 +68,8 @@ Siguiendo el objetivo funcional\citationneeded, la gestión de los usuarios est�
 Se ha creado un módulo para \textbf{PAM} para facilitar las tareas que el sistema debe realizar. Dicho módulo integra \textbf{MarcoPolo} y es conocido como \textbf{pam\_mkpolohomedir}\ref{pam_mkpolohomedir}. 
 
 \subsection{OpenSSL}
+
+OpenSSL es la implementación de código abierto más popular de los protocolos SSL y TSL. En el sistema se utiliza de forma intensiva para garantizar la confidencialidad de las transmisiones entre partes así como para verificar la identidad de dos partes. 
 
 \subsection{Distcc}
 

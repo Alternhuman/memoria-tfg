@@ -1,15 +1,34 @@
 \lhead{\emph{Servicios auxiliares}}
 \chapter{Servicios auxiliares}
 
-
 \section{Compilador cruzado}
 
 Si bien el sistema Raspberry Pi es capaz de compilar el \textit{software} que después utilizará, en ocasiones es beneficioso delegar dicha tarea a otro componente que realice el proceso por el nodo en cuestión y posteriormente añadir los archivos ejecutables al sistema. Este enfoque reduce el tiempo de trabajo de forma significativa, como observaremos posteriormente.%proporcione los resultados al solicitante.
 
 \subsection{Creación de un compilador cruzado}
 
-Un compilador cruzado (\textit{cross-compiler})es una herramienta capaz de generar código para una architectura utilizando un equipo con otra arquitectura diferente.%TODO: http://en.wikipedia.org/wiki/Cross_compiler
-El uso de compiladores cruzados 
+Un compilador cruzado (\textit{cross-compiler})es una herramienta capaz de generar código máquina para una architectura determinada utilizando un equipo equipado con un juego de instrucciones diferente.%TODO: http://en.wikipedia.org/wiki/Cross_compiler
+El uso de compiladores cruzados es habitual a la hora de desarrollar aplicaciones para sistemas embebidos o móviles, debido a la dificultad o incluso incapacidad de realizar las diferentes etapas de desarrollo en el propio equipo. Uno de los problemas que aparecen a la hora de utilizar este tipo de equipos es la escasa velocidad de procesamiento, que hace de tareas con gran demanda de recursos como una compilación un proceso tedioso.
+
+El compilador ha sido creado utilizando la herramienta \textbf{crosstool-ng}. No se ha generado únicamente un compilador, sino un conjunto completo de herramientas para el desarrollo de aplicaciones para las arquitecturas ARMv6 y ARMv7. \textbf{Crosstool-ng} permite generar una ``cadena de herramientas'' (\textit{crosstool} en inglés), que incluye una copia de las bibliotecas estándar de C (\textbf{glibc} en este caso), depurador y bibliotecas de depuración, además de permitir optimizar las herramientas creadas para una plataforma determinada o un conjunto de instrucciones determinado dentro de la plataforma (por ejemplo, para las operaciones en punto flotante).
+
+\subsection{Compilación distribuida}
+
+Si bien el uso de un compilador distribuido permite aprovechar la potencia de un segundo equipo para crear \textit{software}, se requiere previamente la instalación de la cadena de herramientas (o en el peor de los casos, la generación de la misma, un proceso generalmente complejo y largo). Por ello, se plantea una solución que sea más transparente para el usuario final.
+
+\textbf{distcc} es una herramienta que permite gestionar trabajos de compilación distribuida en un esquema cliente-servidor. Distribuye diferentes etapas de compilación a todos los nodos presentes en una red que cuenten con la aplicación servidor activada, estableciendo los diferentes mecanismos de sincronización y validación de resultados oportunos, haciendo que su uso sea completamente transparente al usuario (incluso en caso de fallo es capaz de realizar el trabajo encomendado, realizando la compilación en el propio equipo). Un trabajo de compilación en \textbf{distcc} con gcc se encarga de la siguiente forma:
+
+\texttt{distcc gcc -c main.c}
+
+Como se puede observar, todas las opciones de gcc se mantienen en dicha llamada, siendo necesario únicamente añadir distcc al inicio de la llamada. Por ello es una herramienta muy sencilla de utilizar e integrable en cualquier tarea de compilación\footnote{Un ejemplo son los flags de la herramienta make. Únicamente es necesario realizar la llamada \texttt{make CC="distcc gcc" CXX="distcc g++"} para utilizar distcc en lugar del compilador predeterminado.}.
+
+\textbf{Distcc} utiliza por defecto el compilador indicado por el cliente en la llamada al proceso cliente, utilizando dicho compilador en el servidor. En el caso de una compilación no cruzada esta situación no causa problemas, sin embargo, en el presente caso es necesario realizar una serie de modificaciones en el servidor para posibilitar el uso de la cadena de herramientas creada.
+
+Creando enlaces simbólicos que no incluyan el prefijo de los binarios generados por la cadena de herramientas (generalmente del estilo \texttt{arm-linux-gnueabi-armhfv7-gcc}) y modificando la variable \texttt{\$PATH} para incluir de forma prioritaria estos binarios en el entorno del proceso servidor (incluyendo dichas modificaciones en un \textit{script} de inicio) el servidor utilizará el compilador cruzado para las tareas que se le encarguen, sin entrar en conflicto con el resto del sistema.
+
+\subsection{Integración con MarcoPolo}
+
+El servidor distcc es descubrible a través de MarcoPolo gracias a la herramienta \textbf{MarcoManager} (ver \ref{marcomanager}).
 
 \subsection{Análisis del rendimiento}
 
@@ -27,4 +46,26 @@ Para determinar el rendimiento del compilador se ha utilizado el mismo en la com
 
 \subsubsection{OpenSSH}
 
-\section{Servidor marcobootstrap}
+Esta herramienta se ejecuta en el servidor \textbf{marcoservidor}.
+
+\section{Nodos secundarios}
+
+Una serie de nodos secundarios han sido instalados en el sistema con el único propósito de realizar una serie de tareas que tienen como objeto simplificar u optimizar las diferentes tareas asociadas a los nodos. En ningún caso el uso de estos nodos secundarios implica una dependencia de los mismos, siendo posible prescindir de ellos sin consecuencias graves para el sistema como conjunto.
+
+\subsection{Servidor marcoservidor}
+
+El servidor marcoservidor es un equipo en desuso presente en la Facultad de Ciencias, que se encuentra disponible para cualquier alumno interesado en integrarlo en un Trabajo de Fin de Grado. Las características del equipo son las siguientes:
+
+\begin{itemize}
+	\item Procesador AMD Opteron 1200 de dos núcleos (arquitectura x86)%TODO
+	\item 4 GB de memoria RAM
+	\item Disco duro de %TODO
+\end{itemize}
+
+Las características del sistema lo hacen idóneo para su uso como servidor de compilación distribuida. Se ha generado en el mismo una cadena de herramientas compatible con ARMv7.%TODO ARMv6 y marcomanager
+
+Además, este servidor incluye el servidor \textbf{marcoboostrap} (ver \ref{marcobootstrap}), incluyendo una interfaz de gestión para el administrador y un conjunto de imágenes de sistemas operativos para los usuarios finales.
+
+\subsection{Servidor LDAP}
+
+Con el objetivo de mejorar la accesibilidad del sistema, se delega la gestión de las diferentes cuentas de usuario a un servidor LDAP preexistente en la infraestructura. Dicho servidor se encuentra alojado en la dirección \texttt{ldap1.aulas.cie.usal.es} y es aprovechado por los nodos principales a través de nsswitch (ver \ref{gestionusuarios}) 

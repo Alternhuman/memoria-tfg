@@ -51,7 +51,7 @@ Diversos componentes del sistema operativo son utilizados para llevar a cabo ope
 
 \textbf{systemd} define cada uno de los diferentes servicios (``unidades'') en un fichero independiente.
 
-\section{Descubrimiento de servicios}
+\section{Descubrimiento de servicios: el protocolo MarcoPolo}
 
 Uno de los problemas típicos a la hora de crear un sistema distribuido es la localización de cada uno de los nodos que lo conforman. Al no existir un coordinador, es difícil establecer un mecanismo de interconexión entre los diferentes nodos que sea escalable e independiente de factores externos (e.g. IP asignada en un momento dado, número de nodos en la red).
 
@@ -413,14 +413,13 @@ El módulo ha sido diseñado con el objetivo de posibilitar la adición de nueva
 %%%
 
 %%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{MarcoPolo}
+\section{Operaciones auxiliares}
 
 Sumada a las herramientas creadas en el sistema, es necesario llevar a cabo una serie de operaciones que posibiliten el acceso a servicios más básicos tales como la autenticación de los usuarios del sistema, %TODO etc
 
 Con el objetivo de mejorar la situación actual en la infraestructura a analizar, se tratan los siguientes problemas.
 
-\section{Instalación del sistema}
+\subsection{Instalación del sistema}
 
 El sistema a crear requiere de la instalación de diferentes componentes, en particular el sistema operativo, antes de poder ser utilizado. Dicha instalación, si es realizada en cada nodo secuencialmente, implica una gran carga de trabajo y aumenta la propensión a errores durante dicho proceso (en particular si en el mismo existe una gran carga de trabajo que debe ser supervisado por un administrador humano). Una solución a este problema es la autoinstalación del sistema operativo partiendo de una imagen definida y probada por el administrador, que se cargará e instalará en cada nodo sin supervisión.
 
@@ -428,7 +427,7 @@ Una de las herramientas ya existentes para solucionar este problema es el \textb
 
 Sin embargo, el uso de este protocolo requiere un controlador de interfaz de red (\textbf{NIC}) en el cliente que soporte el protocolo \textbf{PXE}. Generalmente dicho controlador se incluye como extensión de la \textbf{BIOS} o en equipos más modernos como código \textbf{UEFI}. La \textbf{Raspberry Pi} carece de este tipo de \textit{software}, pues delega todo el arranque del sistema a los datos presentes en la tarjeta SD, y por tanto no es posible realizar ningún tipo de arranque en red sin la previa instalación de un conjunto de aplicaciones que realicen la descarga del sistema operativo. Es por ello que el uso de \textbf{PXE} como herramienta de arranque debe ser desestimado.
 
-\subsection{marco-netinst}
+\subsubsection{marco-netinst}
 
 Debido a la falta de soporte para \textbf{PXE} u otra alternativa similar, es necesario crear una herramienta que se encargue de la detección de un servidor que aloje la imagen del sistema operativo, la descarga del mismo y su instalación. Con este objetivo se crea la herramienta \textbf{marco-netinst}.
 
@@ -460,6 +459,8 @@ Muchas de las aplicaciones distribuidas utilizadas incluyen varias herramientas 
 \subsection{rsyslog}
 
 \section{Bibliotecas}
+
+Se han creado además una serie de bibliotecas que responden a diferentes necesidades dentro del sistema.
 
 \subsection{quick2wire-cpp-api}
 
