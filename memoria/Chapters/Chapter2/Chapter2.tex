@@ -26,9 +26,7 @@ Otro concepto importante en el desarrollo de sistemas distribuidos es la ``franq
 
 \subsection{Escalabilidad y flexibilidad}
 
-La escalabilidad del sistema se ve afectada por las decisiones de diseño llevadas a cabo. En arquitecturas centralizadas el punto principal del sistema constituye un ``cuello de botella'' evidente que define un límite en el crecimiento del sistema. La disposición geográfica exige una serie de consideraciones adicionales, entre las que se encuentra la latencia del sistema. En arquitecturas constituidas por componentes relativamente pequeños y fácilmente adaptables la flexibilidad del sistema se incrementa significativamente, facilitando la escalabilidad del mismo. A fin de conseguir dicha flexibilidad es necesario desarrollar interfaces definidas para los componentes de bajo nivel del sistema, así como una descripción de las interacciones entre los diferentes componentes.
-
-%TODO\subsubsection{Utilización en el sistema final}
+La escalabilidad del sistema se ve afectada por las decisiones de diseño llevadas a cabo. En arquitecturas centralizadas el punto principal del sistema constituye un ``cuello de botella'' evidente que define un límite en el crecimiento del sistema. La disposición física exige una serie de consideraciones adicionales, entre las que se encuentra la latencia y fiabilidad de las interconexiones. En arquitecturas constituidas por componentes relativamente pequeños y  adaptables la flexibilidad del sistema se incrementa significativamente, facilitando su escalabilidad. A fin de conseguir dicha flexibilidad es necesario desarrollar interfaces definidas para los componentes de bajo nivel del sistema, así como una descripción de las interacciones entre los diferentes componentes.
 
 \subsection{Algoritmos distribuidos}
 
@@ -41,11 +39,20 @@ Un algoritmo distribuido es aquel que realiza una tarea de forma distribuida, cu
   \item No hay una asunción implícita de que existe un reloj global (\textbf{principio de autonomía}).
 \end{itemize}
 
+\subsubsection{Utilización en el sistema final}
+
+El sistema final consiste en un conjunto de nodos sin una jerarquía definida, por lo que se elimina la dependencia de un coordinador. Esto hace del sistema una solución fácilmente escalable.
+
+A la hora de desarrollar las diferentes herramientas creadas se mantienen todas las  ``transparencias '' citadas anteriormente, salvo en aquellos casos que estas comprometan el rendimiento o funcionalidad de la misma.
+
+Como se detalla en la fase de análisis \citationneeded[Fase de análisis] el sistema incluye mecanismos de autoconfiguración que lo hacen adaptable a un gran número de situaciones (variaciones en el espacio de direcciones, nodos añadidos y eliminados arbitrariamente\dots). La flexibilidad de este es por tanto alta.
+
+%TODO: En aquellos componentes basados en la colaboración entre partes se cumples las condiciones de todo algoritmo distribuido. 
 
 \subsection{\textit{Middleware}}
 \label{teoria:middleware}
 
-Un \textit{middleware} es una capa \textit{software} que permite abstraer las peculiaridades de un estrato subyacente (como una interfaz de comunicación en red, funcionalidad del sistema operativo, mecanismos de acceso a bases de datos\dots) en una interfaz común e independiente. Ejemplos de middleware son la \textit{Common Object Request Broker Architecture} (\textbf{CORBA}), llamadas a procedimientos y métodos remotos (\textbf{RPC}, \textbf{RMI}) o herramientas de serialización. Sin embargo, el término también se aplica a cualquier otro tipo de capa intermedia que proporciona una abstracción entre componentes.
+Un \textit{middleware} es una capa \textit{software} que abstrae las peculiaridades de un estrato subyacente (como una interfaz de comunicación en red, funcionalidad del sistema operativo, mecanismos de acceso a bases de datos\dots) en una interfaz común e independiente de cualquier sistema. Ejemplos de middleware son la \textit{Common Object Request Broker Architecture} (\textbf{CORBA}), llamadas a procedimientos y métodos remotos (\textbf{RPC}, \textbf{RMI}) o herramientas de serialización. Sin embargo, el término también se aplica a cualquier otro tipo de capa intermedia que proporciona una abstracción entre componentes.
 
 \begin{figure}[H]
 \centering
@@ -59,7 +66,7 @@ Un \textit{middleware} es una capa \textit{software} que permite abstraer las pe
 %TODO
 Los diferentes \textit{bindings} de MarcoPolo (ver \ref{marcopolo:bindings}) pueden ser considerados middleware, pues abstraen los diferentes procesos de comunicación que ocurren al utilizar el sistema, proporcionando una interfaz independiente del lenguaje de programación y el sistema operativo. La serialización de las peticiones puede ser considerada \textit{middleware}.
 
-Si \textbf{nsswitch} (ver \ref{nsswitch}) es considerado un sistema que abstrae los diferentes mecanismos de autenticación y resolución de nombres de la implementación de los mismos puede ser considerado un \textit{middleware}. \textbf{Nsswitch} se utiliza como método de abstracción de los diferentes proveedores de información de usuarios (archivos del sistema y \textbf{LDAP}) en el sistema final.
+Si \textbf{nsswitch} (ver \ref{nsswitch}) es considerado un sistema que abstrae los diferentes mecanismos de autenticación y resolución de nombres de la implementación de los mismos puede ser denominado \textit{middleware}. \textbf{Nsswitch} se utiliza como método de abstracción de los diferentes proveedores de información de usuarios (archivos del sistema y \textbf{LDAP}) en el sistema final.
 
 \subsection{Modelos arquitectónicos}
 
@@ -84,6 +91,14 @@ En general se conoce como clúster al conjunto de nodos homogéneos y dispuestos
 
 Una ``rejilla'' (grid) es un sistema distribuido en el que los nodos del sistema no son homogéneos. Los mecanismos de transparencia descritos anteriormente son clave para el correcto funcionamiento del sistema y las interconexión entre los diferentes elementos.
 
+\subsubsection{Utilización en el sistema final}
+
+Si bien los nodos principales del sistema son del mismo tipo y cuentan con el mismo conjunto de herramientas \textit{software}, los nodos secundarios del mismo (encargados de ofrecer servicios auxiliares, ver \ref{chapter:serviciosauxiliares}) cuentan con una arquitectura \textit{hardware} diferente, así como un sistema operativo diferente. El sistema puede considerarse un clúster si obviamos estos nodos.
+
+Sin embargo, todas las herramientas han sido diseñadas con el objetivo de ser compatibles con cualquier otro entorno. Han sido integradas en diferentes equipos de escritorio con el sistema GNU/Linux. %TODO y entornos virtualizados.
+
+En consecuencia, todo el \textit{software} creado es capaz de trabajar en un sistema heterogéneo.
+
 \subsubsection{Sistemas de información distribuida}
 %TODO
 \citationneeded
@@ -97,13 +112,9 @@ Una de las ventajas de este tipo de sistemas es la facilidad para el establecimi
 
 \subsubsection{Utilización en el sistema final}
 
-El sistema final es de tipo descentralizado, únicamente existiendo un coordinador en aquellos servicios en los que sea necesaria la presencia de uno (todos los nodos son capaces de actuar en ambos roles, y la elección del coordinador se realiza de forma distribuida, por lo que el fallo de un coordinador no supone un fallo total del sistema, y la recuperación es relativamente sencilla). Se utiliza el protocolo \textbf{MarcoPolo} (ver \ref{marcopolo}) para el descubrimiento de nodos y servicios, por lo que la configuración necesaria en el sistema es mínima.
+El sistema final es de tipo descentralizado, únicamente existiendo un coordinador en aquellos servicios en los que sea necesaria la presencia de uno (todos los nodos son capaces de actuar en ambos roles, y la elección del coordinador se realiza de forma distribuida, por lo que el fallo de un coordinador no supone un fallo total del sistema y la recuperación es relativamente sencilla). Se utiliza el protocolo \textbf{MarcoPolo} (ver \ref{marcopolo}) para el descubrimiento de nodos y servicios, por lo que la configuración necesaria en el sistema es mínima.
 
-\subsection{Seguridad}
 
-Las medidas de seguridad a tomar dependen de las propiedades y objetivos propios del sistema: en general sistemas utilizados dentro de una organización y una infraestructura sin interacción con entornos no controlados suelen contar con un número menor de medidas de seguridad que aquellos utilizados en entornos ``hostiles'' (generalmente abiertos al público), y la seguridad depende de la confianza depositada en la administración del sistema. Sin embargo, un sistema de este tipo es vulnerable a ataques internos por parte de usuarios o intrusiones en la infraestructura.
-
-Un sistema integrado en un entorno hostil debe además vigilar cualquier tipo de potencial ataque malicioso y controlar el acceso al sistema de forma más minuciosa.
 
 \subsection{Protocolo}
 
@@ -113,11 +124,13 @@ Si un protocolo es definido de forma correcta posibilitará la comunicación ent
 
 \subsubsection{Utilización en el sistema final}
 %TODO
-En el sistema se utilizan gran cantidad de protocolos conocidos (tales como HTTP, JSON, Websockets\dots) y se ha definido el protocolo de descubrimiento de servicios \textbf{MarcoPolo}.
+En el sistema se utilizan gran cantidad de protocolos conocidos (tales como HTTP, JSON, Websockets\dots) y se ha definido el protocolo de descubrimiento de servicios \textbf{MarcoPolo}. Los mecanismos de comunicación entre diferentes componentes de una aplicación son claramente definidos, si bien no de una forma tan exhaustiva como un protocolo.
 
 \subsection{Integridad}
+%TODO
 
 \subsection{Comunicación}
+%TODO
 
 \subsection{Distribución}
 
@@ -138,9 +151,19 @@ Uno de los modelos típicos en el desarrollo de sistemas distribuidos es el ``di
 Un sistema distribuido debe proporcionar mecanismos que resuelvan de forma transparente todos los problemas asociados con la gestión de los mecanismos de interconexión entre los diferentes integrantes. Dichos mecanismos están diseñados para ser adaptativos y si bien el diseño suele ser genérico, es habitual encontrar soluciones \textit{ad-hoc}.
 
 \subsubsection{Utilización en el sistema final}
-%TODO: Polousers
+
+El protocolo \textbf{MarcoPolo} resuelve la gran mayoría de los problemas de configuración del sistema sin ningún tipo de ajuste previo. Es capaz además de responder ante alteraciones en la configuración del sistema, como la modificación del esquema de red o la adición de nuevos nodos.
+
+\textbf{Polousers} es una herramienta que, apoyada en \textbf{Marcopolo}, gestiona de forma transparente toda la información de los usuarios del sistema.
+%TODO
 
 \section{Paradigmas de programación}
+
+\subsection{Programación orientada a objetos}
+%TODO
+
+\subsection{Programación funcional}
+%TODO
 
 \subsection{Programación orientada a eventos}
 \label{teoria:eventdriven}
@@ -166,7 +189,6 @@ Un suscriptor de eventos permite vincular un evento a un manejador (\textit{hand
 \caption[Evento y manejador]{El evento ``onmousemove'', que se dispara en el momento en el que el ratón se desplaza, es vinculado a la función \texttt{manejadorMouseMove} en una página web.}
 \end{figure}
 
-
 Ejemplos de herramientas que utilicen este paradigma son \textbf{Node.js}, \textbf{Tornado web}, \textbf{Twisted} o la gran mayoría de los \textit{frameworks} para creación de interfaces gráficas, como \textbf{Cocoa}, \textbf{Windows Presentation Framework} o \textbf{Qt}, entre otros.
 
 En el proyecto se utiliza este patrón para la creación de la mayoría de las herramientas, en particular en combinación con el modelo de aplicaciones de un único hilo (ver \ref{teoria:singlethread}).
@@ -189,6 +211,16 @@ Mediante rellamadas (\textit{callbacks}) una tarea que termina una operación de
   \label{fig:threadcomparison}
 \end{figure}
 
+\subsection{Seguridad}
+
+Las medidas de seguridad a tomar dependen de las propiedades y objetivos propios del sistema: en general sistemas utilizados dentro de una organización y una infraestructura sin interacción con entornos no controlados suelen contar con un número menor de medidas de seguridad que aquellos utilizados en entornos ``hostiles'' (generalmente abiertos al público), y la seguridad depende de la confianza depositada en la administración del sistema. Sin embargo, un sistema de este tipo es vulnerable a ataques internos por parte de usuarios o intrusiones en la infraestructura.
+
+Un sistema integrado en un entorno hostil debe además vigilar cualquier tipo de potencial ataque malicioso y controlar el acceso al sistema de forma más minuciosa.
+
+\subsubsection{Utilización en el sistema final}
+
+Se han establecido las medidas de seguridad oportunas para cada una de las herramientas creadas, garantizando la integridad y veracidad de los datos con mecanismos como sockets TLS o autenticación bidireccional. Con el objetivo de evitar vulnerabilidades se establecen mecanismos de verificación de la información recibida antes de su procesado, entre otras medidas.
+
 \subsubsection{Patrón Reactor}
 
 El patrón de diseño reactor\cite{Coplien95reactor} consiste en un sistema de gestión de peticiones de servicio distribuidas de forma concurrente en un esquema cliente-servidor. En el servidor existe un manejador de eventos que distribuye (demultiplexa) los diferentes eventos a manejadores de los mismos, distribuyendo el tiempo de proceso entre ellos de forma síncrona mediante un bucle ejecutado de forma continua.
@@ -198,10 +230,19 @@ El patrón de diseño reactor\cite{Coplien95reactor} consiste en un sistema de g
   \includegraphics[width=0.6\textwidth]{Chapter2/Figures/reactoruml}
   \caption[Diagrama UML del patrón reactor]{Diagrama UML del patrón reactor\label{Coplien95reactor}.}
   \label{fig:reactoruml}
-\end{figure}
+\end{figure}\subsection{Seguridad}
 
+Las medidas de seguridad a tomar dependen de las propiedades y objetivos propios del sistema: en general sistemas utilizados dentro de una organización y una infraestructura sin interacción con entornos no controlados suelen contar con un número menor de medidas de seguridad que aquellos utilizados en entornos ``hostiles'' (generalmente abiertos al público), y la seguridad depende de la confianza depositada en la administración del sistema. Sin embargo, un sistema de este tipo es vulnerable a ataques internos por parte de usuarios o intrusiones en la infraestructura.
 
+Un sistema integrado en un entorno hostil debe además vigilar cualquier tipo de potencial ataque malicioso y controlar el acceso al sistema de forma más minuciosa.
 
+\subsubsection{Utilización en el sistema final}
+
+Se han establecido las medidas de seguridad oportunas para cada una de las herramientas creadas, garantizando la integridad y veracidad de los datos con mecanismos como sockets TLS o autenticación bidireccional. Con el objetivo de evitar vulnerabilidades se establecen mecanismos de verificación de la información recibida antes de su procesado, entre otras medidas.
+
+\subsubsection{En el sistema final}
+
+La mayoría de las herramientas creadas utilizan mecanismos de sincronización basados en eventos, muchas de ellas utilizando un reactor como gestor demultiplexador. El uso de este paradigma optimiza de forma significativa el rendimiento de cada uno de los nodos del sistema frente a soluciones multiproceso, si bien su uso incrementa la complejidad del sistema.
 
 \section{Sincronización}
 
@@ -257,7 +298,12 @@ El algoritmo funciona bajo la premisa de que todos los procesos cuentan con un o
 
 %DOCKER
 
-\section{Protocolos criptográficos}
+\section{Seguridad y protocolos criptográficos}
+
+Las medidas de seguridad a tomar dependen de las propiedades y objetivos propios del sistema: en general sistemas utilizados dentro de una organización y una infraestructura sin interacción con entornos no controlados suelen contar con un número menor de medidas de seguridad que aquellos utilizados en entornos ``hostiles'' (generalmente abiertos al público), y la seguridad depende de la confianza depositada en la administración del sistema. Sin embargo, un sistema de este tipo es vulnerable a ataques internos por parte de usuarios o intrusiones en la infraestructura.
+
+Un sistema integrado en un entorno hostil debe además vigilar cualquier tipo de potencial ataque malicioso y controlar el acceso al sistema de forma más minuciosa.
+
 
 \subsection{Criptografía asimétrica}
 
@@ -316,6 +362,11 @@ El protocolo HTTPS\cite{rfc2818} utiliza TLS para cifrar las conexiones realizad
 El uso más común de los protocolos previamente definidos es verificar la identidad del servidor al que se está conectando un cliente. Sin embargo, en ocasiones es necesario que el servidor confíe en el cliente, como en situaciones donde el cliente no dispone de otro mecanismo de autenticación, como puede ser un par usuario-contraseña. El \textit{handshake} es similar al utilizado tradicionalmente, únicamente se añade el paso de validación del certificado que el cliente debe enviar al servidor.
 
 En el sistema este proceso de autenticación se utiliza en aquellas aplicaciones sin interfaz de usuario o que realizan operaciones que puedan comprometer la integridad del sistema de forma significativa (por ejemplo, solicitar la realización de operaciones con privilegios de administrador en \textbf{pam\_mkpolohomedir} o la descarga de un sistema operativo que contiene todas las claves privadas, que deben ser confidenciales).
+
+\subsubsection{Utilización en el sistema final}
+
+Se han establecido las medidas de seguridad oportunas para cada una de las herramientas creadas, garantizando la integridad y veracidad de los datos con mecanismos como sockets TLS o autenticación bidireccional. Con el objetivo de evitar vulnerabilidades se establecen mecanismos de verificación de la información recibida antes de su procesado, entre otras medidas.
+
 
 \section{Autenticación}
 \subsection{PAM}
@@ -405,7 +456,6 @@ Si bien la escritura de código siguiendo este modelo de desarrollo suele ser se
 \subsubsection{Utilización en el sistema final}
 
 Varias de las las herramientas del Trabajo han sido desarrolladas siguiendo este proceso de desarrollo. No ha sido posible la aplicación en la construcción de la totalidad de las herramientas debido a la falta de conocimientos sobre este proceso de desarrollo hasta comenzar con el Trabajo. Sin embargo, se han escrito tests unitarios para casi la totalidad de las herramientas existentes anteriormente, utilizando el desarrollo dirigido por pruebas en sucesiones iteraciones dentro del ciclo de desarrollo de estas aplicaciones.
-
 
 
 %TODO: PAM para cambiar el directorio HOME

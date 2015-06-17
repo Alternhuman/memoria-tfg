@@ -1,4 +1,23 @@
-\chapter{Evaluación de usuarios}
+\chapter{Evaluación y pruebas}
+
+\section{Pruebas}
+
+\subsection{Pruebas unitarias}
+
+Uno de los mecanismos de apoyo a la detección de errores en el código es la realización de pruebas unitarias (\ref{teoria:tdd}). Gracias a esta práctica se ha conseguido detectar de forma temprana (antes de ejecutar el código en un contexto de pruebas) potenciales situaciones donde el comportamiento del programa difiere del esperado. De forma indirecta, la realización de pruebas unitarias ha tenido como resultado la generación de código más modular, y por tanto mejor trazable, depurable y reutilizable.
+
+\subsection{Pruebas en entorno aislado}
+
+Tras la fase de pruebas unitarias es necesario ejecutar el código en un ambiente controlado. Dichas pruebas se han realizado en cada una de las fases de desarrollo de prototipos. Gracias a dichas pruebas se consiguen detectar fallos no hallados en las pruebas unitarias (por ejemplo, potenciales fallos en la conexión de red como retardos o fallos de sincronización, pues se simula en dicha fase).
+
+\subsection{Pruebas en un entorno real}
+
+Tras las diferentes pruebas realizadas en contextos controlados es necesario verificar que el comportamiento del \textit{software} es similar en el entorno donde este deberá operar. Estas pruebas se han realizado de forma periódica, aprovechando que las fases de desarrollo se realizan en la misma infraestructura donde se integrará finalmente.
+
+En el anexo \citationneeded{Número de anexo} (ver \ref{pruebasentornoreal}) se pueden observar los resultados de diferentes pruebas en este tipo de contextos, que evalúan el correcto funcionamiento del \textit{software} así como el tiempo de ejecución (relevante si se considera que la red de la infraestructura es compartida con un gran número de equipos, y no se tiene control sobre ella).
+
+
+\section{Evaluación de usuarios}
 
 Uno de los procesos escogidos para la constatación de la efectividad de las diferentes propuestas de solución a problemas planteados por los alumnos, profesores y administradores es la realización de evaluaciones de los prototipos creados así como las versiones finales de los productos \textit{software} y \textit{hardware}.
 

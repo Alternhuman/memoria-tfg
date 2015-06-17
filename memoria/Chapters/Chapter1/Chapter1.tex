@@ -1,6 +1,8 @@
 \lhead{\emph{Motivación}}
 \chapter{Motivación}
 
+El presente proyecto responde al interés personal en las áreas de conocimiento relacionadas con la Computación Distribuida. La propuesta final cuenta con un atractivo añadido, que es la utilización de computadores embebidos, generalmente no utilizados para este tipo de propósitos, como integrantes de un sistema distribuido. En diferentes reuniones entre las diferentes partes se terminan de perfilar los diferentes objetivos a completar, entre los que destaca la potencial integración del sistema en asignaturas del plan de estudios del Grado en Ingeniería Informática como herramienta didáctica.
+
 \section{Objetivos}
 
 El sistema creado se inspira en proyectos similares y se diseña con el objetivo de dar solución a diferentes necesidades identificadas como estudiante de varias asignaturas del currículo del Grado en Ingeniería Informática. El sistema cuenta con cuatro objetivos a alto nivel independientes:
@@ -14,10 +16,6 @@ El sistema creado se inspira en proyectos similares y se diseña con el objetivo
 
 	\item Intentar elevar el \textit{state of the art} en el mundo de los sistemas distribuidos con plataformas embebidas mediante la creación de un sistema multipropósito en lugar de soluciones con un fin determinado, que constituyen la tendencia actual.
 \end{itemize}
-
-\section{Objetivos del proyecto}
-
-Este proyecto cuenta con varios objetivos muy diferentes entre sí, que se agrupan en tres categorías:
 
 
 Partiendo de la premisa de las potenciales ventajas del uso de este tipo de computadores en detrimento de otras soluciones se plantea el sistema definitivo (en \ref{alternativas} se detalla el proceso de decisión), no sin antes realizar una etapa de evaluación de las diferentes alternativas.
@@ -63,17 +61,18 @@ MarcoPolo debe conseguir un alto grado de versatilidad y aplicabilidad en un gra
 
 El desarrollo de las diferentes herramientas \textit{software} se deberá realizar bajo los principios del desarrollo conducido por pruebas (ver \ref{tdd}) como mecanismo para la detección temprana de errores.
 
-\section{Situación actual (\textit{state of the art})}
+\chapter{Situación actual (\textit{state of the art})}
+\lhead{Situación actual (\textit{state of the art})}
 
 En esta sección se definen diferentes enfoques ya aplicados a soluciones a problemas similares al planteado anteriormente.
 
-\subsection{Computadores de placa única}
+\section{Computadores de placa única}
 
 El uso de computadores de prestaciones reducidas como componentes de un sistema distribuido ha experimentado un gran crecimiento en los últimos años debido a la popularización y el abaratamiento de este tipo de dispositivos, existiendo gran cantidad de fabricantes y proveedores de \textit{software} para los mismos.
 
 Los computadores de placa única (\textit{Single-Board Computers}) son máquinas de generalmente bajas prestaciones que aglutinan todos los componentes necesarios para su funcionamiento en un único circuito impreso. Suelen tener un coste bajo y una relación rendimiento/coste elevada. Su versatilidad y precio reducido han propiciado su uso como herramienta para el estudio y creación de sistemas distribuidos con un gran rango de propósitos diferentes.
 
-\subsubsection{RPiCluster (Joshua Kiepert)}
+\subsection{RPiCluster (Joshua Kiepert)}
 
 Joshua Kiepert, estudiante de doctorado en la universidad Boise State, crea este sistema utilizando 33 computadores \textbf{Raspberry Pi B}, con el objetivo de utilizarlo como herramienta de pruebas que sirva de alternativa al supercomputador con el que su universidad cuenta\cite{joshuarpicluster} y sobre el que trabaja de forma rutinaria, con el objetivo de poder continuar su trabajo en periodos de mantenimiento, cierre del centro, etcétera. El sistema está diseñado para utilizar la \textit{Message Passing Interface} como mecanismo de comunicación y coordinación (siguiendo un esquema maestro-esclavo) y además utilizar los diferentes puertos de las placas (GPIO, I\textsuperscript{2}C, SPI, UART), puertos generalmente ausentes en computadores convencionales. Utiliza además un sistema \textbf{NFS} (\textit{Network File Storage}) para compartir datos entre todos los nodos, y un \textit{router} dedicado para la interconexión. El sistema se completa con un ordenador portátil \textbf{Chromebook} con el mismo sistema operativo que los nodos del sistema, (\textbf{Arch Linux}), que actúa como nodo coordinador. La estructura incluye el conjunto de nodos esclavos y coordinador, dos fuentes de alimentación y un mecanismo de refrigeración, así como un mecanismo de distribución de la energía (diseñado por Kiepert) y de gestión de los diodos LED que incluye cada nodo y que son utilizados como elemento estético y mecanismo de análisis visual del comportamiento de los algoritmos ejecutados\footnote{Vídeo del sistema en ejecución: \href{https://www.youtube.com/watch?v=i_r3z1jYHAc}{youtube.com/watch?v=i\_r3z1jYHAc}}.
 
@@ -89,7 +88,7 @@ Joshua Kiepert, estudiante de doctorado en la universidad Boise State, crea este
 
 El coste total del proyecto según Kiepert es de 1967.21 dólares.
 
-\subsubsection{Dramble (Jeff Geerling)}
+\subsection{Dramble (Jeff Geerling)}
 
 El clúster \textit{Dramble} está formado por 6 equipos \textbf{Raspberry Pi} capaces de ejecutar en conjunto el gestor de contenidos \textbf{Drupal}\footnote{\href{https://www.drupal.org/}{drupal.org}}. Es utilizado como servidor de pruebas para la ejecución de instancias de este \textit{software} de forma experimental o durante demostraciones en público\cite{geerlingraspberry}. Se compone del conjunto de nodos \textit{Rasbperry Pi} y los mecanismos de red y alimentación que interconectan y proveen de energía a los mismos.
 
@@ -102,7 +101,7 @@ El clúster \textit{Dramble} está formado por 6 equipos \textbf{Raspberry Pi} c
 
 El coste estimado es de 35 dólares por cada Raspberry Pi mas el coste añadido de la red y el cableado de alimentación, totalizando aproximadamente 300 dólares.
 
-\subsubsection{Bramble (GCHQ)}
+\subsection{Bramble (GCHQ)}
 
 El organismo gubernamental \textit{Government Communication Headquarters}, agencia de inteligencia del Gobierno Británico presentó en la \textit{Big Bang Fair} de 2015 un proyecto educativo que combina 66 \textit{Raspberry Pi} en un clúster jerárquico con 8 grupos de 8 nodos, cada uno de ellos con un coordinador. El cableado se reduce gracias al uso de la tecnología \textbf{PoE} (\textit{Power over Ethernet}), y cada \textbf{Raspberry} cuenta con un conjunto de elementos adicionales, como un reloj de tiempo real, disco duro externo, cámara, o punto de acceso WiFi\cite{gchqbramble}.
 
@@ -115,7 +114,7 @@ El organismo gubernamental \textit{Government Communication Headquarters}, agenc
 
 Se desconocen datos sobre el coste total del sistema.
 
-\subsubsection{Clúster Iridis (Simon Cox, University of Southampton)}
+\subsection{Clúster Iridis (Simon Cox, University of Southampton)}
 
 Con el objetivo de atraer a jóvenes estudiantes al mundo de la computación, el profesor Simon Cox crea este clúster con 64 \textbf{Raspberry Pi B} sobre una estructura construida con LEGO\cite{cox:raspberry}. El sistema está diseñado para ejecutar aplicaciones sobre \textit{MPI}. Se desconocen datos sobre el coste total del sistema.
 
@@ -126,15 +125,15 @@ Con el objetivo de atraer a jóvenes estudiantes al mundo de la computación, el
 	\label{cox:iridis}
 \end{figure}
 
-\subsubsection{Paralella}
+\subsection{Paralella}
 
 Paralella es un proyecto de la compañía Adapteva que integra en un único chip un conjunto elevado de procesadores independientes con el objetivo de incrementar la capacidad de procesamiento total del sistema a un coste muy reducido\cite{paralella}. El coste es de 99 dólares por unidad.
 
-\subsection{Virtualización}
+\section{Virtualización}
 
 Uno de los mecanismos para crear sistemas distribuidos en auge es la utilización de mecanismos de virtualización (ver \ref{teoria:virtualizacion}, que evitan el uso de diferentes unidades de \textit{hardware}. Estas soluciones se han popularizado en los últimos años principalmente en entornos empresariales, existiendo gran cantidad de proveedores de servicios y herramientas para la creación de un sistema propio (ver \ref{teoria:virtualizacion}). Ejemplos de este tipo de proveedores son \textbf{Amazon Web Services}\footnote{\href{http://aws.amazon.com/}{https://aws.amazon.com}}, \textbf{Google App Engine}\footnote{\href{https://cloud.google.com/appengine/}{https://cloud.google.com/appengine/}}, \textbf{Microsoft Azure}\footnote{\href{http://azure.microsoft.com/}{http://azure.microsoft.com/en-us/}} o \textbf{Digital Ocean}\footnote{\href{http://digitalocean.com}{http://digitalocean.com}}, entre muchos otros. Su éxito reside en su gran versatilidad: es sencillo crear y destruir nuevas réplicas de un sistema bajo demanda, ahorrando costes de forma significativa.
 
-\subsection{\textit{Commercial Off-The-Shelf hardware}}
+\section{\textit{Commercial Off-The-Shelf hardware}}
 
 Este tipo de hardware está constituido por equipos disponibles al público de forma inmediata (\textit{off the shelf}) y generalmente son máquinas de propósito general, las cuales son interconectadas para crear un sistema distribuido que sirva de alternativa a utilidades más potentes, pero de coste superior (como un \textit{mainframe} o un ordenador de mayor potencia). Su coste económico (que se reduce si existe la posibilidad de aprovechar \textit{hardware} existente en la organización, como equipos de escritorio que no están en uso) es su mayor atractivo.
 
