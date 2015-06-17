@@ -169,4 +169,29 @@
 %\usepackage{xltxtra} % XeLaTeX logo. Yep, just that
 %http://tex.stackexchange.com/a/73179/76599
 \usepackage{metalogo}
-\usepackage{dtklogos} %BibTeX logo
+%\usepackage{dtklogos} %BibTeX logo
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\newenvironment{alignedDescription}[2][0pt]
+  {\begin{list}{}%
+    {\renewcommand\makelabel[1]{\textsf{\textbf{##1}}\hfil}%
+     \settowidth\labelwidth{\makelabel{#2}}%
+     \setlength\leftmargin{\labelwidth+\labelsep + #1}}}%
+  {\end{list}}
+
+\newenvironment{elements}
+{\begin{quote}\itshape\centering\small}
+{\end{quote}}
+
+\newenvironment{cabstract}
+{\begin{quote}\itshape\centering\small}
+{\end{quote}}
+
+%\usepackage[xindy]{glossaries}
+%\newcommand{\chapterabstract}{1}{
+%	\begin{center}
+%	\small\textit
+%	#1
+%	\end{center}
+%}

@@ -43,6 +43,8 @@ Raspberry Pi, y estudio comparativo del mismo frente a otras soluciones}
 \subject    {}
 \keywords   {}
 
+\supervisors{Rodrigo Santamaría Vicente\\ José Andrés Vicente Lober}
+
 \maketitle
 %% ----------------------------------------------------------------
 
@@ -96,13 +98,7 @@ The acknowledgements and the people to thank go here, don't forget to include yo
 \clearpage  % Start a new page
 \lhead{\emph{Lista de abreviaturas}}  % Set the left side page header to "Abbreviations"
 
-\listofsymbols{ll}  % Include a list of Abbreviations (a table of two columns)
-{
-%TODO: See : ftp://ftp.tex.ac.uk/ctan/tex-archive/macros/latex/contrib/listofsymbols/listofsymbols.pdf
-% \textbf{Acronym} & \textbf{W}hat (it) \textbf{S}tands \textbf{F}or \\
-\textbf{IEEE} & \textbf{I}nstitute of \textbf{E}lectrical and \textbf{E}lectronic \textbf{E}ngineers \\
-\textbf{NTP} & \textbf{N}etwork \textbf{Time} \textbf{P}rotocol \\
-}
+\input{preface/symbols}
 
 \include{preface/constants}
 
@@ -149,18 +145,22 @@ The acknowledgements and the people to thank go here, don't forget to include yo
 \include{Chapters/Conclusion/Conclusion} % Conclusiones
 
 
+
 %% ----------------------------------------------------------------
 % Now begin the Appendices, including them as separate files
 
 %\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
 
-%\appendix % Cue to tell LaTeX that the following 'chapters' are Appendices
+\appendix % Cue to tell LaTeX that the following 'chapters' are Appendices
 
 %\input{Appendices/AppendixA}	% Appendix Title
 
 %\input{Appendices/AppendixB} % Appendix Title
 
 %\input{Appendices/AppendixC} % Appendix Title
+
+\include{Appendices/AppendixD}
+%\include{Appendices/Glossary}
 
 \addtocontents{toc}{\vspace{2em}}  % Add a gap in the Contents, for aesthetics
 \backmatter

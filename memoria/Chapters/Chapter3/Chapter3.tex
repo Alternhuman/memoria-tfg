@@ -18,7 +18,8 @@ En el presente proyecto se realiza un análisis de las diferentes alternativas q
 %TODO
 
 \subsection{Sistema actual: Infraestructura de la Facultad de Ciencias}
-\label{infraestructura}
+\label{dominioproblema:infraestructura}
+%\label{infraestructura} %TODO
 El sistema se ubica en una Facultad universitaria con aproximadamente 600 alumnos\citationneeded con varias asignaturas en las que se imparten áreas de conocimiento relacionados con la Computación Distribuida, en particular las asignaturas \textbf{Arquitectura de Computadores} y \textbf{Sistemas Distribuidos} \cite{DIA15GuiaAcademica}. La Facultad cuenta con varias aulas y laboratorios de informática donde los alumnos disponen de la infraestructura necesaria para realizar los ejercicios y prácticas asignadas. Dichos espacios permiten utilizar cualquier equipo como nodo, pues se integran en la misma red, siendo incluso factible la comunicación directa entre equipos situados en diferentes aulas o incluso edificios. Todos los edificios cuentan con un cableado capaz de soportar teóricamente transferencias de hasta 100Mb/s de forma bidireccional\citationneeded. La gestión de un sistema de autenticación se realiza mediante el protocolo \textbf{LDAP} (\textit{Lightweight Directory Access Protocol})\cite{RFC4516-comment}, contando con un sistema de ficheros centralizado que permite acceder a la información de un usuario desde cualquier equipo, facilitando las tareas de replicación de la información entre nodos.
 
 La mayoría de las prácticas asignadas a los alumnos en las asignaturas de interés son desarrolladas en los lenguajes de programación \textbf{C} y \textbf{Java}, ya conocidos por la totalidad de los estudiantes gracias a asignaturas previamente cursadas.
@@ -32,6 +33,10 @@ Si bien la infraestructura existente es capaz de proveer a los estudiantes de lo
   \item El servidor \textbf{LDAP} constituye un ``cuello de botella'', pues todos los alumnos acceden a él de forma intensiva, provocando el fallo por exceso de peticiones del mismo.
   %TODO\item Las técnicas de programación utilizadas hasta la fecha tienen un rendimiento bajo y son en ocasiones relativamente complejas.
 \end{itemize}
+
+\subsubsection{Análisis de estadísticas}
+\label{dominio:estadisticast}
+%Pandora magic
 
 \section{Identificación de \textit{stakeholders}}
 

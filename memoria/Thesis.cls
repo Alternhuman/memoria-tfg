@@ -149,6 +149,7 @@
 \newcommand*{\subject}[1]{\def\subjectname{#1}}
 \newcommand*{\keywords}[1]{\def\keywordnames{#1}}
 \newcommand*{\universityseal}[1]{\newcommand{\universitysealvar}{#1}}
+\newcommand*{\supervisors}[1]{\def\supervisornames{#1}}
 
 
 \supervisor  {}
@@ -207,6 +208,9 @@
       {\LARGE por \par}
       \smallskip
       {\LARGE \authornames \par}
+      {\LARGE supervisado por \par}
+      \smallskip
+      {\large \supervisornames \par}
       \vfill
       {\large Trabajo de Fin de Grado en el marco de los estudios de \par}
       {\large Graduado en Ingeniería Informática \par}
