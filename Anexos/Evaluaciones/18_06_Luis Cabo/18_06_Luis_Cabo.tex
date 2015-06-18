@@ -1,0 +1,90 @@
+\input{includes}
+\usepackage{xcolor}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\newcommand{\hmwkTitle}{Evaluación de Deployer, MarcoPolo y distcc} % Assignment title
+\newcommand{\hmwkDueDate}{Miércoles,\ 18\ de\ junio\ de\ 2015}
+\newcommand{\hmwkClassInstructor}{Rodrigo Santamaría} % Teacher/lecturer
+\newcommand{\hmwkAuthorName}{Diego Martín Arroyo} % Your name
+\newcommand{\hmwkSubject}{5} % Evaluation subject number
+
+%----------------------------------------------------------------------------------------
+%   TITLE PAGE
+%----------------------------------------------------------------------------------------
+\newcommand{\ordinalindicator}{\hspace{-1.5mm}$\phantom{a}^{\circ}$}
+\title{\hmwkTitle}
+\author{\textbf{\hmwkAuthorName}}
+\date{\hmwkDueDate}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+
+\section{Descripción}
+
+\begin{itemize}
+ 	\item \textbf{Perfil}: Estudiante del Grado en Ingeniería Informática, con conocimientos de Interacción Persona-Ordenador y Redes.
+ 	\item No conocía las herramientas previamente.
+\end{itemize}
+
+
+\section{Introducción}
+
+En las fases finales del sistema se deben realizar evaluaciones de las versiones definitivas de los productos \textit{software} creados que interactúen con los usuarios del sistema final. Dichas herramientas en el caso del sistema creado son las diferentes utilidades que componen la herramienta conocida como Deployer, la API de \textbf{MarcoPolo} y las diferentes utilidades de consola que utilizan el protocolo y \texttt{distcc}.
+
+\section{Deployer}
+
+\subsection{Status Monitor}
+
+Se presenta al usuario la utilidad, comenzando en la vista con la utilidad \textbf{Status Monitor}. El sujeto es capaz de comprender de forma independiente cada uno de los componentes visuales, identificando la información que representan. Realiza varias críticas al diseño, como los relojes que muestran el porcentaje de CPU en uso. En su opinión, si bien es un mecanismo efectivo, podría mejorarse utilizando un gráfico de barras.
+
+Se solicita que indique qué información de interés añadiría. Indica que únicamente incluiría el propietario de cada proceso en la vista \textbf{top}.
+
+\subsection{Deployer}
+
+\subsection{Shell}
+
+De la misma forma que con \textbf{Status Monitor}, es capaz de identificar la función de cada elemento, exceptuando la casilla que permite desactivar la ejecución en un nodo, a la cual añadiría una descripción de su funcionalidad.
+
+\subsection{Aspectos generales}
+
+Considera que la integración con el sistema de credenciales presente en la infraestructura (ver \ref{infraestructura}) es una decisión de diseño acertada, si bien incluiría mecanismos más generales, como el acceso a través de la API de Google a fin de facilitar el acceso al sistema.
+
+\section{MarcoPolo}
+
+\subsection{API de MarcoPolo}
+
+Se realiza una demostración del uso de la API de MarcoPolo en Python. La respuesta del sujeto es muy positiva, considerando que su uso es sencillo y las posibilidades que ofrece son numerosas.
+
+El enfoque de la API, que utiliza las mismas convenciones para cualquier lenguaje, así como tipos de datos similares es también valorado positivamente por el sujeto.
+
+Posteriormente se exponen las características técnicas de la implementación del protocolo a petición del usuario. Tras recorrer dichos aspectos, su evaluación es positiva.
+
+En conclusión, considera que el protocolo y su implementación son sencillas de comprender, pues ha conseguido entender de forma básica el principio de funcionamiento en menos de diez minutos.
+
+\subsection{Herramientas de consola}
+
+Se muestran las diferentes herramientas creadas, a saber \texttt{marcodiscover}, {marcoscp}, \texttt{marcoinstallkey} y \texttt{marcosshcommand}. Considera todas ellas de utilidad. No propone ninguna herramienta adicional.
+
+\section{distcc}
+
+Se explica el funcionamiento de distcc, enfocado en su transparencia para el usuario final, fruto de su integración con MarcoPolo. Considera que su uso es muy sencillo y es un buen enfoque para el problema al que propone solución. 
+
+
+\section{Conclusiones}
+
+A raíz de esta sesión se extraen las siguientes conclusiones y los caminos de actuación:
+
+\begin{itemize}
+\item Se realizarán todos los cambios minoritarios propuestos.
+\item Se mantiene el sistema de autenticación presente.
+\end{itemize}
+
+\end{document}
