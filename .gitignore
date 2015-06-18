@@ -36,7 +36,6 @@ main.pdf
 # algorithms
 *.alg
 *.loa
-18_06_Luis_Cabo.pdf
 # achemso
 acs-*.bib
 
@@ -127,3 +126,5 @@ sympy-plots-for-*.tex/
 
 *.*~
 *.vpp~
+18_06_JuanManuel_Becares.pdf
+18_06_Luis_Cabo.pdf
