@@ -1,0 +1,96 @@
+\input{includes}
+\usepackage{xcolor}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\newcommand{\hmwkTitle}{Evaluación de Deployer, MarcoPolo } % Assignment title
+\newcommand{\hmwkDueDate}{Miércoles,\ 18\ de\ junio\ de\ 2015}
+\newcommand{\hmwkClassInstructor}{Rodrigo Santamaría} % Teacher/lecturer
+\newcommand{\hmwkAuthorName}{Diego Martín Arroyo} % Your name
+\newcommand{\hmwkSubject}{3} % Evaluation subject number
+
+%----------------------------------------------------------------------------------------
+%   TITLE PAGE
+%----------------------------------------------------------------------------------------
+\newcommand{\ordinalindicator}{\hspace{-1.5mm}$\phantom{a}^{\circ}$}
+\title{\hmwkTitle}
+\author{\textbf{\hmwkAuthorName}}
+\date{\hmwkDueDate}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\section{Descripción}
+
+En las fases finales del sistema se deben realizar evaluaciones de las versiones definitivas de los productos \textit{software} creados que interactúen con los usuarios del sistema final. Dichas herramientas en el caso del sistema creado son las diferentes utilidades que componen la herramienta conocida como Deployer, la API de \textbf{MarcoPolo} y las diferentes utilidades de consola que utilizan el protocolo.
+
+\begin{itemize}
+ 	\item \textbf{Perfil}: Estudiante del Grado en Ingeniería Informática, con conocimientos de Interacción Persona-Ordenador y Redes.
+ 	\item Conocía las herramientas previamente y ha realizado evaluaciones de los prototipos de las mismas.
+\end{itemize}
+
+\section{Introducción}
+
+El sujeto de evaluación ya ha utilizado los prototipos de varias herramientas presentadas, por lo que varias de las fases realizadas a usuarios que no han tenido contacto con los productos son omitidas.
+
+\section{Deployer}
+
+\subsection{Status monitor}
+
+Considera que las adiciones realizadas tras la última evaluación son beneficiosas. Realizaría sin embargo varias modificaciones:
+
+\begin{itemize}
+	\item Eliminar los bordes redondeados en varios elementos de la interfaz.
+	\item Mostrar el indicador de temperatura de forma horizontal, a fin de ahorrar espacio.
+	\item Aumentar el tamaño de los relojes que muestran el porcentaje de CPU en uso y hacer que se ajusten a las proporciones del resto de los componentes.
+	\item Mostrar en una tabla la salida del comando \texttt{top}, o en su defecto buscar otra disposición estructurada.
+\end{itemize}
+
+
+\subsection{Deployer}
+
+Considera necesario incluir elementos que informen sobre la funcionalidad de varios componentes, como el recuadro de ejecución de un comando o la ruta de despliegue. Consideraría útil que el elemento que representa a cada nodo pueda ser seleccionado clicando en cualquier punto del mismo (sin depender del \textit{checkbox}).
+
+El sujeto incrementaría el tamaño del botón de depliegue y lo desactivaría para aquellos casos en los que no se pueda realizar un despliegue (como en las situaciones en las que no hay ningún nodo seleccionado), mostrando si es conveniente un mensaje informativo. También añadiría el \textit{hostname} del nodo o cualquier otro nombre identificativo.
+
+El sujeto considera necesario facilitar la selección de nodos, con un botón que marque o desmarque todos los equipos sobre los que realizar el despliegue, o incluir un conjunto de ellos seleccionado por defecto.
+
+\subsection{Herramientas}
+
+Valora positivamente el uso de las herramientas existentes.
+
+
+
+% \section{MarcoPolo}
+
+% \subsection{API de MarcoPolo}
+
+% Se realiza una demostración del uso de la API de MarcoPolo en Python. La respuesta del sujeto es muy positiva, considerando que su uso es sencillo y las posibilidades que ofrece son numerosas.
+
+% El enfoque de la API, que utiliza las mismas convenciones para cualquier lenguaje, así como tipos de datos similares es también valorado positivamente por el sujeto.
+
+% Posteriormente se exponen las características técnicas de la implementación del protocolo a petición del usuario. Tras recorrer dichos aspectos, su evaluación es positiva.
+
+% En conclusión, considera que el protocolo y su implementación son sencillas de comprender, pues ha conseguido entender de forma básica el principio de funcionamiento en menos de diez minutos.
+
+% \subsection{Herramientas de consola}
+
+% Se muestran las diferentes herramientas creadas, a saber \texttt{marcodiscover}, {marcoscp}, \texttt{marcoinstallkey} y \texttt{marcosshcommand}. Considera todas ellas de utilidad. No propone ninguna herramienta adicional.
+
+
+% \section{Conclusiones}
+
+% A raíz de esta sesión se extraen las siguientes conclusiones y los caminos de actuación:
+
+% \begin{itemize}
+% \item Se realizarán todos los cambios minoritarios propuestos.
+% \item Se mantiene el sistema de autenticación presente.
+% \end{itemize}
+
+% \end{document}
