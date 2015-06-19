@@ -479,17 +479,7 @@ Ubuntu Snappy Core, Raspbian, OpenELEC, RISC OS, Según la web de Arch Linux, ta
 
 En esta sección se describen los aspectos a alto nivel sobre todos los componentes que se integrarán en el sistema final (tanto \textit{hardware} como \textit{software}), así como las relaciones entre los mismos. En función de la evaluación llevada a cabo se extraen las siguientes decisiones de diseño que conforman la propuesta de solución definitiva.
 
-%TODO: IS 1 T2 Pg 34
-Fases
-\begin{itemize}
-  \item Definición de requisitos
-  \item Diseño
-  \item Desarrollo de subsistemas
-  \item Instalación del sistema
-  \item instalación del sistema
-  \item Evolución del sistema
-  \item Desmantelamiento del sistema
-\end{itemize}
+
 
 \subsection{\textit{Hardware}}
 
@@ -571,6 +561,32 @@ Un prototipo es un componente \textit{software} que implementa un subconjunto de
 Los procesos ágiles suelen ser utilizados a la hora de realizar un proyecto en equipos pequeños en entornos cambiantes o con un grado de incertidumbre muy alto.
 
 En el caso del presente proyecto, se opta por un proceso ágil basado en iteraciones de corta duración (entre 7 y 12 días) con una serie de objetivos definidos y producen una versión más avanzada de los prototipos. Debido a que el proyecto comprende el desarrollo de una serie de productos independientes que conforman un sistema (en contraste con un único producto monolítico final) es necesario paralelizar el desarrollo de todos los procesos a lo largo de las diferentes iteraciones, balanceando la carga de trabajo entre las diferentes tareas.
+
+\subsection{Desarrollo de subsistemas}
+Los diferentes aspectos relativos al desarrollo de cada uno de los subsistemas se definen en los anexos dispuestos a tal efecto.
+
+\subsection{Integración del sistema}
+
+Se ha realizado un proceso de integración creciente de los diferentes prototipos creados como resultado de cada uno de los ciclos de desarrollo. Esta práctica es de utilidad para detectar diferentes fallos en el sistema o anomalías fruto de las interacciones entre componentes de forma temprana.
+
+\subsection{Instalación del sistema}
+
+Se han creado herramientas que facilitan la instalación del sistema (ver \ref{marcobootstrap}) en diferentes tipos de infraestructuras que cuenten con una serie de propiedades mínimas (conexión de red).
+\citationneeded[Instalación del sistema físico: diferencias con el entorno de desarrollo, oposición de los usuarios, problemas de espacio físico]
+\subsection{Evolución del sistema}
+
+La solución presentada es altamente escalable y existe un equipo de soporte para todos los componentes el \textit{software} utilizado, aspetos que garantizan la inclusión de nuevas características y el mantenimiento de los paquetes instalados.  
+
+\subsection{Desmantelamiento del sistema}
+
+Ningún componente contiene materiales cuya manipulación incorrecta pueda dañar su entorno. En el caso de que el desmantelamiento no se produzca por fallos en el \textit{hardware} del sistema, sus componentes pueden ser aprovechados para otros proyectos académicos o profesionales por su poseedor. Los diferentes paquetes \textit{software} no dependen del hardware del sistema para funcionar, salvo varias exceptiones, tales como herramientas creadas para un problema concreto de esta plataforma\footnote{Como Marcobootstrap, entre otros}.
+
+%TODO: IS 1 T2 Pg 34
+Fases
+\begin{itemize}
+  \item Definición de requisitos
+  \item Diseño
+\end{itemize}
 
 %Proceso unificado ágil
 %https://en.wikipedia.org/wiki/Scrum_%28software_development%29
