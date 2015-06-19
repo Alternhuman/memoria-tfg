@@ -125,6 +125,6 @@ sympy-plots-for-*.tex/
 *.sav
 
 *.*~
-*.vpp~
+*.vpp~*
 18_06_JuanManuel_Becares.pdf
 18_06_Luis_Cabo.pdf
