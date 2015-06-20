@@ -45,7 +45,7 @@ El sistema final consiste en un conjunto de nodos sin una jerarquía definida, p
 
 A la hora de desarrollar las diferentes herramientas creadas se mantienen todas las  ``transparencias '' citadas anteriormente, salvo en aquellos casos que estas comprometan el rendimiento o funcionalidad de la misma.
 
-Como se detalla en la fase de análisis \citationneeded[Fase de análisis] el sistema incluye mecanismos de autoconfiguración que lo hacen adaptable a un gran número de situaciones (variaciones en el espacio de direcciones, nodos añadidos y eliminados arbitrariamente\dots). La flexibilidad de este es por tanto alta.
+Como se detalla en la fase de análisis (ver \ref{chapter:analisis}) el sistema incluye mecanismos de autoconfiguración que lo hacen adaptable a un gran número de situaciones (variaciones en el espacio de direcciones, nodos añadidos y eliminados arbitrariamente\dots). La flexibilidad de este es por tanto alta.
 
 %TODO: En aquellos componentes basados en la colaboración entre partes se cumples las condiciones de todo algoritmo distribuido. 
 
@@ -473,7 +473,7 @@ Se conoce como código móvil al \textit{software} que se transfiere entre difer
 
 La mayoría de este tipo de \textit{software} está creado sobre herramientas multiplataforma, garantizando la abstracción del sistema sobre el que se está ejecutando. Ejemplos de código móvil son los contenidos dinámicos de una web (creados mediante \textbf{applets} Java, código \textbf{JavaScript} o controles \textbf{ActiveX}), código embebido en documentos PDF o en general cualquier tipo de \textit{software} descargado de una red.
 
-Sin embargo, este tipo de aplicaciones implican una serie de consideraciones adicionales de seguridad, en particular la verificación de la identidad del nodo que proporciona el paquete, la integridad del mismo durante la transferencia y \citationneeded y el comportamiento del código en ejecución.
+Sin embargo, este tipo de aplicaciones implican una serie de consideraciones adicionales de seguridad, en particular la verificación de la identidad del nodo que proporciona el paquete, la integridad del mismo durante la transferencia y el comportamiento del código en ejecución.
 
 \subsubsection{Compartimentación}
 
@@ -488,17 +488,9 @@ El uso de compiladores cruzados facilita el desarrollo para diferentes plataform
 
 \subsubsection{\textit{Toolchain}}
 
-Una cadena de herramientas (\textit{toolchain}) se conforma del conjunto de utilidades necesarias para la construcción de un determinado producto. Generalmente estas utilidades son ejecutadas secuencialmente, utilizando la salida de una de ellas como la entrada de la siguiente. Este conjunto de herramientas comprende normalmente un compilador, un enlazador y un editor de texto, así como varias bibliotecas y un depurador, si bien puede contar con cualquier herramienta requerida para las necesidades propias del producto a crear.
+Un juego de herramientas (\textit{toolchain}) se conforma del conjunto de utilidades necesarias para la construcción de un determinado producto. Generalmente estas utilidades son ejecutadas secuencialmente, utilizando la salida de una de ellas como la entrada de la siguiente. Este conjunto de herramientas comprende normalmente un compilador, un enlazador y un editor de texto, así como varias bibliotecas y un depurador, si bien puede contar con cualquier herramienta requerida para las necesidades propias del producto a crear\footnote{Más información sobre este tipo de técnica: \href{http://elinux.org/Toolchains}{http://elinux.org/Toolchains}}.
 
 \subsection{Utilización en el sistema final}
 %\subsec
-Con el objetivo de posibilitar la realización de trabajos de compilación distribuida utilizando un equipo basado en la arquitectura i686 %TODO: Revisar
-se ha construido una cadena de herramientas que realiza procesos de compilación cruzada para la arquitectura ARMv7hf utilizando la herramienta \textit{crosstool-ng}\citationneeded, consiguiendo optimizar de forma significativa el tiempo de compilación.
-%TODO (ver \ref{distcc:analysis})
-%TODO: También existe una versión para la arquitectura ARMv6hf.
-%TODO, además dicha herramienta se ha utilizado para la creación de una herramienta de desarrollo con Eclipse para Raspberry Pi.
-
-\citationneeded{http://www.nongnu.org/avr-libc/user-manual/overview.html}
-\citationneeded{http://elinux.org/Toolchains}
-%TODO: http://en.wikipedia.org/wiki/Paravirtualization
+Con el objetivo de posibilitar la realización de trabajos de compilación distribuida utilizando un equipo basado en la arquitectura i686\citationneeded[cat /proc/cpuinfo] se ha construido una cadena de herramientas que realiza procesos de compilación cruzada para la arquitectura ARMv7hf utilizando la herramienta \textit{crosstool-ng}\footnote{http://www.crosstool-ng.org/}{http://rosstool-ng.org}, consiguiendo optimizar de forma significativa el tiempo de compilación ver \ref{distcc:analysis}).También existe una versión para la arquitectura ARMv6hf \citationneeded[crear] y estas cadenas de  herramientas se han utilizado para la creación de un pequeño entorno de desarrollo con Eclipse para Raspberry Pi ver \ref{eclipseraspberry}.
 

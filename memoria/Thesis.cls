@@ -292,8 +292,8 @@
 }\end{spacing}
 }
 \renewcommand\listoffigures{
-\btypeout{Lista de figuras}
-\addtotoc{Lista de figuras}
+\btypeout{Índice de figuras}
+\addtotoc{Índice de figuras}
 \begin{spacing}{1}{
     \setlength{\parskip}{1pt}
     \if@twocolumn
@@ -310,8 +310,8 @@
 }\end{spacing}
 }
 \renewcommand\listoftables{
-\btypeout{Lista de tablas}
-\addtotoc{Lista de tablas}
+\btypeout{Índice de cuadros}
+\addtotoc{Índice de cuadros}
 \begin{spacing}{1}{
     \setlength{\parskip}{1pt}
     \if@twocolumn

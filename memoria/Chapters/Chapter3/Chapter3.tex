@@ -20,7 +20,7 @@ En el presente proyecto se realiza un análisis de las diferentes alternativas q
 \subsection{Sistema actual: Infraestructura de la Facultad de Ciencias}
 \label{dominioproblema:infraestructura}
 %\label{infraestructura} %TODO
-El sistema se ubica en una Facultad universitaria con aproximadamente 600 alumnos\citationneeded con varias asignaturas en las que se imparten áreas de conocimiento relacionados con la Computación Distribuida, en particular las asignaturas \textbf{Arquitectura de Computadores} y \textbf{Sistemas Distribuidos} \cite{DIA15GuiaAcademica}. La Facultad cuenta con varias aulas y laboratorios de informática donde los alumnos disponen de la infraestructura necesaria para realizar los ejercicios y prácticas asignadas. Dichos espacios permiten utilizar cualquier equipo como nodo, pues se integran en la misma red, siendo incluso factible la comunicación directa entre equipos situados en diferentes aulas o incluso edificios. Todos los edificios cuentan con un cableado capaz de soportar teóricamente transferencias de hasta 100Mb/s de forma bidireccional\citationneeded. La gestión de un sistema de autenticación se realiza mediante el protocolo \textbf{LDAP} (\textit{Lightweight Directory Access Protocol})\cite{RFC4516-comment}, contando con un sistema de ficheros centralizado que permite acceder a la información de un usuario desde cualquier equipo, facilitando las tareas de replicación de la información entre nodos.
+El sistema se ubica en una Facultad universitaria con aproximadamente 600 alumnos\citationneeded[Referencia a la estadística] en titulaciones relacionadas con las Ciencias de la Computación. Estas titulaciones cuentan con varias asignaturas relacionadas con el áreas de conocimiento Computación Distribuida, en particular \textbf{Arquitectura de Computadores} y \textbf{Sistemas Distribuidos} \cite{DIA15GuiaAcademica}. La Facultad cuenta con varias aulas y laboratorios de informática donde los alumnos disponen de la infraestructura necesaria para realizar los ejercicios y prácticas asignadas. Dichos espacios permiten utilizar cualquier equipo como nodo, pues se integran en la misma red, siendo incluso factible la comunicación directa entre equipos situados en diferentes aulas o incluso edificios. Todos los edificios cuentan con un cableado capaz de soportar teóricamente transferencias de hasta 100Mb/s de forma bidireccional\citationneeded. La gestión de un sistema de autenticación se realiza mediante el protocolo \textbf{LDAP} (\textit{Lightweight Directory Access Protocol})\cite{RFC4516-comment}, contando con un sistema de ficheros centralizado que permite acceder a la información de un usuario desde cualquier equipo, facilitando las tareas de replicación de la información entre nodos.
 
 La mayoría de las prácticas asignadas a los alumnos en las asignaturas de interés son desarrolladas en los lenguajes de programación \textbf{C} y \textbf{Java}, ya conocidos por la totalidad de los estudiantes gracias a asignaturas previamente cursadas.
 
@@ -148,7 +148,7 @@ Si bien el trabajo con cada una de las instancias es previsiblemente sencillo, d
 
 \paragraph{Prestaciones técnicas\\}
 
-Las prestaciones técnicas con las que se contaría, de llevarse a cabo este proyecto, son las de los equipos ya dispuestos para fines similares a este en el Centro\citationneeded[Andrés]{}: %TODO: Andrés. 
+Las prestaciones técnicas con las que se contaría, de llevarse a cabo este proyecto, son las de los equipos ya dispuestos para fines similares a este en el Centro\citationneeded[Preguntar a Andrés]{}.
 
 \paragraph{Coste económico\\}
 
@@ -164,7 +164,7 @@ Las necesidades propias de un sistema operativo multiusuario (previsiblemente \t
 
 \paragraph{Consumo energético del sistema\\}
 
-\citationneeded[Andrés]{}
+\citationneeded[Preguntar a Andrés]{}
 
 \paragraph{Obsolescencia del sistema\\}
 
@@ -176,7 +176,7 @@ Se plantea el aprovechamiento de equipos ya presentes en la infraestructura en l
 
 \paragraph{Prestaciones técnicas\\}
 
-\citationneeded[Andrés]{}
+\citationneeded[Preguntar a Andrés]{}
 
 \paragraph{Análisis coste/beneficio\\}
 
@@ -193,7 +193,7 @@ La potencia del sistema es mucho mayor que la de cualquier otra solución consid
 
 \paragraph{Inconvenientes intrínsecos del sistema\\}
 
-No se exploran las características únicas de otros sistemas menos ``convencionales'', tales como la utilización de sistemas embebidos. El consumo energético es mayor y existe una mayor demanda de espacio.%que puede dificultar la implementación de diferentes aplicaciones didácticas ya planteadas como objetivo funcional del sistema.
+No se exploran las características únicas de otros sistemas menos ``convencionales'', como los sistemas embebidos. El consumo energético es mayor y existe una mayor demanda de espacio que puede dificultar la implementación de diferentes aplicaciones didácticas ya planteadas como objetivo funcional del sistema.
 
 \paragraph{Facilidad de trabajo y curva de aprendizaje\\}
 
@@ -201,10 +201,10 @@ Soporte completo de casi la totalidad de las distribuciones de GNU/Linux. Las ne
 
 \paragraph{Prestaciones técnicas}
 \begin{itemize}
-\item Arquitectura x86/x86-64 (dependiendo de los equipos a utilizar finalmente).
-\item Entre 2 y 4 GB de memoria principal.
-\item Conectividad Ethernet, USB.
-\item Almacenamiento en disco duro.
+  \item Arquitectura x86/x86-64 (dependiendo de los equipos a utilizar finalmente).
+  \item Entre 2 y 4 GB de memoria principal.
+  \item Conectividad Ethernet, USB.
+  \item Almacenamiento en disco duro.
 \end{itemize}
 
 \paragraph{Coste económico\\}
@@ -253,7 +253,7 @@ Es difícil determinar la viabilidad de esta solución, pues no se cuenta con ex
 
 \paragraph{Prestaciones técnicas\\}
 
-Como referencia se utilizan las prestaciones de uno de los equipos más populares, el \textbf{Google Chromecast}\citationneeded[https://wikidevi.com/wiki/Google\_Chromecast\_\%28H2G2-42\%29]
+Como referencia se utilizan las prestaciones de uno de los equipos más populares, el \textbf{Google Chromecast}\footnote{\href{https://wikidevi.com/wiki/Google\_Chromecast\_\%28H2G2-42\%29}{https://wikidevi.com/wiki/Google\_Chromecast\_\%28H2G2-42\%29}}
 \begin{itemize}
   \item Procesador ARM de 2 núcleos a 1.2 GHz.
   \item 512 MB de memoria principal.
@@ -404,7 +404,7 @@ Basándose en las características descritas anteriormente, se elige realizar el
 
 \subsection{Raspberry Pi: Elección de las características básicas del sistema}
 
-Se opta por las placas de la familia \textbf{Raspberry Pi} para la realización el sistema debido a la gran cantidad de soporte con el que cuentan, tanto por parte de la fundación \textbf{Raspberry Pi} como por diferentes comunidades de desarrolladores. Es el computador de este tipo que más sistemas operativos soporta\citationneeded[http://elinux.org/RPi\_Distributions] y existen gran cantidad de proyectos que dotan de mayor funcionalidad al sistema y que generalmente son diseñados para aprovechar las características del \textit{hardware} específico de la máquina.
+Se opta por las placas de la familia \textbf{Raspberry Pi} para la realización el sistema debido a la gran cantidad de soporte con el que cuentan, tanto por parte de la fundación \textbf{Raspberry Pi} como por diferentes comunidades de desarrolladores. Es el computador de este tipo que más sistemas operativos soporta\footnote{\href{http://elinux.org/RPi_Distributions}{http://elinux.org/RPi\_Distributions}} y existen gran cantidad de proyectos que dotan de mayor funcionalidad al sistema y que generalmente son diseñados para aprovechar las características del \textit{hardware} específico de la máquina.
 
 Comparativa de las características relevantes de los diferentes modelos de Raspberry Pi.
 Quedan descartados los modelos A y A+ por la carencia de puerto Ethernet (amén de otras características necesarias).
