@@ -89,7 +89,11 @@ Sin embargo, queda aún una incógnita por resolver: si bien la fuente de alimen
 
 \paragraph{Alimentación a través del puerto GPIO\\}
 
-El puerto \textbf{GPIO} de la Raspberry Pi es utilizado comúnmente para la alimentación de periféricos conectados a la misma, a través de varios pines dispuestos para tal fin. Sin embargo, es posible alimentar a la propia placa a través de los mismos\citationneeded[http://raspberrypi.stackexchange.com/questions/1617/how-do-i-supply-power-through-the-gpio]. Extendiendo dos cable desde la fuente de alimentación hasta los pines 1 y 3 (+5V y neutro) es posible alimentar la placa.
+El puerto \textbf{GPIO} de la Raspberry Pi es utilizado comúnmente para la alimentación de periféricos conectados a la misma, a través de varios pines dispuestos para tal fin. Sin embargo, es posible alimentar a la propia placa a través de los mismos\footnote{Esquema completo del circuito de la Raspberry Pi: \href{https://www.raspberrypi.org/wp-content/uploads/2012/04/Raspberry-Pi-Schematics-R1.0.pdf}{https://www.raspberrypi.org/wp-content/uploads/2012/04/Raspberry-Pi-Schematics-R1.0.pdf}}.%TODO[http://raspberrypi.stackexchange.com/questions/1617/how-do-i-supply-power-through-the-gpio]. 
+
+
+
+Extendiendo dos cable desde la fuente de alimentación hasta los pines 1 y 3 (+5V y neutro) es posible alimentar la placa.
 
 Sin embargo dicha solución implica un riesgo considerable, al no disponer el puerto GPIO de una serie de mecanismos de protección ante un uso como este (en el caso de la alimentación por USB se cuenta con dicha protección). En caso de una sobrecarga eléctrica la placa sería dañada de forma irreversible. Se plantea el uso de fusibles de 2 amperios para proteger a las placas de este tipo de sobrecargas.
 
@@ -110,3 +114,25 @@ Situar los diodos supone un problema significativo. Utilizar cualquier tipo de c
 Como solución se decide crear placas con circuitos impresos que conecten los diferentes diodos al puerto GPIO, utilizando una tira GPIO soldada al circuito que se conectará a los pines de la Raspberry. De esta forma se evita cualquier tipo de cableado y se evita realizar soldaduras a la placa.
 
 A fin de ahorrar espacio, los LED se situarán sobre la Raspberry cubriendo la parte inferior de la misma.
+
+\section{Coste}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|r|r|r|}
+\hline
+\textbf{Ítem} & \textbf{Unidades} & \textbf{Precio unitario} & \textbf{Total} \\ \hline
+Placas de metacrilato de 10mm & 1 m\textsuperscript{2} & 1 & 30 € \\ \hline
+Placas de metacrilato de 5mm & 1 m\textsuperscript{2} & 1 & 10 € \\ \hline
+Placa de metacrilato de 4mm & 1 m\textsuperscript{2} & 1 & 20 € \\ \hline
+Varilla de latón de 8mm & 1 & 1& 15 €\\ \hline
+Tornillos & & & 10 €\\ \hline
+Cable Ethernet & 3 metros & 1.2 €/metro & 3.6€\\ \hline
+Fusibles de 2 A & 10 & 0.3 € & 3.15\\ \hline
+Portafusibles & 12 & 0.5 & 6 € \\ \hline
+Fuente de alimentación de 5 V & 1 & 16.63 & 16.63 \\ \hline
+Tira de pines GPIO & 3 & 0.9 & 2.84 \\ \hline
+Diodos LED & 24 & &\\ \hline
+\end{tabular}
+\caption{Coste de los materiales de la estructura final}
+\end{table}

@@ -5,7 +5,7 @@
 
 \section{Status Monitor}
 
-El monitor de estado consiste en una aplicación con interfaz web que permite observar las estadísticas de uso del \textit{hardware} y de diversos procesos. Utiliza para la detección de los diferentes nodos el \textit{binding} de \textbf{Marco} en Python que realiza una consulta para descubrir que nodos están dispuestos a ofrecer el servicio \texttt{statusmonitor}. La respuesta de dicho comando es enviada al cliente, que establece conexiones directas a cada uno de los nodos a través de \textit{Websockets}\citationneeded. Esto es posible debido a que según la especificación del estándard de websockets, la \textit{Same-Origin Policy}\cite{rfc6455} no es utilizada de la misma forma que en peticiones HTTP,\cite{rfc6454}.
+El monitor de estado consiste en una aplicación con interfaz web que permite observar las estadísticas de uso del \textit{hardware} y de diversos procesos. Utiliza para la detección de los diferentes nodos el \textit{binding} de \textbf{Marco} en Python que realiza una consulta para descubrir que nodos están dispuestos a ofrecer el servicio \texttt{statusmonitor}. La respuesta de dicho comando es enviada al cliente, que establece conexiones directas a cada uno de los nodos a través de \textit{Websockets}\cite{rfc6455}. Esto es posible debido a que según la especificación del estándard de Websocket, la \textit{Same-Origin Policy} no es utilizada de la misma forma que en peticiones HTTP\cite{rfc6454}.
 
 % TODO\begin{figure}[H]
 % \centering
@@ -37,8 +37,7 @@ La implementación del servicio está realizada íntegramente en Tornado\footnot
 
 \section{Deployer}
 
-El \textbf{Deployer} es una herramienta concebida a partir de la necesidad observada entre los estudiantes de las asignaturas Sistemas Distribuidos y Arquitectura de Computadores (como se refleja en las diferentes evaluaciones\citationneeded %TODO
-realizadas), de replicar de una forma sencilla un ejecutable entre los diferentes nodos que conformarán el sistema distribuido.
+El \textbf{Deployer} es una herramienta concebida a partir de la necesidad observada entre los estudiantes de las asignaturas Sistemas Distribuidos y Arquitectura de Computadores (como se refleja en las diferentes evaluaciones realizadas, ver \ref{chapter:evaluaciones}), de replicar de una forma sencilla un ejecutable entre los diferentes nodos que conformarán el sistema distribuido.
 
 Actualmente la infraestructura cuenta con un servidor NFS que posibilita la disponibilidad de la información en varios nodos de forma sencilla, mediante la copia a uno de los directorios alojados en el servidor. Sin embargo, este enfoque presenta varios inconvenientes: en el aspecto técnico supone una gran cantidad de ancho de banda consumido de forma continua (debido a que todos los estudiantes utilizan la misma infraestructura y realizan un gran número de operaciones de lectura y escritura a estos directorios, ralentizando el funcionamiento general del sistema enormemente) y en el aspecto didáctico, fomenta un mal hábito, pues los estudiantes no conocen otra forma de realizar despliegues más allá de la copia utilizando una interfaz gráfica y accediendo físicamente al nodo (si bien esta situación se mitiga en la asignatura Sistemas Distribuidos, donde deben automatizar los despliegues). Además, es necesario disponer de acceso físico a cada uno de los nodos, o en su defecto, conocer sus direcciones de red para realizar un acceso remoto.
 
@@ -68,7 +67,7 @@ Al igual que en el caso de la aplicación \textbf{statusmonitor} el \textbf{depl
 
 \paragraph{Autenticación}
 
-La autenticación de los usuarios se realiza mediante el módulo \textbf{PAM} presente en cada nodo\citationneeded{}, utilizando \textbf{python-pam} para el acceso al mismo desde \textbf{Python}\cite{python-am}.
+La autenticación de los usuarios se realiza mediante el módulo \textbf{PAM} presente en cada nodo\cite{osf:rfc86}, utilizando \textbf{python-pam} para el acceso al mismo desde \textbf{Python}\cite{python-am}.
 
 %TODO: \begin{figure}[H]
 % \centering
@@ -91,7 +90,7 @@ La gestión de esta funcionalidad se realiza a través del bucle de eventos de \
 
 \subsection{Marcoshell}
 
-Marcoshell sigue un funcionamiento similar al de \textbf{logger}. La diferencia clave es la independencia de \textbf{deployer}. La herramienta simula una consola que implementa un subconjunto de la funcionalidad esperada de una consola tradicional\citationneeded[Integrar la plataforma con una VNC, pasando a todas las VNC la entrada de texto]. Incluye también funcionalidad para el envío de señales de terminación.
+Marcoshell sigue un funcionamiento similar al de \textbf{logger}. La diferencia clave es la independencia de \textbf{deployer}. La herramienta simula una consola que implementa un subconjunto de la funcionalidad esperada de una consola tradicional. Incluye también funcionalidad para el envío de señales de terminación.
 
 \section{Herramientas de gestión}
 

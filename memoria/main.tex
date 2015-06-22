@@ -57,26 +57,13 @@ Raspberry Pi, y estudio comparativo del mismo frente a otras soluciones}
 
 \pagestyle{fancy}  % Finally, use the "fancy" page style to implement the FancyHdr headers
 
-\include{preface/declaration}
+\include{Preface/declaration}
 
-\include{preface/quote}
+\include{Preface/quote}
 
-\include{preface/abstract}
+\include{Preface/abstract}
 
-
-%% ----------------------------------------------------------------
-
-\setstretch{1.3}  % Reset the line-spacing to 1.3 for body text (if it has changed)
-
-% The Acknowledgements page, for thanking everyone
-\acknowledgements{
-\addtocontents{toc}{\vspace{1em}}  % Add a gap in the Contents, for aesthetics
-
-The acknowledgements and the people to thank go here, don't forget to include your project advisor\ldots
-
-}
-\clearpage  % End of the Acknowledgements
-%% ----------------------------------------------------------------
+\include{Preface/acknowledgements}
 
 \pagestyle{fancy}  %The page style headers have been "empty" all this time, now use the "fancy" headers as defined before to bring them back
 
@@ -98,9 +85,9 @@ The acknowledgements and the people to thank go here, don't forget to include yo
 \clearpage  % Start a new page
 \lhead{\emph{Lista de abreviaturas}}  % Set the left side page header to "Abbreviations"
 
-\include{preface/symbols}
+\include{Preface/symbols}
 
-%\include{preface/constants}
+%\include{Preface/constants}
 
 % Begin the Dedication page
 
@@ -144,12 +131,10 @@ The acknowledgements and the people to thank go here, don't forget to include yo
 
 \include{Chapters/Conclusion/Conclusion} % Conclusiones
 
-
-
 %% ----------------------------------------------------------------
 % Now begin the Appendices, including them as separate files
 
-%\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
+\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
 
 \appendix % Cue to tell LaTeX that the following 'chapters' are Appendices
 

@@ -6,7 +6,7 @@
 \subsection{Lenguajes de programación}
 
 \subsubsection{Python}
-Python es un lenguaje de programación interpretado de propósito general que prioriza la legibilidad del  código y la rapidez de desarrollo, manteniendo estas propiedades en proyectos de cualquier escala. Python soporta diferentes paradigmas de programación, entre ellos la orientación a objetos, programación imperativa y la programación funcional. Automatiza la gestión de memoria y utiliza un sistema de tipado dinámico rígido\citationneeded.
+Python es un lenguaje de programación interpretado de propósito general que prioriza la legibilidad del  código y la rapidez de desarrollo, manteniendo estas propiedades en proyectos de cualquier escala. Python soporta diferentes paradigmas de programación, entre ellos la orientación a objetos, programación imperativa y la programación funcional. Automatiza la gestión de memoria y utiliza un sistema de tipado dinámico rígido.
 
 \subsubsection{Lenguajes}
 
@@ -41,7 +41,7 @@ Para la realización de diversas tareas de administración del sistema se utiliz
 
 \subsection{Twisted}
 
-\textbf{Twisted} \citationneeded{https://twistedmatrix.com/} es un motor dirigido por eventos para la creación de aplicaciones basadas en red. Uno de los principales beneficios de la programación orientada a eventos es la capacidad del sistema de optimizar el tiempo de CPU y evitar cambios de contexto, pues todo el código se ejecuta en un único hilo. Twisted se basa en el patrón de diseño \textbf{reactor}\cite{Coplien95reactor}, que se basa en la gestión de diferentes eventos, su demultiplexación y el envío a los manejadores apropiados de forma síncrona (ver \ref{eventdriven}).
+\textbf{Twisted} \footnote{\href{https://twistedmatrix.com/}{https://twistedmatrix.com/}} es un motor dirigido por eventos para la creación de aplicaciones basadas en red. Uno de los principales beneficios de la programación orientada a eventos es la capacidad del sistema de optimizar el tiempo de CPU y evitar cambios de contexto, pues todo el código se ejecuta en un único hilo. Twisted se basa en el patrón de diseño \textbf{reactor}\cite{Coplien95reactor}, que se basa en la gestión de diferentes eventos, su demultiplexación y el envío a los manejadores apropiados de forma síncrona (ver \ref{eventdriven}).
 
 Twisted permite crear de forma sencilla sockets asíncronos a bajo nivel en los protocolos UDP y TCP y aplicaciones que utilizan protocolos bien definidos, como HTTP o DNS. Es capaz de trabajar con protocolos como \textbf{multicast} o \textbf{TLS} e integra funcionalidades para el desarrollo dirigido por pruebas (\textit{test-driven development}).
 
@@ -154,7 +154,7 @@ En el proyecto Doxygen es utilizado para documentar aquellas partes del proyecto
 
 Una de las características de OpenSSH es que todas las tareas se ejecutan en un único proceso y por tanto, en un único núcleo, constituyendo un cuello de botella que se hace notable en sistemas de bajas prestaciones, como el sistema a modelar.
 
-Con el objetivo de superar este límite nace SSH-HPN\citationneeded, un conjunto de modificaciones al código fuente de OpenSSH que optimiza la ejecución del mismo mediante el uso de diferentes procesos repartidos en los diferentes núcleos del sistema. El proyecto se distribuye como un archivo \texttt{.diff} que se incluye en los archivos del código fuente con la herramienta \textbf{GNU patch}.
+Con el objetivo de superar este límite nace SSH-HPN\footnote{\href{http://www.psc.edu/index.php/hpn-ssh}{http://www.psc.edu/index.php/hpn-ssh}}, un conjunto de modificaciones al código fuente de OpenSSH que optimiza la ejecución del mismo mediante el uso de diferentes procesos repartidos en los diferentes núcleos del sistema. El proyecto se distribuye como un archivo \texttt{.diff} que se incluye en los archivos del código fuente con la herramienta \textbf{GNU patch}.
 
 Se ha creado un paquete de Arch Linux con el código fuente ya preparado para trabajar en la arquitectura ARM, y todos los nodos del sistema utilizan esta versión en lugar del paquete \textbf{OpenSSH} original.
 
