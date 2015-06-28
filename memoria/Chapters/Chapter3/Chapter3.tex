@@ -19,8 +19,7 @@ En el presente proyecto se realiza un análisis de las diferentes alternativas q
 
 \subsection{Sistema actual: Infraestructura de la Facultad de Ciencias}
 \label{dominioproblema:infraestructura}
-%\label{infraestructura} %TODO
-El sistema se ubica en una Facultad universitaria con aproximadamente 600 alumnos\citationneeded[Referencia a la estadística] en titulaciones relacionadas con las Ciencias de la Computación. Estas titulaciones cuentan con varias asignaturas relacionadas con el áreas de conocimiento Computación Distribuida, en particular \textbf{Arquitectura de Computadores} y \textbf{Sistemas Distribuidos} \cite{DIA15GuiaAcademica}. La Facultad cuenta con varias aulas y laboratorios de informática donde los alumnos disponen de la infraestructura necesaria para realizar los ejercicios y prácticas asignadas. Dichos espacios permiten utilizar cualquier equipo como nodo, pues se integran en la misma red, siendo incluso factible la comunicación directa entre equipos situados en diferentes aulas o incluso edificios. Todos los edificios cuentan con un cableado capaz de soportar teóricamente transferencias de hasta 100Mb/s de forma bidireccional\citationneeded. La gestión de un sistema de autenticación se realiza mediante el protocolo \textbf{LDAP} (\textit{Lightweight Directory Access Protocol})\cite{RFC4516-comment}, contando con un sistema de ficheros centralizado que permite acceder a la información de un usuario desde cualquier equipo, facilitando las tareas de replicación de la información entre nodos.
+El sistema se ubica en una Facultad universitaria con 1.463 alumnos\cite{uecusal:estudiantes} en titulaciones relacionadas con las Ciencias de la Computación. Estas titulaciones cuentan con varias asignaturas relacionadas con el áreas de conocimiento Computación Distribuida, en particular \textbf{Arquitectura de Computadores} y \textbf{Sistemas Distribuidos} \cite{DIA15GuiaAcademica}. La Facultad cuenta con varias aulas y laboratorios de informática donde los alumnos disponen de la infraestructura necesaria para realizar los ejercicios y prácticas asignadas. Dichos espacios permiten utilizar cualquier equipo como nodo, pues se integran en la misma red, siendo incluso factible la comunicación directa entre equipos situados en diferentes aulas o incluso edificios. Todos los edificios cuentan con un cableado capaz de soportar teóricamente transferencias de hasta 100 Mb/s de forma bidireccional. La gestión de un sistema de autenticación se realiza mediante el protocolo \textbf{LDAP} (\textit{Lightweight Directory Access Protocol})\cite{RFC4516-comment}, contando con un sistema de ficheros centralizado que permite acceder a la información de un usuario desde cualquier equipo, facilitando las tareas de replicación de la información entre nodos\footnote{Datos extraídos de entrevistas con el Administrador de la infraestructura}.
 
 La mayoría de las prácticas asignadas a los alumnos en las asignaturas de interés son desarrolladas en los lenguajes de programación \textbf{C} y \textbf{Java}, ya conocidos por la totalidad de los estudiantes gracias a asignaturas previamente cursadas.
 
@@ -47,7 +46,7 @@ En el proyecto en cuestión se identifican los siguientes \textit{stakeholders} 
 \begin{itemize}
   \item Equipo de desarrollo. Su motivación es la consecución de todos los objetivos marcados en el sistema.
   \item Estudiantes de tercer y cuarto curso del Grado en Ingeniería Informática, que podrán utilizar el sistema como herramienta didáctica.
-  \item Profesores de las asignaturas Arquitectura de Computadores y Sistemas Distribuidos, que aprovecharán el sistema final dichas asignaturas.
+  \item Profesores de las asignaturas Arquitectura de Computadores y Sistemas Distribuidos, que aprovecharán el sistema final en dichas asignaturas.
   \item Administradores del sistema, que deberán hacerse cargo del mantenimiento del sistema a largo plazo.
 \end{itemize}
 
@@ -68,6 +67,7 @@ Basándose en la motivación de cada parte es posible definir las demandas de ca
 
 \begin{itemize}
   \item Entorno versátil sobre el cual puedan llevarse a cabo la totalidad de las prácticas y ejercicios propuestos, aportando si es posible algún tipo de ventaja sobre el sistema en uso.
+  \item Instalación y configuración simple.
 \end{itemize}
 
 \subsection{Administradores}
@@ -129,7 +129,7 @@ Todos los mecanismos de interacción con el usuario deberán definirse de forma 
 El sistema deberá ser compatible los ejercicios desarrollados en las asignaturas \textbf{Arquitectura de Computadores} y en especial \textbf{Sistemas distribuidos}
 
 \section{Situación actual (\textit{state of the art})}
-
+\label{stateoftheart}
 En esta sección se definen diferentes enfoques ya aplicados a soluciones a problemas similares al planteado anteriormente.
 
 \subsection{Computadores de placa única}

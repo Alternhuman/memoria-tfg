@@ -23,12 +23,12 @@
 }
 
 @book{Fettig:2005:TNP:1205685,
-	author = "Fettig, Abe",
-	isbn = "0596100329",
-	publisher = "O'Reilly Media, Inc.",
-	title = "{Twisted Network Programming Essentials}",
-	year = "2005"
-}
+ author = {Fettig, Abe},
+ title = {Twisted Network Programming Essentials},
+ year = {2005},
+ isbn = {0596100329},
+ publisher = {O'Reilly Media, Inc.},
+} 
 
 @article{Reference1,
 	abstract = "We have developed an enhanced Littrow configuration extended cavity diode laser (ECDL) that can be tuned without changing the direction of the output beam. The output of a conventional Littrow ECDL is reflected from a plane mirror fixed parallel to the tuning diffraction grating. Using a free-space Michelson wavemeter to measure the laser wavelength, we can tune the laser over a range greater than 10 nm without any alteration of alignment.",
@@ -557,71 +557,71 @@
 }
 
 @article{10.1109/TSE.1975.6312870,
-	address = "Los Alamitos, CA, USA",
-	author = "Basil, Victor R. and Turner, Albert J.",
-	doi = "10.1109/TSE.1975.6312870",
-	issn = "0098-5589",
-	journal = "IEEE Transactions on Software Engineering",
-	number = "4",
-	pages = "390--396",
-	publisher = "IEEE Computer Society",
-	title = "{Iterative enhancement: A practical technique for software development}",
-	url = "http://www.cs.umd.edu/~basili/publications/journals/J04.pdf",
-	volume = "1",
-	year = "1975"
+author = {Victor R. Basil and Albert J. Turner},
+title = {Iterative enhancement: A practical technique for software development},
+journal ={IEEE Transactions on Software Engineering},
+volume = {1},
+number = {4},
+issn = {0098-5589},
+year = {1975},
+pages = {390-396},
+doi = {http://doi.ieeecomputersociety.org/10.1109/TSE.1975.6312870},
+publisher = {IEEE Computer Society},
+address = {Los Alamitos, CA, USA},
+url = {http://www.cs.umd.edu/~basili/publications/journals/J04.pdf}
 }
 
 @misc{thearchway,
-	author = "{\relax The Arch Linux Project}",
-	lastchecked = "13/06/2015",
-	title = "{The Arch Way}",
-	url = "{https://wiki.archlinux.org/index.php/The_Arch_Way}",
-	year = "2015"
+	author="{\relax The Arch Linux Project}",
+	title="The Arch Way",
+	lastchecked="13/06/2015",
+	year="2015",
+	url="{https://wiki.archlinux.org/index.php/The_Arch_Way}"
 }
 
 @misc{pacman,
-	author = "{\relax Pacman Development Team}",
-	lastchecked = "13/06/2015",
-	title = "{Pacman Home Page}",
-	url = "{https://www.archlinux.org/pacman/}",
-	year = "2014"
+	author="{\relax Pacman Development Team}",
+	title="Pacman Home Page",
+	lastchecked="13/06/2015",
+	year="2014",
+	url="{https://www.archlinux.org/pacman/}"
 }
 
 @misc{systemd,
-	author = "{\relax freedesktop.org}",
-	lastchecked = "13/06/2015",
-	title = "{systemd}",
-	url = "{http://www.freedesktop.org/wiki/Software/systemd/}",
-	year = "2015"
+	author="{\relax freedesktop.org}",
+	title="systemd",
+	lastchecked="13/06/2015",
+	year="2015",
+	url="{http://www.freedesktop.org/wiki/Software/systemd/}"
 }
 
 @misc{init,
-	author = "van Smoorenburg, Miquel",
-	lastchecked = "13/06/2015",
-	title = "{INIT(8)}",
-	url = "{http://unixhelp.ed.ac.uk/CGI/man-cgi?init+8}",
-	volume = "Linux System Administrator's Manual",
-	year = "2004"
+	title="INIT(8)",
+	volume="Linux System Administrator's Manual",
+	author="Miquel van Smoorenburg",
+	year="2004",
+	lastchecked="13/06/2015",
+	url="{http://unixhelp.ed.ac.uk/CGI/man-cgi?init+8}"
 }
 
 @misc{distrowatch:arm,
-	author = "{\relax Distrowatch.com}",
-	lastchecked = "13/06/2015",
-	title = "{Distrowatch.com Search Distributions}",
-	url = "{http://distrowatch.com/search.php?architecture=arm}",
-	year = "2015"
+	title="Distrowatch.com Search Distributions",
+	author="{\relax Distrowatch.com}",
+	year="2015",
+	lastchecked="13/06/2015",
+	url="{http://distrowatch.com/search.php?architecture=arm}"
 }
 
 @misc{archlinuxarm,
-	author = "{\relax Arch Linux ARM project}",
-	lastchecked = "13/06/2015",
-	title = "{Arch Linux ARM}",
-	url = "{http://archlinuxarm.org/}",
-	year = "2015"
+	title="Arch Linux ARM",
+	author="{\relax Arch Linux ARM project}",
+	year="2015",
+	lastchecked="13/06/2015",
+	url="{http://archlinuxarm.org/}"
 }
 
 @misc{osf:rfc86,
-	author = "(SunSoft), V. Samar and (SunSoft), R. Schemers",
+	author = { V. Samar (SunSoft) and R. Schemers (SunSoft)},
 	howpublished = "Open Source Foundation RFC 86 (Proposed Standard)",
 	month = oct,
 	organization = "Open Source Foundation",
@@ -631,30 +631,3 @@
 	url = "http://www.opengroup.org/rfc/rfc86.0.html",
 	year = 1995
 }
-
-@article{seth:physical,
-	author = "{Lloyd Seth}",
-	doi = "10.1038/35023282",
-	issn = "0028-0836",
-	journal = "Nature",
-	month = "aug",
-	note = "10.1038/35023282",
-	number = "6799",
-	pages = "1047--1054",
-	risfield_0_m3 = "10.1038/35023282",
-	title = "{Ultimate physical limits to computation}",
-	volume = "406",
-	year = "2000"
-}
-
-@misc{uecusal:estudiantes,
-	author = "{{\relax{Unidad de Evaluaci{\'o}n de la Calidad}}",
-	chapter = "2 Estudiantes de Grado",
-	howpublished = "\url{http://campus.usal.es/~estadisticasgenerales/contenido/grado.html}",
-	publisher = "Unidad de Evaluaci{\'o}n de la Calidad",
-	school = "Universidad de Salamanca",
-	title = "{Estad{\'i}sticas generales de la Universidad de Salamanca}",
-	url = "http://campus.usal.es/~estadisticasgenerales/contenido/2-1-1.html",
-	year = "2015"
-}
-

@@ -5,14 +5,14 @@ El presente proyecto responde al interés personal en las áreas de conocimiento
 
 \section{Objetivos}
 
-El sistema creado se inspira en proyectos similares y se diseña con el objetivo de dar solución a diferentes necesidades identificadas como estudiante de varias asignaturas del currículo del Grado en Ingeniería Informática. El sistema cuenta con cuatro objetivos a alto nivel independientes:
+El sistema creado se inspira en proyectos similares (descritos en \ref{stateoftheart}) y se diseña con el objetivo de dar solución a diferentes necesidades identificadas como estudiante de varias asignaturas del currículo del Grado en Ingeniería Informática. El sistema cuenta con cuatro objetivos a alto nivel independientes:
 
 \begin{itemize}
 	\item Como síntesis de los conocimientos adquiridos en la carrera, se busca la creación de un sistema completo desde sus cimientos hasta los componentes de más alto nivel, gestionando las tareas de mantenimiento, instalación y manejo del mismo, así como los protocolos de trabajo, tanto en cada uno de los componentes del sistema como en la comunicación entre los mismos. Con un enfoque más teórico, se pretende crear un sistema capaz de poder ser utilizado como herramienta de diseño y prueba de algoritmos que resuelvan problemas aprovechando la distribución de tareas, así como el análisis de dichos algoritmos utilizando versiones finales del sistema.
 
 	\item Potenciar su uso como herramienta de aprendizaje en las áreas de conocimiento Sistemas Operativos, Algoritmia, Redes de Computadores, Sistemas Distribuidos, Administración de Sistemas y Sistemas Embebidos.
 	
-	\item Constituir una herramienta didáctica para varias asignaturas del currículo del Grado en Ingeniería Informática de la Universidad de Salamanca, analizando aquellas relevantes y proponiendo soluciones a las diferentes necesidades propuestas por el Profesorado, Estudiantes y Administradores del sistema, en colaboración con dichas partes.
+	\item Constituir una herramienta didáctica para varias asignaturas del currículo del Grado en Ingeniería Informática de la Universidad de Salamanca, analizando aquellas relevantes y proponiendo soluciones a las diferentes necesidades propuestas por el Profesorado, Estudiantes y Administradores en colaboración con dichas partes.
 
 	\item Intentar elevar el \textit{state of the art} en el mundo de los sistemas distribuidos con plataformas embebidas mediante la creación de un sistema multipropósito en lugar de soluciones con un fin determinado, que constituyen la tendencia actual.
 \end{itemize}
@@ -39,6 +39,7 @@ El sistema debe contar con un conjunto de herramientas que mantengan los princip
 \subsection{Integración}
 
 El sistema debe integrarse en una infraestructura preexistente, la presente en la Facultad de Ciencias de la Universidad de Salamanca, sin que dicha integración comprometa el diseño básico del sistema a fin de facilitar su adaptabilidad a otros entornos (ver \ref{infraestructura}). Es necesario por tanto realizar pruebas que evalúen el rendimiento del sistema creado en la misma. %TODO Con el objetivo de facilitar dicha integración, el sistema se desarrolla parcialmente aprovechando la infraestructura presente.
+A fin de facilitar el uso del sistema por los usuarios finales, se utiliza un directorio de autenticación preexistente en el que todo miembro de la organización cuenta con unas credenciales. Para la integración de dicho directorio se utiliza \textbf{nsswitch} (ver \ref{nsswitch}). 
 
 \subsection{Uso como herramienta didáctica}
 
@@ -52,7 +53,11 @@ A fin de probar los objetivos definidos anteriormente, la viabilidad de sistema 
 
 Durante el desarrollo del proyecto se añaden los siguientes objetivos funcionales:
 
-%TODO Incluir en los objetivos de MarcoPolo
+\subsection{\textit{Zeroconf}}
+
+El sistema debe configurarse de forma automática en cualquier tipo de circunstancia (sin que el número de nodos o la configuración de la red sean aspectos relevantes, por ejemplo). Para ello se deberán utilizar o crear una serie de herramientas que posibiliten esta propiedad del sistema. Entre estas herramientas destaca como elemento clave la utilización de un protocolo de descubrimiento de nodos y servicios. Como se destaca en apartados posteriores de la memoria, se ha optado por la creación de un protocolo que recibe el nombre de \textit{MarcoPolo}\ref{marcopolo}\citationneeded[].
+
+\citationneeded[TODO Incluir en los objetivos de MarcoPolo]
 \subsection{Simplicidad de MarcoPolo}
 
 MarcoPolo debe conseguir un alto grado de versatilidad y aplicabilidad en un gran rango de aplicaciones. A fin de conseguir este objetivo, la simplicidad del sistema construido es clave. Esto conlleva el desacoplamiento y delegación de gran parte de la funcionalidad a otras capas superiores, independientes del protocolo, pero que aprovechan su funcionalidad, en lugar de ser integradas en el mismo (ver \ref{marcopolo}).
@@ -60,3 +65,17 @@ MarcoPolo debe conseguir un alto grado de versatilidad y aplicabilidad en un gra
 \subsection{Test-Driven Development}
 
 El desarrollo de las diferentes herramientas \textit{software} se deberá realizar bajo los principios del desarrollo conducido por pruebas (ver \ref{tdd}) como mecanismo para la detección temprana de errores.
+
+\vspace{2cm}
+
+En conclusión, los objetivos del proyecto son los siguientes:
+
+\begin{center}
+\itshape
+\begin{itemize}
+	\item[] Diseñar un sistema distribuido no jerárquico integrable en una infraestructura existente.
+	\item[] Orientar la explotación del mismo como herramienta de diseño y prueba de algoritmos y herramienta didáctica.
+	\item[] Analizar las ventajas e inconvenientes del sistema frente a otras soluciones similares.
+	\item[] Analizar la efectividad de la solución propuesta mediante herramientas de evaluación.
+\end{itemize}
+\end{center}
