@@ -12,25 +12,41 @@ Como se describió en \ref{problema:sistemaoperativo}, se utilizará el sistema 
 \subsection{Características técnicas de Arch Linux}
 \label{archlinux:description}
 
-\textbf{Arch Linux} es una distribución del sistema operativo GNU/Linux creada y mantenida por una comunidad de usuarios. Desarrollada de forma independiente, es lo suficientemente versátil como para satisfacer cualquier propósito. Su desarrollo se centra en la simplicidad, elegancia y minimalismo, asumiendo que el usuario añadirá los componentes que restan para conseguir el entorno que desee. Dicho minimalismo se traduce en una arquitectura basada en paquetes que conforman en su conjunto un sistema fácil de comprender por el usuario, y que cuentan con una gran cantidad de documentación fácilmente accesible. La consecuencia directa de este minimalismo es el rendimiento del sistema. Una instalación de Arch Linux se limita al conjunto de paquetes mínimo para contar con un sistema completamente funcional, delegando al usuario la adición de nuevos paquetes. Este enfoque permite optimizar de forma sencilla el rendimiento del sistema, al no contar con paquetes innecesarios.
+\textbf{Arch Linux} es una distribución del sistema operativo GNU/Linux creada y mantenida por una comunidad de usuarios. Desarrollada de forma independiente, es lo suficientemente versátil como para satisfacer cualquier propósito. Su desarrollo se centra en la simplicidad, elegancia y minimalismo, asumiendo que el usuario añadirá los componentes que restan para conseguir el entorno que desee. Dicho minimalismo se traduce en una arquitectura basada en paquetes que conforman en su conjunto un sistema fácil de comprender por el usuario, y que cuentan con una gran cantidad de documentación fácilmente accesible. La consecuencia directa de este minimalismo es el rendimiento del sistema. Una instalación de Arch Linux se limita al conjunto de elementos mínimo para contar con un sistema completamente funcional, delegando al usuario la adición de nuevos paquetes. Este enfoque permite optimizar de forma sencilla el rendimiento del sistema, al no incluir paquetes innecesarios en la instalación básica.
 
-Arch Linux está basado en un modelo de liberación continua (\textit{rolling release}) lo cual significa que el sistema está en constante desarrollo (en contraste con un sistema de versiones). El \textit{software} se actualiza de forma continua, siendo únicamente necesario realizar una actualización de los paquetes que conforman el sistema para contar con la última versión. Este modelo de desarrollo permite contar con las últimas versiones del software incluido de forma casi inmediata a su liberación. Generalmente los paquetes que se incluyen sin modificaciones por parte del proyecto (esta práctica se denomina \textit{upstream}, pues la fuente del software es el propio autor del mismo), tal y como el fueron creados para su uso.
+%Arch Linux está basado en un modelo de liberación continua (\textit{rolling release}) lo cual significa que el sistema está en constante desarrollo (en contraste con un sistema de versiones). El \textit{software} se actualiza de forma continua, siendo únicamente necesario descargar la última versión de los paquetes que conforman el sistema para contar con la última versión disponible.% Este modelo de desarrollo permite contar con las últimas versiones del software incluido de forma casi inmediata a su liberación. Generalmente los paquetes que se incluyen sin modificaciones por parte del proyecto (esta práctica se denomina \textit{upstream}, pues la fuente del software es el propio autor del mismo), tal y como el fueron creados para su uso.
 
-La gestión de paquetes se realiza utilizando la herramienta \textbf{pacman}\cite{pacman}, creada por y para el proyecto. El repositorio oficial ofrece una gran cantidad de paquetes, si bien su tamaño es significativamente inferior al \textit{Arch User Repository} (AUR), que contiene paquetes creados y mantenidos por usuarios.
+La gestión de paquetes se realiza utilizando la herramienta \textbf{pacman}\cite{pacman}, creada por y para el proyecto. El repositorio oficial ofrece una gran cantidad de \textit{software}, si bien su tamaño es significativamente inferior al \textit{Arch User Repository} (AUR), que contiene paquetes creados y mantenidos por usuarios.
 
 Arch Linux utiliza el sistema de arranque \textbf{systemd}\cite{systemd}, un conjunto de módulos que proporcionan una gestión de dependencias entre servicios del sistema más eficiente y sencilla que el cargador clásico de las distribuiciones GNU, \textbf{init}\cite{init}, inspirado en el utilizado por UNIX System V.
 
-Otro de los aspectos de relevancia del sistema es la comunidad creada alrededor del mismo, que fomenta la implicación de cualquier usuario en cualquiera de los aspectos de relevancia en el desarollo del sistema. La documentación del sistema es extensa y cuenta con recursos tanto para las características propias del sistema como para herramientas de terceros utilizadas en el mismo. %Además, la comunidad de Arch Linux es famosa por la gran y exhaustiva cantidad de documentación que mantiene, así como las diferentes opciones de soporte a cualquier nivel que ofrece a través de diferentes canales.
+Otro de los aspectos de relevancia del sistema es la comunidad creada alrededor del mismo, que fomenta la implicación de cualquier usuario en cualquiera de los aspectos de relevancia en el desarollo del sistema. La documentación del sistema es extensa y cuenta con recursos tanto para las características propias del sistema como para herramientas de terceros utilizadas en el mismo. Dichos aspectos del proyecto y una serie de consideraciones adicionales se recogen en los preceptos definidos en el documento \textit{The Arch Way}\cite{thearchway}, inspirado en el principio de desarrollo \textbf{KISS} (\textit{Keep It Simple, Stupid}).%, muy popular en el entorno de los sistemas operativos UNIX.%\citationneeded{http://people.apache.org/~fhanik/kiss.html}. 
 
-Dichos aspectos del proyecto y una serie de consideraciones adicionales se recogen en los preceptos definidos en el documento \textit{The Arch Way}\cite{thearchway}, inspirado en el principio de desarrollo \textbf{KISS} (\textit{Keep It Simple, Stupid}), muy popular en el entorno de los sistemas operativos UNIX.%\citationneeded{http://people.apache.org/~fhanik/kiss.html}. 
-
-Arch Linux ARM\footnote{\href{http://archlinuxarm.org/}{http://archlinuxarm.org/}} es un proyecto derivado de Arch Linux que tiene como objetivo portar el sistema operativo a dispositivos basados en la arquitectura ARM (pues el proyecto raíz está enfocado únicamente en las arquitecturas i686 y x68\_64), generalmente sistemas embebidos, habiendo conseguido la compatibilidad con las versiones v5te, v6h y v7h de la arquitectura. El proyecto mantiene la misma filosofía de diseño que su progenitor, siendo el buen rendimiento del sistema operativo uno de los aspectos que propician el uso de esta distribución en sistemas con un capacidad de cómputo reducida. Es una de las principales opciones a la hora de realizar proyectos con este tipo de computadores\cite{distrowatch:arm}.%TODO: Revisar
-
-
+Arch Linux ARM\footnote{\href{http://archlinuxarm.org/}{http://archlinuxarm.org/}} es un proyecto derivado de Arch Linux que tiene como objetivo portar el sistema operativo a dispositivos basados en la arquitectura ARM (pues el proyecto raíz está enfocado únicamente en las arquitecturas i686 y x68\_64).Es una de las principales opciones a la hora de realizar proyectos con este tipo de computadores\cite{distrowatch:arm}. %, generalmente sistemas embebidos, habiendo conseguido la compatibilidad con las versiones v5te, v6h y v7h de la arquitectura. El proyecto mantiene la misma filosofía de diseño que su progenitor, siendo el buen rendimiento del sistema operativo uno de los aspectos que propician el uso de esta distribución en sistemas con un capacidad de cómputo reducida. %TODO: Revisar
 
 %Además, Arch Linux apuesta por un modelo de desarrollo de liberación continua (\textit{rolling releases}). El sistema operativo no se distribuye en versiones, sino en imágenes con las últimas versiones de los paquetes disponibles, lo cual posibilita contar con las últimas versiones de las herramientas presentes en el sistema operativo poco tiempo (o de forma inmediata) a su liberación. El modelo de desarrollo sigue este principio de forma tan estricta, que basta una actualización de todos los paquetes del sistema mediante el gestor propio de la distribución (\textbf{pacman}) para actualizar el sistema operativo (en contraste con operaciones específicas para este cometido, como ocurre con otros sistemas operativos).
 
 %El sistema operativo delega la responsabilidad del mantenimiento de todos los componentes al usuario en un grado mayor que el que pueden ofrecer otras distribuciones. Esto permite a los usuarios contar con completa libertad para modificar componentes del sistema en función de sus intereses a cualquier nivel\citationneeded{https://wiki.archlinux.org/index.php/The\_Arch\_Way}.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+&\textbf{Consumo de Memoria} &\textbf{Espacio en disco}\\
+\hline
+\textbf{Ubuntu Mate}&702 MB&2.5 GB\\
+\hline
+\textbf{Raspbian}&61 MB&2.4 GB\\
+\hline
+\textbf{Arch Linux}&16 MB&400 MB\\
+\hline
+\end{tabular}
+\caption[Comparativa de las demandas de espacio y memoria de diferentes sistemas operativos]{Comparativa de las demandas de espacio y memoria de diferentes sistemas operativos. Los datos corresponden a la huella de la instalación base del sistema operativo, sin ningún tipo de añadido instalado. Ubuntu, si bien conocido por su gran demanda de recursos, es el único que incluye una interfaz gráfica activada por defecto, lo cual eleva el consumo de memoria}
+\label{os:footprint}
+\end{table}
+
+La demanda de requisitos de Arch Linux es significativamente inferior a la de alternativas más populares. En la tabla \ref{os:footprint} se pueden observar las demandas de recursos de diferentes sistemas operativos.
+
 
 
 El proceso de elección del sistema operativo puede observarse en \ref{os:evaluation}.
@@ -107,7 +123,7 @@ Los comandos de MarcoPolo constituyen las primitivas del protocolo. Actualmente 
 
 \subsection{Esquemas de comunicación}
 
-\subsubsection{Comando \textbf{Marco}}
+%TODO: Quitado por sugerencia de Rodrigo\subsubsection{Comando \textbf{Marco}}
 
 %TODO \begin{figure}[H]
 % \centering
@@ -326,7 +342,7 @@ Utilizando una llamada a marcodiscover, realiza una copia de los ficheros utiliz
 
 El acceso a cualquier nodo del sistema debe realizarse mediante un sistema de credenciales homogéneo. Dicho enfoque es el propio de la infraestructura en la que el sistema se integra, que centraliza dicho repositorio de credenciales en un único punto.
 
-Un primer intento de posibilitar esta propiedad es sido la creación de los mismos usuarios en cada uno de los nodos, utilizando el mismo par usuario-contraseña en cada uno de ellos. Sin embargo, este enfoque impide una escalabilidad sencilla y requiere un mantenimiento continuo (suponiendo que se añadan usuarios periódicamente). Por ello únicamente las pruebas iniciales de las plataformas que requieren acceso a la funcionalidad de autenticación han sido realizadas siguiendo este enfoque, pero siempre desacoplando al máximo el sistema de acceso del resto de la lógica del programa, con el objetivo de facilitar su posterior reemplazo.
+Un primer intento de posibilitar esta propiedad consistió en la creación de los mismos usuarios en cada uno de los nodos, utilizando el mismo par usuario-contraseña en cada uno de ellos. Sin embargo, este enfoque impide una escalabilidad sencilla y requiere un mantenimiento continuo (suponiendo que se añadan usuarios periódicamente). Por ello únicamente las pruebas iniciales de las plataformas que requieren acceso a la funcionalidad de autenticación han sido realizadas siguiendo este enfoque, pero siempre desacoplando al máximo el sistema de acceso del resto de la lógica del programa, con el objetivo de facilitar su posterior reemplazo.
 
 Habiendo descartado dicha estrategia, queda como alternativa más adecuada a las necesidades del sistema el uso del sistema de credenciales ya existente.
 
