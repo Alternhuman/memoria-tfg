@@ -1,7 +1,7 @@
-\lhead{Arquitectura física}
-\chapter{Arquitectura física}
+\lhead{Aspectos relevantes del desarrollo}
+\chapter{Aspectos relevantes del desarrollo}
 
-\section{Introducción}
+\section{Arquitectura física}
 
 El sistema a crear, si bien de carácter distribuido, localiza el conjunto de nodos principales en una misma ubicación física, externalizando únicamente los componentes secundarios.
 
@@ -15,31 +15,31 @@ Esta centralización apoya uno de los objetivos principales del proyecto. Al con
 \item Simplifica el mantenimiento del sistema.
 \end{itemize}
 
-\section{Requisitos}
+\subsection{Requisitos}
 
-\subsection{Coste}
+\subsubsection{Coste}
 
 El coste de la estructura debe reducirse al máximo sin que esto comprometa el resultado final.
 
-\section{Propuestas de solución}
+\subsection{Propuestas de solución}
 
 A fin de minimizar el coste, se buscan soluciones que permitan ahorrar en el coste final.
 
-\subsection{Primera propuesta}
+\subsubsection{Primera propuesta}
 
 En las primeras fases del proyecto se plantea la utilización de separadores de nylon atornillados a los orificios que las placas disponen para tal fin, creando una pequeña estructura en forma de torre. Dicha solución se acepta debido a su efectividad con un precio bajo.
 
-\subsection{Segunda propuesta}
+\subsubsection{Segunda propuesta}
 
 La segunda propuesta apuesta por mejorar la versatilidad del diseño. Se plantea un diseño en forma de estantería que incluya una bahía para cada nodo, permitiendo la extracción de cada uno de ellos de forma independiente, así como la instalación de nuevos nodos. Se decide desestimar el primer prototipo en pro de esta solución.
 
-\subsubsection{Elección de materiales}
+\paragraph{Elección de materiales}
 
 Inicialmente se valora el uso de metal para la construcción del esqueleto de la estructura, sin embargo finalmente se opta por el metacrilato como material, pues mejora la visualización de cada uno de los nodos y añade un mayor atractivo estético al proyecto.
 
 Se utilizará latón como material de unión entre los diferentes componentes de metacrilato, utilizando tornillos a menos que estos deterioren la estética de la estructura, en cuyo caso se utilizarán adhesivos.
 
-\subsubsection{Construcción}
+\paragraph{Construcción}
 
 La fase de construcción se extiende durante aproximadamente dos semanas (junto con el resto de tareas de desarrollo. El tiempo de desarrollo asciende a 20 horas).
 
@@ -58,7 +58,7 @@ La fase de construcción se extiende durante aproximadamente dos semanas (junto 
 
 Este prototipo es considerado aceptable, y se decide partir del mismo para elaborar la solución final.
 
-\subsection{Tercera propuesta}
+\subsubsection{Tercera propuesta}
 
 A pesar del éxito del segundo prototipo, durante las siguientes fases de desarrollo se plantea la viabilidad del prototipo para albergar una serie de componentes que acompañen a los nodos. Utilizar, como se planteaba, un ladrón USB %TODO
 para la alimentación del sistema parece una solución poco efectiva (incrementa la cantidad de cableado a utilizar). La conexión a la red también genera incertidumbre, pues se planteaba inicialmente la conexión a la misma de forma individual para cada nodo. Esta decisión complicaría la gestión del cableado.
@@ -77,7 +77,7 @@ Por ello, se plantea la elaboración de un tercer prototipo basado en el anterio
 
 \end{itemize}
 
-\subsubsection{Elección de materiales}
+\paragraph{Elección de materiales}
 
 Se mantienen las decisiones de materiales realizadas para el segundo prototipo, y se intentará reutilizar todo el material posible del mismo.
 
@@ -90,8 +90,6 @@ Sin embargo, queda aún una incógnita por resolver: si bien la fuente de alimen
 \paragraph{Alimentación a través del puerto GPIO\\}
 
 El puerto \textbf{GPIO} de la Raspberry Pi es utilizado comúnmente para la alimentación de periféricos conectados a la misma, a través de varios pines dispuestos para tal fin. Sin embargo, es posible alimentar a la propia placa a través de los mismos\footnote{Esquema completo del circuito de la Raspberry Pi: \href{https://www.raspberrypi.org/wp-content/uploads/2012/04/Raspberry-Pi-Schematics-R1.0.pdf}{https://www.raspberrypi.org/wp-content/uploads/2012/04/Raspberry-Pi-Schematics-R1.0.pdf}}.%TODO[http://raspberrypi.stackexchange.com/questions/1617/how-do-i-supply-power-through-the-gpio]. 
-
-
 
 Extendiendo dos cable desde la fuente de alimentación hasta los pines 1 y 3 (+5V y neutro) es posible alimentar la placa.
 
@@ -136,3 +134,736 @@ Diodos LED & 24 & &\\ \hline
 \end{tabular}
 \caption{Coste de los materiales de la estructura final}
 \end{table}
+
+\subsection{LEDs}
+\citationneeded
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+
+%\lhead{\emph{Arquitectura software}}
+\section{Arquitectura software}
+
+Con el objetivo de facilitar la comprensión del sistema como un todo esta memoria se estructura partiendo de los cimientos del sistema, ascendiendo hasta las aplicaciones de más alto nivel manipuladas por los usuarios, describiendo de forma exhaustiva todos los aspectos de relevancia y esfuerzos llevados a cabo para diseñar y desarrollar cada uno de los componentes del sistema.
+
+\subsection{Sistema operativo}
+
+Una pieza fundamental del \textit{software} del sistema es la capa más básica del mismo, el sistema operativo. Es por ello clave elegir un sistema adecuado para los objetivos que se desean alcanzar.
+
+Como se describió en \ref{problema:sistemaoperativo}, se utilizará el sistema operativo Arch Linux en su variante para procesadores ARM por su diseño altamente modular, eficiencia y capacidad de adaptabilidad. Sobre dicho sistema operativo se desarrollarán el resto de componentes, sin que ello implique un diseño adaptado a este sistema operativo.
+
+\subsubsection{Características técnicas de Arch Linux}
+\label{archlinux:description}
+
+\textbf{Arch Linux} es una distribución del sistema operativo GNU/Linux creada y mantenida por una comunidad de usuarios. Desarrollada de forma independiente, es lo suficientemente versátil como para satisfacer cualquier propósito. Su desarrollo se centra en la simplicidad, elegancia y minimalismo, asumiendo que el usuario añadirá los componentes que restan para conseguir el entorno que desee. Dicho minimalismo se traduce en una arquitectura basada en paquetes que conforman en su conjunto un sistema fácil de comprender por el usuario, y que cuentan con una gran cantidad de documentación fácilmente accesible. La consecuencia directa de este minimalismo es el rendimiento del sistema. Una instalación de Arch Linux se limita al conjunto de elementos mínimo para contar con un sistema completamente funcional, delegando al usuario la adición de nuevos paquetes. Este enfoque permite optimizar de forma sencilla el rendimiento del sistema, al no incluir paquetes innecesarios en la instalación básica.
+
+%Arch Linux está basado en un modelo de liberación continua (\textit{rolling release}) lo cual significa que el sistema está en constante desarrollo (en contraste con un sistema de versiones). El \textit{software} se actualiza de forma continua, siendo únicamente necesario descargar la última versión de los paquetes que conforman el sistema para contar con la última versión disponible.% Este modelo de desarrollo permite contar con las últimas versiones del software incluido de forma casi inmediata a su liberación. Generalmente los paquetes que se incluyen sin modificaciones por parte del proyecto (esta práctica se denomina \textit{upstream}, pues la fuente del software es el propio autor del mismo), tal y como el fueron creados para su uso.
+
+La gestión de paquetes se realiza utilizando la herramienta \textbf{pacman}\cite{pacman}, creada por y para el proyecto. El repositorio oficial ofrece una gran cantidad de \textit{software}, si bien su tamaño es significativamente inferior al \textit{Arch User Repository} (AUR), que contiene paquetes creados y mantenidos por usuarios.
+
+Arch Linux utiliza el sistema de arranque \textbf{systemd}\cite{systemd}, un conjunto de módulos que proporcionan una gestión de dependencias entre servicios del sistema más eficiente y sencilla que el cargador clásico de las distribuiciones GNU, \textbf{init}\cite{init}, inspirado en el utilizado por UNIX System V.
+
+Otro de los aspectos de relevancia del sistema es la comunidad creada alrededor del mismo, que fomenta la implicación de cualquier usuario en cualquiera de los aspectos de relevancia en el desarollo del sistema. La documentación del sistema es extensa y cuenta con recursos tanto para las características propias del sistema como para herramientas de terceros utilizadas en el mismo. Dichos aspectos del proyecto y una serie de consideraciones adicionales se recogen en los preceptos definidos en el documento \textit{The Arch Way}\cite{thearchway}, inspirado en el principio de desarrollo \textbf{KISS} (\textit{Keep It Simple, Stupid}).%, muy popular en el entorno de los sistemas operativos UNIX.%\citationneeded{http://people.apache.org/~fhanik/kiss.html}. 
+
+Arch Linux ARM\footnote{\href{http://archlinuxarm.org/}{http://archlinuxarm.org/}} es un proyecto derivado de Arch Linux que tiene como objetivo portar el sistema operativo a dispositivos basados en la arquitectura ARM (pues el proyecto raíz está enfocado únicamente en las arquitecturas i686 y x68\_64).Es una de las principales opciones a la hora de realizar proyectos con este tipo de computadores\cite{distrowatch:arm}. %, generalmente sistemas embebidos, habiendo conseguido la compatibilidad con las versiones v5te, v6h y v7h de la arquitectura. El proyecto mantiene la misma filosofía de diseño que su progenitor, siendo el buen rendimiento del sistema operativo uno de los aspectos que propician el uso de esta distribución en sistemas con un capacidad de cómputo reducida. %TODO: Revisar
+
+%Además, Arch Linux apuesta por un modelo de desarrollo de liberación continua (\textit{rolling releases}). El sistema operativo no se distribuye en versiones, sino en imágenes con las últimas versiones de los paquetes disponibles, lo cual posibilita contar con las últimas versiones de las herramientas presentes en el sistema operativo poco tiempo (o de forma inmediata) a su liberación. El modelo de desarrollo sigue este principio de forma tan estricta, que basta una actualización de todos los paquetes del sistema mediante el gestor propio de la distribución (\textbf{pacman}) para actualizar el sistema operativo (en contraste con operaciones específicas para este cometido, como ocurre con otros sistemas operativos).
+
+%El sistema operativo delega la responsabilidad del mantenimiento de todos los componentes al usuario en un grado mayor que el que pueden ofrecer otras distribuciones. Esto permite a los usuarios contar con completa libertad para modificar componentes del sistema en función de sus intereses a cualquier nivel\citationneeded{https://wiki.archlinux.org/index.php/The\_Arch\_Way}.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+&\textbf{Consumo de Memoria} &\textbf{Espacio en disco}\\
+\hline
+\textbf{Ubuntu Mate}&702 MB&2.5 GB\\
+\hline
+\textbf{Raspbian}&61 MB&2.4 GB\\
+\hline
+\textbf{Arch Linux}&16 MB&400 MB\\
+\hline
+\end{tabular}
+\caption[Comparativa de las demandas de espacio y memoria de diferentes sistemas operativos]{Comparativa de las demandas de espacio y memoria de diferentes sistemas operativos. Los datos corresponden a la huella de la instalación base del sistema operativo, sin ningún tipo de añadido instalado. Ubuntu, si bien conocido por su gran demanda de recursos, es el único que incluye una interfaz gráfica activada por defecto, lo cual eleva el consumo de memoria}
+\label{os:footprint}
+\end{table}
+
+La demanda de requisitos de Arch Linux es significativamente inferior a la de alternativas más populares. En la tabla \ref{os:footprint} se pueden observar las demandas de recursos de diferentes sistemas operativos.
+
+
+
+El proceso de elección del sistema operativo puede observarse en \ref{os:evaluation}.
+
+
+\subsubsection{Sistema operativo en el servidor}
+
+En el caso del servidor que provee diferentes servicios de apoyo a los nodos principales (ver \ref{sistema:arquitectura}) se utiliza el sistema operativo Debian GNU/Linux. Este sistema operativo tiene como objetivo la estabilidad del sistema en detrimento de las últimas características del \textit{software} que lo conforma.
+
+\section{Servicios integrados en el sistema operativo}
+
+Diversos componentes del sistema operativo son utilizados para llevar a cabo operaciones de gestión o como herramienta para la creación de aplicaciones en niveles superiores. Gracias a la integración de estos componentes en niveles inferiores, es posible ofrecer dichos servicios a cualquier aplicación de usuario. 
+
+
+\subsubsection{Gestión de servicios}
+
+\textbf{systemd} es utilizado como gestor de los diferentes servicios del sistema, así como aquellos creados en el proceso de desarrollo del mismo. Se aprovecha su capacidad para gestionar dependencias entre los diferentes componentes (orden de arranque, qué servicios deben arrancarse para que otros puedan funcionar\dots) para establecer el orden de inicio al arrancar el sistema o iniciar automáticamente servicios sobre los que dependan otros.
+
+\textbf{systemd} define cada uno de los diferentes servicios (``unidades'') en un fichero independiente.
+
+\subsection{Descubrimiento de servicios: el protocolo MarcoPolo}
+
+Uno de los problemas típicos a la hora de crear un sistema distribuido es la localización de cada uno de los nodos que lo conforman. Al no existir un coordinador, es difícil establecer un mecanismo de interconexión entre los diferentes nodos que sea escalable e independiente de factores externos (e.g. IP asignada en un momento dado, número de nodos en la red).
+
+
+Soluciones como el uso de servidores de nombres (\textbf{DNS}) permiten crear estructuras jerárquicas donde cada nodo está identificado por un nombre previamente asignado y conocido. Como primera propuesta de solución se plantea el uso de los nombres de equipo que el servidor \textbf{DHCP} presente en la infraestructura otorga. Con esta solución los nodos serían accesibles mediante un identificador invariable en el tiempo (en contraste con una IP dinámica). Sin embargo, dicha solución presenta un grave problema en materia de escalabilidad: no existe un ``directorio'' que recoja qué nodos están activos en un momento dado ni que refleje adiciones en la lista original de nodos, por lo que para poder realizar cualquier cambio en el conjunto de nodos del sistema será necesario configurar cada equipo manualmente. También existen protocolos inspirados en enfoque como \textbf{mDNS} (\textit{Multicast Domain Name Service}) donde la necesidad de un servidor de nombres desaparece, y los nodos son capaces de realizar el descubrimiento mediante mensajes uno-a-muchos\cite{rfc6762}. Implementaciones de este protocolo, como \textit{Bonjour}, \textit{Avahi} o \textit{AppleTalk} (ya descontinuado) han sido evaluadas a la hora de buscar una solución a este problema. Sin embargo, estas y otras soluciones similares no responden a una de las necesidades básicas del sistema a construir: la condición de que la información que conoce cada nodo sobre el resto en el arranque del sistema es nula. Si bien con \textbf{mDNS} desaparece la necesidad con un servidor de nombres y es posible realizar operaciones de descubrimiento de servicios, este y otros protocolos similares asumen que la información de un nodo presente de una red local es de interés para el resto de miembros de la misma, lo cual dificulta la independencia de un conjunto de equipos frente al resto en el mismo espacio de direcciones.
+
+%Avahi?
+
+\subsubsection{MarcoPolo, el protocolo de descubrimiento de servicios}
+\label{marcopolo}
+
+Una de las características clave del sistema consiste en la escalabilidad del mismo en tiempo de ejecución: no es necesario conocer qué nodos participan en el sistema hasta que no se requiera de los mismos. Además, se pretende optimizar al máximo cada uno de los nodos del sistema por separado, por lo que designar a uno de ellos como ``autoridad'' frente a la que el resto de nodos se registren y esta actúe posteriormente como coordinador y \textit{``resolver''} supone una dedicación de recursos innecesaria y que dificulta la escalabilidad del sistema. Además, la gestión del espacio de direcciones de la red en la que se integra el sistema, que es compartido con una gran cantidad de equipos adicionales, no recaería en dicho coordinador. Esto implica que las direcciones de cada nodo son asignadas por un servidor DHCP sobre el que no se tiene control y cuyas asignaciones son dadas por intervalos de tiempo pequeños\footnote{Durante el desarrollo del sistema se observa que las direcciones son asignadas por periodos de tiempo pequeños y no suelen repetirse a menos que dicha dirección no haya sido asignada anteriormente, fenómeno que suele darse con bastante frecuencia.}. %TODOEsto implica que no es posible contar con un nodo coordinador sin un espacio de nombres anteriormente definido.
+Por otro lado, la clave de este sistema no la constituye la disponibilidad de un nodo, sino las aplicaciones distribuidas que pueden utilizarse en el mismo (de ahora en adelante serán denominadas ``servicios''). Un nodo puede contar con un conjunto de servicios diferente al de sus vecinos, y por tanto colaborará en unas tareas y en otras no en virtud de dicha disponibilidad.%TODO Este requisito no es satisfecho por la mayoría de los sistemas anteriormente mencionados.
+
+Motivada por esta serie de características surge la necesidad de crear un protocolo de descubrimiento de nodos y servicios basado principalmente en los servicios que dichos nodos pueden (y desean) ofrecer. Además, siendo uno de los objetivos funcionales del sistema el aprovechamiento del mismo como herramienta didáctica, surge la necesidad de que dos conjuntos de nodos puedan trabajar en la misma red de forma independiente. Como aproximación para satisfacer estas necesidades surge el procolo de descubrimiento de servicios \textbf{MarcoPolo}.
+
+\paragraph{Introducción}
+
+\textbf{MarcoPolo} es un protocolo de descubrimiento de servicios cuya dinámica y nombre se inspiran en el juego homónimo\footnote{\href{https://en.wikipedia.org/wiki/Marco\_Polo\_\%28game\%29}{https://en.wikipedia.org/wiki/Marco\_Polo\_\%28game\%29}}, en el cual uno de los integrantes debe encontrar al resto privado de visión mediante ecolocalización (gritando la palabra clave ``Marco'', cuya respuesta por parte del resto de jugadores es ``Polo''). El protocolo se compone de dos roles claramente diferenciados (e independientes aún siendo ejecutados en el mismo nodo): \textbf{Marco}, encargado de enviar consultas a la red y \textbf{Polo}, que emite una respuesta a dichos comandos y gestiona la información de cada nodo. %TODO: 
+
+Con el objetivo de posibilitar la coexistencia de varias ``mallas'' de nodos independientes (donde los servicios ofrecidos por un nodo sean conocidos y consecuentemente aprovechables únicamente por el resto) a la vez que las consultas son realizadas a todos los integrantes sin necesidad de conocer su identificador en la red (dirección a nivel de red o enlace, nombre \textbf{DNS}) se utilizan mensajes uno-a-muchos, conocidos con el nombre \textit{multicast}, donde cada una de las ``mallas'' se comunicará con el resto de integrantes de la misma a través de un grupo preestablecido (o consensuado por dichos nodos).
+
+\paragraph{Funcionamiento}
+
+El protocolo se basa en el envío de mensajes a un grupo multicast acordado previamente (existiendo un grupo designado por defecto). Los nodos suscritos a dicho grupo recibirán dicho mensaje y lo procesarán, emitiendo una respuesta dirigida únicamente al nodo que ha realizado la solicitud en caso de que el mensaje solicite un servicio que el nodo ofrezca. En caso contrario no se emitirá ninguna respuesta. Dicho mensaje incluirá información adicional, como el método de acceso al servicio, estado del nodo, etcétera.
+
+El solicitante esperará durante un tiempo pequeño a que haya respuesta por parte del resto de nodos, recogiendo todos los mensajes recibidos. Una vez que el tiempo de espera haya pasado, se retornarán los resultados al programa o usuario solicitante.
+
+\paragraph{Comandos}
+
+Los mensajes utilizados se denominan \textit{comandos} y contienen las consultas sobre un servicio, nodo o información sobre la propia \textit{malla} que se desea conocer, así como la respuesta a dichas consultas. Dichos comandos son enviados como cadenas de texto que almacenan la información en estructuras de datos JSON (\textit{JavaScript Object Notation}) debido a la gran legibilidad de estas por humanos y máquinas, y la popularidad de este formato como mecanismo de transmisión de informaciónla gran cantidad de herramientas disponibles para su creación y procesado.
+
+Los comandos de MarcoPolo constituyen las primitivas del protocolo. Actualmente se cuenta con las siguientes primitivas y las correspondientes respuestas:
+\begin{landscape}
+\begin{table}[H]
+\begin{tabular}{|p{2.35cm}|p{1.2cm}|p{4.5cm}|p{5cm}|p{5cm}|p{3.5cm}|}
+\hline
+\textbf{Nombre} & \textbf{Emisor} & \textbf{Función} & \textbf{Información} & \textbf{Respuesta esperada} & \textbf{Protocolo}\\ \hline
+
+\textbf{Marco} & Marco & Descubrir todos los nodos presentes en la malla & Únicamente se incluye el nombre del comando & Un comando \textit{Polo} por cada nodo disponible en la red o ninguna si no existe ningún nodo. & UDP \textit{multicast} al puerto 1338.\\ \hline
+
+\textbf{Polo} & Polo & Notificar de la presencia de este nodo al recibir un mensaje \textbf{marco} & Información opcional sobre el nodo (e.g. estado, \textit{hostname}\dots), incluyendo opcionalmente información adicional  & Ninguna &  UDP \textit{unicast} al puerto efímero del nodo solicitante.\\ \hline
+
+\textbf{Request-For} & Marco & Conocer todos los nodos que ofrecen un servicio a través de su identificador único en el sistema & Identificador del servicio a descubrir & Un mensaje \textit{OK} con información opcional sobre el nodo o el servicio & UDP \textit{multicast} al puerto 1338.\\ \hline
+
+\textbf{OK} & Polo & Comando utilizado para emitir una respuesta a una petición. & Respuesta a un comando con la información solicitada & Ninguna & UDP \textit{unicast} al puerto efímero de la pregunta.\\ \hline
+
+\textbf{Services} & Marco & Descubrir todos los servicios ofrecidos por un nodo & No se envía información adicional con el comando & \textbf{OK} con una lista de los identificadores del servicio o ninguna si el nodo no se encuentra activo. & UDP \textit{unicast} al puerto 1338.\\ \hline
+\end{tabular}
+\caption{Comandos del protocolo MarcoPolo}
+\end{table}
+\end{landscape}
+
+\subsubsection{Esquemas de comunicación}
+
+%TODO: Quitado por sugerencia de Rodrigo\subsubsection{Comando \textbf{Marco}}
+
+%TODO \begin{figure}[H]
+% \centering
+% \includegraphics[width=\textwidth]{Diagrams/Sequence/marcocompleto}
+% \caption[Interacción al enviar el comando \textbf{Marco}]{Interacción al enviar el comando \textbf{Marco}. Los mensajes a grupos \textit{multicast} se indican con ``*''}
+% \label{fig:secuencia_marco}
+% \end{figure}
+
+El comando Marco se envía al grupo \textit{multicast} definido en la configuración de la instancia local de \textbf{Marco} o a aquel definido en tiempo de ejecución. Los nodos suscritos a dicho grupo (aquellos que pertenecen a la malla) reciben el mensaje y emiten una respuesta \textbf{Polo}. Debido a la falta de una conexión entre los nodos (todos los mensajes son intercambiados utilizando el protocolo \textbf{UDP}) se fija un tiempo de espera, durante el cual se reciben y acumulan todas las respuestas. Al pasar dicho tiempo, se retornan los resultados y los mensajes recibidos posteriormente son ignorados.
+
+% TODO\begin{figure}[H]
+% 	\centering
+% 	\includegraphics[width=\textwidth]{Diagrams/Sequence/request_for}
+% 	\caption[Interacción al enviar el comando \textbf{Request-For}]{Diagrama de interacción al enviar el comando \textbf{Request-For}. Los nodos comprueban si deben ofrecer el servicio identificado por la clave \textit{s}. En caso de que la búsqueda sea exitosa se retorna un mensaje indicando la disponibilidad de dicho nodo. En caso contrario no habrá respuesta alguna.
+% 	Los mensajes enviados a grupos \textit{multicast} se indican con ``*''}
+% 	\label{fig:secuencia_request_for}
+% \end{figure}
+
+% TODO\begin{figure}[H]
+% 	\centering
+% 	\includegraphics[width=\textwidth]{Diagrams/Sequence/services}
+% 	\caption[Diagrama de interacción al enviar el comando \textbf{Services}]{Diagrama de interacción al enviar el comando \textbf{Services}. El nodo al que se le envía el comando consulta la información sobre los servicios que posee y posteriormente envía una respuesta a la instancia de Marco que ha realizado la consulta. Obsérvese toda la información es enviada en modo \textit{unicast}}
+% 	\label{fig:secuencia_services}
+% \end{figure}
+
+\subsubsection{Arquitectura en detalle}
+
+La funcionalidad del protocolo se segmenta en dos roles claramente definidos e identificados: \textbf{Marco} y \textbf{Polo}. Dicha funcionalidad se implementa en dos ejecutables completamente independientes, que pueden por tanto coexistir o ser ejecutados sin presencia del otro.
+
+Estos ejecutables están diseñados para ser iniciados al arranque el equipo, aprovechando para ello las herramientas que el este provee\footnote{Los ejecutables han sido configurados para ser compatibles con los gestores de arranque \textbf{init} y el más reciente \textbf{systemd}.}, y se ejecutan en segundo plano de forma continua (es por ello pueden ser categorizados como procesos \textit{daemon}).
+
+Toda la funcionalidad se ejecuta en un único proceso que se encarga de la creación de los diferentes canales de comunicación (utilizando la API de \textit{sockets} de Berkeley). Dichos canales de comunicación son gestionados por la utilidad \textbf{Twisted}\footnote{\href{https://twistedmatrix.com/trac/}{https://twistedmatrix.com/trac/}}, que simplifica el trabajo con la API, en particular a la hora de crear \textit{sockets} asíncronos.
+
+\paragraph{Configuración}
+
+Todos los aspectos modificables de cada rol, tales como el grupo \textit{multicast} al que suscribirse o el tiempo de espera predeterminado se definen en un archivo de configuración alojado en el directorio \texttt{/etc/marcopolo} (siguiendo la estructura definida en el \textit{Filesystem Hierarchy Standard} \cite{fhs}).
+
+% \begin{figure}[H]
+% 	\centering
+% 	\VerbatimInput{/home/martin/TFG/Documentación/memoria-tfg/memoria/Code/confdir.txt} %TODO
+% 	\caption{Árbol de directorios dentro del directorio de configuración}
+% 	\label{fig:arbol_marcopoloconf}
+% \end{figure}
+
+Los archivos de configuración de cada uno de los \textit{daemons} sigue la típica estructura clave-valor presente en archivos de configuración de servicios del sistema. Por el contrario, la información de los servicios a ofrecer sigue la sintaxis de un fichero \textbf{JSON}\footnote{La razón de esta decisión de diseño es la facilidad de interpretación de dicho formato y la legibilidad que ofrecen.}. Todos estos ficheros son leídos al arrancar el ejecutable, y su modificación no tendrá efectos hasta la próxima vez que se inicie el servicio.%TODO (salvo excepciones que veremos a continuación).
+
+\javascriptcode{statusmonitor}{Un archivo que describe el servicio status monitor}{1}{7}
+
+\paragraph{Archivos auxiliares}
+
+\paragraph{Log}
+Toda la información sobre la ejecución de los \textit{daemons} se refleja en los archivos de \textit{log} presentes en el directorio \texttt{/var/log/marcopolo}. El nivel de log se configura en el parámetro \texttt{LOGLEVEL} de cada uno de los \textit{daemons} y puede tomar uno de los siguientes valores:
+
+\begin{itemize}
+\item \textbf{Error} Errores internos durante la ejecución.
+\item \textbf{Warn} Advertencias sobre posibles situaciones atípicas.
+\item \textbf{Info} Información de interés sobre el funcionamiento del sistema.
+\item \textbf{Debug} Información de depuración.
+\end{itemize}
+
+%\logcode{/home/martin/TFG/Documentación/memoria-tfg/memoria/Code/marcod}{Caption}{1}{3} %TODO
+
+\paragraph{Registro de ejecución}
+
+En ocasiones es necesario conocer el identificador del proceso \textbf{PID} del \textit{daemon}. Para ello se almacena en el directorio \texttt{/var/run/(marcod.pid|polod.pid)} dicho identificador, que puede ser aprovechado por el gestor de arranque del proceso.
+
+\subsubsection{Integración de los \textit{daemons} en el sistema operativo}
+
+Los \textit{daemons} se integran en el arranque del sistema a través de los ficheros de configuración de \texttt{init}\footnote{\href{http://www.tldp.org/HOWTO/HighQuality-Apps-HOWTO/boot.html}{http://www.tldp.org/HOWTO/HighQuality-Apps-HOWTO/boot.html}} o \texttt{systemd} dependiendo del gestor disponible en el sistema operativo sobre el que se ejecuten los procesos. Por defecto los \textit{daemons} se ejecutan durante todo el ciclo de vida del computador, pero pueden ser reiniciados o detenidos arbitrariamente por voluntad del administrador.
+
+% TODO: para el documento en detalle \begin{lstlisting}
+% systemctl start (marco|polo)
+% systemctl stop (marco|polo)
+% systemctl restart (marco|polo)
+% systemctl reload polo #Orden exclusiva de Polo
+% \end{lstlisting}
+
+% El comando \texttt{reload} permite actualizar la lista de servicios que \textbf{Polo} ofrece sin tener que detener todo el proceso para ello. Dicho comportamiento se consigue de forma similar al comando \texttt{reload} de Apache, enviando la señal \texttt{SIGUSR1} al proceso. 
+
+\subsubsection{Conexiones con MarcoPolo}
+
+La funcionalidad de \textbf{MarcoPolo} no se limita al descubrimiento de los servicios del sistema, por lo que es necesario ofrecer a los usuarios del clúster herramientas que permitan integrar sus aplicaciones distribuidas con estos servicios. Dichas herramientas, conocidas como \textit{bindings}, permiten exponer públicamente la funcionalidad de \textbf{MarcoPolo} para que pueda ser aprovechada por otros usuarios.
+
+Se han creado \textit{bindings} para los lenguajes de programación \textbf{C}, \textbf{C++}, \textbf{Python} y \textbf{Java}. Todos ellos son consistentes entre sí, manteniendo la misma sintaxis para realizar el mismo tipo de operación a la vez que aprovechan las características propias de cada lenguaje. Dicha filosofía está inspirada en el funcionamiento de las primitivas de la API de resolución de nombres en red (\texttt{netdb.h})\cite{netdb}, por lo que los \texttt{bindings} se comunican con la instancia local de Marco o Polo a través de \textit{sockets} vinculados a la dirección IP local (127.0.1.1).
+
+Todos los \textit{bindings} deben implementar el mismo conjunto de primitivas, definidas en la documentación de refencia de MarcoPolo (ver anexo). La mayoría de primitivas tienen como objetivo el descubrimiento y publicación de servicios. Sin embargo, varias de ellas permiten realizar consultas sobre la información del propio nodo y se plantea la creación de más primitivas que sigan dicha filosofía
+
+%TODO \paragraph{Primitivas en el \textit{binding} de Marco}
+% \begin{itemize}
+% \item \texttt{request\_for(service, timeout=None)}
+% Retorna una lista de nodos que ofrecen el servicio indicado en \texttt{service}. Esta función bloquea la ejecución del proceso hasta que el tiempo de espera de nuevas respuestas se cumple (si bien esto no constituye un problema para la mayoría de aplicaciones, es importante que sea conocido por el programador). Si se especifica un \texttt{timeout}, este se utiliza en lugar del determinado por defecto en los parámetros de configuración de \textbf{MarcoPolo}. Se lanza una excepción o un código de error en caso de que la comunicación con la instancia de \textbf{Marco} sea infructuosa (generalmente este tipo de problemas se originan debido a un fallo en el arranque del servicio). Toda la información es transferida en cadenas JSON codificadas en UTF-8.
+
+
+% \item \texttt{getOneNode(criteria=None, timeout=None)}
+
+% Retorna un nodo elegido aleatoriamente entre las respuestas (en concreto, el nodo cuya respuesta llegue primero). Si se especifica un criterio en la variable \texttt{criteria} se elegirá el nodo que mejor satisfaga dicho criterio. %TODO in sphinx and MarcoPolo
+
+% \item \texttt{getAllNodes(timeout=None)}
+% Retorna todos los nodos disponibles en la \textit{malla} sin considerar los servicios ofertados. Se lanza una excepción o un código de error en caso de que la comunicación con la instancia de \textbf{Marco} sea infructuosa.
+
+% \item \texttt{getNodeInfo(ip)} %TODO Timeout
+% Obtiene la información de un nodo identificado por su \texttt{ip} si este está disponible en la red.
+
+% \end{itemize}
+
+% \paragraph{Primitivas en el \textit{binding} de Polo}
+
+% \begin{itemize}
+% \item \texttt{register\_service(service, params=None)}
+
+% Añade un nuevo servicio al conjunto de servicios ofertados. El servicio únicamente será ofertado durante el ciclo de vida de la instancia local de Polo. Si esta es detenida o reiniciada se procederá a la eliminación del registro. Para registrar un servicio de forma permanente es necesario definirlo en el directorio \texttt{/etc/marcopolo} %TODO add section reference.
+
+% \item \texttt{remove\_service(service)}
+% Elimina un servicio de la lista de ofertados. Para poder realizar este proceso es necesario ser el ``propietario'' del servicio. Esto es, el único proceso que puede eliminar un servicio es aquel que lo creó o en su defecto la instancia de \textbf{Polo}. En caso de que esta restricción sea quebrantada, una excepción o código de error será retornado.
+
+% \item \texttt{have\_service(service)}
+% Indica si el servicio está ofertado o no.
+
+% \end{itemize}
+
+% Como se puede observar, la mayoría de primitivas tienen como objetivo el descubrimiento y publicación de servicios. Sin embargo, varias de ellas permiten realizar consultas sobre la información del propio nodo y se plantea la creación de más primitivas que sigan dicha filosofía.
+
+
+
+%\section{Aplicaciones construidas sobre MarcoPolo}
+ 
+\subsubsection{Utilidades}
+
+A fin de simplificar al máximo el funcionamiento de los \textit{daemons} varias utilidades que podrían tener cabida dentro del propio protocolo han sido creadas como utilidades independientes que aprovechan la funcionalidad de \textbf{MarcoPolo} para realizar su cometido, pero cuya interdependencia se limita a dichos canales de comunicación.
+
+\paragraph{\texttt{marcodiscover}}
+\label{marcodiscover}
+Esta utilidad consiste en un comando que permite ejecutar consultas al sistema a través de un intérprete de órdenes. El comando posibilita realizar la mayoría de consultas de interés y cuenta con varias opciones para dar diferentes formatos a la salida por pantalla, algo que, como veremos posteriormente, es de gran utilidad para la ejecución de un conjunto particular de programas.
+
+Las opciones del comando son las siguientes:
+
+\begin{figure}[H]
+\centering
+% \begin{lstlisting}
+% usage: marcodiscover [-h] [-d [ADDRESS]] [-s [SERVICE]] [-S [SERVICES]]
+%                         [-n [NODE]] [--sh [SHELL]]
+
+% Discovery of MarcoPolo nodes in the subnet
+
+% optional arguments:
+%   -h, --help            show this help message and exit
+%   -d [ADDRESS], --discover [ADDRESS]
+%                         Multicast group where to discover
+%   -s [SERVICE], --service [SERVICE]
+%                         Name of the service to look for
+%   -S [SERVICES], --services [SERVICES]
+%                         Discover all services in a node
+%   -n [NODE], --node [NODE]
+%                         Perform the discovery on only one node, identified by
+%                         its ip/dns name
+%   --sh [SHELL], --shell [SHELL]
+%                         Print output so it can be used as an interable list in
+%                         a shell
+
+% \end{lstlisting}
+\begin{lstlisting}
+usage: marcodiscover [-h] [-d [ADDRESS]] [-s [SERVICE]] [-S [SERVICES]]
+                     [-n [NODE]] [--sh [SHELL]]
+
+Discovery of MarcoPolo nodes in the subnet
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -d [ADDRESS], --discover [ADDRESS]
+                        Multicast group where to discover
+  -s [SERVICE], --service [SERVICE]
+                        Name of the service to look for
+  -S [SERVICES], --services [SERVICES]
+                        Discover all services in a node
+  -n [NODE], --node [NODE]
+                        Perform the discovery on only one node, identified by
+                        its ip/dns name
+  --sh [SHELL], --shell [SHELL]
+                        Print output so it can be used as an interable list in
+                        a shell
+
+
+\end{lstlisting}
+\caption{Opciones de uso de \texttt{marcodiscover}}
+\label{fig:marcodiscover_help}
+\end{figure}
+
+\paragraph{\texttt{marcoinstallkey}}
+\label{marcoinstallkey}
+
+Esta utilidad responde a la necesidad de instalar una clave pública en un nodo para poder acceder al mismo de forma remota sin necesidad de un par usuario-contraseña. Utiliza una llamada a marcodiscover internamente y aprovecha la información retornada para ejecutar el commando \texttt{ssh-copy-id} incluido en \textbf{OpenSSH}.
+
+\begin{figure}[H]
+\begin{lstlisting}
+Usage: marcoinstallkey [-h|-n] [-i [identity_file]] [-p port] [[-o <ssh -o options>] ...] [-u user]\n
+Arguments
+ -h, --help	show this help message and exit
+ -i [identity_file]   Use only the key(s) contained in identity_file (rather than looking for identities via ssh-add(1) or in the default_ID_file).
+                      If the filename does not end in .pub this is added. If the filename is omitted, the default_ID_file is used.
+                      Note that this can be used to ensure that the keys copied have the comment one prefers and/or extra options applied,
+                      by ensuring that the key file has these set as preferred before the copy is attempted.
+ -p [port]
+ -o [ssh_option]
+ -n                   dry run
+ -u                   user
+
+\end{lstlisting}
+\end{figure}
+
+\paragraph{\texttt{marcoscp}}
+
+Utilizando una llamada a marcodiscover, realiza una copia de los ficheros utilizando \textbf{scp}.
+
+
+\subsection{Autenticación de los usuarios}
+
+El acceso a cualquier nodo del sistema debe realizarse mediante un sistema de credenciales homogéneo. Dicho enfoque es el propio de la infraestructura en la que el sistema se integra, que centraliza dicho repositorio de credenciales en un único punto.
+
+Un primer intento de posibilitar esta propiedad consistió en la creación de los mismos usuarios en cada uno de los nodos, utilizando el mismo par usuario-contraseña en cada uno de ellos. Sin embargo, este enfoque impide una escalabilidad sencilla y requiere un mantenimiento continuo (suponiendo que se añadan usuarios periódicamente). Por ello únicamente las pruebas iniciales de las plataformas que requieren acceso a la funcionalidad de autenticación han sido realizadas siguiendo este enfoque, pero siempre desacoplando al máximo el sistema de acceso del resto de la lógica del programa, con el objetivo de facilitar su posterior reemplazo.
+
+Habiendo descartado dicha estrategia, queda como alternativa más adecuada a las necesidades del sistema el uso del sistema de credenciales ya existente.
+
+La infraestructura del centro comprende varios servicios que interactúan entre sí, siendo el pilar clave el servidor LDAP (\textit{Lightweight Directory Access Protocol}). Dicho servidor almacena la información de todos los usuarios de la infraestructura y da acceso a cualquier equipo de varias de las aulas de la Facultad.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{Chapter5/Figures/LDAP.pdf}
+	\caption[Esquema de los componentes del sistema de autenticación y gestión de archivos]{Esquema de los diferentes componentes del sistema de autenticación y gestión de archivos, así como de una serie de componentes adicionales. Obsérvese la interacción entre los componentes situados en el rectángulo interior}
+	\label{fig:arquitectura_ldap}
+\end{figure}
+
+\subsubsection{Características en detalle}
+
+Debido a la heterogeneidad de los diferentes equipos presentes en la infraestructura, el sistema debe posibilitar el acceso a todos los equipos utilizando el mismo conjunto de credenciales. Esto implica que el sistema debe ser compatible con al menos los sistemas operativos GNU/Linux, Microsoft Windows y Solaris. Por ello se interconecta el servidor LDAP con Samba, así como el PAM (\textit{Pluggable Authentication Module}) tanto en el cliente como el servidor.
+
+Sin embargo el sistema permite también que los usuarios puedan almacenar información en un espacio centralizado al que es posible acceder desde cualquier equipo, facilitando la copia de ficheros entre nodos, uniformidad de los diferentes equipos. Esto se consigue utilizando un servidor NFS (\textit{Network File Storage}).
+
+\subsubsection{Utilización en el sistema}
+
+En el sistema se aprovechará principalmente la funcionalidad de autenticación provista por el servidor LDAP, debido a que uno de los objetivos principales del sistema es evitar ``cuellos de botella'' debido al uso de un servidor de almacenamiento central. Se facilitará la replicación de servicios con herramientas creadas a tal efecto (ver \ref{marcodiscover}) en su lugar.%TODO En cualquier caso, se plantea permitir el acceso al NFS desde el sistema como complemento, pero no como espacio principal de almacenamiento.
+
+El sistema aprovecha el módulo PAM para realizar el proceso de autenticación.
+
+\paragraph{pam\_mkhomedir}
+\label{pam_mkpolohomedir}
+
+\textbf{PAM} permite ampliar la funcionalidad que ofrece por defecto mediante la inclusión de \textit{módulos}, pequeñas bibliotecas compartidas de código con las acciones a realizar.
+
+Uno de los módulos incluidos en la instalación por defecto de \textbf{PAM} es \textbf{mkhomedir}, encargado de la creación de un directorio propio para el usuario en caso de que aún no se haya realizado dicha acción. El proceso consiste en una copia del directorio \textbf{skeleton} (generalmente situado en \texttt{/etc/skel}) y la correcta fijación de permisos en el mismo.
+
+Sin embargo, el directorio únicamente es creado en el nodo al que se accede. La filosofía del sistema implica la creación de un sistema que se componga de varias unidades, pero se comporten como una única entidad, por lo que obligar al usuario a acceder a todos los nodos para poder trabajar en el sistema completo anula dicha transparencia. Es necesario contar con un sistema que extienda la funcionalidad de \texttt{mkhomedir} para incluir el resto de nodos en la creación del directorio.
+
+Con este objetivo nace \texttt{pam\_mkpolopohomedir}, un módulo basado en \texttt{mkhomedir} que hace uso de \textbf{MarcoPolo} para detectar los nodos presentes en la red que ofrezcan el servicio \texttt{polousers} y solicitar a los mismos la creación del directorio de inicio.
+
+El módulo se implementa en C debido a que es el lenguaje con el que los módulos de PAM se construyen por defecto y utiliza por tanto el \textit{binding} de MarcoPolo para este lenguaje. Existen sin embargo herramientas para desarrollar el mismo en Python\footnote{\href{http://pam-python.sourceforge.net/}{http://pam-python.sourceforge.net}}.
+
+%TODO: Mover al catálogo técnico del módulo
+% Un módulo en PAM debe implementar una serie de funciones que constituirán los puntos de entrada al módulo\citationneeded{pam manpages}:
+
+% \begin{itemize}
+% \item \texttt{PAM\_EXTERN int pam\_sm\_open\_session(pam\_handle\_t \* pamh, int flags, int argc ,const char **argv)}\\
+
+% Es la función que \textbf{PAM} invoca al incluir el módulo. Incluye en el mismo una estructura \texttt{pam\_handle\_t} con toda la información relevante sobre el usuario que ha iniciado sesión y los parámetros indicados en los ficheros de configuración de \texttt{PAM} (en el caso de este módulo, los permisos del directorio de inicio y la localización del directorio \textit{skeleton}). 
+
+% %comoPpunto de entrada al móduloal inicialmente
+
+% \item \texttt{PAM\_EXTERN int pam\_sm\_close\_session(pam\_handle\_t * pamh, int flags, int argc, const char **argv)}
+
+% Es la función que \textbf{PAM} utiliza para indicar al módulo que la sesión ha terminado. En el caso del módulo a crear no se debe realizar ninguna acción en este evento, sin embargo es necesario implementarla debido a que PAM la requiere.
+
+% \item \texttt{struct pam\_module \_pam\_mkhomedir\_modstruct}
+
+% Define las características del módulo y los puntos de entrada que define.
+% \end{itemize}
+
+El módulo realiza la siguiente secuencia de pasos:
+
+\begin{enumerate}
+	\item Determina la información de interés a partir de los datos provistos por \textbf{PAM} y las acciones a llevar a cabo. En caso de que el directorio ya exista, se omite la creación del mismo y únicamente se solicita la creación en el resto de nodos\footnote{Este paso siempre es necesario para facilitar la expansibilidad del sistema: añadir un nuevo nodo tras la creación del directorio en el resto haría que este no fuera accesible de no ser por la repetición de este paso}.
+	
+	\item Realiza si es necesaria la creación del directorio en el nodo actual.
+	
+	\item Detecta con \textbf{MarcoPolo} el resto de nodos dispuestos a colaborar en el sistema (aquellos que oferten el servicio \textbf{polousers}).
+	
+	\item Solicita a cada uno de ellos la creación del directorio.
+	
+	\item Una vez que todos los nodos han realizado la acción solicitada, se da acceso al sistema.
+\end{enumerate}
+
+Todas las operaciones realizan escrituras en ficheros de \textbf{log} para su posterior análisis.
+
+%%TODO: definir en detalle
+En cada uno de los nodos exisitirá por tanto una instancia del servicio \textbf{polousers} que se encargará de procesar las peticiones.
+
+\paragraph{Seguridad\\}
+
+Al tratarse de acciones llevadas a cabo por usuarios con privilegios elevados y que involucran la gestión de información personal, todas las comunicaciones se realizan utilizando conexiones cifradas mediante \textit{sockets} \textbf{TLS} (\textit{Transport Layer Security}) con certificados en ambos lados de la conexión, que son verificados por el contrario (ver \ref{teoria:autenticacionmutua}).
+
+\paragraph{Extensibilidad\\}
+
+El módulo ha sido diseñado con el objetivo de posibilitar la adición de nueva funcionalidad al mismo. Únicamente es necesario definir las acciones a llevar a cabo en el servicio \textbf{polousers} y solicitar su realización mediante la sintaxis de comandos de \textbf{MarcoPolo}.
+
+%%%
+
+%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Operaciones auxiliares}
+
+Sumada a las herramientas creadas en el sistema, es necesario llevar a cabo una serie de operaciones que posibiliten el acceso a servicios más básicos tales como la autenticación de los usuarios del sistema, %TODO etc
+
+Con el objetivo de mejorar la situación actual en la infraestructura a analizar, se tratan los siguientes problemas.
+
+\subsubsection{Instalación del sistema}
+
+El sistema a crear requiere de la instalación de diferentes componentes, en particular el sistema operativo, antes de poder ser utilizado. Dicha instalación, si es realizada en cada nodo secuencialmente, implica una gran carga de trabajo y aumenta la propensión a errores durante dicho proceso (en particular si en el mismo existe una gran carga de trabajo que debe ser supervisado por un administrador humano). Una solución a este problema es la autoinstalación del sistema operativo partiendo de una imagen definida y probada por el administrador, que se cargará e instalará en cada nodo sin supervisión.
+
+Una de las herramientas ya existentes para solucionar este problema es el \textbf{PXE} (\textit{Preboox eXecution Environment})\cite{pxeintel}, un estándar \textit{de facto}\cite{avramov:architecture} para la carga de un sistema operativo desde un servidor. El estándar se apoya en protocolos presentes en la práctica totalidad de sistemas, tales como \textbf{DHCP}, \textbf{TFTP} y \textbf{TCP/IP}. El descubrimiento de servicios se realiza mediante una extensión en el mensaje \textbf{DHCPDISCOVER} que envía el servicio \textbf{DHCP} en su secuencia de arranque\cite{rfc4578}. El servidor \textbf{DHCP}, si implementa esta extensión del protocolo, enviará la información sobre la localización de cada uno de los servidores de arranque al cliente, que procederá a la descarga utilizando el protocolo \textbf{TFTP} y posterior instalación\cite{pxeoverview}.
+
+Sin embargo, el uso de este protocolo requiere un controlador de interfaz de red (\textbf{NIC}) en el cliente que soporte el protocolo \textbf{PXE}. Generalmente dicho controlador se incluye como extensión de la \textbf{BIOS} o en equipos más modernos como código \textbf{UEFI}. La \textbf{Raspberry Pi} carece de este tipo de \textit{software}, pues delega todo el arranque del sistema a los datos presentes en la tarjeta SD, y por tanto no es posible realizar ningún tipo de arranque en red sin la previa instalación de un conjunto de aplicaciones que realicen la descarga del sistema operativo. Es por ello que el uso de \textbf{PXE} como herramienta de arranque debe ser desestimado.
+
+\paragraph{marco-netinst}
+
+Debido a la falta de soporte para \textbf{PXE} u otra alternativa similar, es necesario crear una herramienta que se encargue de la detección de un servidor que aloje la imagen del sistema operativo, la descarga del mismo y su instalación. Con este objetivo se crea la herramienta \textbf{marco-netinst}.
+
+\textbf{marco-netinst} es una ramificación del proyecto \textbf{rasbpian-ua-netinst}\cite{raspbian-ua-netinst}. Esta utilidad permite instalar un conjunto mínimo de utilidades que posibilitan la descarga de un sistema operativo desde los repositorios de \textbf{Debian} y su instalación. La ramificación incluye las siguientes modificaciones:
+
+\begin{itemize}
+	\item Instalación de \textbf{ArchLinux ARM} en lugar de \textbf{Raspbian}.
+	\item Instalación del sistema operativo completo a partir de un archivo \textbf{.tar.gz} en lugar de la descarga de paquetes\footnote{\textbf{raspbian-ua-netinst} utiliza el paquete cdebootstrap-static para la descarga e instalación de todos los archivos. Existe una herramienta para ArchLinux similar, denominada \textbf{Archbootstrap}\\
+	\href{https://wiki.archlinux.org/index.php/Archbootstrap}{https://wiki.archlinux.org/index.php/Archbootstrap}\\
+	\href{https://packages.debian.org/sid/cdebootstrap-static}{https://packages.debian.org/sid/cdebootstrap-static}}.
+	\item Nuevo \textit{script} de carga del \textit{software} en la tarjeta SD (en el paquete original se delega a utilidades de terceros).
+	%TODO\item Posibilidad de aplicar diferentes esquemas de particionado
+	\item Detección del servidor sin configuración previa utilizando \textbf{MarcoPolo}.
+	%TODO\item Interfaz administrativa de los sistemas operativos ofrecidos
+\end{itemize}
+
+La especificación en detalle del funcionamiento de la herramienta se detalla en el anexo%TODOf
+
+
+
+
+
+
+La complejidad que acarrea el uso de aplicaciones distribuidas hace necesario el uso de herramientas que permitan el desarrollo de forma cómoda del propio sistema, su uso posterior como herramienta de prueba de aplicaciones distribuidas y por último, facilitar el aprendizaje de algoritmos y herramientas distribuidas.
+
+Muchas de las aplicaciones distribuidas utilizadas incluyen varias herramientas para facilitar su uso. Sin embargo estas soluciones suelen ser diseñadas para el propósito específico de dicha aplicación, y son difíciles de adaptar a otros contextos. Debido a esta carencia, se han creado varias herramientas propias que permiten aprovechar al máximo este sistema.
+
+
+\subsubsection{rsyslog}
+
+\subsection{Bibliotecas}
+
+Se han creado además una serie de bibliotecas que responden a diferentes necesidades dentro del sistema.
+
+\subsubsection{quick2wire-cpp-api}
+
+Uno de los periféricos de interés en el desarrollo del sistema es el puerto \textbf{GPIO} \textit{General Purpose Input-Output} presente en la Raspberry Pi. Dicho puerto permite a los usuarios del sistema analizar de forma visual el comportamiento de una aplicación distribuida, ser utilizado como indicador del estado de la máquina, etcétera.
+
+El funcionamiento del puerto presenta un problema para el desarrollo del proyecto. El acceso al hardware se consigue mediante el acceso a una serie de direcciones de memoria sobre las que se definen diferentes valores (dirección de cada uno de los pines, valor, etcétera). Dichas direcciones de memoria se definen en el fichero \texttt{/dev/mem}, que representa la memoria física presente en todo el nodo, así como este tipo de periféricos.
+
+Debido al riesgo que conlleva el acceso a este dispositivo por cualquier usuario, únicamente el superusuario tiene permisos para manipular el mismo (poder modificar este fichero implica ganar control absoluto sobre la memoria del sistema). Esto implica que el acceso al puerto \textbf{GPIO} está restringido al superusuario o alguien con permisos para acceder al mismo (mediante la herramienta \texttt{sudo}).
+
+Quedando descartada la opción de elevar los privilegios de todos los usuario para que puedan hacer uso del puerto, es necesario buscar alternativas. Se busca una solución más eficaz que otorgar permisos de forma temporal o mediante supervisión de un administrador.
+
+Tras la revisión de las diferentes alternativas de terceros existentes que proporcionan el acceso al puerto GPIO, \textbf{wiringPi2}\footnote{\href{http://wiringpi.com/}{http://wiringpi.com/}}, \textbf{RPi.GPIO}\footnote{\href{https://pypi.python.org/pypi/RPi.GPIO}{https://pypi.python.org/pypi/RPi.GPIO}} y \textbf{quick2wire}\footnote{\href{https://github.com/quick2wire-python-api}{https://github.com/quick2wire-python-api}}, únicamente esta última implementa un mecanismo que permite a los usuarios utilizar el puerto GPIO sin permisos. Por desgracia, esta biblioteca está implementada únicamente en Python, y el uso del puerto en el sistema está inicialmente planteado para el uso en aplicaciones creadas en C/C++ debido a que son los lenguajes utilizados en la asignatura \textbf{Arquitectura de Computadores}. Se valora la posibilidad de crear una traducción de la biblioteca quick2wire-python-api a C/C++, y dicha propuesta es admitida como camino de solución tras un prototipo inicial.
+
+\paragraph{Funcionamiento}
+
+La biblioteca original aprovecha otro producto de \textbf{quick2wire}, la aplicación \textbf{gpio-admin}\footnote{\href{https://github.com/quick2wire/quick2wire-gpio-admin/}{https://github.com/quick2wire/quick2wire-gpio-admin/}}. Escrita en C, dicha aplicación permite realizar operaciones sobre las direcciones de memoria que se corresponden con el puerto \textbf{GPIO}. Mediante el uso de del bit de usuario (SETUID) es posible hacer que el usuario ejecutor sea a efectos de acceso a \texttt{/dev/mem} el superusuario. Este sistema es similar al de la herramienta \textbf{passwd} o \textbf{ping}.
+
+La herramienta establece una correspondencia (\textit{``mapping''}) entre las direcciones asociadas al GPIO y un directorio virtual en \texttt{/sys/class/gpio/}\footnote{En la biblioteca original, escrita para Raspbian, la correspondencia se realizaba con \texttt{/sys/devices/virtual/gpio/}. Se ha modificado el código para posibilitar la compatibilidad con Arch Linux}.
+
+Posteriormente es necesario únicamente utilizar esta herramienta mediante llamadas al sistema a través de la biblioteca. Es por ello que \textbf{quick2wire-cpp-api} (y la implementación original en Python) pueden considerarse wrappers de esta utilidas, aportando poca funcionalidad más allá de una capa de abstracción.
+
+\paragraph{Descripción del código}
+
+La biblioteca es compatible con C y C++ ofreciendo un conjunto de llamadas similares a la implementación original en Python. Sólo se ha implementado aquella funcionalidad necesaria para posibiltar el acceso a los pines GPIO (y actualmente únicamente en modo salida) %TODO hacer GPIO in
+
+La interfaz con I\textsuperscript{2}C y SPI aún no está implementada.
+
+%%%%%%%%%%%%%%
+%\lhead{\emph{Servicios auxiliares}}
+\section{Servicios auxiliares}
+\label{chapter:serviciosauxiliares}
+\subsection{Compilador cruzado}
+
+Si bien el sistema Raspberry Pi es capaz de compilar el \textit{software} que después utilizará, en ocasiones es beneficioso delegar dicha tarea a otro componente que realice el proceso por el nodo en cuestión y posteriormente añadir los archivos ejecutables al sistema. Este enfoque reduce el tiempo de trabajo de forma significativa, como observaremos posteriormente.%proporcione los resultados al solicitante.
+
+\subsubsection{Creación de un compilador cruzado}
+
+Un compilador cruzado (\textit{cross-compiler})es una herramienta capaz de generar código máquina para una architectura determinada utilizando un equipo equipado con un juego de instrucciones diferente.%TODO: http://en.wikipedia.org/wiki/Cross_compiler
+El uso de compiladores cruzados es habitual a la hora de desarrollar aplicaciones para sistemas embebidos o móviles, debido a la dificultad o incluso incapacidad de realizar las diferentes etapas de desarrollo en el propio equipo. Uno de los problemas que aparecen a la hora de utilizar este tipo de equipos es la escasa velocidad de procesamiento, que hace de tareas con gran demanda de recursos como una compilación un proceso tedioso.
+
+El compilador ha sido creado utilizando la herramienta \textbf{crosstool-ng}. No se ha generado únicamente un compilador, sino un conjunto completo de herramientas para el desarrollo de aplicaciones para las arquitecturas ARMv6 y ARMv7. \textbf{Crosstool-ng} permite generar una ``cadena de herramientas'' (\textit{crosstool} en inglés), que incluye una copia de las bibliotecas estándar de C (\textbf{glibc} en este caso), depurador y bibliotecas de depuración, además de permitir optimizar las herramientas creadas para una plataforma determinada o un conjunto de instrucciones determinado dentro de la plataforma (por ejemplo, para las operaciones en punto flotante).
+
+\subsubsection{Compilación distribuida}
+
+Si bien el uso de un compilador distribuido permite aprovechar la potencia de un segundo equipo para crear \textit{software}, se requiere previamente la instalación de la cadena de herramientas (o en el peor de los casos, la generación de la misma, un proceso generalmente complejo y largo). Por ello, se plantea una solución que sea más transparente para el usuario final.
+
+\textbf{distcc} es una herramienta que permite gestionar trabajos de compilación distribuida en un esquema cliente-servidor. Distribuye diferentes etapas de compilación a todos los nodos presentes en una red que cuenten con la aplicación servidor activada, estableciendo los diferentes mecanismos de sincronización y validación de resultados oportunos, haciendo que su uso sea completamente transparente al usuario (incluso en caso de fallo es capaz de realizar el trabajo encomendado, realizando la compilación en el propio equipo). Un trabajo de compilación en \textbf{distcc} con gcc se encarga de la siguiente forma:
+
+\texttt{distcc gcc -c main.c}
+
+Como se puede observar, todas las opciones de gcc se mantienen en dicha llamada, siendo necesario únicamente añadir distcc al inicio de la llamada. Por ello es una herramienta muy sencilla de utilizar e integrable en cualquier tarea de compilación\footnote{Un ejemplo son los flags de la herramienta make. Únicamente es necesario realizar la llamada \texttt{make CC="distcc gcc" CXX="distcc g++"} para utilizar distcc en lugar del compilador predeterminado.}.
+
+\textbf{Distcc} utiliza por defecto el compilador indicado por el cliente en la llamada al proceso cliente, utilizando dicho compilador en el servidor. En el caso de una compilación no cruzada esta situación no causa problemas, sin embargo, en el presente caso es necesario realizar una serie de modificaciones en el servidor para posibilitar el uso de la cadena de herramientas creada.
+
+Creando enlaces simbólicos que no incluyan el prefijo de los binarios generados por la cadena de herramientas (generalmente del estilo \texttt{arm-linux-gnueabi-armhfv7-gcc}) y modificando la variable \texttt{\$PATH} para incluir de forma prioritaria estos binarios en el entorno del proceso servidor (incluyendo dichas modificaciones en un \textit{script} de inicio) el servidor utilizará el compilador cruzado para las tareas que se le encarguen, sin entrar en conflicto con el resto del sistema.
+
+\subsubsection{Integración con MarcoPolo}
+
+El servidor distcc es descubrible a través de MarcoPolo gracias a la herramienta \textbf{MarcoManager} (ver \ref{marcomanager}).
+
+\subsubsection{Análisis del rendimiento}
+
+Para determinar el rendimiento del compilador se ha utilizado el mismo en la compilación de diferentes herramientas a utilizar en el sistema:
+
+\paragraph{OpenMPI}
+
+\textbf{Tiempo de compilación en Rasbperry Pi}: 4447 seconds (1 h y 14 minutos)
+
+\textbf{Tiempo de compilación con el compilador cruzado sin paralelización}: 2710 seconds (45 minutos)
+
+\textbf{Tiempo de compilación con 4 trabajos paralelos (make -j4)}: 1267 seconds (21 minutos)
+
+\paragraph{OpenCV}
+
+\paragraph{OpenSSH}
+
+Esta herramienta se ejecuta en el servidor \textbf{marcoservidor}.
+
+\subsection{Nodos secundarios}
+
+Una serie de nodos secundarios han sido instalados en el sistema con el único propósito de realizar una serie de tareas que tienen como objeto simplificar u optimizar las diferentes tareas asociadas a los nodos. En ningún caso el uso de estos nodos secundarios implica una dependencia de los mismos, siendo posible prescindir de ellos sin consecuencias graves para el sistema como conjunto.
+
+\subsubsection{Servidor marcoservidor}
+
+El servidor marcoservidor es un equipo en desuso presente en la Facultad de Ciencias, que se encuentra disponible para cualquier alumno interesado en integrarlo en un Trabajo de Fin de Grado. Las características del equipo son las siguientes:
+
+\begin{itemize}
+	\item Procesador AMD Opteron 1200 de dos núcleos (arquitectura x86)%TODO
+	\item 4 GB de memoria RAM
+	\item Disco duro de %TODO
+\end{itemize}
+
+Las características del sistema lo hacen idóneo para su uso como servidor de compilación distribuida. Se ha generado en el mismo una cadena de herramientas compatible con ARMv7.%TODO ARMv6 y marcomanager
+
+Además, este servidor incluye el servidor \textbf{marcoboostrap} (ver \ref{marcobootstrap}), incluyendo una interfaz de gestión para el administrador y un conjunto de imágenes de sistemas operativos para los usuarios finales.
+
+\subsubsection{Servidor LDAP}
+
+Con el objetivo de mejorar la accesibilidad del sistema, se delega la gestión de las diferentes cuentas de usuario a un servidor LDAP preexistente en la infraestructura. Dicho servidor se encuentra alojado en la dirección \texttt{ldap1.aulas.cie.usal.es} y es aprovechado por los nodos principales a través de nsswitch (ver \ref{gestionusuarios}) 
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+%\lhead{Aplicaciones}
+\section{Aplicaciones}
+
+%A fin de aprovechar la funcionalidad de \textbf{MarcoPolo} dentro del sistema, se crean las siguientes utilidades
+
+\subsection{Status Monitor}
+
+El monitor de estado consiste en una aplicación con interfaz web que permite observar las estadísticas de uso del \textit{hardware} y de diversos procesos. Utiliza para la detección de los diferentes nodos el \textit{binding} de \textbf{Marco} en Python que realiza una consulta para descubrir que nodos están dispuestos a ofrecer el servicio \texttt{statusmonitor}. La respuesta de dicho comando es enviada al cliente, que establece conexiones directas a cada uno de los nodos a través de \textit{Websockets}\cite{rfc6455}. Esto es posible debido a que según la especificación del estándard de Websocket, la \textit{Same-Origin Policy} no es utilizada de la misma forma que en peticiones HTTP\cite{rfc6454}.
+
+% TODO\begin{figure}[H]
+% \centering
+% \includegraphics[width=\textwidth]{Diagrams/Sequence/statusmonitor}
+% \caption[Interacción completa del usuario con \textbf{Statusmonitor}]{Interacción completa del usuario con \textbf{statusmonitor}. Los mensajes a grupos \textit{multicast} se indican con ``*''}. El usuario se conecta a la página web, que en respuesta envía un código \textit{JavaScript} (además del código HTML y CSS) que solicita la lista de nodos disponibles. Una vez recibida la petición de los nodos disponibles, el servidor solicita dicha información a través de su instancia local de \textbf{Marco} (utilizando para ello un \textit{binding}. Cuando la instancia de \textbf{Marco} termina de recoger las respuestas, retorna la información al servidor, que a su vez retorna dicha información al cliente. Al recibir dicha información, el nodo crea una conexión \textit{Websocket} con el servicio statusmonitor que se encarga de enviar por dicha conexión la información local a intervalos de tiempo definidos.)
+% \label{fig:secuencia_statusmonitor}
+% \end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{Chapter5/Figures/statusmonitor}
+	\caption[Vista de la interfaz web de \textbf{Statusmonitor} una vez obtenidos los nodos]{Vista de la interfaz web una vez obtenidos los nodos y establecida la conexión a los mismos. Se observa el porcentaje de memoria y principal y de intercambio utilizadas, la temperatura del procesador, los procesos con más consumo de CPU} %TODO: y el porcentaje de CPU utilizado en cada núcleo.
+	\label{fig:vista_statusmonitor}
+\end{figure}
+
+Para conocer la información sobre el sistema el proceso servidor utiliza varios comandos y ficheros auxiliares, destacando:
+%TODO
+\begin{itemize}
+\item \texttt{top} Para conocer la información sobre los procesos más activos
+\item El directorio \texttt{/proc} para conocer estadísticas del sistema como la memoria total, libre y en caché
+\item El directorio \texttt{/sys} para conocer características del hardware como la temperatura
+\item Comandos como \texttt{uptime} o \texttt{hostname} para conocer diversos parámetros del sistema.
+\item Herramientas como \texttt{awk}, \texttt{grep} o \texttt{cut} para obtener las cadenas de interés dentro del comando de respuesta.
+\end{itemize}
+
+Dichos comandos son ejecutados periódicamente mediante el gestor de eventos \texttt{ioloop} de \textbf{Tornado}.
+
+La implementación del servicio está realizada íntegramente en Tornado\footnote{Más información sobre el proyecto puede encontrarse en \href{http://www.tornadoweb.org/en/stable/}{tornadoweb.org/en/stable}}, un servidor web ligero asíncrono implementado íntegramente en Python y mantenido por Facebook.
+
+\subsection{Deployer}
+
+El \textbf{Deployer} es una herramienta concebida a partir de la necesidad observada entre los estudiantes de las asignaturas Sistemas Distribuidos y Arquitectura de Computadores (como se refleja en las diferentes evaluaciones realizadas, ver \ref{chapter:evaluaciones}), de replicar de una forma sencilla un ejecutable entre los diferentes nodos que conformarán el sistema distribuido.
+
+Actualmente la infraestructura cuenta con un servidor NFS que posibilita la disponibilidad de la información en varios nodos de forma sencilla, mediante la copia a uno de los directorios alojados en el servidor. Sin embargo, este enfoque presenta varios inconvenientes: en el aspecto técnico supone una gran cantidad de ancho de banda consumido de forma continua (debido a que todos los estudiantes utilizan la misma infraestructura y realizan un gran número de operaciones de lectura y escritura a estos directorios, ralentizando el funcionamiento general del sistema enormemente) y en el aspecto didáctico, fomenta un mal hábito, pues los estudiantes no conocen otra forma de realizar despliegues más allá de la copia utilizando una interfaz gráfica y accediendo físicamente al nodo (si bien esta situación se mitiga en la asignatura Sistemas Distribuidos, donde deben automatizar los despliegues). Además, es necesario disponer de acceso físico a cada uno de los nodos, o en su defecto, conocer sus direcciones de red para realizar un acceso remoto.
+
+Con el objetivo de proporcionar una alternativa adecuada a las necesidades y problemas descritos, surge esta herramienta, que aprovecha la funcionalidad de \textbf{MarcoPolo} para realizar su cometido.
+
+La herramienta permite realizar las siguientes tareas de forma sencilla:
+
+\begin{itemize}
+\item Conocer todos los nodos disponibles sobre los que se podrá realizar el despliegue y seleccionar sobre cuáles de ellos trabajar.
+%\item Conocer la situación de cada nodo en tiempo real, aprovechando la herramienta \textbf{statusmonitor}, cuya funcionalidad se integra en este sistema.
+\item Permitir la copia a dichos nodos.
+\item Posibilitar la ejecución de comandos de forma remota una vez que el despliegue ha sido realizado.
+\item Facilitar la integración con contenedores de servicios, tales como \textbf{Apache Tomcat}.
+\end{itemize}
+
+La aplicación es accesible a través de un panel web %TODO: o del comando marcodeploy
+. La interfaz web permite además conocer el estado de cada nodo en tiempo real, funcionalidad que a través de la línea de órdenes está disponible a través de los comandos %TODO: marcostatus
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Chapter5/Figures/deployer}
+\caption[Interfaz web del deployer]{Interfaz web del deployer. A la izquierda figuran los controles y a la derecha la lista de nodos sobre los que se puede realizar el despliegue}
+\label{fig:vista_deployer}
+\end{figure}
+
+Al igual que en el caso de la aplicación \textbf{statusmonitor} el \textbf{deployer} está creado utilizando el servidor web \textbf{Tornado} y todo el contenido enviado al usuario se reduce a archivos HTML, CSS y JavaScript. La comunicación entre el cliente y el servidor se realiza a través de peticiones \textit{AJAX} y \textit{Websockets}. Todo el control de la interfaz se delega a hojas de estilo CSS y JavaScript utilizando la biblioteca jQuery\footnote{\href{https://jquery.com/}{jquery.com/}}.
+
+\paragraph{Autenticación}
+
+La autenticación de los usuarios se realiza mediante el módulo \textbf{PAM} presente en cada nodo\cite{osf:rfc86}, utilizando \textbf{python-pam} para el acceso al mismo desde \textbf{Python}\cite{python-am}.
+
+%TODO: \begin{figure}[H]
+% \centering
+% %\includegraphics[width=\textwidth]{Chapter5/Sequence}
+% %\caption{Diagrama de secuencia de la interacción}
+% %\label{fig:sequence_deployer}
+% \end{figure}
+
+\subsection{Logger}
+
+Uno de los aspectos que dificultan el desarrollo de aplicaciones distribuidas son las tareas de análisis y depuración del código desarrollado. Soluciones ``creativas'' como utilizar el puerto GPIO\footnote{\href{http://elinux.org/RPi\_Serial\_Connection}{http://elinux.org/RPi\_Serial\_Connection} Uso del puerto GPIO como conexión serie.} para este tipo de tareas son efectivas, si bien no aplicables a cualquier dispositivo o aplicación (por ejemplo, un ejecutable que no pueda ser modificado). Se debe por tanto buscar una solución complementaria para este tipo de casos.
+
+El \textbf{logger} es una herramienta que, a través de WebSockets y redireccionamiento de \textit{streams}, permite enviar la salida que una aplicación emite a través de los canales estándares (\textbf{stdout}, \textbf{stderr}) a una interfaz web.
+
+Esta herramienta se integra con el \textbf{deployer}, mostrando la salida por pantalla del comando ejecutado por pantalla\citationneeded[Ejecución del comando en m nodos. m < n (conjunto de los seleccionados). ¿Botón de selección?]. Una vez que se completa el despliegue, se ejecutará el comando indicado en el panel de subida.
+
+El usuario puede además enviar señales de terminación al proceso a través de la interfaz, útiles en situaciones en las que el programa se comporta de forma errónea o incontrolada. Se enviará una señal de terminación que, en caso de no surtir efecto, será sucedida por una señal \textbf{kill}. 
+
+La gestión de esta funcionalidad se realiza a través del bucle de eventos de \textbf{Tornado}, añadiendo al bucle de eventos de la aplicación web el descriptor de fichero de las salidas \textbf{stdout} y \textbf{stderr} del proceso que ejecuta el comando.
+
+\subsubsection{Marcoshell}
+
+Marcoshell sigue un funcionamiento similar al de \textbf{logger}. La diferencia clave es la independencia de \textbf{deployer}. La herramienta simula una consola que implementa un subconjunto de la funcionalidad esperada de una consola tradicional. Incluye también funcionalidad para el envío de señales de terminación.
+
+\subsection{Herramientas de gestión}
+
+\subsubsection{MarcoBootstrap}
+
+Uno de los mayores problemas a la hora de gestionar un sistema con un número de componentes elevado es la instalación de todos los componentes y la actualización de los mismos. \textbf{MarcoBootstrap} es una herramienta que posibilita la instalación del sistema operativo de forma autónoma y que únicamente requiere la copia en la tarjeta SD del sistema de un pequeño conjunto de utilidades, cuyo tamaño es 33 \textit{megabytes}.
+
+%\ref{marcobootstrap}
+
+\subsubsection{Herramientas didácticas}
+
+\paragraph{The LED API}
+
+\paragraph{MusicPI}
+
+
+\subsubsection{Pruebas de concepto}
+
+%\includegraphics{Chapter5/ScreenShot.png}http://www.bootc.net/archives/2012/05/26/how-to-build-a-cross-compiler-for-your-raspberry-pi/
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Evaluación y pruebas}
+%\lhead{Evaluación y pruebas}
+\label{chapter:evaluaciones}
+\subsection{Pruebas}
+
+\subsubsection{Pruebas unitarias}
+
+Uno de los mecanismos de apoyo a la detección de errores en el código es la realización de pruebas unitarias (\ref{teoria:tdd}). Gracias a esta práctica se ha conseguido detectar de forma temprana (antes de ejecutar el código en un contexto de pruebas) potenciales situaciones donde el comportamiento del programa difiere del esperado. De forma indirecta, la realización de pruebas unitarias ha tenido como resultado la generación de código más modular, y por tanto mejor trazable, depurable y reutilizable.
+
+\subsubsection{Pruebas en entorno aislado}
+
+Tras la fase de pruebas unitarias es necesario ejecutar el código en un ambiente controlado. Dichas pruebas se han realizado en cada una de las fases de desarrollo de prototipos. Gracias a dichas pruebas se consiguen detectar fallos no hallados en las pruebas unitarias (por ejemplo, potenciales fallos en la conexión de red como retardos o fallos de sincronización, pues se simula en dicha fase).
+
+\subsubsection{Pruebas en un entorno real}
+
+Tras las diferentes pruebas realizadas en contextos controlados es necesario verificar que el comportamiento del \textit{software} es similar en el entorno donde este deberá operar. Estas pruebas se han realizado de forma periódica, aprovechando que las fases de desarrollo se realizan en la misma infraestructura donde se integrará finalmente.
+
+En el anexo \citationneeded{Número de anexo} (ver \ref{pruebasentornoreal}) se pueden observar los resultados de diferentes pruebas en este tipo de contextos, que evalúan el correcto funcionamiento del \textit{software} así como el tiempo de ejecución (relevante si se considera que la red de la infraestructura es compartida con un gran número de equipos, y no se tiene control sobre ella).
+
+
+\subsection{Evaluación de usuarios}
+
+Uno de los procesos escogidos para la constatación de la efectividad de las diferentes propuestas de solución a problemas planteados por los alumnos, profesores y administradores es la realización de evaluaciones de los prototipos creados así como las versiones finales de los productos \textit{software} y \textit{hardware}.
+
+Dichos procesos de evaluación han sido muy efectivos a la hora de detectar potenciales fallos en las interfaces de usuario que empobrecen de forma significativa la experiencia de estos con el sistema. Además, permiten conocer necesidades no identificadas que se han traducido en nuevas características del sistema.
+
+Se han seguido diferentes estrategias de evaluación. El método más utilizado en la fase de captura de requisitos ha sido la realización de entrevistas. Posteriormente se han utilizado prototipos de las herramientas en las fases de evaluación, tanto de forma guiada (se muestran los pasos al usuario y se evalúa su opinión) como autónoma (se observa el comportamiento del usuario con el sistema).
+
+Tras cada evaluación se realiza un análisis, incluyendo en un informe todos los aspectos de relevancia extraídos de la sesión. Las conclusiones de dicho informe determinan las acciones a llevar a cabo.
+
+Se ha realizado un total de \citationneeded[Número de evaluaciones]. El informe de cada una de ellas puede consultarse en el anexo correspondiente (ver \ref{anexo:evaluaciones}).
