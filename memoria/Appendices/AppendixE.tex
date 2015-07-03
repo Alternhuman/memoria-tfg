@@ -1,0 +1,40 @@
+\lhead{Listado de puertos utilizados}
+\chapter{Listado de puertos utilizados}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{1.5cm}|p{2.5cm}|p{5cm}|p{2.5cm}|l|}\hline
+\textbf{Puerto}&\textbf{Protocolo}&\textbf{Uso}&\textbf{Interfaz}&\textbf{Notas}\\
+\hline
+1337&UDP&Puerto del demonio \textbf{Marco}&127.0.1.1&\\
+\hline
+1338&UDP&Puerto de la instancia de \textbf{Polo}&IP del grupo multicast suscrito&\\
+\hline
+1390&TCP (con TLS/SSL)&Puerto del bindings de \textbf{Polo}&127.0.0.1&\\
+\hline
+1342&TCP (HTTPS)&Puerto de \textbf{Deployer}&eth0&\\
+\hline
+1339&TCP (HTTPS)&Puerto de \textbf{Receiver}&eth0&\\
+\hline
+1370&TCP (WSS)&Puerto para los WebSockets de \textbf{receiver}&eth0&\\
+\hline
+1343&TCP (con TLS/SSL)&Puerto de \textbf{polousers}&eth0&\\
+\hline
+1345&TCP (HTTPS)&Puerto de ficheros de \textbf{Marcobootstrap-backend}&eth0&\\
+\hline
+1346&TCP (HTTPS)&Puerto de la interfaz web de \textbf{Marcobootstrap-backend}&eth0&\\
+\hline
+1360&TCP (HTTPS)&Puerto de \textbf{Marcobootstrap-receiver}&eth0&\\
+\hline
+8080&TCP (HTTP)&Puerto de servicios de \textbf{Tomcat}&eth0&\\
+\hline
+8005&TCP (HTTP)&Puerto de apagado de \textbf{Tomcat}&lo&\\
+\hline
+<uid> + 10000&TCP (HTTP)&Puerto de servicios de \textbf{Tomcat} para un usuario&eth0&\\
+\hline
+<uid> + 20000&TCP (HTTP)&Puerto de apagado de \textbf{Tomcat} para un usuario&lo&\\
+\hline
+\end{tabular}
+\caption{Listado de puertos utilizados en el sistema}
+\label{ports}
+\end{table}

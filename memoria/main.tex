@@ -4,14 +4,14 @@
 
 % Set up the document
 
-\documentclass[a4paper, 11.5pt]{Thesis}  % Use the "Thesis" style, based on the ECS Thesis style by Steve Gunn
+\documentclass[a4paper, 11pt]{Thesis}  % Use the "Thesis" style, based on the ECS Thesis style by Steve Gunn
 
 \input{includes}
 
 %\usepackage{lscape}
 \usepackage{pdflscape}
 \usepackage{float}
-%\usepackage{fontspec}
+\usepackage{fontspec}
 
 %\setmainfont{FreeSerif}
 %\setsansfont{FreeSans}
@@ -57,6 +57,8 @@ Raspberry Pi, y estudio comparativo del mismo frente a otras soluciones}
 
 \pagestyle{fancy}  % Finally, use the "fancy" page style to implement the FancyHdr headers
 
+\include{Preface/certification}
+
 \include{Preface/declaration}
 
 \include{Preface/quote}
@@ -64,6 +66,7 @@ Raspberry Pi, y estudio comparativo del mismo frente a otras soluciones}
 \include{Preface/abstract}
 
 \include{Preface/acknowledgements}
+
 
 \pagestyle{fancy}  %The page style headers have been "empty" all this time, now use the "fancy" headers as defined before to bring them back
 
@@ -81,11 +84,11 @@ Raspberry Pi, y estudio comparativo del mismo frente a otras soluciones}
 \listoftables  % Write out the List of Tables
 
 %% ----------------------------------------------------------------
-\setstretch{1.5}  % Set the line spacing to 1.5, this makes the following tables easier to read
-\clearpage  % Start a new page
-\lhead{\emph{Lista de abreviaturas}}  % Set the left side page header to "Abbreviations"
+%\setstretch{1.5}  % Set the line spacing to 1.5, this makes the following tables easier to read
+%\clearpage  % Start a new page
+%\lhead{\emph{Lista de abreviaturas}}  % Set the left side page header to "Abbreviations"
 
-\include{Preface/symbols}
+% \include{Preface/symbols}
 
 %\include{Preface/constants}
 
@@ -105,29 +108,17 @@ Raspberry Pi, y estudio comparativo del mismo frente a otras soluciones}
 
 % Include the chapters of the thesis, as separate files
 % Just uncomment the lines as you write the chapters
-\include{Chapters/Introduction/Introduction}
+\include{Chapters/Introduction/Introduction} %Introducción
 
 \include{Chapters/Chapter1/Chapter1} % Motivación y objetivos
 
 \include{Chapters/Chapter2/Chapter2} % Conceptos teóricos
 
-\include{Chapters/Chapter3/Chapter3} % Dominio del problema
-%Revisado
-\include{Chapters/Chapter4/Chapter4} % Análisis %Incluir estadísticas
+\include{Chapters/Chapter3/Chapter3} % Técnicas y herramientas
 
-\include{Chapters/Chapter5/Chapter5} % Arquitectura física
+\include{Chapters/Chapter4/Chapter4} % Dominio del problema
 
-\include{Chapters/Chapter6/Chapter6} % Arquitectura software
-
-\include{Chapters/Chapter7/Chapter7} % Servicios del sistema operativo
-
-\include{Chapters/Chapter8/Chapter8} % Aplicaciones
-
-\include{Chapters/Chapter9/Chapter9} % Herramientas de terceros
-
-\include{Chapters/Chapter10/Chapter10} % Metodología de desarrollo
-
-\include{Chapters/Chapter11/Chapter11} % Evaluaciones y pruebas
+\include{Chapters/Chapter5/Chapter5} % Aspectos relevantes del desarrollo
 
 \include{Chapters/Conclusion/Conclusion} % Conclusiones
 
@@ -145,6 +136,7 @@ Raspberry Pi, y estudio comparativo del mismo frente a otras soluciones}
 %\input{Appendices/AppendixC} % Appendix Title
 
 \include{Appendices/AppendixD}
+\include{Appendices/AppendixE}
 %\include{Appendices/Glossary}
 
 \addtocontents{toc}{\vspace{2em}}  % Add a gap in the Contents, for aesthetics
