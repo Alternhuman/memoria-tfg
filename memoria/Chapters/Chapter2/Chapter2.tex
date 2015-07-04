@@ -1,14 +1,16 @@
 \lhead{\emph{Conceptos teóricos}}
 \chapter{Conceptos teóricos}
 
-Es necesario conocer una serie de conceptos clave antes de pasar a los diferentes aspectos de análisis y desarrollo del sistema. Se incluye además en cada apartado una sección que indica la aplicación final de cada uno de los conceptos teóricos en el sistema final.
+\begin{cabstract}
+Es necesario conocer una serie de conceptos clave antes de pasar a los diferentes aspectos de análisis y desarrollo del sistema. Se incluye además una sección final que indica la aplicación final de cada uno de los conceptos teóricos en el sistema final.
+\end{cabstract}
 
 \section{Computación distribuida}
 
 Un sistema distribuido es aquel conformado por un conjunto de nodos independientes que son percibidos como una entidad única y coherente por el usuario final. Dicha definición implica dos conceptos de importancia:
 
 \begin{itemize}
-  \item \textbf{Autonomía}: los diferentes integrantes cuentan con un alto grado de autonomía entre sí, y por tanto se deben diseñar e implementar mecanismos de comunicación entre los mismos que formarán parte del núcleo del sistema, y cuyo diseño tendrá consecuencias directas en el funcionamiento final del mismo.
+  \item \textbf{Autonomía}: los diferentes integrantes cuentan con un alto grado de independencia entre sí, y por tanto se deben diseñar e implementar mecanismos de comunicación que formarán parte del núcleo del sistema, y cuyo diseño tendrá consecuencias directas en el funcionamiento final del mismo.
   \item \textbf{Transparencia}: Las diferencias entre diferentes nodos deben ser invisibles para los usuarios finales, así como la gestión de fallos y la posterior recuperación, así como la uniformidad a la hora de interactuar con el sistema. Según \cite{Tanenbaum:2006:DSP:1202502:Ch1} las siguientes propiedades deben contar con un grado de transparencia alto:\footnote{En numerosas ocasiones las propiedades de un sistema hacen desfavorable el cumplimiento de todos los requisitos de transparencia. Un ejemplo sería la transparencia de traslado en el sistema DNS.}:
 \label{transparencia}
   \subitem \textbf{Acceso}: La forma de almacenamiento y gestión de los recursos e información presentes en el sistema debe ser completamente transparente.
@@ -17,21 +19,20 @@ Un sistema distribuido es aquel conformado por un conjunto de nodos independient
   \subitem \textbf{Traslado}: El hecho de que un sistema se esté trasladando de un lugar a otro no debe afectar al usuario final.
   \subitem \textbf{Replicación}: El numero de elementos redundantes en un sistema es desconocido para el usuario final.
   \subitem \textbf{Concurrencia}: Un usuario no debe percibir la presencia de otros agentes interactuando con el sistema.
-  \subitem \textbf{Gestión de errores}: En caso de fallo, el usuario final no debe percibir el mismo, ni el proceso de recuperación consecuente (ver \ref{teoria:autoadministracion}.
+  \subitem \textbf{Gestión de errores}: En caso de fallo, el usuario final no debe percibir el mismo, ni el proceso de recuperación consecuente (ver \ref{teoria:autoadministracion}).
 \end{itemize}
 
-Generalmente los sistemas distribuidos son fácilmente escalables gracias a la autonomía de cada nodo, y los mecanismos de transparencia permiten crear sistemas heterogéneos de forma sencilla, en ocasiones apoyados en capas \textit{middleware} (ver \ref{teoria:middleware}) que posibilitan dicha transparencia.
+Generalmente los sistemas distribuidos son fácilmente escalables si se mantienen estos principios. Los mecanismos de transparencia permiten crear sistemas heterogéneos de forma sencilla, en ocasiones apoyados en capas \textit{middleware} (ver \ref{teoria:middleware}) que posibilitan dicha transparencia.
 
 Otro concepto importante en el desarrollo de sistemas distribuidos es la ``franqueza'' (\textit{openness}) de los mismos. Un sistema ofrece una serie de servicios gracias al uso de un conjunto de reglas conocidas por todos los participantes, generalmente recogidas en estándares de acceso público que definen la sintaxis y semántica de los servicios, conocidos como lenguajes de especificación de interfaz (\textit{Interface Definition Language}), tales como CORBA\cite{corba} o el \textit{IDL specification language}\cite{idl} (ver \ref{teoria:middleware}). Si dicho lenguaje es definido de forma apropiada, es posible crear diferentes implementaciones del mismo que sean capaces de comunicarse entre sí, incluso ejecutándose sobre máquinas completamente diferentes.
 
 \subsection{Escalabilidad y flexibilidad}
 
-La escalabilidad del sistema se ve afectada por las decisiones de diseño llevadas a cabo. En arquitecturas centralizadas el punto principal del sistema constituye un ``cuello de botella'' evidente que define un límite en el crecimiento del sistema. La disposición física exige una serie de consideraciones adicionales, entre las que se encuentra la latencia y fiabilidad de las interconexiones. En arquitecturas constituidas por componentes relativamente pequeños y  adaptables la flexibilidad del sistema se incrementa significativamente, facilitando su escalabilidad. A fin de conseguir dicha flexibilidad es necesario desarrollar interfaces definidas para los componentes de bajo nivel del sistema, así como una descripción de las interacciones entre los diferentes componentes.
+La escalabilidad del sistema se ve afectada por las decisiones de diseño llevadas a cabo. En arquitecturas centralizadas el punto principal del sistema constituye un ``cuello de botella'' evidente que define un límite en el crecimiento del sistema. La disposición física exige una serie de consideraciones adicionales, entre las que se encuentra la latencia y fiabilidad de las interconexiones. En arquitecturas constituidas por componentes relativamente pequeños y  adaptables, la flexibilidad del sistema se incrementa significativamente, facilitando su escalabilidad. Es necesario para conseguir dicha flexibilidad el desarrollo de interfaces definidas para los componentes de bajo nivel del sistema, así como una descripción de las interacciones entre las diferentes entidades.
 
 \subsection{Algoritmos distribuidos}
 
 Un algoritmo distribuido es aquel que realiza una tarea de forma distribuida, cumpliendo el siguiente conjunto de propiedades:
-
 \begin{itemize}
   \item Ningún componente conoce el total de la información sobre el estado del sistema (\textbf{principio de autonomía}).
   \item Un componente únicamente puede tomar decisiones basadas en su conocimiento local (\textbf{principio de autonomía}).
@@ -43,7 +44,7 @@ Un algoritmo distribuido es aquel que realiza una tarea de forma distribuida, cu
 
 El sistema final consiste en un conjunto de nodos sin una jerarquía definida, por lo que se elimina la dependencia de un coordinador. Esto hace del sistema una solución fácilmente escalable.
 
-A la hora de desarrollar las diferentes herramientas creadas se mantienen todas las  ``transparencias '' citadas anteriormente, salvo en aquellos casos que estas comprometan el rendimiento o funcionalidad de la misma. Ejemplos de este tipo de casos son el uso de la IP asignada a un nodo (se rompe la transparencia de localización) como identificador del mismo o la gestión de errores, que en diversas ocasiones puede ser dada a conocer al usuario. Otro ejemplo claro es la transparencia de acceso, pues los usuarios conocen el mecanismo de almacenamiento de ficheros utilizado, dado que cuentan con acceso a través de una interfaz SSH (no obstante, las diferentes aplicaciones proporcionan una interfaz que abstrae este tipo de detalles en todos los casos en los que puede ser necesario)\footnote{
+A la hora de desarrollar las diferentes herramientas creadas se mantienen todas las  ``transparencias '' citadas anteriormente, salvo en aquellos casos que estas comprometan el rendimiento o funcionalidad de la misma. Ejemplos de este tipo de casos son el uso de la IP asignada a un nodo (se rompe la transparencia de localización) como identificador del mismo o la gestión de errores, que en diversas ocasiones puede ser revelada al usuario. Otro ejemplo claro es la transparencia de acceso, pues los usuarios conocen el mecanismo de almacenamiento de ficheros utilizado, dado que cuentan con acceso a través de una interfaz SSH (no obstante, las diferentes aplicaciones proporcionan una interfaz que abstrae este tipo de detalles en todos los casos en los que puede ser necesario)\footnote{
   En mayor detalle:
   \begin{itemize}
   \item Aquellas herramientas que utilizan MarcoPolo mostrarán las IPs
@@ -58,7 +59,7 @@ Como se detalla en la fase de análisis (ver \ref{chapter:analisis}) el sistema 
 \subsection{\textit{Middleware}}
 \label{teoria:middleware}
 
-Un \textit{middleware} es una capa \textit{software} que abstrae las peculiaridades de un estrato subyacente (como una interfaz de comunicación en red, funcionalidad del sistema operativo, mecanismos de acceso a bases de datos\dots) en una interfaz común e independiente de cualquier sistema. Ejemplos de middleware son la \textit{Common Object Request Broker Architecture} (\textbf{CORBA}), llamadas a procedimientos y métodos remotos (\textbf{RPC}, \textbf{RMI}) o herramientas de serialización. Sin embargo, el término también se aplica a cualquier otro tipo de capa intermedia que proporciona una abstracción entre componentes.
+Un \textit{middleware} es una capa \textit{software} que abstrae las peculiaridades de un estrato subyacente (como una interfaz de comunicación en red, funcionalidad del sistema operativo, mecanismos de acceso a bases de datos\dots) en una interfaz común e independiente de cualquier sistema. Ejemplos de \textit{middleware} son la \textit{Common Object Request Broker Architecture} (\textbf{CORBA}), llamadas a procedimientos y métodos remotos (\textbf{RPC}, \textbf{RMI}) o herramientas de serialización. Sin embargo, el término también se aplica a cualquier otro tipo de capa intermedia que proporciona una abstracción entre componentes.
 
 \begin{figure}[H]
 \centering
@@ -72,24 +73,20 @@ Un \textit{middleware} es una capa \textit{software} que abstrae las peculiarida
 %TODO
 Los diferentes \textit{bindings} de MarcoPolo (ver \ref{marcopolo:bindings}) pueden ser considerados middleware, pues abstraen los diferentes procesos de comunicación que ocurren al utilizar el sistema, proporcionando una interfaz independiente del lenguaje de programación y el sistema operativo. La serialización de las peticiones puede ser considerada \textit{middleware}.
 
-Si \textbf{nsswitch} (ver \ref{nsswitch}) es considerado un sistema que abstrae los diferentes mecanismos de autenticación y resolución de nombres de la implementación de los mismos puede ser denominado \textit{middleware}. \textbf{Nsswitch} se utiliza como método de abstracción de los diferentes proveedores de información de usuarios (archivos del sistema y \textbf{LDAP}) en el sistema final.
+Si \textbf{nsswitch} \cite{nsswitch} es considerado un sistema que abstrae los diferentes mecanismos de autenticación y resolución de nombres de la implementación de los mismos puede ser denominado \textit{middleware}. \textbf{Nsswitch} se utiliza como método de abstracción de los diferentes proveedores de información de usuarios (archivos del sistema y \textbf{LDAP}) en el sistema final.
 
 \subsection{Modelos arquitectónicos}
 
 Existe un gran rango de diferentes modelos de construcción de sistemas distribuidos en función de las necesidades a cubrir por el sistema.
 
-%TODO: Tanenbaum 2.1
-
 \subsubsection{Clúster}
 
 En general se conoce como clúster al conjunto de nodos homogéneos y dispuestos físicamente en la misma localización, conectados entre sí mediante mecanismos fiables como redes de área local y que cuentan con el mismo conjunto de herramientas (en particular el sistema operativo). Generalmente estos sistemas se componen de nodos de bajo coste, como equipos \textbf{COTS} y son utilizados para la realización de una única tarea con un coste computacional alto en paralelo.
 
-\write18{wget -O Chapters/Chapter2/Figures/Beowulf.png -nc  http://upload.wikimedia.org/wikipedia/commons/4/40/Beowulf.png?download}
-
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.7\textwidth]{Chapter2/Figures/Beowulf.png}
-  \caption[Beowulf]{Esquema de un clúster Beowulf. Este tipo de clústeres permiten obtener una gran capacidad de cómputo paralelo con equipos de bajo coste, y generalmente se comportan como una única unidad.}
+  \caption[Esquema de un clúster Beowulf]{Esquema de un clúster Beowulf. Este tipo de arquitecturas permiten obtener una gran capacidad de cómputo paralelo con equipos de bajo coste. Generalmente se comportan como una única unidad.}
 \label{fig:beowulf}
 \end{figure}
 
@@ -105,38 +102,25 @@ Sin embargo, todas las herramientas han sido diseñadas con el objetivo de ser c
 
 En consecuencia, todo el \textit{software} creado es capaz de trabajar en un sistema heterogéneo.
 
-%TODO\subsubsection{Sistemas de información distribuida}
-%TODO
-%\citationneeded
-
 \subsubsection{Sistemas descentralizados}
 
 Uno de los principales problemas de las arquitecturas propuestas es la dependencia de un nodo que actúe de coordinador del resto. Dicha dependencia dificulta o incluso impide el funcionamiento del conjunto de nodos en caso de que el coordinador no cumpla adecuadamente su cometido (debido a fallos en el mismo, dificultades en la comunicación, etcétera). Las arquitecturas \textit{peer-to-peer} (de igual a igual) proponen una solución a dicho problema. Este tipo de enfoques flexibilizan la escalabilidad y tolerancia a fallos del sistema, si bien incorpora una serie de desafíos adicionales. La falta de coordinador implica que los diferentes nodos deben conocerse unos a otros previamente, o de algún modo descubrir la presencia del resto antes de poder cooperar. La centralización de dicho proceso es una de las soluciones propuestas para facilitar la construcción de la red de \textit{peers}.
 
 Una de las ventajas de este tipo de sistemas es la facilidad para el establecimiento de redundancias, tanto de datos como de servicios, así como la alta tolerancia a fallos (el fallo de un nodo no impide que el resto pueda continuar su cometido a menos que cuente con una serie de recursos exclusivos).
 
-
 %\subsubsection{Utilización en el sistema final}
 
 El sistema final es de tipo descentralizado, únicamente existiendo un coordinador en aquellos servicios en los que sea necesaria la presencia de uno (todos los nodos son capaces de actuar en ambos roles, y la elección del coordinador se realiza de forma distribuida, por lo que el fallo de un coordinador no supone un fallo total del sistema y la recuperación es relativamente sencilla). Se utiliza el protocolo \textbf{MarcoPolo} (ver \ref{marcopolo}) para el descubrimiento de nodos y servicios, por lo que la configuración necesaria en el sistema es mínima.
-
-
 
 \subsection{Protocolo}
 
 Un protocolo consiste en un conjunto de formatos y reglas bien definidas y conocidas que son utilizadas para posibilitar la comunicación entre un conjunto de entidades. Un protocolo consta de dos especificaciones: la secuencia de mensajes que deben ser intercambiados en cada una de las diferentes acciones y la especificación del contenido y formato de dichos mensajes.
 
-Si un protocolo es definido de forma correcta posibilitará la comunicación entre entidades sin importar la implementación del mismo, ofreciendo un alto grado de transferencia. De esta forma es posible, por ejemplo, ofrecer un servicio web que procese una serie de datos numéricos sin importar el tipo de \textit{endianness} del cliente o el servidor o el lenguaje de programación en el que el servicio se implementa. Únicamente es necesario conocer el tipo de dato que requiere el servicio y el valor esperado de retorno, así como los mensajes a intercambiar.
+Si un protocolo es definido de forma correcta posibilitará la comunicación entre entidades sin importar la implementación del mismo, ofreciendo un alto grado de transparencia. De esta forma es posible, por ejemplo, ofrecer un servicio web que procese una serie de datos numéricos sin importar el tipo de \textit{endianness} del cliente o el servidor o el lenguaje de programación en el que el servicio se implementa. Únicamente es necesario conocer el tipo de dato que requiere el servicio y el valor esperado de retorno, así como los mensajes a intercambiar.
 
 %\subsubsection{Utilización en el sistema final}
 %TODO
 En el sistema final se utilizan gran cantidad de protocolos conocidos (tales como HTTP, JSON, Websockets\dots) y se ha definido el protocolo de descubrimiento de servicios \textbf{MarcoPolo}. Los mecanismos de comunicación entre diferentes componentes de una aplicación son claramente definidos, si bien no de una forma tan exhaustiva como un protocolo.
-
-\subsection{Integridad}
-%TODO
-
-\subsection{Comunicación}
-%TODO
 
 \subsection{Distribución}
 
@@ -146,7 +130,7 @@ Uno de los modelos típicos en el desarrollo de sistemas distribuidos es el ``di
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.85\textwidth]{Chapter2/Figures/map-reduce}
+  \includegraphics[width=0.92\textwidth]{Chapter2/Figures/map-reduce}
   \caption[MapReduce]{\textbf{MapReduce} se basa en el principio de la distribución de los datos sobre diferentes nodos (\textit{Map}) y la recopilación de los datos procesados (\textit{Reduce})}
   \label{fig:mapreduce}
 \end{figure}
@@ -165,11 +149,7 @@ El protocolo \textbf{MarcoPolo} resuelve la gran mayoría de los problemas de co
 
 \section{Paradigmas de programación}
 
-\subsection{Programación orientada a objetos}
-%TODO
-
-\subsection{Programación funcional}
-%TODO
+Junto a paradigmas populares como el orientado a objetos y procedural es necesario mencionar una serie de conceptos menos conocidos:
 
 \subsection{Programación orientada a eventos}
 \label{teoria:eventdriven}
@@ -192,7 +172,7 @@ Un suscriptor de eventos permite vincular un evento a un manejador (\textit{hand
   }
   document.onmousemove=manejadorMouseMove
   \end{lstlisting}
-\caption[Evento y manejador]{El evento ``onmousemove'', que se dispara en el momento en el que el ratón se desplaza, es vinculado a la función \texttt{manejadorMouseMove} en una página web.}
+\caption[Ejemplo de evento y manejador]{El evento ``onmousemove'', que se dispara en el momento en el que el ratón se desplaza, es vinculado a la función \texttt{manejadorMouseMove} en un navegador web.}
 \end{figure}
 
 Ejemplos de herramientas que utilicen este paradigma son \textbf{Node.js}, \textbf{Tornado web}, \textbf{Twisted} o la gran mayoría de los \textit{frameworks} para creación de interfaces gráficas, como \textbf{Cocoa}, \textbf{Windows Presentation Framework} o \textbf{Qt}, entre otros.
@@ -216,13 +196,11 @@ Mediante rellamadas (\textit{callbacks}) una tarea que termina una operación de
   \caption[Modelos de paralelización]{Comparación de los diferentes modelos de paralelización\cite{Fettig:2005:TNP:1205685}.}
   \label{fig:threadcomparison}
 \end{figure}
-En la figura \ref{fig:threadcomparison} se puede observar un claro ejemplo de tres fierentes modelos de programación y sus propiedades. Cada una de las áreas de diferente patrón representan los diferentes instantes de tiempo que un programa ha consumido ciclos de la CPU y el hilo en el que dicha ejecución se ha realizado. En la primera columna únicamente existe un hilo en el cual todos los programas se ejecutan. Esto impide que la CPU pueda alternar entre tareas en momentos en los que se está esperando a una operación que no requiere tiempo de procesado (un ejemplo habitual son las operaciones de lectura/escritura). Este modelo no posibilita la paralelización de tareas (como se ve, ninguna tarea comienza hasta que la anterior ha finalizado). En la segunda columna la paralelización es evidente. Sin embargo existe una gran cantidad de tiempo en el que la CPU no está siendo aprovechada. El tercer modelo, dirigido por eventos, ejecuta todas las tareas en un único hilo, pero solapando los instantes en los que la CPU es liberada con otra tarea. El tiempo de ejecución es menor que en el primer modelo y similar al segundo, pero se evitan cambios de contexto y se aumenta el tiempo de utilización de la CPU
-
-
+En la figura \ref{fig:threadcomparison} se puede observar un claro ejemplo de tres diferentes modelos de programación y sus propiedades. Cada una de las áreas de diferente patrón representan los diferentes instantes de tiempo que un programa ha consumido ciclos de la CPU y el hilo en el que dicha ejecución se ha realizado. En la primera columna únicamente existe un hilo en el cual todos los programas se ejecutan. Esto impide que la CPU pueda alternar entre tareas en momentos en los que se está esperando a una operación que no requiere tiempo de procesado (un ejemplo habitual son las operaciones de lectura/escritura, generalmente lentas). Este modelo no posibilita la paralelización de tareas (como se ve, ninguna tarea comienza hasta que la anterior ha finalizado). En la segunda columna la paralelización es evidente. Sin embargo existe una gran cantidad de tiempo en el que la CPU no está siendo aprovechada. El tercer modelo, dirigido por eventos, ejecuta todas las tareas en un único hilo, pero solapando los instantes en los que la CPU es liberada con otra tarea. El tiempo de ejecución es menor que en el primer modelo y similar al segundo, pero se evitan cambios de contexto y se aumenta el tiempo de utilización de la CPU.
 
 \subsubsection{Patrón Reactor}
-
-El patrón de diseño reactor\cite{Coplien95reactor} consiste en un sistema de gestión de peticiones de servicio distribuidas de forma concurrente en un esquema cliente-servidor. En el servidor existe un manejador de eventos que distribuye (demultiplexa) los diferentes eventos a manejadores de los mismos, distribuyendo el tiempo de proceso entre ellos de forma síncrona mediante un bucle ejecutado de forma continua.
+\label{teoria:reactor}
+El patrón de diseño reactor\cite{Coplien95reactor} consiste en un sistema de gestión de peticiones de servicio distribuidas de forma concurrente en un esquema cliente-servidor. En el servidor existe un manejador de eventos que distribuye (``demultiplexa'') los diferentes eventos a manejadores de los mismos, distribuyendo el tiempo de proceso entre ellos de forma síncrona mediante un bucle ejecutado de forma continua.
 
 \begin{figure}[H]
   \centering
@@ -231,10 +209,9 @@ El patrón de diseño reactor\cite{Coplien95reactor} consiste en un sistema de g
   \label{fig:reactoruml}
 \end{figure}
 
-
 %\subsubsection{En el sistema final}
 
-La mayoría de las herramientas creadas utilizan mecanismos de sincronización basados en eventos, muchas de ellas utilizando un reactor como gestor demultiplexador. El uso de este paradigma optimiza de forma significativa el rendimiento de cada uno de los nodos del sistema frente a soluciones multiproceso, si bien su uso incrementa la complejidad del sistema.
+La mayoría de las herramientas creadas utilizan mecanismos de sincronización basados en eventos, muchas de ellas utilizando un reactor como demultiplexador. El uso de este paradigma optimiza de forma significativa el rendimiento de cada uno de los nodos del sistema frente a soluciones multiproceso, si bien su uso incrementa la complejidad de las fases de desarrollo del sistema, siendo necesaria en este caso concreto una etapa de formación previa.
 
 \section{Sincronización}
 
@@ -247,6 +224,7 @@ En determinadas ocasiones es necesaria la presencia de un coordinador que lleve 
 Un nodo, o instancia de un programa es designado como coordinador, cuya autoridad es obedecida por el resto de integrantes del sistema. Es un enfoque sencillo de implementar que sin embargo crea un punto de fallo en el sistema, pues la caída del coordinador central impedirá la realización de cualquier tarea en la que sea necesaria su intervención hasta que vuelva a estar activo.
 
 El coordinador puede designarse mediante diferentes mecanismos. En algoritmos como OSPF\cite{rfc2328} la política de elección del \textit{router} designado es aquel que cuente con el mayor valor de prioridad.
+
 %TODO: Completar
 \subsubsection{Coordinación distribuida}
 
@@ -254,14 +232,14 @@ Con objeto de solventar los problemas que la coordinación centralizada conlleva
 
 \paragraph{Algoritmo del abusón}
 
-El algoritmo del abusón (descrito en \cite{Coulouris:2011:DSC:2029110:Ch15}) posibilita la elección de un coordinador en función del cumplimiento de un criterio cuantitativo dado, siendo elegido coordinador aquel que mejor satisfaga dicho criterio. La secuencia de pasos es la siguiente:
+El algoritmo del abusón (descrito en \cite{Coulouris:2011:DSC:2029110:Ch15}) posibilita la elección de un coordinador en función del cumplimiento de un criterio cuantitativo dado, siendo elegido coordinador aquel que mejor satisfaga dicho criterio.
 
-Sea un proceso, \textit{P} que detecta la ausencia de un coordinador (en caso de que ya se haya ejecutado el algoritmo, se detecta la ausencia del anterior coordinador) y \textit{X} un valor numérico que determina el criterio para la elección del coordinador (el proceso con el valor más alto te \textit{X} será el coordinador).
-\begin{enumerate}
-\item \textit{P} envía un mensaje de elección a todos los procesos con \textit{X} más alto que \textit{X\textsuperscript{P}}.
-\item Si ningún proceso responde en un tiempo dado, \textit{P} envía un mensaje indicando que es el coordinador.
-\item En caso de que algún proceso responda al mensaje, el proceso se repetirá con el conjunto de nodos con \textit{X} mayor que \textit{X\textsuperscript{P}}.
-\end{enumerate}
+% Sea un proceso, \textit{P} que detecta la ausencia de un coordinador (en caso de que ya se haya ejecutado el algoritmo, se detecta la ausencia del anterior coordinador) y \textit{X} un valor numérico que determina el criterio para la elección del coordinador (el proceso con el valor más alto te \textit{X} será el coordinador).
+% \begin{enumerate}
+% \item \textit{P} envía un mensaje de elección a todos los procesos con \textit{X} más alto que \textit{X\textsuperscript{P}}.
+% \item Si ningún proceso responde en un tiempo dado, \textit{P} envía un mensaje indicando que es el coordinador.
+% \item En caso de que algún proceso responda al mensaje, el proceso se repetirá con el conjunto de nodos con \textit{X} mayor que \textit{X\textsuperscript{P}}.
+% \end{enumerate}
 
 \begin{figure}[H]
   \centering
@@ -272,14 +250,14 @@ Sea un proceso, \textit{P} que detecta la ausencia de un coordinador (en caso de
 
 \paragraph{Algoritmo en anillo}
 
-El algoritmo funciona bajo la premisa de que todos los procesos cuentan con un orden preestablecido, conociendo a su antecesor y sucesor en la cadena\cite{Tanenbaum:2006:DSP:1202502:Ch6}. El funcionamiento del algoritmo es el siguiente:
+El algoritmo funciona bajo la premisa de que todos los procesos cuentan con un orden preestablecido, conociendo a su antecesor y sucesor en la cadena\cite{Tanenbaum:2006:DSP:1202502:Ch6}.
 
-\begin{enumerate}
-  \item Cuando un proceso \textit{P} detecta la caída de un coordinador, envía un mensaje de elección al proceso sucesor, o en su defecto, al proceso sucesor más próximo, en caso de que se encuentre inactivo, hasta que encuentre un proceso activo.
-  \item Cuando un proceso recibe el mensaje, añade al mismo su número de proceso.
-  \item Una vez que el mensaje llega al creador del mismo, este construye un mensaje con el identificador del proceso que ha sido elegido como coordinador (el proceso con el identificador más alto, o aquel que satisfaga otro criterio similar) y lo envía al siguiente proceso de manera similar al mensaje inicial, si bien el contenido del mensaje no es alterado en este caso.
-  \item Una vez que el mensaje ha circulado por todos los procesos, retorna a su creador y en este momento el trabajo se reanuda.
-\end{enumerate}
+% \begin{enumerate}
+%   \item Cuando un proceso \textit{P} detecta la caída de un coordinador, envía un mensaje de elección al proceso sucesor, o en su defecto, al proceso sucesor más próximo, en caso de que se encuentre inactivo, hasta que encuentre un proceso activo.
+%   \item Cuando un proceso recibe el mensaje, añade al mismo su número de proceso.
+%   \item Una vez que el mensaje llega al creador del mismo, este construye un mensaje con el identificador del proceso que ha sido elegido como coordinador (el proceso con el identificador más alto, o aquel que satisfaga otro criterio similar) y lo envía al siguiente proceso de manera similar al mensaje inicial, si bien el contenido del mensaje no es alterado en este caso.
+%   \item Una vez que el mensaje ha circulado por todos los procesos, retorna a su creador y en este momento el trabajo se reanuda.
+% \end{enumerate}
 
 \begin{figure}[H]
   \centering
@@ -288,15 +266,11 @@ El algoritmo funciona bajo la premisa de que todos los procesos cuentan con un o
   \label{fig:tanenbaum:ringalgoritm}
 \end{figure} 
 
-%DOCKER
-
 \section{Seguridad y protocolos criptográficos}
 
 Las medidas de seguridad a tomar dependen de las propiedades y objetivos propios del sistema: en general sistemas utilizados dentro de una organización y una infraestructura sin interacción con entornos no controlados suelen contar con un número menor de medidas de seguridad que aquellos utilizados en entornos ``hostiles'' (generalmente abiertos al público), y la seguridad depende de la confianza depositada en la administración del sistema. Sin embargo, un sistema de este tipo es vulnerable a ataques internos por parte de usuarios o intrusiones en la infraestructura.
 
 Un sistema integrado en un entorno hostil debe además vigilar cualquier tipo de potencial ataque malicioso y controlar el acceso al sistema de forma más minuciosa.
-
-
 
 \subsection{Criptografía asimétrica}
 
@@ -332,7 +306,7 @@ En caso de que alguno de los pasos sea infructuoso, la conexión terminará.
 
 El protocolo HTTPS\cite{rfc2818} utiliza TLS para cifrar las conexiones realizadas mediante el protocolo HTTP. La combinación de ambos protocolos se realiza superponiendo TLS al protocolo HTTP, por lo que las cabeceras y datos transmitidos no son alterados, siendo por tanto compatibles entre sí. Este protocolo (o combinación de protocolos, al consistir en la simple combinación de varios) es utilizado en recursos web para garantizar la identidad del servidor que envía los datos y establecer un canal seguro sobre una red no segura.
 
-\subsection{Autenticación mutua}
+\subsection{Verificación de doble certificado}
 \label{teoria:autenticacionmutua}
 El uso más común de los protocolos previamente definidos es verificar la identidad del servidor al que se está conectando un cliente. Sin embargo, en ocasiones es necesario que el servidor confíe en el cliente, como en situaciones donde el cliente no dispone de otro mecanismo de autenticación, como puede ser un par usuario-contraseña. El \textit{handshake} es similar al utilizado tradicionalmente, únicamente se añade el paso de validación del certificado que el cliente debe enviar al servidor.
 
@@ -342,15 +316,14 @@ En el sistema este proceso de autenticación se utiliza en aquellas aplicaciones
 
 Se han establecido las medidas de seguridad oportunas para cada una de las herramientas creadas, como se detalla en los diferentes anexos que describen en detalle cada una de las mismas, garantizando la integridad y veracidad de los datos con mecanismos como sockets TLS o autenticación bidireccional. Con el objetivo de evitar vulnerabilidades se establecen mecanismos de verificación de la información recibida antes de su procesado, entre otras medidas.
 
-
-\section{Autenticación}
+\section{Autenticación y gestión de usuarios}
 \subsection{PAM}
 
 El \textit{Linux Pluggable Authentication Module}\cite{opengroup:rfc86.0} es un componente integrable en el mecanismo de autenticación del sistema operativo para combinar diferentes mecanismos de identificación que puedan ser aprovechados por aplicaciones de alto nivel, abstrayendo las características del sistema de autenticación presente en la máquina, proporcionando una interfaz única. \textbf{PAM} se apoya en diferentes fuentes de datos configurables, tales como los ficheros \texttt{/etc/passwd} y \textbf{/etc/shadow}, directorios \textbf{LDAP} (ver \ref{teoria:ldap}), autenticación mediante clave pública, (ver \ref{teoria:ldap}).
 
 \begin{figure}[H]
 \centering
-  \immediate\write18{if ! [ -f Chapters/Chapter2/Figures/pamstructure.png ];then wget -O Chapters/Chapter2/Figures/pamstructure.gif -nc http://pubs.opengroup.org/onlinepubs/8329799/sso0401.gif; convert Chapters/Chapter2/Figures/pamstructure.gif Chapters/Chapter2/Figures/pamstructure.png;rm Chapters/Chapter2/Figures/pamstructure.gif;fi}
+  %\immediate\write18{if ! [ -f Chapters/Chapter2/Figures/pamstructure.png ];then wget -O Chapters/Chapter2/Figures/pamstructure.gif -nc http://pubs.opengroup.org/onlinepubs/8329799/sso0401.gif; convert Chapters/Chapter2/Figures/pamstructure.gif Chapters/Chapter2/Figures/pamstructure.png;rm Chapters/Chapter2/Figures/pamstructure.gif;fi}
   \includegraphics[width=0.6\textwidth]{Chapter2/Figures/pamstructure.png}
   \caption[Esquema de la arquitectura de PAM]{Esquema de la arquitectura de PAM (fuente \cite{opengroup:rfc86.0})}
 \end{figure}
@@ -387,7 +360,7 @@ El protocolo \textit{Lightweight Directory Access Protocol} posibilita el acceso
 
 %\subsubsection{Utilización en el sistema final}
 
-La gestión de usuarios se delega al módulo PAM, utilizando los mecanismos de autenticación que provee en las diferentes aplicaciones del sistema, como en la herramienta \textbf{StatusMonitor} (ver \ref{statusmonitor}.
+La gestión de usuarios se delega al módulo PAM, utilizando los mecanismos de autenticación que provee en las diferentes aplicaciones del sistema, como en la herramienta \textbf{StatusMonitor} (ver \ref{statusmonitor}).
 
 Con el objetivo de garantizar diversas propiedades de transparencia del sistema, se ha creado un módulo de PAM que se integra con \textbf{MarcoPolo} para la realización de tareas de gestión en el conjunto de nodos del sistema (ver \ref{pam_mkpolohomedir}).
 
@@ -395,7 +368,7 @@ Con el objetivo de garantizar diversas propiedades de transparencia del sistema,
 
 La comunicación entre procesos dentro de un sistema distribuido constituye un aspecto clave en el diseño del mismo, y existen una gran cantidad de modelos para posibilitarlo.
 
-\subsection{Multicasting}
+\subsection{\textit{Multicasting}}
 
 Si bien las comunicaciones punto a punto consituyen un mecanismo efectivo para la comunicación entre diferentes nodos, presentan una serie de ineficiencias a la hora de distribuir el mismo contenido entre un número significativo de nodos, al tener que enviar un mensaje diferente a cada uno de los destinatarios. Utilizar difusión (\textit{broadcast}) para este tipo de aplicaciones supone una alternativa efectiva, si bien obliga a las entidades no interesadas en el mensaje a procesar el mismo en ocasiones hasta el nivel de red de la pila OSI.
 
@@ -407,21 +380,20 @@ Con el objetivo de posibilitar la intercomunicación entre entidades es necesari
 
 Existen una serie de formatos definidos que posibilitan este tipo de interconexión. Uno de ellos es \textbf{JSON} (\textit{JavaScript Object Notation})\cite{rfc7159}. \textbf{JSON} define estructuras de datos complejas, tales como objetos, listas o diccionarios clave-valor, mediante un subconjunto de la sintaxis de \textbf{JavaScript} que permite representar cualquier tipo de dato de forma legible por personas y fácilmente comprensible por máquinas. Existen implementaciones de procesadores de JSON en la mayoría de lenguajes de programación, lo cual permite el intercambio de información entre diferentes programas de forma sencilla.
 
-
-
 \subsection{WebSockets}
 %TODO
 
-El protocolo de comunicación WebSocket\ref{rfc6455} permite el establecimiento de conexiones bidireccionales simultáneas (\textit{full-duplex}) entre un cliente y un servidor (al contrario de la dinámica clásica en una aplicación web, donde toda comunicación es iniciada por el cliente) una vez que el canal es establecido. El modo de operación es muy similar al de la API de sockets de Berkeley y utiliza el protocolo de transporte para establecer la conexión. Utiliza HTTP o HTTPS para la creación del canal y es soportado por todos los navegadores mayoritarios.
+El protocolo de comunicación WebSocket \cite{rfc6455} permite el establecimiento de conexiones bidireccionales simultáneas (\textit{full-duplex}) entre un cliente y un servidor (al contrario de la dinámica clásica en una aplicación web, donde toda comunicación es iniciada por el cliente) una vez que el canal es establecido. El modo de operación es muy similar al de la API de sockets de Berkeley y utiliza el protocolo de transporte para establecer la conexión. Utiliza HTTP o HTTPS para la creación del canal y es soportado por todos los navegadores mayoritarios.
 
 El protocolo permite que el servidor envíe eventos asíncronos al cliente, evitando la utilización de técnicas de \textit{polling} y por tanto reduciendo el tráfico de red. 
 
+\vspace{2cm}
 %\subsubsection{Utilización en el sistema final}
 
 En el sistema final toda comunicación entre dos entidades se realiza gracias a cadenas con formato \textbf{JSON} (salvo casos concretos, como los programas ejecutados sobre MPI, donde el entorno proporciona un mecanismo claramente más efectivo de comunicación) utilizando bibliotecas de terceros para el procesamiento de las mismas. Esta información es transmitida sobre diferentes protocolos, destacando multicast UDP (difusión de información), unicast UDP (generalmente respuestas o comandos unidireccionales) y HTTP (o HTTPS). El protocolo WebSocket se utiliza como mecanismo principal de comunicación en diferentes secciones de \textbf{deployer} (\ref{deployer}).
 
 \section{Modelos de desarrollo}
-\subsection{Test-Driven Development}
+\subsection{\textit{Test-Driven Development}}
 \label{tdd}
 
 El desarrollo dirigido por pruebas es una estrategia de desarrollo de software basada en el desarrollo de tests de partes concisas y fácilmente desacoplables del código de una aplicación que realizan una tarea muy concreta (conocidas como pruebas unitarias). Dichas pruebas se realizan generalmente con un control exhaustivo de las condiciones que pueden influir el desarrollo de la prueba. Mediante la modificación de dichas condiciones y el análisis de la respuesta frente a un conjunto de datos de entrada se puede analizar si el comportamiento de dicho fragmento de código es el adecuado.
@@ -445,14 +417,14 @@ Varias de las las herramientas del Trabajo han sido desarrolladas siguiendo este
 \subsection{Virtualización}
 \label{teoria:virtualizacion}
 
-Virtualizar consiste en la abstracción de la plataforma física sobre la que un conjunto de \textit{software} es ejecutado. La virtualización de diferentes capas de un sistema facilita la compatibilidad entre componentes de características muy variadas, y posibilita la creación de diferentes unidades independientes sobre un único equipo físico, la abstracción de diferentes capas (hardware, sistema operativo, bibliotecas) de la implementación de la aplicación final.
+Virtualizar un paquete \textit{software} consiste en la abstracción de la plataforma física sobre la que este es ejecutado. La virtualización de diferentes capas de un sistema facilita la compatibilidad entre componentes de características muy variadas y posibilita la creación de diferentes unidades independientes sobre un único equipo físico y la abstracción de diferentes capas (hardware, sistema operativo, bibliotecas) de la implementación de la aplicación final.
 
 \subsection{Código móvil}
 \label{teoria:codigomovil}
 
-Se conoce como código móvil al \textit{software} que se transfiere entre diferentes unidades (distribuido en una red, generalmente). Este tipo de aplicaciones ofrecen una serie de ventajas (principalmente la sencilla distribución del mismo, en ocasiones transparente al usuario final) muy atractivas a la hora de crear sistemas distribuidos.
+Se conoce como código móvil al \textit{software} que se transfiere entre diferentes unidades (distribuido en una red, generalmente). Este tipo de aplicaciones ofrecen una serie de ventajas (principalmente la sencillez distribución, en ocasiones transparente al usuario final) muy atractivas a la hora de crear sistemas distribuidos.
 
-La mayoría de este tipo de \textit{software} está creado sobre herramientas multiplataforma, garantizando la abstracción del sistema sobre el que se está ejecutando. Ejemplos de código móvil son los contenidos dinámicos de una web (creados mediante \textbf{applets} Java, código \textbf{JavaScript} o controles \textbf{ActiveX}), código embebido en documentos PDF o en general cualquier tipo de \textit{software} descargado de una red.
+La mayoría de este tipo de \textit{software} está creado sobre herramientas multiplataforma, garantizando la abstracción del sistema sobre el que se está ejecutando. Ejemplos de código móvil son los contenidos dinámicos de una web (creados mediante \textbf{applets} \textbf{Java}, código \textbf{JavaScript} o controles \textbf{ActiveX}), código embebido en documentos \textbf{PDF} o en general cualquier tipo de \textit{software} descargado de una red.
 
 Sin embargo, este tipo de aplicaciones implican una serie de consideraciones adicionales de seguridad, en particular la verificación de la identidad del nodo que proporciona el paquete, la integridad del mismo durante la transferencia y el comportamiento del código en ejecución.
 
@@ -465,7 +437,6 @@ Extendiendo los conceptos del código móvil a un contexto más amplio, como el 
 La compilación cruzada posibilita el desarrollo de \textit{software} en plataformas diferentes a la plataforma objetivo, aquella sobre la que el programa final deberá ejecutarse. El compilador genera código máquina para la arquitectura objetivo a partir de los archivos de código fuente, en lugar del proceso común de generación de código para la arquitectura sobre la que se ejecuta el software de desarrollo (proceso conocido como compilación nativa).
 
 El uso de compiladores cruzados facilita el desarrollo para diferentes plataformas y en ocasiones es la única forma de crear aplicaciones para sistemas tales como dispositivos embebidos que no cuentan con herramientas de desarrollo. También es útil para facilitar la generación de código en entornos como granjas de servidores, generación de código para emuladores o realizar procesos de \textit{bootstrapping} (creación de las herramientas básicas de una nueva plataforma, como un sistema operativo o un enlazador).
-
 
 \subsubsection{\textit{Toolchain}}
 

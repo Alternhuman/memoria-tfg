@@ -1,22 +1,21 @@
 \chapter{Herramientas y técnicas}
 \lhead{\emph{Herramientas y técnicas}}
 
+\begin{cabstract}
+En el que se detalla el análisis de diferentes alternativas de aplicaciones, herramientas y técnicas para su uso en la construcción del sistema final y las decisiones finales tomadas.
+\end{cabstract}
+
 \section{Herramientas utilizadas para la creación del sistema}
 
 \subsection{Lenguajes de programación}
 
-\subsubsection{Python}
-Python es un lenguaje de programación interpretado de propósito general que prioriza la legibilidad del código y la rapidez de desarrollo, manteniendo estas propiedades en proyectos de cualquier escala. Python soporta diferentes paradigmas de programación, entre ellos la orientación a objetos, programación imperativa y la programación funcional. Automatiza la gestión de memoria y utiliza un sistema de tipado dinámico rígido.
-
-\subsubsection{Lenguajes}
-
-Python se ha elegido como lenguaje principal en el desarrollo de herramientas para el sistema en detrimento de otras opciones:
+Python se ha elegido como lenguaje principal de desarrollo. Es un lenguaje de programación interpretado de propósito general que prioriza la legibilidad del código y la rapidez de desarrollo, manteniendo estas propiedades en proyectos de cualquier escala. Python soporta diferentes paradigmas de programación, entre ellos la orientación a objetos, programación imperativa y la programación funcional. Automatiza la gestión de memoria y utiliza un sistema de tipado dinámico rígido. Sin embargo se han utilizado varios lenguajes de forma complementaria.
 
 \begin{landscape}
 \begin{table}[H]
-\begin{tabular}{|p{1.5cm}|p{3.9cm}|p{5cm}|p{5cm}|p{6.3cm}|}
+\begin{tabular}{|p{1.4cm}|p{3.7cm}|p{3.5cm}|p{5cm}|p{7.5cm}|}
 \hline
-Nombre & Características notables & Ventajas & Inconvenientes & Inclusión en el sistema\\ \hline
+\textbf{Nombre} & \textbf{Características} & \textbf{Ventajas} & \textbf{Inconvenientes} & \textbf{Inclusión en el sistema}\\ \hline
 
 \textbf{Python} & Orientación a objetos, portable & Portable, buen rendimiento & Necesidad de un intérprete & Se incluye en los componentes de alto nivel del sistema.\\ \hline
 
@@ -42,7 +41,7 @@ Todas las interfaces web han sido programadas utilizando HTML, CSS y JavaScript 
 
 \subsection{Twisted}
 
-\textbf{Twisted} \footnote{\href{https://twistedmatrix.com/}{https://twistedmatrix.com/}} es un motor dirigido por eventos para la creación de aplicaciones basadas en red. Uno de los principales beneficios de la programación orientada a eventos es la capacidad del sistema de optimizar el tiempo de CPU y evitar cambios de contexto, pues todo el código se ejecuta en un único hilo. Twisted se basa en el patrón de diseño \textbf{reactor}\cite{Coplien95reactor}, que se basa en la gestión de diferentes eventos, su demultiplexación y el envío a los manejadores apropiados de forma síncrona (ver \ref{eventdriven}).
+\textbf{Twisted} \footnote{\href{https://twistedmatrix.com/}{https://twistedmatrix.com/}} es un motor dirigido por eventos para la creación de aplicaciones basadas en red. Uno de los principales beneficios de la programación orientada a eventos es la capacidad del sistema de optimizar el tiempo de CPU y evitar cambios de contexto, pues todo el código se ejecuta en un único hilo. Twisted se basa en el patrón de diseño \textbf{reactor} (ver \ref{teoria:reactor}), que se basa en la gestión de diferentes eventos, su demultiplexación y el envío a los manejadores apropiados de forma síncrona (ver \ref{teoria:eventdriven}).
 
 Twisted permite crear de forma sencilla sockets asíncronos a bajo nivel en los protocolos UDP y TCP y aplicaciones que utilizan protocolos bien definidos, como HTTP o DNS. Es capaz de trabajar con protocolos como \textbf{multicast} o \textbf{TLS} e integra funcionalidades para el desarrollo dirigido por pruebas (\textit{test-driven development}).
 
@@ -50,22 +49,23 @@ Twisted permite crear de forma sencilla sockets asíncronos a bajo nivel en los 
 
 \subsection{Tornado}
 
-\textbf{Tornado} es un \textit{framework} web y una biblioteca para aplicaciones en red que utiliza mecanismos de entrada/salida asíncrona, permitiendo crear herramientas como \textbf{WebSockets} de forma sencilla y escalable. Todo el código, a menos que explícitamente se indique lo contrario se ejecuta en un único hilo.
+\textbf{Tornado} es un \textit{framework} web y una biblioteca para aplicaciones en red que utiliza mecanismos de entrada/salida asíncrona, permitiendo crear herramientas como \textbf{WebSockets} de forma sencilla y escalable. Todo el código, a menos que explícitamente se indique lo contrario, se ejecuta en un único hilo.
 
 \textbf{Tornado} se utiliza en todas las interfaces web creadas, en ocasiones en conjunción con \textbf{Django} y se integra con \textbf{MarcoPolo} a través del \textit{binding} para Python.
 
+Si bien existen alternativas como node.js que siguen paradigmas similares, se decide utilizar Tornado debido a su implementación en Python, lenguaje conocido previamente, de alto rendimiento y fácil de utilizar para tareas que dependan altamente de la interacción con el sistema operativo y aplicaciones locales.
+
 \subsection{Websockets}
 
-El protocolo WebSocket \cite{rfc6455} posibilita el establecimiento de un canal bidireccional en una arquitectura cliente-servidor sobre el protocolo HTTP/HTTPS evitando el uso de peticiones asíncronas (XmlHttpRequest, <iframe>) y \textit{polling}.
+El protocolo WebSocket \cite{rfc6455} posibilita el establecimiento de un canal bidireccional en una arquitectura cliente-servidor sobre el protocolo HTTP/HTTPS evitando el uso de peticiones asíncronas (\texttt{XmlHttpRequest}, \texttt{<iframe>}) y \textit{polling}.
 
-La mayoría de las interfaces web creadas utilizan este tipo de comunicación para obtener información desde los diferentes nodos del sistema, optimizando la comunicación al reducirse el intercambio de datos al momento en el que estos son necesarios (al contrario de otras estrategias) y posibilitando la difusión de eventos en directo, a diferencia de estrategias como el \textit{polling}.
+La mayoría de las interfaces web creadas utilizan este tipo de comunicación para obtener información desde los diferentes nodos del sistema, optimizando la comunicación al reducirse el intercambio de datos al momento en el que estos son necesarios (al contrario de otras estrategias) y posibilitando la difusión de eventos en directo, en contraste con estrategias como el \textit{polling}.
 
 \section{Seguridad}
 
 \subsection{OpenSSL}
 
 OpenSSL es la implementación de código abierto más popular de los protocolos SSL y TSL. En el sistema se utiliza de forma intensiva para garantizar la confidencialidad de las transmisiones entre partes así como para verificar la identidad en ambos lados de un canal de comunicación. La biblioteca proporciona bindings a C, C++, Java y Python, por lo que su integración en cualquiera de las herramientas creadas ha sido trivial. 
-
 
 \subsection{Hadoop}
 
@@ -77,21 +77,21 @@ En una de las iteraciones del ciclo de desarrollo se instaló parcialmente una i
 
 \subsection{\textit{Message Passing Interface}}
 
-La necesidad de una herramienta de comunicación independiente de la plataforma derivó en la especificación del estándar MPI\cite{MPISpec}, un conjunto de interfaces para la creación de aplicaciones paralelas mediante la gestión de las operaciones de entrada-salida, definición de tipos de datos, grupos de proceso, creación y gestión de procesos, interfaces externas, etcétera. La especificación se define independientemente del lenguaje, si bien incluye implementaciones en C, C++, Fortran 77 y Fortran 95.
+La necesidad de una herramienta de comunicación independiente de la plataforma derivó en la especificación del estándar MPI\cite{MPISpec}, un conjunto de interfaces para la creación de aplicaciones paralelas mediante la gestión de las operaciones de entrada-salida, definición de tipos de datos, grupos de proceso, creación y gestión de procesos, interfaces externas, etcétera. La especificación se define independientemente del lenguaje, si bien incluye implementaciones en C, C++ y Fortran, así como mecanismos para ser integrado con Python, entre muchos otros lenguajes.
 
-MPI se ha convertido con el paso de los años en la interfaz de referencia para la creación de aplicaciones distribuidas, contando con varias implementaciones como \textbf{MPICH} (la implementación original) u \textbf{OpenMPI} (presente en la mayoría de supercomputadores), de tipo libre, o implementaciones propietarias, tales como IBM MPI, Intel MPI, Cray MPI, Microsoft MPI, Myricom MPI.
+MPI se ha convertido con el paso de los años en la interfaz de referencia para la creación de aplicaciones distribuidas, contando con varias implementaciones como \textbf{MPICH} (la implementación original) u \textbf{OpenMPI} (presente en la mayoría de supercomputadores), de tipo libre, o implementaciones propietarias tales como IBM MPI, Intel MPI, Cray MPI, Microsoft MPI, Myricom MPI.
 
 MPI es utilizado en el sistema como herramienta de desarrollo de aplicaciones distribuidas, utilizando \textbf{MarcoPolo} para simplificar el proceso de descubrimiento de nodos (ver \ref{marcodiscover}). Además se han creado herramientas accesorias para facilitar varias tareas generalmente necesarias durante el desarrollo con la biblioteca (ver \ref{marcoinstallkey}).
 
 \subsubsection{\textit{Raspberry Pi Planet Simulator Cluster}}
 
-Este proyecto implementa un simulador del clima terráqueo, permitiendo alterar diferentes características del mismo y analizar el resultado. Se implementa sobre MPI y está programado en el lenguaje \textbf{FORTRAN}\footnote{\href{http://econnexus.org/projects/the-distributed-arctic-sea-ice-model/raspberry-pi-planet-simulator-cluster/}{http://econnexus.org/projects/the-distributed-arctic-sea-ice-model/raspberry-pi-planet-simulator-cluster/}}.
+Este proyecto implementa un simulador del clima terráqueo, permitiendo alterar diferentes características del mismo y analizar el resultado. Se implementa sobre MPI y está programado en el lenguaje \textbf{Fortran}\footnote{\href{http://econnexus.org/projects/the-distributed-arctic-sea-ice-model/raspberry-pi-planet-simulator-cluster/}{http://econnexus.org/projects/the-distributed-arctic-sea-ice-model/raspberry-pi-planet-simulator-cluster/}}.
 
 \begin{figure}[H]
-\includegraphics[height=12em]{Chapters/Chapter3/Figures/plasim-main}
-\includegraphics[height=12em]{Chapters/Chapter3/Figures/plasim-results}
-\label{fig:plasim}
-\caption[Interfaz de la aplicación \textit{Planet Simulator}]{Interfaz de control del \textit{Planet Simulator} y vista de ejecución de una simulación}
+	\includegraphics[height=12em]{Chapters/Chapter3/Figures/plasim-main}
+	\includegraphics[height=12em]{Chapters/Chapter3/Figures/plasim-results}
+	\label{fig:plasim}
+	\caption[Interfaz de la aplicación \textit{Planet Simulator}]{Interfaz de control del \textit{Planet Simulator} y vista de ejecución de una simulación}
 \end{figure}
 
 Este proyecto ha sido evaluado con el objetivo de integrarlo en el sistema. Sin embargo, el programa depende considerablemente de la interfaz gráfica del mismo, inaccesible desde cualquiera de los nodos del sistema. A fin de solventar este problema se plantea el uso de un equipo de escritorio que cree los ficheros de configuración y los distribuya entre los nodos. Esta posibilidad se debe descartar finalmente, dado que el simulador realiza la compilación del programa con los parámetros fijados en la interfaz gráfica. Dado que los binarios creados para la arquitectura de un equipo de escritorio (x86, x86-64) son incompatibles con el \textit{hardware} de los nodos (arquitectura ARM) y hay tareas con mayor prioridad, se descarta esta tarea de forma indefinida, siendo finalmente no incluido en la versión final del sistema.
@@ -101,7 +101,10 @@ Este proyecto ha sido evaluado con el objetivo de integrarlo en el sistema. Sin 
 Las prácticas de la asignatura Sistemas Distribuidos se realizan sobre el contenedor de servicios Tomcat. Por ello el sistema ofrece instancias de Tomcat a todos los usuarios sin que estos deban realizar ningún tipo de configuración. Además, se habilita el uso de Tomcat en herramientas como \textbf{deployer} para facilitar el desarrollo de las prácticas.
 
 \section{Herramientas de virtualización}
-\citationneeded[QEMU]
+
+\subsection{QEMU}
+
+QEMU es un emulador y virtualizador de código abierto compatible con un gran abanico de arquitecturas y sistemas operativos diferentes, siendo compatile con hipervisores como Xen o KVM. En el sistema se utiliza como la primera propuesta de optimización del rendimiento del sistema en tareas como la compilación de código fuente.
 
 \section{Herramientas utilizadas para la gestión de código, calidad de \textit{software} y el proyecto}
 
@@ -111,35 +114,32 @@ Git es un sistema de control de versiones capaz de gestionar proyectos de cualqu
 
 Las diferentes herramientas que componen el sistema son creadas en repositorios independientes de código. Dicho código es almacenado en un servidor con el objetivo de facilitar la movilidad del código entre las diferentes máquinas que componen el sistema y a modo de copia de seguridad. Se sigue un modelo de desarrollo basado en ramas que representan características a añadir a la versión estable, revisión de código, documentación o mantenimiento y solución a \textit{bugs}.
 
-Todos los repositorios de código originales pueden consultarse en \href{https://bitbucket.org/Alternhuman}{https://bitbucket.org/Alternhuman}
+Todos los repositorios de código originales pueden consultarse en \href{https://bitbucket.org/Alternhuman}{https://bitbucket.org/Alternhuman}.
 
 \subsection{Redmine}
 
 Redmine es una herramienta de gestión de proyectos basada en web que permite a un equipo mantener un registro de todo el trabajo realizado y planificado en un proyecto, con una serie de herramientas como diagramas de Gantt, Wiki o integración con sistemas de control de versiones.
 
-El proyecto cuenta con una instancia de Redmine alojada en \href{http://redmine.martinarroyo.net/}{http://redmine.martinarroyo.net/projects/tfg}. En dicha instancia se han registrado todos los avances en el desarrollo del proyecto desde las fases iniciales del mismo.
-
+El proyecto cuenta con una instancia de Redmine alojada en \href{http://redmine.martinarroyo.net/projects/tfg}{http://redmine.martinarroyo.net/projects/tfg}. En dicha instancia se han registrado todos los avances en el desarrollo del proyecto desde las fases iniciales del mismo.
 
 \subsection{2to3, 3to2}
 
-Las versiones del lenguaje Python 2 y 3 son incompatibles entre sí. Sin embargo, las diferencias entre ambas versiones radican en una serie de variaciones sintácticas, nombres de tipos y localización de las bibliotecas básicas del sistema, por lo que escribiendo código que tenga en cuenta dichas variaciones, bien incluyendo sentencias condicionales en función de la versión o bien utilizando mecanismos que sean compatibles con ambas versiones es posible generar código compatible con ambas versiones. Este aspecto de las herramientas es importante si se tiene en cuenta que la transición a la versión 3 aún no está completa.
+Las versiones del lenguaje Python 2 y 3 son incompatibles entre sí. Sin embargo, las diferencias entre ambas versiones radican en una serie de variaciones sintácticas, nombres de tipos y localización de las bibliotecas estándar, por lo que escribiendo código que tenga en cuenta dichas variaciones, bien incluyendo sentencias condicionales en función de la versión o bien escribiendo código ambivalente es posible generar código compatible.
 
-2to3 y 3to2 son herramientas que ayudan al programador en la verificación de la compatibilidad entre versiones, generando una lista de modificaciones que posibilitan la ejecución el código en otra versión. Utilizando ambas herramientas es posible crear código ambivalente de forma sencilla.
+2to3 y 3to2 son herramientas que ayudan al programador en la verificación de la compatibilidad entre versiones, generando una lista de modificaciones que posibilitan la ejecución el código en otra versión. Utilizando ambas herramientas es posible crear código ambivalente de forma sencilla. Existen además guías y otras herramientas que facilitan este objetivo\footnote{\href{https://docs.python.org/3/howto/pyporting.html}{https://docs.python.org/3/howto/pyporting.html}}.
 
 \subsection{Pylint}
 
-Pylint es una herramienta de verificación de código, que evalúa la calidad de un código siguiendo una serie de criterios tales como la presencia de errores sintácticos, sangrado del código, convenciones de nombrado y de estilo, errores en la importación de paquetes, etcétera. Pylint incluye además la herramienta pyreverse, útil en la generación de diagramas UML.
+Pylint es una herramienta de verificación de código, que evalúa la calidad de un fichero siguiendo una serie de criterios tales como la presencia de errores sintácticos, sangrado del código, convenciones de nombrado y de estilo, errores en la importación de paquetes, etcétera. Pylint incluye además la herramienta \textbf{pyreverse}, útil en la generación de diagramas UML.
 
 \subsection{Desarrollo dirigido por pruebas: Unittest, CppUnit, Trial}
 
 Uno de los mecanismos para la detección temprana de errores es el desarrollo dirigido por pruebas (ver \ref{teoria:tdd}). En el proyecto se utilizan diferentes \textit{frameworks} para cada una de las aplicaciones y bibliotecas creadas. Los tests unitarios se incluyen en cada uno de los paquetes para poder ser ejecutados por cualquier usuario en caso de que lo estime oportuno.
 
-\subsection{Visual Paradigm}
-\citationneeded[TODO]
-
 \section{Herramientas de modelado}
+\subsection{Visual Paradigm}
 
-Junto a Pylint se ha utilizado Visual Paradigm para la generación de todos los diagramas UML.
+Junto a \textbf{pyreverse} se utiliza la aplicación Visual Paradigm durante las etapas de documentación y modelado de las diferentes aplicaciones, en concreto, las herramientas de creación de diagramas UML y su generación automática a través del análisis del código fuente.
 
 \section{Herramientas utilizadas para la documentación del proyecto}
 
@@ -151,13 +151,9 @@ Se utiliza {\BibTeX} como gestor de la bibliografía en todos los documentos pro
 
 \subsection{Sphinx}
 
-Sphinx es un sistema de creación y generación de documentación capaz de crear documentos en diferentes formatos (HTML, \LaTeX, ePub\dots) a partir de una serie de archivos en el formato reStructuredText. Es además capaz de crear documentación sobre código Python (lenguaje para el que la herramienta fue creada) a partir de los comentarios presentes en el código (conocidos como \textbf{docstrings}). Junto con Doxygen, se ha conseguido documentar código en C, C++ y %TODO Java
-utilizando Sphinx. Soporta además referencias a diferentes proyectos creados con esta herramienta.
+Sphinx es un sistema de creación y generación de documentación capaz de crear documentos en diferentes formatos (HTML, \LaTeX, ePub\dots) a partir de una serie de archivos en el formato reStructuredText. Es además capaz de crear documentación sobre código Python (lenguaje para el que la herramienta fue creada) a partir de los comentarios presentes en el código (conocidos como \textbf{docstrings}). Junto con Doxygen, se ha conseguido documentar código en C, C++, Java, bash y JavaScript. Soporta además referencias cruzadas a diferentes proyectos creados con esta herramienta, muy útil en este caso concreto, donde se cuenta con un número de documentos independientes muy alto que se referencian entre ellos.
 
 Los resultados generados por la herramienta son incluidos como documentación técnica de cada una de las herramientas, y están disponibles en \href{marcopolo.martinarroyo.net}.
-
-
-%Esta parte de la memoria tiene como objetivo presentar las técnicas metodológicas y las herramientas de desarrollo que se han utilizado para llevar a cabo el proyecto. Si se han estudiado diferentes alternativas de metodologías, herramientas, bibliotecas se puede hacer un resumen de los aspectos más destacados de cada alternativa, incluyendo comparativas entre las distintas opciones y una justificación de las elecciones realizadas. No se pretende que este apartado se convierta en un capítulo de un libro dedicado a cada una de las alternativas, sino comentar los aspectos más destacados de cada opción, con un repaso somero a los fundamentos esenciales y referencias bibliográficas para que el lector pueda ampliar su conocimiento sobre el tema
 
 \subsection{Doxygen}
 
@@ -169,15 +165,15 @@ En el proyecto Doxygen es utilizado para documentar aquellas partes del proyecto
 
 \subsection{PAM, LDAP}
 
-Siguiendo el objetivo funcional\citationneeded, la gestión de los usuarios está delegada al sistema de autenticación preexistente en la infraestructura en la que se integra el sistema. En ella se cuenta con un servidor \textbf{LDAP} con la información de los usuarios. Mediante la configuración del paquete LDAP es posible accedeer a los mismos, y gracias a \textbf{PAM} (\textit{Pluggable Authentication Module}) se integra con el resto de métodos de autenticación presentes en el sistema.
+La gestión de los usuarios está delegada al sistema de autenticación preexistente en la infraestructura en la que se integra el sistema. En ella se cuenta con un servidor \textbf{LDAP}\footnote{\href{ldap1.cie.aulas.usal.es}{ldap1.cie.aulas.usal.es}} con la información de los usuarios. Mediante la configuración del paquete \textbf{LDAP} es posible accedeer a los mismos, y gracias a \textbf{PAM} (\textit{Pluggable Authentication Module}) se integra con el resto de métodos de autenticación presentes en el sistema.
 
-Se ha creado un módulo para \textbf{PAM} para facilitar las tareas que el sistema debe realizar. Dicho módulo integra \textbf{MarcoPolo} y es conocido como \textbf{pam\_mkpolohomedir}\ref{pam_mkpolohomedir}. 
+Se ha creado un módulo para \textbf{PAM} para facilitar las tareas que el sistema debe realizar. Dicho módulo integra \textbf{MarcoPolo} y es conocido como \textbf{pam\_mkpolohomedir}\ref{pam_mkpolohomedir}.
 
 \section{Herramientas para la optimización del rendimiento}
 
 \subsection{Distcc}
 
-Distcc es la herramienta utilizada para el desarrollo del compilador distribuido. %TODO
+Distcc es la herramienta utilizada para el desarrollo del compilador distribuido.\citationneeded[TODO]
 
 \subsection{SSH-HPN}
 
@@ -191,37 +187,10 @@ Se ha creado una versión parcheada de SSH probada en la instalación de Arch Li
 
 %TODOArchivo BibTeX con todas las referencias de las RFCs: \href{http://tm.uka.de/~bless/bibrfcindex.html}{http://tm.uka.de/~bless/bibrfcindex.html}
 
-%\lhead{Metodología de desarrollo}
 \section{Metodología de desarrollo}
 
-\subsection{Planificación temporal}
+Una metodología de desarrollo reúne el conjunto de procesos y técnicas que se emplean en la construcción de un producto \textit{software}. La metodología debe ser elegida cuidadosamente en virtud de los objetivos y restricciones del proyecto, pues tiene el potencial de condicionar su buen devenir o actuar en detrimento del mismo.
 
-% \begin{figure}[H]
-% \includepdf[pages=1,pagecommand={},offset=-2.5cm -3cm]{Chapters/Chapter3/Figures/tfg-gantt-mar.pdf}
-% \caption{Actividad realizada en el mes de marzo}
-% \end{figure}
-% \includepdf[pages=2,pagecommand={},offset=-2.5cm -3cm]{Chapters/Chapter3/Figures/tfg-gantt-mar.pdf}
-% \includepdf[pages=1,pagecommand={},offset=-2.5cm -3cm]{Chapters/Chapter3/Figures/tfg-gantt-apr.pdf}
-% \includepdf[pages=1,pagecommand={},offset=-2.5cm -3cm]{Chapters/Chapter3/Figures/tfg-gantt-may.pdf}
-% \includepdf[pages=2,pagecommand={},offset=-2.5cm -3cm]{Chapters/Chapter3/Figures/tfg-gantt-may.pdf}
-% \includepdf[pages=1,pagecommand={},offset=-2.5cm -3cm]{Chapters/Chapter3/Figures/tfg-gantt-jun.pdf}
-% \includepdf[pages=2,pagecommand={},offset=-2.5cm -3cm]{Chapters/Chapter3/Figures/tfg-gantt-jun.pdf}
-% %\includepdf[pages=2,pagecommand={},offset=-2.5cm -3cm]{Chapters/Chapter3/Figures/tfg-gantt-apr.pdf}
+Existen diferentes metodologías que satisfacen un conjunto diferente de demandas y son aptas para un tipo de proyecto, como el Proceso Unificado (cíclico, conducido por casos de uso), procesos ágiles (desarrollo incremental, tolerancia a cambios inesperados) o los modelos tradicionales (modelo lineal, en V, orientado a prototipos\dots).
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{Chapters/Chapter3/Figures/tfg-gantt-mar}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{Chapters/Chapter3/Figures/tfg-gantt-apr}
-\end{figure}
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{Chapters/Chapter3/Figures/tfg-gantt-may}
-\end{figure}
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{Chapters/Chapter3/Figures/tfg-gantt-jun}
-\end{figure}
+En el caso del presente proyecto, se debe construir un conjunto de herramientas \textit{software} sin contar con abundante experiencia en el desarrollo de sistemas de este tipo, por lo que el grado de incertidumbre es muy alto. Es por ello que la metodología elegida debe ser capaz de lidiar con situaciones difíciles de predecir, cambios continuos en los requisitos definidos y poder responder ante problemas como la inviabilidad de una propuesta de solución, detectando dicha circunstancia de forma prematura. Se apuesta por un modelo ágil apoyado en prototipos, descrito en \ref{process}.

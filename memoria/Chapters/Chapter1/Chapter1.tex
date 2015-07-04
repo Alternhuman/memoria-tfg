@@ -1,7 +1,11 @@
 \lhead{\emph{Motivación y objetivos}}
 \chapter{Motivación y objetivos}
 
-El presente proyecto responde al interés personal en las áreas de conocimiento relacionadas con la Computación Distribuida. La propuesta final cuenta con un atractivo añadido, que es la utilización de computadores embebidos, generalmente no utilizados para este tipo de propósitos, como integrantes de un sistema distribuido. En diferentes reuniones entre las diferentes partes se terminan de perfilar los diferentes objetivos a completar, entre los que destaca la potencial integración del sistema en asignaturas del plan de estudios del Grado en Ingeniería Informática como herramienta didáctica.
+\begin{cabstract}
+En el que se describe la motivación que lleva al desarrollo de este Trabajo y se describen en detalles los objetivos del sistema como un todo.
+\end{cabstract}
+
+El presente proyecto responde al interés personal en las áreas de conocimiento relacionadas con la Computación Distribuida. La propuesta final cuenta con un atractivo añadido, que es la utilización de computadores embebidos, generalmente no considerados como integrantes de un sistema distribuido. En diferentes reuniones entre las diferentes partes se terminan de perfilar los diferentes objetivos a completar, entre los que destaca la potencial integración del sistema en asignaturas del plan de estudios del Grado en Ingeniería Informática como herramienta didáctica.
 
 \section{Objetivos}
 
@@ -17,35 +21,35 @@ El sistema creado se inspira en proyectos similares (descritos en \ref{stateofth
 	\item Intentar elevar el \textit{state of the art} en el mundo de los sistemas distribuidos con plataformas embebidas mediante la creación de un sistema multipropósito en lugar de soluciones con un fin determinado, que constituyen la tendencia actual.
 \end{itemize}
 
-
-Partiendo de la premisa de las potenciales ventajas del uso de este tipo de computadores en detrimento de otras soluciones se plantea el sistema definitivo (en \ref{alternativas} se detalla el proceso de decisión), no sin antes realizar una etapa de evaluación de las diferentes alternativas.
+Partiendo de la premisa de las potenciales ventajas del uso de este tipo de computadores se plantea el sistema definitivo (en \ref{alternativas} se detalla el proceso de decisión), no sin antes realizar una etapa de evaluación de las diferentes alternativas.
 
 \section{Objetivos del sistema}
 
-Durante las fases de definición del proyecto, se plantean los siguientes objetivos concretos para la propuesta de solución elegida que se deben cumplir:
+Durante las fases de definición del proyecto, se plantean los siguientes objetivos concretos para la propuesta de solución elegida a cumplir.
 
 \subsection{Diseño y construcción de la arquitectura física del sistema}
 
-Se deberán definir las interconexiones entre los diferentes componentes del sistema, solucionar los diferentes problemas físicos tales como la alimentación eléctrica, conexiones de red o la refrigeración, entre otros, analizando los diferentes enfoques y valorando la mejor solución en función del resto de objetivos a cumplir.
+Se deberán definir las interconexiones físicas entre los diferentes componentes del sistema, proponer soluciones a los diferentes aspectos físicos del sistema, tales como la alimentación eléctrica, conexiones de red o la refrigeración, entre otros, analizando los diferentes enfoques y valorando la mejor solución en función del resto de objetivos a cumplir y las restricciones (tiempo, coste) planteadas.
 
-\subsection{Arquitectura orientada a servicios}
-%TODO
-Conjunto de servicios que podrán ser aprovechados por diferentes clientes para explotar la capacidad de cálculo de las máquinas.
+\subsection{Arquitectura multipropósito orientada a servicios}
+
+El principal propósito del sistema creado será el alojamiento de un conjunto de aplicaciones (servicios) en el mismo, que podrán ser aprovechados por diferentes usuarios para explotar la capacidad de cálculo de las máquinas.
+
+Sin embargo, una de las características de los sistemas similares al que se modela es su orientación a un único fin concreto. Se plantea crear un sistema que rompa con esta tendencia, siendo capaz de dar cabida a diferentes tipos de aplicaciones.
 
 \subsection{Gestión del sistema}
 
-El sistema debe contar con un conjunto de herramientas que mantengan los principios de transparencia propios de un sistema distribuido (ver \ref{transparencia}), y su gestión debe ser sencilla para los responsables del mismo (personal de administración).
+El sistema debe contar con un conjunto de herramientas que mantengan los principios de transparencia propios de un sistema distribuido (ver \ref{transparencia}), y su gestión debe ser sencilla para los responsables de la misma (personal de administración).
 
 \subsection{Integración}
 
-El sistema debe integrarse en una infraestructura preexistente, la presente en la Facultad de Ciencias de la Universidad de Salamanca, sin que dicha integración comprometa el diseño básico del sistema a fin de facilitar su adaptabilidad a otros entornos (ver \ref{infraestructura}). Es necesario por tanto realizar pruebas que evalúen el rendimiento del sistema creado en la misma. %TODO Con el objetivo de facilitar dicha integración, el sistema se desarrolla parcialmente aprovechando la infraestructura presente.
-A fin de facilitar el uso del sistema por los usuarios finales, se utiliza un directorio de autenticación preexistente en el que todo miembro de la organización cuenta con unas credenciales. Para la integración de dicho directorio se utiliza \textbf{nsswitch} (ver \ref{nsswitch}). 
+El sistema debe integrarse en una infraestructura preexistente, la presente en la Facultad de Ciencias de la Universidad de Salamanca, sin que dicha integración comprometa el diseño básico del sistema a fin de facilitar su adaptabilidad a otros entornos (ver \ref{infraestructura}). Es necesario por tanto realizar pruebas que evalúen el rendimiento del sistema creado en la misma\footnote {Con el objetivo de facilitar dicha integración, el sistema se desarrolla parcialmente aprovechando la infraestructura presente.}.
+
+A fin de facilitar el uso del sistema por los usuarios finales, se deberán utilizar los recursos ofrecidos por la infraestructura en aquellos casos que sea posible para tareas como la conexión de red, gestión de usuarios\footnote{Existe un directorio de autenticación preexistente en el que todo miembro de la organización cuenta con unas credenciales.}, etcétera.% % Para la integración de dicho directorio se utiliza \textbf{nsswitch} (ver \ref{nsswitch}). 
 
 \subsection{Uso como herramienta didáctica}
 
-El sistema debe ofrecer una serie de ventajas a las herramientas didácticas utilizadas en aquellas asignaturas donde se impartan conocimientos relacionados con la computación paralela y distribuida, ofreciendo herramientas que faciliten la comprensión de dichos paradigmas o el desarrollo, prueba y aplicación de programas basados en los mismos.
-
-%TODO: Creación de aplicaciones, herramientas y documentación como alternativa a las instalaciones típicas utilizadas actualmente.
+El sistema debe ofrecer una serie de ventajas a las herramientas didácticas utilizadas en aquellas asignaturas donde se impartan conocimientos relacionados con la computación paralela y distribuida, ofreciendo herramientas que faciliten la comprensión de dichos paradigmas o el desarrollo, prueba y aplicación de programas basados en los mismos. Se crearán de aplicaciones y herramientas como alternativas a las utilizadas actualmente, analizando las demandas de los usuarios, así como pruebas de concepto que garanticen que las diferentes tareas encargadas a los sistemas actuales serán integrables en la propuesta de solución.
 
 \subsection{Evaluación}
 
@@ -55,24 +59,26 @@ Durante el desarrollo del proyecto se añaden los siguientes objetivos funcional
 
 \subsection{\textit{Zeroconf}}
 
-El sistema debe configurarse de forma automática en cualquier tipo de circunstancia (sin que el número de nodos o la configuración de la red sean aspectos relevantes, por ejemplo). Para ello se deberán utilizar o crear una serie de herramientas que posibiliten esta propiedad del sistema. Entre estas herramientas destaca como elemento clave la utilización de un protocolo de descubrimiento de nodos y servicios. Como se destaca en apartados posteriores de la memoria, se ha optado por la creación de un protocolo que recibe el nombre de \textit{MarcoPolo} (ver \ref{marcopolo}).
+El sistema debe configurarse de forma automática (\textit{zeroconf}) en cualquier tipo de circunstancia (sin que el número de nodos o la configuración de la red sean aspectos relevantes, por ejemplo). Para ello se deberán utilizar o crear una serie de herramientas que posibiliten esta propiedad del sistema. Entre estas herramientas destaca como elemento clave la utilización de un protocolo de descubrimiento de nodos y servicios. Como se destaca en apartados posteriores de la memoria, se ha optado por la creación de este en lugar de utilizar una alternativa de terceros, recibiendo el nombre \textit{MarcoPolo} (ver \ref{marcopolo}).
 
+\subsection{\textit{Test-Driven Development}}
 
-
-\subsection{Test-Driven Development}
-
-El desarrollo de las diferentes herramientas \textit{software} se deberá realizar bajo los principios del desarrollo conducido por pruebas (ver \ref{tdd}) como mecanismo para la detección temprana de errores.
+El desarrollo de las diferentes herramientas \textit{software} se deberá realizar bajo los principios del desarrollo conducido por pruebas (ver \ref{tdd}) como mecanismo para la detección temprana de errores, automatizando este tipo de dinámica en todos los casos en los que sea posible.
 
 \vspace{2cm}
 
 En conclusión, los objetivos del proyecto son los siguientes:
 
+\begin{hyphenrules}{nohyphenation}
 \begin{center}
 \itshape
 \begin{itemize}
-	\item[] Diseñar un sistema distribuido no jerárquico integrable en una infraestructura existente.
-	\item[] Orientar la explotación del mismo como herramienta de diseño y prueba de algoritmos, así como mecanismo didáctico.
+	\item[] Diseñar un sistema distribuido no jerárquico autoconfigurado e integrable en una infraestructura existente.
+	\item[] Crear un conjunto de herramientas, protocolos y aplicaciones para la explotación de los recusos que ofrece el sistema.
+	\item[] Orientar la explotación del mismo como herramienta de diseño y prueba de algoritmos.
+	\item[] Explotar las posibilidades didácticas del sistema.
 	\item[] Analizar las ventajas e inconvenientes del sistema frente a otras soluciones similares.
 	\item[] Analizar la efectividad de la solución propuesta mediante herramientas de evaluación.
 \end{itemize}
 \end{center}
+\end{hyphenrules}
