@@ -11,37 +11,53 @@ En el presente proyecto se realiza un análisis de las diferentes alternativas q
 
 %TODOFigura: Tabla de alternativas
 
-\section{Definiciones}
-
-\subsection{Definición del dominio del problema}
-
-%TODO
+\section{Definición del dominio del problema}
 
 \subsection{Sistema actual: Infraestructura de la Facultad de Ciencias}
 \label{dominioproblema:infraestructura}
-El sistema se ubica en una Facultad universitaria con 1.463 alumnos\cite{uecusal:estudiantes} en titulaciones relacionadas con las Ciencias de la Computación. Estas titulaciones cuentan con varias asignaturas relacionadas con el áreas de conocimiento Computación Distribuida, en particular \textbf{Arquitectura de Computadores} y \textbf{Sistemas Distribuidos} \cite{DIA15GuiaAcademica}. La Facultad cuenta con varias aulas y laboratorios de informática donde los alumnos disponen de la infraestructura necesaria para realizar los ejercicios y prácticas asignadas. Dichos espacios permiten utilizar cualquier equipo como nodo, pues se integran en la misma red, siendo incluso factible la comunicación directa entre equipos situados en diferentes aulas o incluso edificios. Todos los edificios cuentan con un cableado capaz de soportar teóricamente transferencias de hasta 100 Mb/s de forma bidireccional. La gestión de un sistema de autenticación se realiza mediante el protocolo \textbf{LDAP} (\textit{Lightweight Directory Access Protocol})\cite{RFC4516-comment}, contando con un sistema de ficheros centralizado que permite acceder a la información de un usuario desde cualquier equipo, facilitando las tareas de replicación de la información entre nodos\footnote{Datos extraídos de entrevistas con el Administrador de la infraestructura}.
+El sistema se ubica en una Facultad universitaria con 1.463 alumnos \cite{uecusal:estudiantes} en titulaciones relacionadas con las Ciencias de la Computación. Estas titulaciones cuentan con varias asignaturas relacionadas con el áreas de conocimiento Computación Distribuida, en particular \textbf{Arquitectura de Computadores} y \textbf{Sistemas Distribuidos} \cite{DIA15GuiaAcademica}. La Facultad cuenta con varias aulas y laboratorios de informática donde los alumnos disponen de las herramientas necesarias para realizar los ejercicios y prácticas asignadas. Dichos espacios permiten utilizar cualquier equipo como nodo, dado que se integran en la misma red, siendo factible la comunicación directa entre equipos situados en diferentes aulas o incluso edificios. Todos los equipos cuentan con una conexión de red cableada capaz de soportar teóricamente transferencias de hasta 100 Mb/s de forma bidireccional, compartiendo un mismo espacio de direcciones de red (no existen \textit{routers} entre diferentes secciones de este segmento de la red de la Universidad). La gestión de credenciales de autenticación se delega a un directorio \textbf{LDAP} (\textit{Lightweight Directory Access Protocol}) \cite{RFC4516-comment}.
+Se cuenta con con un sistema de ficheros centralizado que permite acceder a la información de un usuario desde cualquier equipo, facilitando las tareas de replicación de la información entre nodos a través de los protocolos NFS y Samba. Todos estos datos han sido extraídos de diferentes entrevistas con el Administrador de la infraestructura.
 
 La mayoría de las prácticas asignadas a los alumnos en las asignaturas de interés son desarrolladas en los lenguajes de programación \textbf{C} y \textbf{Java}, ya conocidos por la totalidad de los estudiantes gracias a asignaturas previamente cursadas.
 
-\paragraph{Problemas conocidos}
+\subsubsection{Problemas conocidos}
 
 Si bien la infraestructura existente es capaz de proveer a los estudiantes de los recursos necesarios, se identifican una serie de problemas inicialmente:
 
 \begin{itemize}
   \item Cada grupo de alumnos necesita tres estaciones de trabajo para poder realizar algunos de los ejercicios propuestos.
-  \item El servidor \textbf{LDAP} constituye un ``cuello de botella'', pues todos los alumnos acceden a él de forma intensiva, provocando el fallo por exceso de peticiones del mismo.
-  %TODO\item Las técnicas de programación utilizadas hasta la fecha tienen un rendimiento bajo y son en ocasiones relativamente complejas.
+  \item El servidor \textbf{NFS} constituye un ``cuello de botella'', pues todos los alumnos acceden a él de forma intensiva, causando una excesiva carga de trabajo por el gran número de peticiones al mismo.
+  \item Existen una serie de problemas con las herramientas de desarrollo utilizadas actualmente, como la dificultad de configuración o la identificación de recursos.
 \end{itemize}
 
-\subsubsection{Análisis de estadísticas}
-\label{dominio:estadisticast}
+\subsubsection{Rendimiento}
+\label{dominio:estadisticas}
 %Pandora magic
+Uno de los problemas actuales que la infraestructura presenta es la sobrecarga de los diferentes recursos centralizados, como son el servidor LDAP y el sistema de almacenamiento NFS/Samba.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Chapters/Chapter4/Figures/data/cpu_total-2014-05-23_21:27:50-2015-05-22_13:41:46}
+\caption{Porcentaje de CPU utilizada del servidor NFS}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Chapters/Chapter4/Figures/data/bytes_in-2015-05-12_11:56:26-2015-05-22_12:51:08}
+\caption{Datos de entrada al servidor durante un periodo de 10 días}.
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Chapters/Chapter4/Figures/data/bytes_out-2015-05-12_11:56:26-2015-05-22_12:56:12}
+\caption{Datos de salida durante un periodo de 10 días}
+\end{figure}
 
 \section{Identificación de \textit{stakeholders}}
 
 Un \textit{stakeholder} es cualquier grupo o individuo que tiene es afectado o afecta a la consecución de los objetivos de un proyecto marcados por una organización, así como un particular interés en el devenir del mismo. Claros ejemplos de este tipo de entidades son los diferentes usuarios finales del sistema, potenciales clientes o el equipo de desarrollo, entre muchos otros.
 
-En el proyecto en cuestión se identifican los siguientes \textit{stakeholders} y su motivación.
+En el proyecto en cuestión se identifican los siguientes \textit{stakeholders} y su motivación:
 
 \begin{itemize}
   \item Equipo de desarrollo. Su motivación es la consecución de todos los objetivos marcados en el sistema.
@@ -50,7 +66,7 @@ En el proyecto en cuestión se identifican los siguientes \textit{stakeholders} 
   \item Administradores del sistema, que deberán hacerse cargo del mantenimiento del sistema a largo plazo.
 \end{itemize}
 
-\subsection{Identificación de las necesidades de cada parte}
+\subsection{Identificación de las necesidades de cada \textit{stakeholder}}
 
 Basándose en la motivación de cada parte es posible definir las demandas de cada una de las partes. Otros mecanismos, como la realización de entrevistas u observaciones permiten complementan dicho proceso.
 
@@ -87,7 +103,7 @@ Basándose en la motivación de cada parte es posible definir las demandas de ca
 \end{itemize}
 
 \section{Identificación de requisitos}
-
+\citationneeded[TODO]
 \subsection{Requisitos de almacenamiento de la información}
 
 \begin{itemize}
@@ -494,49 +510,82 @@ Basándose en las características descritas anteriormente, se elige realizar el
 \end{comment}
 
 \begin{table}
-\begin{tabular}{|p{2.3cm}|p{6.5cm}|p{6.5cm}|}
+\begin{tabular}{|p{2.3cm}|p{12cm}|}
 \hline
-&\textbf{Virtualización de entornos de trabajo}&\textbf{Clúster con equipos de escritorio}\\%&Clúster con equipos embebidos multimedia&Clúster con sistemas embebidos\\
+&\textbf{Virtualización de entornos de trabajo}\\%&Clúster con equipos embebidos multimedia&Clúster con sistemas embebidos\\
 \hline
-Descripción&Crear un conjunto de nodos virtuales dentro de una máquina que simulen un sistema distribuido&Se plantea la reutilización de equipos de escritorio pertenecientes a la Universidad que ya no se encuentran en uso (debido a su renovación, falta de potencia como PC\dots) para la creación de este sistema.\\
+Descripción&Crear un conjunto de nodos virtuales dentro de una máquina que simulen un sistema distribuido\\
 \hline
-Ventajas intrínsecas&Simplificación del sistema (reduce las necesidades de adquisición y mantenimiento de hardware). Gestión de varias partes del sistema (sistema de ficheros centralizado, gestión de usuarios\dots) de forma mas sencilla. El coste se reduce significativamente.&La potencia del sistema es mucho mayor que la de cualquier otra solución considerada. Se reduce dramáticamente el coste de adquisición de material y permite dar un nuevo ciclo de vida a material universitario. La arquitectura es conocida y fiable.\\
+Ventajas intrínsecas&Simplificación del sistema (reduce las necesidades de adquisición y mantenimiento de hardware). Gestión de varias partes del sistema (sistema de ficheros centralizado, gestión de usuarios\dots) de forma mas sencilla. El coste se reduce significativamente.\\
 \hline
-Inconvenientes intrínsecos&No se exploran apenas las posibilidades de un sistema distribuido formado por varios equipos físicamente independientes e impide aprovechar dicha independencia para los objetivos didácticos del sistema.&No se exploran las características únicas de otros sistemas menos ``convencionales'', como los sistemas embebidos. El consumo energético es mayor y existe una mayor demanda de espacio que puede dificultar la implementación de diferentes aplicaciones didácticas ya planteadas como objetivo funcional del sistema.
+Inconvenientes intrínsecos&No se exploran apenas las posibilidades de un sistema distribuido formado por varios equipos físicamente independientes e impide aprovechar dicha independencia para los objetivos didácticos del sistema.\\
+\hline
+Facilidad de trabajo&Si bien el trabajo con cada una de las instancias es previsiblemente sencillo, debido a la eliminación de la gran parte del mantenimiento de la capa física subyacente, el uso de este tipo de sistema requiere una etapa de formación previa en materia de virtualización.\\
+\hline
+Prestaciones técnicas&Las prestaciones técnicas con las que se contaría, de llevarse a cabo este proyecto, son las de los equipos ya dispuestos para fines similares a este en el Centro\citationneeded[Preguntar a Andrés].\\
+\hline
+Coste económico&El coste económico es muy reducido si ya se cuenta con los equipos a utilizar y las licencias del \textit{software} de virtualización necesarias.\\
+\hline
+Escalabilidad&Dependiente de las capacidades de virtualización del equipo disponible, y el número de nodos y usuarios a gestionar.\\
+\hline
+Mantenimiento&Las necesidades propias de un sistema operativo multiusuario (previsiblemente \textbf{GNU/Linux}) junto a las específicas de la virtualización de los equipos (monitor de máquinas virtuales).\\
+\hline
+Consumo energético&\citationneeded[Preguntar a Andrés]\\
+\hline
+Obsolescencia&Se estima una larga vida útil del sistema. Las máquinas virtuales instaladas en un sistema físico son fácilmente trasladables a otro equipo, por lo que la dependencia de la parte física del sistema es muy baja.\\
+\hline
+Material&Se plantea el aprovechamiento de equipos ya presentes en la infraestructura en la que trabajar, por lo que se estima un coste muy pequeño a la hora de adquirir material.\\
+\hline
+Prestaciones técnicas&\citationneeded[Preguntar a Andrés]\\
+\hline
+Análisis coste/beneficio&\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\begin{tabular}{|p{2.3cm}|p{12cm}|}
+\hline
+&\textbf{Clúster con equipos de escritorio}\\%&Clúster con equipos embebidos multimedia&Clúster con sistemas embebidos\\
+\hline
+Descripción&Crear un conjunto de nodos virtuales dentro de una máquina que simulen un sistema distribuido\\
+\hline
+Ventajas intrínsecas&La potencia del sistema es mucho mayor que la de cualquier otra solución considerada. Se reduce dramáticamente el coste de adquisición de material y permite dar un nuevo ciclo de vida a material universitario. La arquitectura es conocida y fiable.\\
+\hline
+Inconvenientes intrínsecos&No se exploran las características únicas de otros sistemas menos ``convencionales'', como los sistemas embebidos. El consumo energético es mayor y existe una mayor demanda de espacio que puede dificultar la implementación de diferentes aplicaciones didácticas ya planteadas como objetivo funcional del sistema.
 \\
 \hline
-Facilidad de trabajo&Si bien el trabajo con cada una de las instancias es previsiblemente sencillo, debido a la eliminación de la gran parte del mantenimiento de la capa física subyacente, el uso de este tipo de sistema requiere una etapa de formación previa en materia de virtualización.&Soporte completo de casi la totalidad de las distribuciones de GNU/Linux. Las necesidades de manipulación de hardware se minimizan.\\
+Facilidad de trabajo&Soporte completo de casi la totalidad de las distribuciones de GNU/Linux. Las necesidades de manipulación de hardware se minimizan.\\
 \hline
-Prestaciones técnicas&Las prestaciones técnicas con las que se contaría, de llevarse a cabo este proyecto, son las de los equipos ya dispuestos para fines similares a este en el Centro\citationneeded[Preguntar a Andrés].&\begin{itemize}[noitemsep]
+Prestaciones técnicas&\begin{itemize}[noitemsep]
   \item Arquitectura x86/x86-64 (dependiendo de los equipos a utilizar finalmente).
   \item Entre 2 y 4 GB de memoria principal.
   \item Conectividad Ethernet, USB.
   \item Almacenamiento en disco duro.
 \end{itemize}\\
 \hline
-Coste económico&El coste económico es muy reducido si ya se cuenta con los equipos a utilizar y las licencias del \textit{software} de virtualización necesarias.&El coste económico de estos equipos es prácticamente nulo, pues ya se cuenta con los mismos y su utilización no exige la adquisición de nuevos equipos que los sustituyan. Estos equipos ya han sido retirados y no están empleados actualmente en ninguna tarea.\\
+Coste económico&El coste económico de estos equipos es prácticamente nulo, pues ya se cuenta con los mismos y su utilización no exige la adquisición de nuevos equipos que los sustituyan. Estos equipos ya han sido retirados y no están empleados actualmente en ninguna tarea.\\
 \hline
-Escalabilidad&Dependiente de las capacidades de virtualización del equipo disponible, y el número de nodos y usuarios a gestionar.&Dependiente únicamente del coste económico de la adquisición de nuevos equipos, o de la disponibilidad de equipos que no estén utilizados.\\
+Escalabilidad&Dependiente únicamente del coste económico de la adquisición de nuevos equipos, o de la disponibilidad de equipos que no estén utilizados.\\
 \hline
-Mantenimiento&Las necesidades propias de un sistema operativo multiusuario (previsiblemente \textbf{GNU/Linux}) junto a las específicas de la virtualización de los equipos (monitor de máquinas virtuales).&Las propias de cualquier sistema multiusuario y las específicas del montaje dado (en materia de refrigeración, gestión de cableado, etcétera).
+Mantenimiento&Las propias de cualquier sistema multiusuario y las específicas del montaje dado (en materia de refrigeración, gestión de cableado, etcétera).
 \\
 \hline
-Consumo energético&\citationneeded[Preguntar a Andrés]&El típico de cualquier equipo de escritorio.\\
+Consumo energético&El típico de cualquier equipo de escritorio.\\
 \hline
-Obsolescencia&Se estima una larga vida útil del sistema. Las máquinas virtuales instaladas en un sistema físico son fácilmente trasladables a otro equipo, por lo que la dependencia de la parte física del sistema es muy baja.&Estos equipos tienen una antigüedad de aproximadamente 4 años. Dicha edad no impide que sean capaces de utilizar aplicaciones actuales, y en general no se prevé la incompatibilidad con ninguna aplicación. No obstante, son equipos relativamente antiguos que han sido utilizados de forma intensiva, por lo que la probabilidad de fallo en los mismos puede ser elevada.\\
+Obsolescencia&Estos equipos tienen una antigüedad de aproximadamente 4 años. Dicha edad no impide que sean capaces de utilizar aplicaciones actuales, y en general no se prevé la incompatibilidad con ninguna aplicación. No obstante, son equipos relativamente antiguos que han sido utilizados de forma intensiva, por lo que la probabilidad de fallo en los mismos puede ser elevada.\\
 \hline
-Material&Se plantea el aprovechamiento de equipos ya presentes en la infraestructura en la que trabajar, por lo que se estima un coste muy pequeño a la hora de adquirir material.&
-Se cuenta con un número suficiente de equipos para la creación del sistema final.\\
+Material&Se cuenta con un número suficiente de equipos para la creación del sistema final.\\
 \hline
-Prestaciones técnicas&\citationneeded[Preguntar a Andrés]&\\
+Prestaciones técnicas&\\
 \hline
-Análisis coste/beneficio&&Si bien el coste de estos equipos es prácticamente nulo, dicho atractivo contrasta con los potenciales problemas que el uso de estos sistemas puede implicar (obsolescencia, uso de sistemas convencionales en detrimento de soluciones más innovadoras\dots).\\
+Análisis coste/beneficio&Si bien el coste de estos equipos es prácticamente nulo, dicho atractivo contrasta con los potenciales problemas que el uso de estos sistemas puede implicar (obsolescencia, uso de sistemas convencionales en detrimento de soluciones más innovadoras\dots).\\
 \hline
 \end{tabular}
 \end{table}
 
 \begin{table}
-\begin{tabular}{|p{2.3cm}|p{11cm}|}
+\begin{tabular}{|p{2.3cm}|p{12cm}|}
 \hline
 &\textbf{Clúster con sistemas embebidos}\\
 \hline
@@ -582,7 +631,7 @@ Análisis coste/beneficio&\\
 \end{table}
 
 \begin{table}
-\begin{tabular}{|p{2.3cm}|p{11cm}|}
+\begin{tabular}{|p{2.3cm}|p{12cm}|}
 \hline
 &\textbf{Clúster con equipos embebidos multimedia}\\
 \hline
@@ -663,14 +712,16 @@ Ubuntu Snappy Core, Raspbian, OpenELEC, RISC OS, Según la web de Arch Linux, ta
 \subsection{Elección del sistema operativo}
 \label{os:evaluation}
 \begin{table}[h]
-\begin{tabular}{|p{1.6cm}|p{5cm}|p{4cm}|p{3cm}|p{4cm}|p{4cm}|}
+\begin{tabular}{|p{1.6cm}|p{5cm}|p{5cm}|p{3cm}|p{5cm}|p{2cm}|}
 \hline
 \textbf{Nombre} & \textbf{Enfoque} & \textbf{Características notables} & \textbf{Ventajas} & \textbf{Inconvenientes} & \textbf{Software disponible}\\ \hline
-\textbf{Arch Linux} ARM & Distribución ligera centrada en el minimalismo y la disponibilidad de software novedoso. Requiere sin embargo que el usuario esté familiarizado con el sistema GNU/Linux antes de utilizarlo. & Muy optimizado con un ciclo de desarrollo que permite contar con software puntero en poco tiempo. & Eficiente, gran comunidad alrededor, relativamente sencillo de utilizar. & En ocasiones puede ser complejo su uso. Ya no se incluye en las distribuciones por defecto de la Fundación Raspberry Pi, lo cual puede suponer falta de soporte oficial. & 8700 paquetes disponibles en los repositorios oficiales, más pequeño que para otras distribuciones, si bien equiparable si se cuenta el \textbf{AUR} (\textit{Arch User Repository})\\ \hline
+\textbf{Arch Linux} ARM & Distribución ligera centrada en el minimalismo y la disponibilidad de software novedoso. Requiere que el usuario esté familiarizado con GNU/Linux. & Muy optimizado con un ciclo de desarrollo que permite contar con software puntero en poco tiempo. & Eficiente, gran comunidad alrededor, relativamente sencillo de utilizar. & En ocasiones puede ser complejo su uso. Ya no se incluye en las distribuciones por defecto de la Fundación Raspberry Pi, lo cual puede suponer falta de soporte oficial. & 8700 y 57000 en el \textbf{AUR}\footnote{\textit{Arch User Repository}: \href{https://aur.archlinux.org/}{https://aur.archlinux.org/}}\\ \hline
+
+% 8700 paquetes disponibles en los repositorios oficiales  ()\\ \hline
 
 \textbf{Ubuntu Snappy Core} & Centrado en la facilidad de uso. & Es la distribución más popular (en equipos de escritorio) contando con gran cantidad de \textit{software} disponible & Fácil de configurar, gran cantidad de soporte & Recientemente portado a la Raspberry de forma intensiva.El rendimiento de Ubuntu suele ser menor al de otros sistemas operativos debido a la gran cantidad de paquetes incluidos por defecto. & Unos 40000\footnote{\href{https://launchpad.net/ubuntu/trusty/armhf}{https://launchpad.net/ubuntu/trusty/armhf}}\\ \hline 
 
-\textbf{Raspbian} & Centrado en la estabilidad del sistema en detrimento de las últimas versiones de los componentes del sistema. & Es el sistema más utilizado en la plataforma Raspberry Pi. La fundación Raspberry Pi promociona su uso y la mayoría de los desarrolladores de la plataforma crean herramientas para este sistema. & Estable, gran cantidad de \textit{software} disponible, ya conocido. & La instalación básica del sistema incluye una gran cantidad de herramientas que consumen recursos del sistema de forma significativa. & Unos 20000\\ \hline
+\textbf{Raspbian} & Centrado en la estabilidad del sistema en detrimento de las últimas versiones de los componentes del sistema. & Es el sistema más utilizado en la plataforma Raspberry Pi. La fundación Raspberry Pi promociona su uso y la mayoría de los desarrolladores crean herramientas para este sistema. & Estable, gran cantidad de \textit{software} disponible, ya conocido. & La instalación básica del sistema incluye una gran cantidad de herramientas que consumen recursos del sistema de forma significativa. & Unos 20000\\ \hline
 \end{tabular}
 \caption{Comparativa de sistemas operativos (1)}
 \end{table}
@@ -678,13 +729,13 @@ Ubuntu Snappy Core, Raspbian, OpenELEC, RISC OS, Según la web de Arch Linux, ta
 
 \begin{landscape}
 \begin{table}[h]
-\begin{tabular}{|p{2cm}|p{4cm}|p{5cm}|p{3cm}|p{4cm}|p{4cm}|}
+\begin{tabular}{|p{2cm}|p{4cm}|p{5cm}|p{3cm}|p{4cm}|p{3.5cm}|}
 \hline
 \textbf{Nombre} & \textbf{Enfoque} & \textbf{Características notables} & \textbf{Ventajas} & \textbf{Inconvenientes} & \textbf{Software disponible}\\ \hline
 
 \textbf{RISC OS} & Diseñado específicamente para la arquitectura ARM, aprovechando las posibilidades de dicha arquitectura al máximo. & Eficiente, basado en el RISC OS original, incluyendo características del mismo. Sistema monousuario con multitarea cooperativa (en contraste con multihilo o multitarea apropiativa). & Muy eficiente & No esta basado en un sistema conocido previamente. Relativamente desfasado en cuanto a la arquitectura del sistema operativo. El software suele ser programado en BBC BASIC (con el que no se cuenta experiencia). & No se conocen cifras\\ \hline
 
-\textbf{Gentoo} & Diseñado para permitir la modificación del sistema al máximo nivel posible. Todo el \textit{software} es compilado en la máquina que lo instala, en lugar de utilizar ejecutables precompilados & Enfocado en la personalización. & Permite ser modificado de forma sencilla. & Poco soportado en Raspberry Pi. & \\ \hline
+\textbf{Gentoo} & Diseñado para permitir la modificación del sistema al máximo nivel posible. Todo el \textit{software} es compilado en la máquina que lo instala, en lugar de utilizar ejecutables precompilados & Enfocado en maximizar el grado de personalización del sistema. & Permite ser modificado de forma sencilla. & Poco soportado en Raspberry Pi. & \\ \hline
 
 \textbf{Windows 10} & Diseñado para el paradigma del Internet de las Cosas, & Sencillo de utilizar, con soporte (previsiblemente) del \textit{framework} \textbf{.NET}. & Soporta con un conjunto de tecnologías conocidas no compatibles con ninguna otra alternativa. Si el soporte de \textbf{.NET} es ofrecido constituiría una ventaja clave.  & Aún no se encuentra disponible\cite{windows10raspberry}. Esta diseñado para un propósito especifico. No compatible con software para Linux de forma nativa. & No se conocen cifras\\ \hline
 
@@ -752,7 +803,7 @@ El sistema final se compondrá de un conjunto elevado de nodos, por lo que se es
 Se plantea el uso del lenguaje de programación Python\footnote{\href{http://www.python.org}{http://python.org}} como herramienta principal de desarrollo, debido a su potencia de cálculo y simplicidad, que permite crear aplicaciones que consuman pocos recursos (aspecto vital, máxime cuando se utilizará sobre un sistema con un \textit{hardware} poco potente) de forma sencilla y rápida. También se plantea el uso de los lenguajes de programación C y C++ para el desarrollo de herramientas a bajo nivel, así como herramientas web para el desarrollo de aplicaciones utilizadas por el usuario.
 
 \section{Integración}
-
+\citationneeded[]
 \section{Proceso}
 
 La determinación del proceso de desarrollo del sistema influirá significativamente en la consecución de los diferentes objetivos del sistema.
@@ -818,7 +869,7 @@ Fases
 
 %REDMINE-driven description
 \subsection{Planificación temporal}
-
+\citationneeded[]
 % \begin{figure}[H]
 % \includepdf[pages=1,pagecommand={},offset=-2.5cm -3cm]{Chapters/Chapter3/Figures/tfg-gantt-mar.pdf}
 % \caption{Actividad realizada en el mes de marzo}
@@ -831,23 +882,23 @@ Fases
 % \includepdf[pages=2,pagecommand={},offset=-2.5cm -3cm]{Chapters/Chapter3/Figures/tfg-gantt-jun.pdf}
 % %\includepdf[pages=2,pagecommand={},offset=-2.5cm -3cm]{Chapters/Chapter3/Figures/tfg-gantt-apr.pdf}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{Chapters/Chapter3/Figures/tfg-gantt-mar}
-\end{figure}
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=0.7\textwidth]{Chapters/Chapter3/Figures/tfg-gantt-mar}
+% \end{figure}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{Chapters/Chapter3/Figures/tfg-gantt-apr}
-\end{figure}
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{Chapters/Chapter3/Figures/tfg-gantt-may}
-\end{figure}
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{Chapters/Chapter3/Figures/tfg-gantt-jun}
-\end{figure}
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=0.7\textwidth]{Chapters/Chapter3/Figures/tfg-gantt-apr}
+% \end{figure}
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=0.7\textwidth]{Chapters/Chapter3/Figures/tfg-gantt-may}
+% \end{figure}
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=0.7\textwidth]{Chapters/Chapter3/Figures/tfg-gantt-jun}
+% \end{figure}
 
 \chapter{Análisis y diseño}
 \lhead{Análisis y diseño}
@@ -915,18 +966,18 @@ Como equipos de soporte se plantea el uso del almacenamiento presente en los nod
 
 \section{Identificación de transacciones}
 
-Se plantea el siguiente flujo de transacciones por unidad de tiempo, basado en las estadísticas del sistema (ver \ref{dominio:estadisticast}). La frecuencia de estas operaciones se debe determinar en fases posteriores según estos datos.
+Se plantean los siguientes tipos de transacciones. La frecuencia estimada de estas operaciones se debe determinar en fases posteriores basados en las estadísticas del sistema actual (ver \ref{dominio:estadisticas}).
 
 \begin{itemize}
-\item Operaciones de usuario
-\subitem Autenticación contra el sistema.
-\subitem Proceso de ficheros.
-\subitem Generación de trabajos a realizar por el sistema.
-\subitem Realización de pruebas de algoritmos y despliegues.
-\item Operaciones de administración.
-\subitem Actualizaciones del sistema.
-\subitem Operaciones rutinarias de mantenimiento.
-\subitem Acceso y análisis de registros.
+  \item Operaciones de usuario
+    \subitem Autenticación contra el sistema.
+    \subitem Ejecución y diseño de trabajos a realizar por el sistema.
+    \subitem Realización de pruebas de algoritmos y despliegues.
+    \subitem Almacenamiento de ficheros.
+  \item Operaciones de administración.
+    \subitem Actualizaciones del sistema.
+    \subitem Operaciones rutinarias de mantenimiento.
+    \subitem Acceso y análisis de registros.
 \end{itemize}
 
 \subsection{Evolución del sistema}
@@ -939,7 +990,7 @@ Los aspectos de la adquisición de los diferentes componentes se definen en \ref
 
 \subsection{Identificación de usuarios}
 
-Los siguientes usuarios harán uso del sistema de forma directa o indirecta:
+Los siguientes usuarios harán uso del sistema de forma directa o indirecta\footnote{En los diferentes documentos de análisis adjuntos se detalla la interacción de cada entidad con cada uno de los componentes del sistema de forma más detallada, sirviendo esta enumeración como vista global de los diferentes agentes.}.
 
 \subsubsection{Desarrolladores}
 
@@ -957,29 +1008,52 @@ Docentes de las áreas anteriormente mencionadas, que utilizarán el sistema par
 
 Realizan tareas de mantenimiento en el sistema.
 
-\vspace{1.5cm}
-
-En los diferentes documentos de análisis adjuntos se detalla la interacción de cada entidad con cada uno de los componentes del sistema de forma más detallada, sirviendo esta enumeración como vista global de los diferentes agentes.
-
 \section{Diseño}
 
-%\section{Portada}
-%\section{Lista de cambios}
-%\section{Tabla de contenidos}
-%\section{Lista de figuras}
-%\section{Lista de tablas}
-\subsection{Introducción}
-\subsection{Ámbito del software}
+\subsection{Ámbito del sistema}
+
+Se distinguen dos tipos de nodos en el sistema. Los nodos principales se agruparán en una misma ubicación física y llevarán a cabo todas las tareas principales del sistema. De forma complementaria y accesoria existirán nodos especializados en una tarea que se les delegará. Las características de estos nodos (tiempo de computación superior, información almacenada en ellos\dots) hacen que el rendimiento del sistema aumente gracias al proceso de delegación.
+
 \subsection{Diseño de datos}
+
+Se plantean de forma global las siguientes fuentes de datos.
+
+%TODO\subsubsection{Objetos de datos}
+
+\subsubsection{Estructuras de archivo}
+
+\begin{itemize}
+  \item Directorio LDAP.
+  \item Bases de datos.
+  \item Directorios de usuario.
+  \item Ficheros de configuración.
+  \item Ficheros de \textit{log} para registrar todas las operaciones llevadas a cabo por el sistema, situaciones irregulares\dots, con el objetivo de ser analizados posteriormente.
+\end{itemize}
+
 \subsection{Diseño arquitectónico}
+
+Se plantea el siguiente esquema arquitectónico
+
+\citationneeded[]
+
 \subsection{Diseño de la interfaz}
+
+Las interfaces de acceso al sistema son las siguientes:
+
+\begin{itemize}
+\item Acceso mediante SSH
+\item Interfaces web, descritas en la documentación adjunta referente a cada una de las herramientas creadas o utilizadas.
+\end{itemize}
 \subsection{Diseño procedimental}
-\subsection{Referencia cruzada a los requisitos}
+
+Todos los aspectos de programación (algoritmos empleados, ejemplos de código) se reflejan en la documentación adjunta referente a cada una de las herramientas creadas o utilizadas.
+
 \subsection{Pruebas}
+\citationneeded[]
 \subsection{Entorno tecnológico del sistema}
 \subsection{Plan de desarrollo e implementación}
-%\section{Glosario}
-%\section{Apéndices}
+\subsection{Adquisición}
+\label{adquisicion}
 
 
 \subsection{Adquisición del sistema}
