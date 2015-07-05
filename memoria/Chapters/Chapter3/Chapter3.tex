@@ -21,7 +21,7 @@ Python se ha elegido como lenguaje principal de desarrollo. Es un lenguaje de pr
 
 \textbf{C} & Imperativo, acceso a características de muy bajo nivel de forma sencilla & Muy eficiente e integrable en cualquier contexto & El desarrollo en el lenguaje suele ser más complejo que en otros lenguajes de más alto nivel & Se incluye en componentes que trabajan con entornos tediosos donde el rendimiento es crucial, o no se puede contar con un intérprete de Python. \\ \hline
 
-\textbf{C}++ & Orientado a objetos & Gran rendimiento, acceso a todas las características de C & No es portable fácilmente en algunos casos & Se han creado los bindings de MarcoPolo para este lenguaje, así como las herramientas \textbf{marcobootstrap}\\ \hline
+\textbf{C}++ & Orientado a objetos & Gran rendimiento, acceso a todas las características de C & No es portable fácilmente en algunos casos & Se han creado los \textit{bindings} de MarcoPolo para este lenguaje, así como las herramientas \textbf{marcobootstrap}\\ \hline
 
 \textbf{Java} & Orientado a objetos & Multiplataforma, popular y sencillo de utilizar & El rendimiento del lenguaje y su \textit{JVM} en el sistema son inferiores al de otras alternativas & Se utiliza en los paquetes \textit{software} que hacen uso de \textbf{Tomcat} y se ha creado un \textit{binding} de MarcoPolo para el lenguaje.\\ \hline
 
@@ -29,7 +29,7 @@ Python se ha elegido como lenguaje principal de desarrollo. Es un lenguaje de pr
 
 \textbf{Perl} & Multiplataforma y multiparadigma & Portable, sencillo de utilizar, diseñado para la administración de sistemas & El uso de Perl como lenguaje de programación principal puede dificultar la realización de una serie de tareas clave. & Ninguna\\ \hline
 \end{tabular}
-\caption{Lenguajes de programación evaluados para su utilización en el sistema, y uso final}
+\caption[Lenguajes de programación evaluados]{Lenguajes de programación evaluados para su utilización en el sistema y uso final}
 \end{table}
 \end{landscape}
 
@@ -65,7 +65,7 @@ La mayoría de las interfaces web creadas utilizan este tipo de comunicación pa
 
 \subsection{OpenSSL}
 
-OpenSSL es la implementación de código abierto más popular de los protocolos SSL y TSL. En el sistema se utiliza de forma intensiva para garantizar la confidencialidad de las transmisiones entre partes así como para verificar la identidad en ambos lados de un canal de comunicación. La biblioteca proporciona bindings a C, C++, Java y Python, por lo que su integración en cualquiera de las herramientas creadas ha sido trivial. 
+OpenSSL es la implementación de código abierto más popular de los protocolos SSL y TSL. En el sistema se utiliza de forma intensiva para garantizar la confidencialidad de las transmisiones entre partes así como para verificar la identidad en ambos lados de un canal de comunicación. La biblioteca proporciona \textit{bindings} a C, C++, Java y Python, por lo que su integración en cualquiera de las herramientas creadas ha sido trivial. 
 
 \subsection{Hadoop}
 
@@ -104,7 +104,7 @@ Las prácticas de la asignatura Sistemas Distribuidos se realizan sobre el conte
 
 \subsection{QEMU}
 
-QEMU es un emulador y virtualizador de código abierto compatible con un gran abanico de arquitecturas y sistemas operativos diferentes, siendo compatile con hipervisores como Xen o KVM. En el sistema se utiliza como la primera propuesta de optimización del rendimiento del sistema en tareas como la compilación de código fuente.
+QEMU es un emulador y virtualizador de código abierto compatible con un gran abanico de arquitecturas y sistemas operativos diferentes, siendo compatible con hipervisores como Xen o KVM. En el sistema se utiliza como la primera propuesta de optimización del rendimiento del sistema en tareas como la compilación de código fuente.
 
 \section{Herramientas utilizadas para la gestión de código, calidad de \textit{software} y el proyecto}
 
@@ -165,7 +165,7 @@ En el proyecto Doxygen es utilizado para documentar aquellas partes del proyecto
 
 \subsection{PAM, LDAP}
 
-La gestión de los usuarios está delegada al sistema de autenticación preexistente en la infraestructura en la que se integra el sistema. En ella se cuenta con un servidor \textbf{LDAP}\footnote{\href{ldap1.cie.aulas.usal.es}{ldap1.cie.aulas.usal.es}} con la información de los usuarios. Mediante la configuración del paquete \textbf{LDAP} es posible accedeer a los mismos, y gracias a \textbf{PAM} (\textit{Pluggable Authentication Module}) se integra con el resto de métodos de autenticación presentes en el sistema.
+La gestión de los usuarios está delegada al sistema de autenticación preexistente en la infraestructura en la que se integra el sistema. En ella se cuenta con un servidor \textbf{LDAP}\footnote{\href{ldap1.cie.aulas.usal.es}{ldap1.cie.aulas.usal.es}} con la información de los usuarios. Mediante la configuración del paquete \textbf{LDAP} es posible acceder a los mismos, y gracias a \textbf{PAM} (\textit{Pluggable Authentication Module}) se integra con el resto de métodos de autenticación presentes en el sistema.
 
 Se ha creado un módulo para \textbf{PAM} para facilitar las tareas que el sistema debe realizar. Dicho módulo integra \textbf{MarcoPolo} y es conocido como \textbf{pam\_mkpolohomedir}\ref{pam_mkpolohomedir}.
 

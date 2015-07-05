@@ -149,7 +149,7 @@ El protocolo \textbf{MarcoPolo} resuelve la gran mayoría de los problemas de co
 
 \section{Paradigmas de programación}
 
-Junto a paradigmas populares como el orientado a objetos y procedural es necesario mencionar una serie de conceptos menos conocidos:
+Junto a paradigmas populares como el orientado a objetos y procedimental es necesario mencionar una serie de conceptos menos conocidos:
 
 \subsection{Programación orientada a eventos}
 \label{teoria:eventdriven}
@@ -370,7 +370,7 @@ La comunicación entre procesos dentro de un sistema distribuido constituye un a
 
 \subsection{\textit{Multicasting}}
 
-Si bien las comunicaciones punto a punto consituyen un mecanismo efectivo para la comunicación entre diferentes nodos, presentan una serie de ineficiencias a la hora de distribuir el mismo contenido entre un número significativo de nodos, al tener que enviar un mensaje diferente a cada uno de los destinatarios. Utilizar difusión (\textit{broadcast}) para este tipo de aplicaciones supone una alternativa efectiva, si bien obliga a las entidades no interesadas en el mensaje a procesar el mismo en ocasiones hasta el nivel de red de la pila OSI.
+Si bien las comunicaciones punto a punto constituyen un mecanismo efectivo para la comunicación entre diferentes nodos, presentan una serie de ineficiencias a la hora de distribuir el mismo contenido entre un número significativo de nodos, al tener que enviar un mensaje diferente a cada uno de los destinatarios. Utilizar difusión (\textit{broadcast}) para este tipo de aplicaciones supone una alternativa efectiva, si bien obliga a las entidades no interesadas en el mensaje a procesar el mismo en ocasiones hasta el nivel de red de la pila OSI.
 
 Como alternativa surge la comunicación \textit{multicast} sobre el protocolo IP. Este tipo de mensajes son enviados a una dirección en un rango reservado (en IPv4, 224.0.0.0-239.255.255.255, las direcciones con el valor 1110 en el primer octeto, conocidas como Clase D\cite{rfc791}), conocido como \textit{grupo}. Los nodos interesados en los mensajes publicados en dicho grupo pueden suscribirse al grupo multicast y cancelar su membresía en cualquier momento dado. Todos los mensajes son de tipo UDP, si bien existen extensiones al protocolo TCP para posibilitar su uso en aplicaciones multicast, si bien de forma experimental\cite{1019386, mysore2001ftp, Barcellos01efficienttcp-like, Visoottiviseth01m/tcp:the, talpadereliablemulticast} o soluciones que permiten realizar multicast fiable (con diferentes grados de fiabilidad) sobre UDP\cite{rfc2887}.
 
@@ -433,10 +433,11 @@ Sin embargo, este tipo de aplicaciones implican una serie de consideraciones adi
 Extendiendo los conceptos del código móvil a un contexto más amplio, como el de un sistema operativo, surge la idea de la compartimentación, consistente en la creación de entornos (compartimentos) capaces de ser migrados incluso en tiempo de ejecución entre máquinas, evitando la interrupción de un trabajo en caso de que el nodo sobre el que se está ejecutando deba ser interrumpido, entre otros muchos beneficios.
 
 \subsection{\textit{Cross-compiling}}
+\label{teoria:crosscompiler}
 
 La compilación cruzada posibilita el desarrollo de \textit{software} en plataformas diferentes a la plataforma objetivo, aquella sobre la que el programa final deberá ejecutarse. El compilador genera código máquina para la arquitectura objetivo a partir de los archivos de código fuente, en lugar del proceso común de generación de código para la arquitectura sobre la que se ejecuta el software de desarrollo (proceso conocido como compilación nativa).
 
-El uso de compiladores cruzados facilita el desarrollo para diferentes plataformas y en ocasiones es la única forma de crear aplicaciones para sistemas tales como dispositivos embebidos que no cuentan con herramientas de desarrollo. También es útil para facilitar la generación de código en entornos como granjas de servidores, generación de código para emuladores o realizar procesos de \textit{bootstrapping} (creación de las herramientas básicas de una nueva plataforma, como un sistema operativo o un enlazador).
+El uso de compiladores cruzados facilita el desarrollo para diferentes plataformas y en ocasiones es la única forma de crear aplicaciones para sistemas tales como dispositivos embebidos que no cuentan con herramientas de desarrollo. También es útil para facilitar la compilación de código en entornos como granjas de servidores, generación de código para emuladores o realizar procesos de \textit{bootstrapping} (creación de las herramientas básicas de una nueva plataforma, como un sistema operativo o un enlazador).
 
 \subsubsection{\textit{Toolchain}}
 

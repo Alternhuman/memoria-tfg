@@ -126,10 +126,35 @@
         keywordstyle=\color{blue},
         commentstyle=\color[rgb]{0.13,0.55,0.13}\em,
         stringstyle=\color[rgb]{0.7,0,0} }
-\usepackage[pdfpagemode={UseOutlines},bookmarks=true,bookmarksopen=true,
-   bookmarksopenlevel=0,bookmarksnumbered=true,hypertexnames=false,
-   colorlinks,linkcolor={blue},citecolor={blue},urlcolor={red},
-   pdfstartview={FitV},unicode,breaklinks=true]{hyperref}
+
+\usepackage[dvipsnames]{xcolor}
+\definecolor{usalred}{HTML}{d22020}
+\usepackage[pdfpagemode={UseOutlines},
+           bookmarks=true,
+           bookmarksopen=true,
+           bookmarksopenlevel=0,
+           bookmarksnumbered=true,
+           hypertexnames=false,
+           colorlinks=true,
+           linkcolor={blue},
+           citecolor={blue},
+           urlcolor={blue},
+           anchorcolor={blue},
+           filecolor={blue},
+           pdfstartview={FitV},
+           unicode,
+           breaklinks=true]{hyperref}
+% \usepackage[
+%   pdftitle={Mongolia games paper}, 
+%   pdfauthor={Daniel Rubenson, Peter Loewen \& Richard Sawyer}, 
+%   colorlinks=true, 
+%   urlcolor=green, 
+%   linkcolor=green, 
+%   citecolor=green, 
+%   filecolor=green, 
+%   raiselinks=false, 
+%   hyperfootnotes=true]{hyperref}
+
 \pdfstringdefDisableCommands{
    \let\\\space
 }
@@ -255,8 +280,8 @@
     \bigskip
     {\normalsize \facname \par}
     {\normalsize \deptname \par}
-    \bigskip
-    {\normalsize Doctor of Philosophy\par}
+    %\bigskip
+    %{\normalsize Doctor of Philosophy\par}
     \bigskip
     {\normalsize\bf \@title \par}
     \medskip
@@ -268,6 +293,34 @@
   \vfil\vfil\vfil\null
   \cleardoublepage
 }
+
+\newenvironment{englishabstract}
+{
+  \btypeout{Abstract}
+  \thispagestyle{empty}
+  \null\vfil
+  \begin{center}
+    \setlength{\parskip}{0pt}
+    {\normalsize \UNIVNAME \par}
+    \bigskip
+    {\huge{\textit{Abstract}} \par}
+    \bigskip
+    {\normalsize \facname \par}
+    {\normalsize \deptname \par}
+    \bigskip
+    %{\normalsize Doctor of Philosophy\par}
+    %\bigskip
+    {\normalsize\bf \@title \par}
+    \medskip
+    {\normalsize por \authornames \par}
+    \bigskip
+  \end{center}
+}
+{
+  \vfil\vfil\vfil\null
+  \cleardoublepage
+}
+
 \addtocounter{secnumdepth}{1}
 \setcounter{tocdepth}{6}
 \newcounter{dummy}
