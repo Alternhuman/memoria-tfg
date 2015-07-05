@@ -1,33 +1,33 @@
 \lhead{\emph{Dominio del problema}}
 \chapter{Dominio del problema}
 
-La utilización de algoritmos distribuidos implica mejoras sustanciales en una gran cantidad de aplicaciones, incrementando la capacidad global de cómputo de un sistema mediante la unión de varios dispositivos que trabajan como una única unidad manteniendo simultáneamente un alto grado de independencia y una tolerancia global a fallos muy alta. Sin embargo, el coste de la adquisición instalación y mantenimiento de dicho conjunto de nodos suele ser elevado. Además, los beneficios citados implican una mayor complejidad en el desarrollo de algoritmos que puedan aprovechar de forma óptima este tipo de sistemas. Varios factores como la sincronización y la comunicación entre partes, o errores tales como condiciones de carrera son mucho más comunes que en otro tipo de aplicaciones. Dichas circunstancias no solo dificultan el desarrollo de este sistema, sino también la comprensión de los fundamentos básicos de la Computación Distribuida, aspecto de relevancia para estudiantes de Ciencias de la Computación.
+\begin{cabstract}
+En el que se detalla la etapa de identificación de las características de la infraestructura donde el sistema se integrará, los diferentes usuarios que interactuarán con este y sus necesidades, y las propuestas de solución actuales relativas a la construcción de un sistema similar al planteado.
+\end{cabstract}
+La utilización de algoritmos distribuidos implica mejoras sustanciales en una gran cantidad de aplicaciones, incrementando la capacidad global de cómputo de un sistema mediante la unión de varios dispositivos que trabajan como una única entidad manteniendo simultáneamente un alto grado de independencia y una tolerancia global a fallos muy alta. Sin embargo, el coste de la adquisición, instalación y mantenimiento de dicho conjunto de nodos suele ser elevado. Además, los beneficios citados implican una mayor complejidad en el desarrollo de algoritmos que puedan aprovechar de forma óptima este tipo de sistemas. Varios factores como la sincronización y la comunicación entre partes, o errores tales como condiciones de carrera son mucho más comunes que en otro tipo de aplicaciones. Dichas circunstancias dificultan el desarrollo de este sistema y la comprensión de los fundamentos básicos de la Computación Distribuida, aspecto de relevancia para estudiantes de Ciencias de la Computación.
 
 Si bien la mayoría de las aplicaciones en las que el paradigma de computación distribuida introduce mejoras suelen exigir una gran capacidad de cálculo, su desarrollo únicamente requiere un conjunto de instancias independientes de un \textit{software} (sistema operativo, contenedor de servicios\dots) con las que trabajar. Dicha característica implica que la utilización de nodos de precio reducido (o incluso equipos ya presentes en una infraestructura) para el diseño, análisis y evaluación de este tipo de algoritmos constituye una alternativa válida frente a sistemas de precio superior.
 
-Sumada a dicha motivación existe el potencial aprovechamiento de este sistema como herramienta didáctica que facilite el aprendizaje de conceptos como el reparto de procesos, balance de carga o la compartición de recursos en asignaturas centradas en este tipo de conceptos dentro de los planes de estudio de Ingeniería Informática o titulaciones similares.
+Sumada a dicha motivación existe el potencial aprovechamiento de este sistema como herramienta didáctica que facilite el aprendizaje de conceptos como el reparto de procesos, balance de carga o la compartición de recursos en asignaturas centradas en este tipo de computadores dentro de los planes de estudio de Ingeniería Informática o titulaciones similares.
 
-En el presente proyecto se realiza un análisis de las diferentes alternativas que permitan satisfacer los objetivos definidos previamente.
-
-%TODOFigura: Tabla de alternativas
+En el presente proyecto se realiza un análisis de las diferentes alternativas que permitan satisfacer los objetivos definidos previamente como soporte a la toma de una decisión final.
 
 \section{Definición del dominio del problema}
 
 \subsection{Sistema actual: Infraestructura de la Facultad de Ciencias}
 \label{dominioproblema:infraestructura}
-El sistema se ubica en una Facultad universitaria con 1.463 alumnos \cite{uecusal:estudiantes} en titulaciones relacionadas con las Ciencias de la Computación. Estas titulaciones cuentan con varias asignaturas relacionadas con el áreas de conocimiento Computación Distribuida, en particular \textbf{Arquitectura de Computadores} y \textbf{Sistemas Distribuidos} \cite{DIA15GuiaAcademica}. La Facultad cuenta con varias aulas y laboratorios de informática donde los alumnos disponen de las herramientas necesarias para realizar los ejercicios y prácticas asignadas. Dichos espacios permiten utilizar cualquier equipo como nodo, dado que se integran en la misma red, siendo factible la comunicación directa entre equipos situados en diferentes aulas o incluso edificios. Todos los equipos cuentan con una conexión de red cableada capaz de soportar teóricamente transferencias de hasta 100 Mb/s de forma bidireccional, compartiendo un mismo espacio de direcciones de red (no existen \textit{routers} entre diferentes secciones de este segmento de la red de la Universidad). La gestión de credenciales de autenticación se delega a un directorio \textbf{LDAP} (\textit{Lightweight Directory Access Protocol}) \cite{RFC4516-comment}.
-Se cuenta con con un sistema de ficheros centralizado que permite acceder a la información de un usuario desde cualquier equipo, facilitando las tareas de replicación de la información entre nodos a través de los protocolos NFS y Samba. Todos estos datos han sido extraídos de diferentes entrevistas con el Administrador de la infraestructura.
+El sistema se ubica en una Facultad universitaria con 1.463 alumnos, de los cuales 562 son estudiantes de titulaciones relacionadas con las Ciencias de la Computación \cite{uecusal:estudiantes}. Estas titulaciones cuentan con varias asignaturas relacionadas con el áreas de conocimiento Computación Distribuida, en particular \textbf{Arquitectura de Computadores} y \textbf{Sistemas Distribuidos} \cite{DIA15GuiaAcademica}. La Facultad cuenta con varias aulas y laboratorios de informática donde los alumnos disponen de las herramientas necesarias para realizar los ejercicios y prácticas asignadas. Dichos espacios permiten utilizar cualquier equipo como nodo, dado que se integran en la misma red, siendo factible la comunicación directa entre equipos situados en diferentes aulas o incluso edificios. Todos los equipos cuentan con una conexión de red cableada capaz de soportar teóricamente transferencias de hasta 100 Mb/s de forma bidireccional, compartiendo un mismo espacio de direcciones de red (no existen \textit{routers} entre diferentes secciones de este segmento de la red de la Universidad). La gestión de credenciales de autenticación se delega a un directorio \textbf{LDAP} (\textit{Lightweight Directory Access Protocol}) \cite{RFC4516-comment},y se cuenta con con un sistema de ficheros centralizado que permite acceder a la información de un usuario desde cualquier equipo, facilitando las tareas de replicación de la información entre nodos a través de los protocolos \textbf{NFS} y \textbf{Samba}. Todos estos datos han sido extraídos de diferentes entrevistas con el Administrador de la infraestructura.
 
-La mayoría de las prácticas asignadas a los alumnos en las asignaturas de interés son desarrolladas en los lenguajes de programación \textbf{C} y \textbf{Java}, ya conocidos por la totalidad de los estudiantes gracias a asignaturas previamente cursadas.
+La mayoría de las prácticas asignadas en las asignaturas de interés son desarrolladas en los lenguajes de programación \textbf{C} y \textbf{Java}, ya conocidos por la totalidad de los estudiantes gracias a asignaturas previamente cursadas.
 
 \subsubsection{Problemas conocidos}
 
-Si bien la infraestructura existente es capaz de proveer a los estudiantes de los recursos necesarios, se identifican una serie de problemas inicialmente:
+Si bien la infraestructura existente es capaz de proveer a los estudiantes de los recursos necesarios para la realización de los diferentes ejercicios, se identifican una serie de problemas:
 
 \begin{itemize}
-  \item Cada grupo de alumnos necesita tres estaciones de trabajo para poder realizar algunos de los ejercicios propuestos.
+  \item Cada grupo de alumnos necesita tres estaciones de trabajo para poder realizar algunos de los ejercicios propuestos, y acceso físico a los mismos, consumiendo una gran cantidad de espacio.
   \item El servidor \textbf{NFS} constituye un ``cuello de botella'', pues todos los alumnos acceden a él de forma intensiva, causando una excesiva carga de trabajo por el gran número de peticiones al mismo.
-  \item Existen una serie de problemas con las herramientas de desarrollo utilizadas actualmente, como la dificultad de configuración o la identificación de recursos.
+  \item Existen una serie de problemas con las herramientas de desarrollo utilizadas actualmente, como la dificultad de configuración o la ubicación e identificación de recursos.
 \end{itemize}
 
 \subsubsection{Rendimiento}
@@ -55,12 +55,12 @@ Uno de los problemas actuales que la infraestructura presenta es la sobrecarga d
 
 \section{Identificación de \textit{stakeholders}}
 
-Un \textit{stakeholder} es cualquier grupo o individuo que tiene es afectado o afecta a la consecución de los objetivos de un proyecto marcados por una organización, así como un particular interés en el devenir del mismo. Claros ejemplos de este tipo de entidades son los diferentes usuarios finales del sistema, potenciales clientes o el equipo de desarrollo, entre muchos otros.
+Un \textit{stakeholder} es cualquier grupo o individuo que afecta o es afectado por la consecución de los objetivos de un proyecto marcados por una organización, así como un particular interés en el devenir del mismo. Claros ejemplos de este tipo de entidades son los diferentes usuarios finales del sistema, potenciales clientes o el equipo de desarrollo, entre muchos otros.
 
 En el proyecto en cuestión se identifican los siguientes \textit{stakeholders} y su motivación:
 
 \begin{itemize}
-  \item Equipo de desarrollo. Su motivación es la consecución de todos los objetivos marcados en el sistema.
+  \item Equipo de desarrollo. Su motivación es la consecución de todos los objetivos marcados en el sistema. Dentro de este grupo existen dos categorías: los desarrolladores y los supervisores del proyecto.
   \item Estudiantes de tercer y cuarto curso del Grado en Ingeniería Informática, que podrán utilizar el sistema como herramienta didáctica.
   \item Profesores de las asignaturas Arquitectura de Computadores y Sistemas Distribuidos, que aprovecharán el sistema final en dichas asignaturas.
   \item Administradores del sistema, que deberán hacerse cargo del mantenimiento del sistema a largo plazo.
@@ -69,6 +69,13 @@ En el proyecto en cuestión se identifican los siguientes \textit{stakeholders} 
 \subsection{Identificación de las necesidades de cada \textit{stakeholder}}
 
 Basándose en la motivación de cada parte es posible definir las demandas de cada una de las partes. Otros mecanismos, como la realización de entrevistas u observaciones permiten complementan dicho proceso.
+
+\subsubsection{Equipo de desarrollo}
+
+\begin{itemize}
+\item Acceso a diferentes recursos gestionados por la infraestructura.
+\item Acceso a herramientas que permitan construir el \textit{software} y \textit{hardware} a desarrollar.
+\end{itemize}
 
 \subsubsection{Alumnos}
 
@@ -79,14 +86,14 @@ Basándose en la motivación de cada parte es posible definir las demandas de ca
   \item Facilidades para el despliegue de los diferentes ejecutables en todas las máquinas, así como el consumo de los servicios que estos implementen.
 \end{itemize}
 
-\subsection{Necesidades de los docentes}
+\subsubsection{Docentes}
 
 \begin{itemize}
   \item Entorno versátil sobre el cual puedan llevarse a cabo la totalidad de las prácticas y ejercicios propuestos, aportando si es posible algún tipo de ventaja sobre el sistema en uso.
   \item Instalación y configuración simple.
 \end{itemize}
 
-\subsection{Administradores}
+\subsubsection{Administradores}
 
 \begin{itemize}
   \item Sistema integrable en la infraestructura actual cuyo mantenimiento sea sencillo y cuyo enfoque garantice la escalabilidad y su durabilidad. Documentación extensa sobre el funcionamiento interno del sistema.
@@ -105,7 +112,7 @@ Basándose en la motivación de cada parte es posible definir las demandas de ca
 \section{Identificación de requisitos}
 \citationneeded[TODO]
 \subsection{Requisitos de almacenamiento de la información}
-
+\citationneeded[TODO]
 \begin{itemize}
   \item Gestión de usuarios (credenciales de autenticación).
   \item Gestión de los datos de cada usuario.
@@ -115,9 +122,9 @@ Basándose en la motivación de cada parte es posible definir las demandas de ca
 
 \subsection{Identificación de requisitos funcionales}
 
-
+\citationneeded[TODO]
 \subsection{Identificación de requisitos no funcionales}
-
+\citationneeded[TODO]
 \subsubsection{Mantenimiento y robustez}
 
 El \textit{software} debe ser mantenible y robusto, siendo dicha robustez garantizada mediante el uso de \textit{software} utilizado por una base de usuarios significativa, una arquitectura conocida, pruebas realizadas sobre él o un equipo de desarrollo en activo, entre otras.
@@ -171,21 +178,21 @@ Joshua Kiepert, estudiante de doctorado en la universidad Boise State, crea este
 El coste total del proyecto según Kiepert es de 1967.21 dólares.
 
 \subsubsection{Dramble (Jeff Geerling)}
+\label{geerling:dramble}
 
 El clúster \textit{Dramble} está formado por 6 equipos \textbf{Raspberry Pi} capaces de ejecutar en conjunto el gestor de contenidos \textbf{Drupal}\footnote{\href{https://www.drupal.org/}{drupal.org}}. Es utilizado como servidor de pruebas para la ejecución de instancias de este \textit{software} de forma experimental o durante demostraciones en público\cite{geerlingraspberry}. Se compone del conjunto de nodos \textit{Rasbperry Pi} y los mecanismos de red y alimentación que interconectan y proveen de energía a los mismos.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.5\textwidth]{Chapters/Chapter4/Figures/raspberry-pi-dramble-cluster-wired.jpg}
+  \includegraphics[width=0.4\textwidth]{Chapters/Chapter4/Figures/raspberry-pi-dramble-cluster-wired.jpg}
   \caption[Dramble]{El \textit{Dramble} en ejecución}
-  \label{geerling:dramble}
-\end{figure}
 
+\end{figure}
 El coste estimado es de 35 dólares por cada Raspberry Pi mas el coste añadido de la red y el cableado de alimentación, totalizando aproximadamente 300 dólares.
 
-\subsection{Bramble (GCHQ)}
+\subsubsection{Bramble (GCHQ)}
 
-El organismo gubernamental \textit{Government Communication Headquarters}, agencia de inteligencia del Gobierno Británico presentó en la \textit{Big Bang Fair} de 2015 un proyecto educativo que combina 66 \textit{Raspberry Pi} en un clúster jerárquico con 8 grupos de 8 nodos, cada uno de ellos con un coordinador. El cableado se reduce gracias al uso de la tecnología \textbf{PoE} (\textit{Power over Ethernet}), y cada \textbf{Raspberry} cuenta con un conjunto de elementos adicionales, como un reloj de tiempo real, disco duro externo, cámara, o punto de acceso WiFi\cite{gchqbramble}.
+El organismo gubernamental \textit{Government Communication Headquarters}, agencia de inteligencia del Gobierno Británico, presentó en la \textit{Big Bang Fair} de 2015 un proyecto educativo que combina 66 placas \textit{Raspberry Pi} en un clúster jerárquico con 8 grupos de 8 nodos, cada uno de ellos con un coordinador. El cableado se reduce gracias al uso de la tecnología \textbf{PoE} (\textit{Power over Ethernet}), que provee de conexión a la redes eléctrica y de interconexión a través de un único canal físico. Cada \textbf{Raspberry} cuenta además con un conjunto de elementos adicionales, como un reloj de tiempo real, disco duro externo, cámara, o punto de acceso \textbf{Wi-Fi} \cite{gchqbramble}.
 
 \begin{figure}[H]
   \centering
@@ -196,7 +203,7 @@ El organismo gubernamental \textit{Government Communication Headquarters}, agenc
 
 Se desconocen datos sobre el coste total del sistema.
 
-\subsection{Clúster Iridis (Simon Cox, University of Southampton)}
+\subsubsection{Clúster Iridis (Simon Cox, University of Southampton)}
 
 Con el objetivo de atraer a jóvenes estudiantes al mundo de la computación, el profesor Simon Cox crea este clúster con 64 \textbf{Raspberry Pi B} sobre una estructura construida con LEGO\cite{cox:raspberry}. El sistema está diseñado para ejecutar aplicaciones sobre \textit{MPI}. Se desconocen datos sobre el coste total del sistema.
 
@@ -207,9 +214,9 @@ Con el objetivo de atraer a jóvenes estudiantes al mundo de la computación, el
   \label{cox:iridis}
 \end{figure}
 
-\subsection{Paralella}
+\subsubsection{Paralella}
 
-Paralella es un proyecto de la compañía Adapteva que integra en un único chip un conjunto elevado de procesadores independientes con el objetivo de incrementar la capacidad de procesamiento total del sistema a un coste muy reducido\cite{paralella}. El coste es de 99 dólares por unidad.
+Paralella es un proyecto de la compañía Adapteva que integra en un único chip un conjunto elevado de procesadores independientes con el objetivo de incrementar la capacidad de procesamiento total del sistema a un coste muy reducido, de 99 dólares por unidad \cite{paralella}.
 
 \subsection{Virtualización}
 
@@ -497,22 +504,22 @@ A la hora de evaluar las diferentes opciones que satisfagan los requisitos descr
 
 % El Departamento de Informática y Automática cuenta con varios de estos equipos actualmente que podrían disponerse para el uso en el proyecto.
 
-\subsection{Elección de la solución}
+% \subsection{Elección de la solución}
 
-Basándose en las características descritas anteriormente, se elige realizar el sistema utilizando sistemas embebidos de bajo coste en virtud de los siguientes aspectos positivos:
+% Basándose en las características descritas anteriormente, se elige realizar el sistema utilizando sistemas embebidos de bajo coste en virtud de los siguientes aspectos positivos:
 
-\begin{itemize}[noitemsep]
-\item Compatibilidad con de gran cantidad de \textit{software} y sistemas operativos.
-\item Versatilidad y facilidad de interconexión.
-\item Se cuenta con experiencia en el uso de este tipo de dispositivos.
-\item Bajo coste.
-\end{itemize}
+% \begin{itemize}[noitemsep]
+% \item Compatibilidad con de gran cantidad de \textit{software} y sistemas operativos.
+% \item Versatilidad y facilidad de interconexión.
+% \item Se cuenta con experiencia en el uso de este tipo de dispositivos.
+% \item Bajo coste.
+% \end{itemize}
 \end{comment}
 
-\begin{table}
-\begin{tabular}{|p{2.3cm}|p{12cm}|}
+\begin{table}[H]
+\begin{tabular}{|p{2.4cm}|p{12cm}|}
 \hline
-&\textbf{Virtualización de entornos de trabajo}\\%&Clúster con equipos embebidos multimedia&Clúster con sistemas embebidos\\
+&\textbf{Virtualización de entornos de trabajo}\\
 \hline
 Descripción&Crear un conjunto de nodos virtuales dentro de una máquina que simulen un sistema distribuido\\
 \hline
@@ -541,12 +548,13 @@ Prestaciones técnicas&\citationneeded[Preguntar a Andrés]\\
 Análisis coste/beneficio&\\
 \hline
 \end{tabular}
+\caption{Evaluación de las características de la virtualización de entornos de trabajo}
 \end{table}
 
-\begin{table}
-\begin{tabular}{|p{2.3cm}|p{12cm}|}
+\begin{table}[H]
+\begin{tabular}{|p{2.4cm}|p{12cm}|}
 \hline
-&\textbf{Clúster con equipos de escritorio}\\%&Clúster con equipos embebidos multimedia&Clúster con sistemas embebidos\\
+&\textbf{Clúster con equipos de escritorio}\\
 \hline
 Descripción&Crear un conjunto de nodos virtuales dentro de una máquina que simulen un sistema distribuido\\
 \hline
@@ -557,12 +565,18 @@ Inconvenientes intrínsecos&No se exploran las características únicas de otros
 \hline
 Facilidad de trabajo&Soporte completo de casi la totalidad de las distribuciones de GNU/Linux. Las necesidades de manipulación de hardware se minimizan.\\
 \hline
-Prestaciones técnicas&\begin{itemize}[noitemsep]
-  \item Arquitectura x86/x86-64 (dependiendo de los equipos a utilizar finalmente).
-  \item Entre 2 y 4 GB de memoria principal.
-  \item Conectividad Ethernet, USB.
-  \item Almacenamiento en disco duro.
-\end{itemize}\\
+Prestaciones técnicas&Los equipos cuentan con una arquitectura x86/x86-64, entre 2 y 4 GB de memoria principal, conectividad Ethernet y USB, así como espacio de almacenamiento en un disco duro. 
+%  \vspace{-\topsep}
+%  \begin{itemize}[noitemsep]
+%   \setlength{\parskip}{0pt}
+%   \setlength{\itemsep}{0pt plus 1pt}
+%   \item Arquitectura x86/x86-64 (dependiendo de los equipos a utilizar finalmente).
+%   \item Entre 2 y 4 GB de memoria principal.
+%   \item Conectividad Ethernet, USB.
+%   \item Almacenamiento en disco duro.
+% \end{itemize}
+% \vspace{-\topsep}
+\\
 \hline
 Coste económico&El coste económico de estos equipos es prácticamente nulo, pues ya se cuenta con los mismos y su utilización no exige la adquisición de nuevos equipos que los sustituyan. Estos equipos ya han sido retirados y no están empleados actualmente en ninguna tarea.\\
 \hline
@@ -577,17 +591,16 @@ Obsolescencia&Estos equipos tienen una antigüedad de aproximadamente 4 años. D
 \hline
 Material&Se cuenta con un número suficiente de equipos para la creación del sistema final.\\
 \hline
-Prestaciones técnicas&\\
-\hline
 Análisis coste/beneficio&Si bien el coste de estos equipos es prácticamente nulo, dicho atractivo contrasta con los potenciales problemas que el uso de estos sistemas puede implicar (obsolescencia, uso de sistemas convencionales en detrimento de soluciones más innovadoras\dots).\\
 \hline
 \end{tabular}
+\caption{Evaluación del uso de un clúster con equipos de escritorio}
 \end{table}
 
-\begin{table}
-\begin{tabular}{|p{2.3cm}|p{12cm}|}
+\begin{table}[H]
+\begin{tabular}{|p{2.4cm}|p{12cm}|}
 \hline
-&\textbf{Clúster con sistemas embebidos}\\
+&\textbf{Clúster con computadores embebidos}\\
 \hline
 Descripción&Recientemente han surgido en el mercado sistemas embebidos con capacidad de cómputo elevada y precio muy reducido (en torno a los 40 euros por unidad). Estos equipos destacan además por su versatilidad. La mayoría de ellos son capaces de ejecutar una gran variedad de sistemas operativos (GNU/Linux, RISC OS, BSD, Windows\dots), incluyen una gran cantidad de mecanismos de interconexión y soportan la mayoría de herramientas presentes en equipos de escritorio y servidores.
 
@@ -601,14 +614,15 @@ Inconvenientes intrínsecos&La potencia del sistema es pequeña.\\
 \hline
 Facilidad de trabajo&Existe una amplia documentación del \textit{hardware} de este tipo de equipos, así como numerosos proyectos basados en los mismos, entre los que se incluyen sistemas similares a la solución planteada. Se cuenta además con experiencia en el manejo de estas placas.\\
 \hline
-Prestaciones técnicas&
-\begin{itemize}[noitemsep]
-  \item Generalmente basados en la arquitectura ARM.
-  \item Entre 512 MB y 2 GB de memoria principal.
-  \item Conectividad \textbf{Ethernet},\textbf{I\textsuperscript{2}C}, \textbf{GPIO}, \textbf{USB}.
-  \item Alimentación a través de \textbf{USB}/\textbf{GPIO}.
-  \item Almacenamiento secundario basado en tarjetas microSD/SD, expansible a través de USB.
-\end{itemize}\\
+Prestaciones técnicas&Generalmente basados en la arquitectura ARM. Disponen de entre 512 MB y 2GB de memoria principal, conectividad Ethernet, I\textsuperscript{2}C, GPIO y USB. La alimentación se realiza Alimentación a través de un puerto USB o el GPIO.
+% \begin{itemize}[noitemsep]
+%   \item Generalmente basados en la arquitectura ARM.
+%   \item Entre 512 MB y 2 GB de memoria principal.
+%   \item Conectividad \textbf{Ethernet},\textbf{I\textsuperscript{2}C}, \textbf{GPIO}, \textbf{USB}.
+%   \item Alimentación a través de \textbf{USB}/\textbf{GPIO}.
+%   \item Almacenamiento secundario basado en tarjetas microSD/SD, expansible a través de USB.
+% \end{itemize}
+\\
 \hline
 Coste económico&Muy reducido, con un coste por nodo de entre 20 y 40 euros, al que se debe añadir los mecanismos de alimentación e interconexión.\\
 \hline
@@ -623,15 +637,14 @@ Se prevé que las necesidades que el sistema cubre no demandarán una mayor pote
 \hline
 Material&El Departamento de Informática y Automática cuenta con varios de estos equipos actualmente que podrían disponerse para el uso en el proyecto.\\
 \hline
-Prestaciones técnicas&\\
-\hline
 Análisis coste/beneficio&\\
 \hline
 \end{tabular}
+\caption{Evaluación del uso de un clúster con computadores embebidos}
 \end{table}
 
-\begin{table}
-\begin{tabular}{|p{2.3cm}|p{12cm}|}
+\begin{table}[H]
+\begin{tabular}{|p{2.4cm}|p{12cm}|}
 \hline
 &\textbf{Clúster con equipos embebidos multimedia}\\
 \hline
@@ -643,21 +656,21 @@ Inconvenientes intrínsecos&Dificultad de conexión (generalmente la conexión a
 \hline
 Facilidad de trabajo&Es difícil determinar la viabilidad de esta solución, pues no se cuenta con experiencia previa ni una documentación amplia al respecto. Además, es probable que sea necesaria la manipulación del sistema a muy bajo nivel, lo cual incrementa el grado de complejidad de la solución.\\
 \hline
-Prestaciones técnicas&Como referencia se utilizan las prestaciones de uno de los equipos más populares, el \textbf{Google Chromecast}\footnote{\href{https://wikidevi.com/wiki/Google\_Chromecast\_\%28H2G2-42\%29}{https://wikidevi.com/wiki/Google\_Chromecast\_\%28H2G2-42\%29}}
-\begin{itemize}
-  \item Procesador ARM de 2 núcleos a 1.2 GHz.
-  \item 512 MB de memoria principal.
-  \item 2 GB de almacenamiento no extensibles.
-  \item Alimentación por micro-USB.
-  \item Utiliza un sistema operativo basado en \textbf{Google TV}, \textbf{ChromeOS} y \textbf{Android}.
-\end{itemize}\\
+Prestaciones técnicas&Como referencia se utilizan las prestaciones de uno de los equipos más populares, el \textbf{Google Chromecast}\footnote{\href{https://wikidevi.com/wiki/Google\_Chromecast\_\%28H2G2-42\%29}{https://wikidevi.com/wiki/Google\_Chromecast\_\%28H2G2-42\%29}}: Procesador ARM de 2 núcleos a 1.2 GHz. 512 MB de memoria principal. 2 GB de almacenamiento no extensibles. La alimentación se realiza por micro-USB. Utiliza un sistema operativo basado en Google TV, ChromeOS y Android.
+% \begin{itemize}[noitemsep]
+%   \item Procesador ARM de 2 núcleos a 1.2 GHz.
+%   \item 512 MB de memoria principal.
+%   \item 2 GB de almacenamiento no extensibles.
+%   \item Alimentación por micro-USB.
+%   \item Utiliza un sistema operativo basado en \textbf{Google TV}, \textbf{ChromeOS} y \textbf{Android}.
+% \end{itemize}
+\\
 \hline
-Coste económico&El coste de estos equipos es reducido, generalmente inferior a 30 € por unidad.\\
+Coste económico&El coste de estos equipos es reducido, inferior a 30 € por unidad.\\
 \hline
-Escalabilidad&Dependiente del coste de adquisición de nuevos equipos y las facilidades de interconexión de la plataforma (previsiblemente compleja, debido a la ausencia de sistemas de interconexión más allá de conexiones inalámbricas).\\
+Escalabilidad&Dependiente del coste de adquisición de nuevos equipos y las facilidades de interconexión de la plataforma (previsiblemente compleja, debido a la ausencia de otra conexión diferente a la inalámbrica).\\
 \hline
-Mantenimiento&Dependiente del número de modificaciones que se realicen a las capas más bajas. En el peor de los casos puede que el administrador del sistema tenga que someterse a una etapa de formación para realizar un mantenimiento adecuado del sistema sin depender de los desarrolladores del mismo.
- Otras necesidades son aquellas derivadas del mantenimiento de un sistema multiusuario sumadas a posibles problemas de interconexión si se utiliza una red inalámbrica (conexión a la LAN de la infraestructura local, interferencias\dots).\\
+Mantenimiento&Dependiente del número de modificaciones que se realicen a las diferentes capas del sistema. En el peor de los casos puede que el administrador tenga que someterse a una etapa de formación para realizar un mantenimiento adecuado del sistema sin depender de los desarrolladores. Otras necesidades son aquellas derivadas del mantenimiento de un sistema multiusuario sumadas a posibles problemas de interconexión si se utiliza una red inalámbrica.\\
 \hline
 Consumo energético&El diseño de estos equipos está orientado a la minimización del consumo energético, por lo que se estima reducido.\\
 \hline
@@ -666,21 +679,31 @@ Se prevé que las necesidades que el sistema cubre no demandarán una mayor pote
 \hline
 Material&No se dispone de material de estas o similares características.\\
 \hline
-Prestaciones técnicas&\\
-\hline
 Análisis coste/beneficio&\\
 \hline
 \end{tabular}
+\caption{Evaluación del uso de un clúster con equipos embebidos multimedia}
 \end{table}
 
-%TODO: Análisis de diferentes alternativas
+\subsection{Elección de la solución}
 
+Basándose en las características descritas anteriormente, se elige realizar el sistema utilizando sistemas embebidos de bajo coste en virtud de los siguientes aspectos positivos.
+
+\begin{itemize}[noitemsep]
+\item Compatibilidad con de gran cantidad de \textit{software} y sistemas operativos.
+\item Versatilidad y facilidad de interconexión.
+\item Se cuenta con experiencia en el uso de este tipo de dispositivos.
+\item Bajo coste.
+\end{itemize}
+
+Dentro de las diferentes alternativas, se escoge la placa \textbf{Raspberry Pi} como modelo concreto.
+
+%\end{comment}
 \subsection{Raspberry Pi: Elección de las características básicas del sistema}
 
 Se opta por las placas de la familia \textbf{Raspberry Pi} para la realización el sistema debido a la gran cantidad de soporte con el que cuentan, tanto por parte de la fundación \textbf{Raspberry Pi} como por diferentes comunidades de desarrolladores. Es el computador de este tipo que más sistemas operativos soporta\footnote{\href{http://elinux.org/RPi_Distributions}{http://elinux.org/RPi\_Distributions}} y existen gran cantidad de proyectos que dotan de mayor funcionalidad al sistema y que generalmente son diseñados para aprovechar las características del \textit{hardware} específico de la máquina.
 
-Comparativa de las características relevantes de los diferentes modelos de Raspberry Pi.
-Quedan descartados los modelos A y A+ por la carencia de puerto Ethernet (amén de otras características necesarias).
+
 \begin{landscape}
 \begin{table}[h]
 \begin{tabular}{|p{3.2cm}|p{6cm}|p{6cm}|p{6cm}|}
@@ -704,7 +727,8 @@ Ubuntu Snappy Core, Raspbian, OpenELEC, RISC OS, Según la web de Arch Linux, ta
 \textbf{Otros} & Modelo descatalogado, el soporte oficial y proporcionado por la comunidad probablemente será menor que para los modelos más recientes en el futuro. &  & Lleva poco tiempo en el mercado (apenas un mes). Se conocen pequeños fallos en el hardware (fotosensibilidad de algún componente).\\ \hline
 
 \end{tabular}
-\caption{Comparativa de los diferentes modelos de Raspberry Pi}
+\caption{Comparativa de las características relevantes de los diferentes modelos de Raspberry Pi.
+Quedan descartados los modelos A y A+ por la carencia de puerto Ethernet (además de otras características necesarias).}
 \end{table}
 \end{landscape}
 
@@ -712,10 +736,10 @@ Ubuntu Snappy Core, Raspbian, OpenELEC, RISC OS, Según la web de Arch Linux, ta
 \subsection{Elección del sistema operativo}
 \label{os:evaluation}
 \begin{table}[h]
-\begin{tabular}{|p{1.6cm}|p{5cm}|p{5cm}|p{3cm}|p{5cm}|p{2cm}|}
+\begin{tabular}{|p{1.7cm}|p{4.7cm}|p{4.7cm}|p{3cm}|p{5cm}|p{2cm}|}
 \hline
 \textbf{Nombre} & \textbf{Enfoque} & \textbf{Características notables} & \textbf{Ventajas} & \textbf{Inconvenientes} & \textbf{Software disponible}\\ \hline
-\textbf{Arch Linux} ARM & Distribución ligera centrada en el minimalismo y la disponibilidad de software novedoso. Requiere que el usuario esté familiarizado con GNU/Linux. & Muy optimizado con un ciclo de desarrollo que permite contar con software puntero en poco tiempo. & Eficiente, gran comunidad alrededor, relativamente sencillo de utilizar. & En ocasiones puede ser complejo su uso. Ya no se incluye en las distribuciones por defecto de la Fundación Raspberry Pi, lo cual puede suponer falta de soporte oficial. & 8700 y 57000 en el \textbf{AUR}\footnote{\textit{Arch User Repository}: \href{https://aur.archlinux.org/}{https://aur.archlinux.org/}}\\ \hline
+\textbf{Arch Linux ARM} & Distribución ligera centrada en el minimalismo y la disponibilidad de software novedoso. Requiere que el usuario esté familiarizado con GNU/Linux. & Muy optimizado con un ciclo de desarrollo que permite contar con software puntero en poco tiempo. & Eficiente, gran comunidad alrededor, relativamente sencillo de utilizar. & En ocasiones puede ser complejo su uso. Ya no se incluye en las distribuciones por defecto de la Fundación Raspberry Pi, lo cual puede suponer falta de soporte oficial. & 8700 y 57000 en el \textbf{AUR}\footnote{\textit{Arch User Repository}: \href{https://aur.archlinux.org/}{https://aur.archlinux.org/}}\\ \hline
 
 % 8700 paquetes disponibles en los repositorios oficiales  ()\\ \hline
 
@@ -729,15 +753,16 @@ Ubuntu Snappy Core, Raspbian, OpenELEC, RISC OS, Según la web de Arch Linux, ta
 
 \begin{landscape}
 \begin{table}[h]
-\begin{tabular}{|p{2cm}|p{4cm}|p{5cm}|p{3cm}|p{4cm}|p{3.5cm}|}
+%\begin{tabular}{|p{2cm}|p{4cm}|p{5cm}|p{3cm}|p{4cm}|p{3.5cm}|}
+\begin{tabular}{|p{1.7cm}|p{4.7cm}|p{4.7cm}|p{3cm}|p{5cm}|p{2cm}|}
 \hline
 \textbf{Nombre} & \textbf{Enfoque} & \textbf{Características notables} & \textbf{Ventajas} & \textbf{Inconvenientes} & \textbf{Software disponible}\\ \hline
 
 \textbf{RISC OS} & Diseñado específicamente para la arquitectura ARM, aprovechando las posibilidades de dicha arquitectura al máximo. & Eficiente, basado en el RISC OS original, incluyendo características del mismo. Sistema monousuario con multitarea cooperativa (en contraste con multihilo o multitarea apropiativa). & Muy eficiente & No esta basado en un sistema conocido previamente. Relativamente desfasado en cuanto a la arquitectura del sistema operativo. El software suele ser programado en BBC BASIC (con el que no se cuenta experiencia). & No se conocen cifras\\ \hline
 
-\textbf{Gentoo} & Diseñado para permitir la modificación del sistema al máximo nivel posible. Todo el \textit{software} es compilado en la máquina que lo instala, en lugar de utilizar ejecutables precompilados & Enfocado en maximizar el grado de personalización del sistema. & Permite ser modificado de forma sencilla. & Poco soportado en Raspberry Pi. & \\ \hline
+\textbf{Gentoo} & Diseñado para permitir la modificación del sistema al máximo nivel posible. Todo el \textit{software} es compilado en la máquina que lo instala, en lugar de utilizar ejecutables precompilados & Enfocado en maximizar el grado de personalización del sistema. & Permite ser modificado de forma sencilla. & Poco soportado en Raspberry Pi. & No se conocen cifras\\ \hline
 
-\textbf{Windows 10} & Diseñado para el paradigma del Internet de las Cosas, & Sencillo de utilizar, con soporte (previsiblemente) del \textit{framework} \textbf{.NET}. & Soporta con un conjunto de tecnologías conocidas no compatibles con ninguna otra alternativa. Si el soporte de \textbf{.NET} es ofrecido constituiría una ventaja clave.  & Aún no se encuentra disponible\cite{windows10raspberry}. Esta diseñado para un propósito especifico. No compatible con software para Linux de forma nativa. & No se conocen cifras\\ \hline
+\textbf{Windows 10} & Diseñado para el paradigma del Internet de las Cosas, & Sencillo de utilizar, con soporte (previsiblemente) del \textit{framework} \textbf{.NET}. & Soporta un conjunto de tecnologías ya conocidas pero no compatibles con otras alternativas. El soporte de \textbf{.NET} constituiría una ventaja clave.& Aún no se encuentra disponible\cite{windows10raspberry}. Esta diseñado para un propósito especifico. No compatible con software para Linux de forma nativa. & No se conocen cifras\\ \hline
 
 \end{tabular}
 \caption{Comparativa de sistemas operativos (2)}
@@ -749,21 +774,19 @@ Ubuntu Snappy Core, Raspbian, OpenELEC, RISC OS, Según la web de Arch Linux, ta
 
 En esta sección se describen los aspectos a alto nivel sobre todos los componentes que se integrarán en el sistema final (tanto \textit{hardware} como \textit{software}), así como las relaciones entre los mismos. En función de la evaluación llevada a cabo se extraen las siguientes decisiones de diseño que conforman la propuesta de solución definitiva.
 
-
-
 \subsection{\textit{Hardware}}
 
 \subsubsection{Nodos}
 
-Todo el sistema se construirá sobre placas \textbf{Raspberry Pi 2} debido a su alta versatilidad, gran potencia de cálculo, interfaces de comunicación, soporte por parte de las diferentes comunidades de desarrolladores y consumo eléctrico.
+Todo el sistema se construirá sobre placas \textbf{Raspberry Pi 2} debido a su alta versatilidad, gran potencia de cálculo, interfaces de comunicación, soporte por parte de las diferentes comunidades de desarrolladores, coste y bajo consumo eléctrico.
 
 \subsubsection{Equipos auxiliares}
 
-En caso de que sea necesario integrar algún nodo en el sistema se utilizarán equipos \textbf{COTS} en desuso presentes en la infraestructura. La utilización de este tipo de nodos se realizará siempre con carácter auxiliar (e.g. para ofrecer un servicio que sea difícil de soportar por los nodos principales).
+En caso de que sea necesario integrar algún nodo en el sistema se utilizarán equipos \textbf{COTS} en desuso presentes en la infraestructura. La utilización de este tipo de nodos se realizará siempre con carácter auxiliar (p.ej. para ofrecer un servicio que sea difícil de soportar por los nodos principales).
 
 \subsubsection{Interconexión física}
 
-El sistema deberá interconectar los diferentes nodos utilizando la red presente en la infraestructura (basada en el protocolo IP). No obstante se plantea el uso de dispositivos de enrutado o conmutación como medida de mejora del rendimiento.
+El sistema deberá interconectar los diferentes nodos utilizando la red presente en la organización. No obstante se plantea el uso de dispositivos de enrutado o conmutación para mejorar del rendimiento.
 
 \subsubsection{Alimentación}
 
@@ -778,9 +801,9 @@ Se deberá diseñar una estructura propia que recoja todos los componentes del s
 \subsubsection{Sistema operativo}
 \label{problema:sistemaoperativo}
 
-El sistema operativo a utilizar será \textbf{Arch Linux ARM}, debido a la gran comunidad de soporte con la que cuenta, compatibilidad con la gran mayoría de componentes presentes en un sistema GNU/Linux y modelo arquitectónico que apuesta por la simplicidad, \textit{limpieza} y eficiencia del sistema.
+El sistema operativo a utilizar será \textbf{Arch Linux ARM}, debido a la gran comunidad de soporte con la que cuenta, compatibilidad con la gran mayoría de componentes presentes en un sistema GNU/Linux y modelo arquitectónico que apuesta por la simplicidad, ``limpieza'' y eficiencia del sistema.
 
-Se partirá de la instalación base provista por el proyecto, debido a que incluye el conjunto más pequeño de herramientas con el que el sistema operativo es capaz de trabajar, incluyendo posteriormente aquellas herramientas necesarias para la construcción del sistema. Este enfoque evita la inclusión de paquetes innecesarios que afectarían negativamente al rendimiento de la solución final.
+Se partirá de la instalación base del sistema operativo debido a que incluye el conjunto más pequeño de herramientas con el que el sistema operativo es capaz de trabajar, añadiendo posteriormente aquellos paquetes necesarios para la construcción del sistema. Este enfoque evita la inclusión de \textit{software} innecesario que afectaría negativamente al rendimiento de la solución final.
 
 \subsubsection{Componentes del sistema operativo}
 
@@ -792,7 +815,7 @@ Aquellos servicios ofrecidos por el sistema operativo que sean aprovechables por
 
 \subsubsection{Servicios}
 
-El sistema se plantea como un conjunto de nodos que ofertan servicios consumibles por otros componentes del sistema o por terceras partes. Dichos servicios deberán contar con una serie de puntos de acceso claramente definidos que constituirán las interfaces de uso de dichos servicios.
+El sistema se plantea como un conjunto de nodos que ofertan servicios consumibles por otros componentes o terceras partes. Dichos servicios deberán contar con una serie de puntos de acceso claramente definidos que constituirán las interfaces de uso de dichos servicios.
 
 \subsubsection{Instalación y mantenimiento}
 
@@ -800,19 +823,21 @@ El sistema final se compondrá de un conjunto elevado de nodos, por lo que se es
 
 \subsubsection{Herramientas de desarrollo a utilizar}
 
-Se plantea el uso del lenguaje de programación Python\footnote{\href{http://www.python.org}{http://python.org}} como herramienta principal de desarrollo, debido a su potencia de cálculo y simplicidad, que permite crear aplicaciones que consuman pocos recursos (aspecto vital, máxime cuando se utilizará sobre un sistema con un \textit{hardware} poco potente) de forma sencilla y rápida. También se plantea el uso de los lenguajes de programación C y C++ para el desarrollo de herramientas a bajo nivel, así como herramientas web para el desarrollo de aplicaciones utilizadas por el usuario.
+Se plantea el uso del lenguaje de programación Python\footnote{\href{http://www.python.org}{http://python.org}} como herramienta principal de desarrollo, debido a su potencia de cálculo y simplicidad, que permite crear aplicaciones demandantes de pocos recursos (aspecto vital, máxime cuando se utilizará sobre un sistema con un \textit{hardware} poco potente) de forma sencilla y rápida. También se plantea el uso de los lenguajes de programación C y C++ para el desarrollo de herramientas a bajo nivel, así como herramientas web para el desarrollo de aplicaciones utilizadas por el usuario.
 
 \section{Integración}
-\citationneeded[]
+
+El sistema se integrará en la organización objetivo utilizando diferentes recursos de la misma, como la red que interconecta todos los equipos o el mecanismmo de autenticación.
+
 \section{Proceso}
 
-La determinación del proceso de desarrollo del sistema influirá significativamente en la consecución de los diferentes objetivos del sistema.
+La determinación del proceso de desarrollo del sistema influirá significativamente en la consecución de los diferentes objetivos marcados.
 
 Las particulares características cada proyecto propician la elección de un proceso u otro. En el caso concreto del proyecto en cuestión se deben considerar las siguientes características:
 
 \begin{itemize}
 
-\item No se cuenta con experiencia previa en la construcción de varios componentes cruciales del sistema. Serán necesarias etapas de aprendizaje y la tolerancia a decisiones erróneas deberá ser alta, permitiendo rectificar posteriormente.
+\item No se cuenta con experiencia previa en la construcción de varios componentes cruciales. Serán necesarias etapas de aprendizaje y la tolerancia a decisiones erróneas deberá ser alta.
 
 \item El proyecto tiene un alto componente de experimentalidad: el sistema final será el resultado de los diferentes procesos de investigación y prueba de soluciones para cada uno de los problemas planteados. La incertidumbre es por tanto alta, y por ello la toma de decisiones debe ser reversible, a fin de poder cambiar el enfoque aplicado a un problema si se detecta que los resultados del mismo serán infructuosos. Dicha reversibilidad implica principalmente la capacidad de poder rectificar en un periodo de tiempo pequeño, debido principalmente a la restricción de tiempo que el proyecto incluye.
 
@@ -842,7 +867,6 @@ Se ha realizado un proceso de integración creciente de los diferentes prototipo
 \subsection{Instalación del sistema}
 
 Se han creado herramientas que facilitan la instalación del sistema (ver \ref{marcobootstrap}) en diferentes tipos de infraestructuras que cuenten con una serie de propiedades mínimas (que se reducen a una conexión de red funcional).
-%TODO\citationneeded[Instalación del sistema físico: diferencias con el entorno de desarrollo, oposición de los usuarios, problemas de espacio físico]
 
 \subsection{Evolución del sistema}
 
@@ -859,57 +883,24 @@ Fases
   \item Diseño
 \end{itemize}
 
-%Proceso unificado ágil
-%https://en.wikipedia.org/wiki/Scrum_%28software_development%29
-%https://en.wikipedia.org/wiki/Extreme_programming
-%https://en.wikipedia.org/wiki/Crystal_Clear_%28software_development%29
-
-
-%\section{Desarrollo}
-
-%REDMINE-driven description
 \subsection{Planificación temporal}
-\citationneeded[]
-% \begin{figure}[H]
-% \includepdf[pages=1,pagecommand={},offset=-2.5cm -3cm]{Chapters/Chapter3/Figures/tfg-gantt-mar.pdf}
-% \caption{Actividad realizada en el mes de marzo}
-% \end{figure}
-% \includepdf[pages=2,pagecommand={},offset=-2.5cm -3cm]{Chapters/Chapter3/Figures/tfg-gantt-mar.pdf}
-% \includepdf[pages=1,pagecommand={},offset=-2.5cm -3cm]{Chapters/Chapter3/Figures/tfg-gantt-apr.pdf}
-% \includepdf[pages=1,pagecommand={},offset=-2.5cm -3cm]{Chapters/Chapter3/Figures/tfg-gantt-may.pdf}
-% \includepdf[pages=2,pagecommand={},offset=-2.5cm -3cm]{Chapters/Chapter3/Figures/tfg-gantt-may.pdf}
-% \includepdf[pages=1,pagecommand={},offset=-2.5cm -3cm]{Chapters/Chapter3/Figures/tfg-gantt-jun.pdf}
-% \includepdf[pages=2,pagecommand={},offset=-2.5cm -3cm]{Chapters/Chapter3/Figures/tfg-gantt-jun.pdf}
-% %\includepdf[pages=2,pagecommand={},offset=-2.5cm -3cm]{Chapters/Chapter3/Figures/tfg-gantt-apr.pdf}
 
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.7\textwidth]{Chapters/Chapter3/Figures/tfg-gantt-mar}
-% \end{figure}
 
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.7\textwidth]{Chapters/Chapter3/Figures/tfg-gantt-apr}
-% \end{figure}
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.7\textwidth]{Chapters/Chapter3/Figures/tfg-gantt-may}
-% \end{figure}
-% \begin{figure}[H]
-% \centering
-% \includegraphics[width=0.7\textwidth]{Chapters/Chapter3/Figures/tfg-gantt-jun}
-% \end{figure}
+La planificación temporal del proyecto se realiza en base a las diferentes iteraciones llevadas a cabo. Al finalizar una de las fases, se realiza una reunión con todo el equipo de desarrollo y se analiza el estado de las nuevas versiones de los prototipos, problemas que se han dado y nuevas vías de actuación. A partir de este análisis se determinan los objetivos a cumplir en la siguiente iteración.
+
+Toda la planificación temporal del proyecto se encuentra en el anexo \citationneeded[TODO].
 
 \chapter{Análisis y diseño}
 \lhead{Análisis y diseño}
 \label{chapter:analisis}
 
-\section{Análisis}
 \begin{cabstract}
-En el que se describen los diferentes aspectos de la fase de análisis del sistema desde una perspectiva holística.
+En el que se describen los diferentes aspectos de las fases de análisis y diseño del sistema desde una perspectiva holística.
 \end{cabstract}
 
-Recoger todos los aspectos de análisis de un sistema como el creado en un único capítulo es contraproducente para la adecuada comprensión de los diferentes procesos llevados a cabo. Es por ello que en el presente capítulo se detallarán los diferentes aspectos de análisis llevados a cabo para el sistema como unidad, que ayudarán a la identificación de las necesidades a satisfacer por el mismo. Dichos aspectos serán de utilidad durante el desarrollo de las restantes etapas de análisis centradas en cada uno de los diferentes componentes del sistema.
+\section{Análisis}
+
+Recoger todos los aspectos de análisis de un sistema como el creado en un único capítulo es contraproducente para la adecuada comprensión de los diferentes procesos llevados a cabo. Es por ello que en el presente capítulo se detallarán los diferentes aspectos de análisis para el sistema como unidad, que ayudarán a la identificación de las necesidades a satisfacer por el mismo. Dichos aspectos serán de utilidad durante el desarrollo de las restantes etapas de análisis centradas en cada uno de los diferentes componentes del sistema.
 
 \subsection{Identificación de componentes}
 
@@ -984,9 +975,9 @@ Se plantean los siguientes tipos de transacciones. La frecuencia estimada de est
 
 En caso de proporcionar una solución exitosa para el conjunto de problemas a resolver por el sistema, es esperable un incremento en el número de componentes principales con el fin de aumentar su capacidad de cómputo. Por ello, la escalabilidad del sistema debe ser uno de los requisitos fundamentales del mismo.
 
-\subsection{Adquisición del sistema}
+% \subsection{Adquisición del sistema}
 
-Los aspectos de la adquisición de los diferentes componentes se definen en \ref{adquisicion}
+% Los aspectos de la adquisición de los diferentes componentes se definen en \ref{adquisicion}
 
 \subsection{Identificación de usuarios}
 
@@ -1018,8 +1009,6 @@ Se distinguen dos tipos de nodos en el sistema. Los nodos principales se agrupar
 
 Se plantean de forma global las siguientes fuentes de datos.
 
-%TODO\subsubsection{Objetos de datos}
-
 \subsubsection{Estructuras de archivo}
 
 \begin{itemize}
@@ -1030,11 +1019,11 @@ Se plantean de forma global las siguientes fuentes de datos.
   \item Ficheros de \textit{log} para registrar todas las operaciones llevadas a cabo por el sistema, situaciones irregulares\dots, con el objetivo de ser analizados posteriormente.
 \end{itemize}
 
-\subsection{Diseño arquitectónico}
+%\subsection{Diseño arquitectónico}
 
-Se plantea el siguiente esquema arquitectónico
+%Se plantea el siguiente esquema arquitectónico
 
-\citationneeded[]
+%TODO\citationneeded[TODO]
 
 \subsection{Diseño de la interfaz}
 
@@ -1049,18 +1038,29 @@ Las interfaces de acceso al sistema son las siguientes:
 Todos los aspectos de programación (algoritmos empleados, ejemplos de código) se reflejan en la documentación adjunta referente a cada una de las herramientas creadas o utilizadas.
 
 \subsection{Pruebas}
-\citationneeded[]
-\subsection{Entorno tecnológico del sistema}
-\subsection{Plan de desarrollo e implementación}
-\subsection{Adquisición}
-\label{adquisicion}
 
+Se ha utilizado un desarrollo dirigido por pruebas en la mayoría de las herramientas creadas, como se detalla en la documentación técnica que acompaña a cada una de ellas, así como una batería de pruebas de una de las últimas versiones del sistema, como se detalla en \citationneeded[TODO].
+
+%\subsection{Entorno tecnológico del sistema}
+
+\subsection{Plan de desarrollo e implementación}
+
+El plan de desarrollo del sistema plantea las siguientes fases:
+
+\begin{itemize}
+\item \textbf{Febrero de 2015 a Julio de 2015}: Desarrollo de todo el sistema (\textit{hardware}, \textit{software}, pruebas de integración e instalación.)
+\item \textbf{Principios de septiembre de 2015}: Etapa de formación a los diferentes usuarios (profesores, administradores), y primeras pruebas masivas.
+\item \textbf{Septiembre de 2015-Junio de 2015}: Integración no definitiva del sistema en diferentes asignaturas.
+\item \textbf{Junio de 2015 en adelante}: Integración definitiva del sistema.
+\end{itemize}
+
+%\subsection{Adquisición}
 
 \subsection{Adquisición del sistema}
-
+\label{adquisicion}
 Antes de realizar cualquier operación de adquisición de componentes es necesario analizar diferentes factores, como las diferentes alternativas viables o soluciones de coste menor o incluso nulo.
 
-En el caso del presente proyecto, la adquisición de una serie de componentes no es opcional, debido a que no se cuenta con ellos previamente. Tras plantear diferentes opciones sin coste, se decide adquirir los siguientes componentes:
+En el caso del presente proyecto, la adquisición de una serie de componentes no es opcional, pues no se cuenta con ellos previamente. Tras evaluar diferentes opciones, se decide adquirir los siguientes componentes:
 
 \begin{itemize}
   \item Nodos \textbf{Raspberry Pi}.
@@ -1074,8 +1074,8 @@ En la fase inicial, se evalúa un gran número de opciones atendiendo a los sigu
 \begin{itemize}
   \item Prestaciones.
   \item Precio.
-  \item Potencial tiempo de uso.
-  \item Tiempo de entrega\footnote{Las restricciones de tiempo que el proyecto implica exigen tiempos que los materiales sean entregados en un periodo de tiempo corto}.
+  \item Vida útil.
+  \item Tiempo de entrega\footnote{Las restricciones de tiempo que el proyecto implica exigen que los materiales sean entregados en un periodo de tiempo corto}.
 \end{itemize}
 
 %TODO
@@ -1084,50 +1084,56 @@ El proceso de compra de los diferentes componentes necesarios para el sistema se
 
 Esta estrategia ha permitido refinar las necesidades inicialmente planteadas, lo cual ha reducido significativamente el coste, al poder evaluar alternativas de igual efectividad y menor coste o incluso buscar mecanismos para reutilizar componentes con los que ya se contaba.
 
-\begin{landscape}
-\begin{table}
-\begin{tabular}{|l|r|l|l|p{4.5cm}|p{5cm}|}
+%\begin{landscape}
+\begin{table}[H]
+\begin{tabular}{|l|r|l|l|p{4.5cm}|}
 \hline
-Ítem&Unidades&Precio/ud.&Total&Notas&Referencia\\
+\textbf{Ítem}&\textbf{Unidades}&\textbf{Precio}/ud.&\textbf{Total}&\textbf{Notas}\\
 \hline
-Raspberry Pi B+&4&€25.84&€103.36&Disponible para entrega en 2 día(s) laborable(s).&http://es.rs-online.com/web/p/kits-de-desarrollo-de-procesador-y-microcontrolador/8111284/?origin=PSF\_431027|alt\\
+Raspberry Pi B+&4&€25.84&€103.36&Disponible para entrega en 2 día(s) laborable(s).\\%&http://es.rs-online.com/web/p/kits-de-desarrollo-de-procesador-y-microcontrolador/8111284/\\
 \hline
-Raspberry Pi Rev 2&4&€30.58&€122.32&Temporalmente fuera de stock. Disponible a partir del 20/04/2015, con entrega en 2 día(s) laborable(s).&http://es.rs-online.com/web/p/kits-de-desarrollo-de-procesador-y-microcontrolador/8326274/\\
+Raspberry Pi Rev 2&4&€30.58&€122.32&Temporalmente fuera de stock. Disponible a partir del 20/04/2015, con entrega en 2 día(s) laborable(s).\\%&http://es.rs-online.com/web/p/kits-de-desarrollo-de-procesador-y-microcontrolador/8326274/\\
 \hline
-Rasbperry Pi B&4&€26.05&€104.20&&es.rs-online.com/web/p/kits-de-desarrollo-de-procesador-y-microcontrolador/7568308/\\
+Rasbperry Pi B&4&€26.05&€104.20&\\%&es.rs-online.com/web/p/kits-de-desarrollo-de-procesador-y-microcontrolador/7568308/\\
 \hline
 \end{tabular}
 \caption{Coste de cada uno de los diferentes modelos de placa Raspberry Pi}
 \end{table}
-\end{landscape}
+%\end{landscape}
 
+\begin{comment}
 \definecolor{LightCyan}{rgb}{0.88,1,1}
-\begin{landscape}
-\begin{table}
-\begin{tabular}{|l|r|l|l|l|p{3.5cm}|p{4.5cm}|}
+%\begin{landscape}
+\begin{table}[H]
+\begin{tabular}{|p{4cm}|r|l|l|l|p{3.5cm}|}%p{4.5cm}|}
 \hline
-Tarjetas SD\footnote{Únicamente compatibles con el modelo B}&Unidades&Precio/ud.&Total&Clase\footnote{La clase de una tarjeta define su velocidad de lectura y escritura, siendo representada por un múltiplo de 2. Ver\href{https://www.sdcard.org/developers/overview/speed_class/}{https://www.sdcard.org/developers/overview/speed\_class/}}&Notas&Referencia\\
+Tarjetas SD\footnote{Únicamente compatibles con el modelo B}&Unidades&Precio/ud.&Total&Clase\footnote{La clase de una tarjeta define su velocidad de lectura y escritura, siendo representada por un múltiplo de 2. Ver\href{https://www.sdcard.org/developers/overview/speed_class/}{https://www.sdcard.org/developers/overview/speed\_class/}}&Notas\\%&Referencia\\
 \hline
-8GB SD Card, Raspberry Pi NOOBS 1.4&4&€10.23&€40.92&Desconocida&Temporalmente fuera de stock. Disponible a partir del 30/04/2015, con entrega en 2 día(s) laborable(s).&http://es.rs-online.com/web/p/tarjetas-sd/8492012/\\
+8GB SD Card, Raspberry Pi NOOBS 1.4&4&€10.23&€40.92&Desconocida&Temporalmente fuera de stock.
+% Disponible a partir del 30/04/2015, con entrega en 2 día(s) laborable(s).
+ \\%&http://es.rs-online.com/web/p/tarjetas-sd/8492012/\\
 \hline
-SDHC Kingston 16 GB Clase 10&4&€23.44&€93.76&Clase 10&Disponible para entrega en 24 horas.&http://es.rs-online.com/web/p/tarjetas-sd/7595577/\\
+SDHC Kingston 16 GB Clase 10&4&€23.44&€93.76&Clase 10&Disponible para entrega en 24 horas.\\%&http://es.rs-online.com/web/p/tarjetas-sd/7595577/\\
 \hline
-4GB SDHC Class 4 Flash Card&4&€5.83&€23.32&Clase 4&&http://es.rs-online.com/web/p/tarjetas-sd/6957325/\\
+4GB SDHC Class 4 Flash Card&4&€5.83&€23.32&Clase 4&\\%&http://es.rs-online.com/web/p/tarjetas-sd/6957325/\\
 \hline
-8GB SD Card, Raspberry Pi NOOBS 1.4&4&€10.23&€40.92&Desconocida&Temporalmente fuera de stock. Disponible a partir del 30/04/2015, con entrega en 2 día(s) laborable(s).&http://es.rs-online.com/web/p/tarjetas-sd/8492012/\\
+8GB SD Card, Raspberry Pi NOOBS 1.4&4&€10.23&€40.92&Desconocida&Temporalmente fuera de stock. 
+%Disponible a partir del 30/04/2015, con entrega en 2 día(s) laborable(s).
+\\%&http://es.rs-online.com/web/p/tarjetas-sd/8492012/\\
 \hline
-8 GB SDHC&4&€15.49&€61.96&Class 10&&http://es.rs-online.com/web/p/tarjetas-sd/7582574/\\
+8 GB SDHC&4&€15.49&€61.96&Class 10&\\%&http://es.rs-online.com/web/p/tarjetas-sd/7582574/\\
 \hline
-16GB SDHC&4&€15.54&€62.16&Class 4&&http://es.rs-online.com/web/p/tarjetas-sd/6957337/\\
+16GB SDHC&4&€15.54&€62.16&Class 4&\\%&http://es.rs-online.com/web/p/tarjetas-sd/6957337/\\
 \hline
-SDHC Kingston 16 GB Clase 10&4&€23.44&€93.76&Clase 10&Disponible para entrega en 24 horas.&http://es.rs-online.com/web/p/tarjetas-sd/7595577/\\
+SDHC Kingston 16 GB Clase 10&4&€23.44&€93.76&Clase 10&Disponible para entrega en 24 horas.\\%&http://es.rs-online.com/web/p/tarjetas-sd/7595577/\\
 \hline
-4GB SDHC Class 4 Flash Card&4&€5.83&€23.32&Clase 4&&http://es.rs-online.com/web/p/tarjetas-sd/6957325/\\
+4GB SDHC Class 4 Flash Card&4&€5.83&€23.32&Clase 4&\\%&http://es.rs-online.com/web/p/tarjetas-sd/6957325/\\
 \hline
 \end{tabular}
 \newline
 \end{table}
-\end{landscape}
+%\end{landscape}
+
 \begin{landscape}
 \begin{table}
 \begin{tabular}{|l|r|l|l|l|p{3.5cm}|p{4.5cm}|}
@@ -1190,28 +1196,25 @@ Fuente de alimentación&&&&&&&&\\
 \hline
 \end{tabular}
 \end{landscape}
-\begin{landscape}
-\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
-Totales&&&&&&&&\\
+\end{comment}
+
+% \begin{landscape}
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|}\hline
+\textbf{Modelo}&\textbf{Total}\\
 \hline
-Raspberry Pi B, Tarjeta SD, Ethernet&€145.08&&&&&&&\\
+Raspberry Pi B, Tarjeta SD, Ethernet&€145.08\\
 \hline
-Raspberry Pi B+, Tarjetas MicroSD, Ethernet&€169.72&&&&&&&\\
+Raspberry Pi B+, Tarjetas MicroSD, Ethernet&€169.72\\
 \hline
-Raspberry Pi Rev 2, Tarjetas MicroSD, Ethernet&€188.68&&&&&&&\\
-\hline
-&&&&&&&&\\
-\hline
-&&&&&&&&\\
-\hline
-&&&&&&&&\\
-\hline
-Notas&&&&&&&&\\
-\hline
-Tarjetas SD:&&&&&&&&\\
+Raspberry Pi Rev 2, Tarjetas MicroSD, Ethernet&€188.68\\
 \hline
 \end{tabular}
-\end{landscape}
+\caption{Coste total de cada una de las alternativas}
+\end{table}
+% \end{landscape}
+
 %TODO SD/SDHC/SDXC: Las tarjetas HC (High capacity) garantizan una velocidad mínima de funcionamiento, indicado en la Clase de la tarjeta o en múltiplos de 150 kB/s&&&&&&&&\\
 % \hline
 % &&&&&&&&\\
@@ -1230,6 +1233,7 @@ Tarjetas SD:&&&&&&&&\\
 % \end{landscape}
 
 %\begin{landscape}
+\begin{comment}
 \begin{table}[H]
 \begin{tabular}{|p{2.5cm}|p{2cm}|p{2cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|}
 \hline
@@ -1242,11 +1246,16 @@ Tarjeta de memoria & 4 & Comprobar & Comprobar & Comprobar & Comprobar\\ \hline
 
 
 \end{tabular}
+
+
 \caption[Evaluación de precios de las diferentes alternativas para el proyecto]{Evaluación de precios de las diferentes alternativas para el proyecto}
 %TODO:Todos los precios están basados en el coste unitario sin descuento por volumen y con IVA incluido reflejado en la web http://es.rs-online.com/web/&En verde la mejor opción de cada categoría&&&&&Referencia&&\\
 \end{table}
+\end{comment}
 %\end{landscape}
 
 
 %TODO: IS 1 T2 pg 37
-El coste total del proyecto no es elevado, por lo que no se solicitarán más presupuestos ni proveedores de los aquí listados.
+No se plantea la modificación de ninguno de los componentes anteriormente descritos.\citationneeded[TODO]%El coste total del proyecto no es elevado, por lo que no se solicitarán más presupuestos ni proveedores de los aquí listados.
+
+\citationneeded[Objetivos funcionales]

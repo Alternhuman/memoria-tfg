@@ -15,33 +15,33 @@ Esta centralización apoya uno de los objetivos principales del proyecto. Al con
 \item Simplifica el mantenimiento del sistema.
 \end{itemize}
 
-\subsection{Requisitos}
+\begin{comment}
+% \subsection{Requisitos}
 
-\subsubsection{Coste}
+% \subsubsection{Coste}
 
-El coste de la estructura debe reducirse al máximo sin que esto comprometa el resultado final.
+% El coste de la estructura debe reducirse al máximo sin que esto comprometa el resultado final.
+\end{comment}
 
 \subsection{Propuestas de solución}
 
-A fin de minimizar el coste, se buscan soluciones que permitan ahorrar en el coste final.
+\subsubsection{Primera propuesta: estructura básica}
 
-\subsubsection{Primera propuesta}
-
-En las primeras fases del proyecto se plantea la utilización de separadores de nylon atornillados a los orificios que las placas disponen para tal fin, creando una pequeña estructura en forma de torre. Dicha solución se acepta debido a su efectividad con un precio bajo.
+En las primeras fases del proyecto se plantea la utilización de separadores de nylon atornillados a los orificios que las placas disponen para tal fin, creando una pequeña estructura en forma de torre (muy similar al \textit{Dramble}, ver \ref{geerling:dramble}). Dicha solución se acepta debido a su efectividad con un precio bajo.
 
 \subsubsection{Segunda propuesta}
 
-La segunda propuesta apuesta por mejorar la versatilidad del diseño. Se plantea un diseño en forma de estantería que incluya una bahía para cada nodo, permitiendo la extracción de cada uno de ellos de forma independiente, así como la instalación de nuevos nodos. Se decide desestimar el primer prototipo en pro de esta solución.
+La segunda propuesta apuesta por mejorar la versatilidad del diseño. Se plantea un diseño en forma de ``estantería'' que incluya una bahía para cada nodo, permitiendo la instalación de cada uno de ellos de forma independiente y la instalación de nuevos nodos. Se decide desestimar el primer prototipo y desarrollar esta solución.
 
-\paragraph{Elección de materiales}
+\paragraph{Elección de materiales\\}
 
-Inicialmente se valora el uso de metal para la construcción del esqueleto de la estructura, sin embargo finalmente se opta por el metacrilato como material, pues mejora la visualización de cada uno de los nodos y añade un mayor atractivo estético al proyecto.
+Inicialmente se valora el uso de metal para la construcción del esqueleto de la estructura, pero finalmente se opta por el metacrilato, pues mejora la visualización de cada uno de los nodos y añade un mayor atractivo estético al proyecto.
 
-Se utilizará latón como material de unión entre los diferentes componentes de metacrilato, utilizando tornillos a menos que estos deterioren la estética de la estructura, en cuyo caso se utilizarán adhesivos.
+Las diferentes placas de metacrilato se unirán mediante barras metálicas. Las uniones se realizarán con tornillos a menos que estos deterioren la estética de la estructura, en cuyo caso se utilizarán adhesivos.
 
-\paragraph{Construcción}
+\paragraph{Construcción\\}
 
-La fase de construcción se extiende durante aproximadamente dos semanas (junto con el resto de tareas de desarrollo. El tiempo de desarrollo asciende a 20 horas).
+La fase de construcción se extiende durante aproximadamente dos semanas (compaginadas con con el resto de tareas de desarrollo. El tiempo total dedicado a esta tarea asciende a 20 horas\citationneeded[TODO. Redmine], como se puede observar en la gestión del proyecto (ver\citationneeded[TODO])).
 
 \begin{figure}[H]
 \centering
@@ -53,7 +53,7 @@ La fase de construcción se extiende durante aproximadamente dos semanas (junto 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.2\textwidth]{Chapter5/Figures/prototipo1vistadetalle}
-\caption[Vista en detalle de los ``raíles'' del primer prototipo.]{Vista en detalle de los ``raíles'' creados para cada uno de los nodos.}
+\caption[Vista en detalle de los ``raíles'' del primer prototipo.]{Vista en detalle de los ``raíles'' creados para cada uno de los nodos. Nótese la ausencia de tornillos, que han sido reemplazados por adhesivo.}
 \end{figure}
 
 Este prototipo es considerado aceptable, y se decide partir del mismo para elaborar la solución final.
@@ -63,7 +63,7 @@ Este prototipo es considerado aceptable, y se decide partir del mismo para elabo
 A pesar del éxito del segundo prototipo, durante las siguientes fases de desarrollo se plantea la viabilidad del prototipo para albergar una serie de componentes que acompañen a los nodos. Utilizar, como se planteaba, un ladrón USB %TODO
 para la alimentación del sistema parece una solución poco efectiva (incrementa la cantidad de cableado a utilizar). La conexión a la red también genera incertidumbre, pues se planteaba inicialmente la conexión a la misma de forma individual para cada nodo. Esta decisión complicaría la gestión del cableado.
 
-Además, se observan errores en las medidas iniciales para cada uno de los raíles, pues no se contó con el espacio que los conjuntos de diodos LED consumirían.
+Además, se observan errores en las medidas iniciales para cada uno de los raíles, pues no se contó con el espacio que los conjuntos de diodos LED consumirían\citationneeded[LED].
 
 Por ello, se plantea la elaboración de un tercer prototipo basado en el anterior que tenga las siguientes propiedades:
 
@@ -77,13 +77,13 @@ Por ello, se plantea la elaboración de un tercer prototipo basado en el anterio
 
 \end{itemize}
 
-\paragraph{Elección de materiales}
+\paragraph{Elección de materiales\\}
 
 Se mantienen las decisiones de materiales realizadas para el segundo prototipo, y se intentará reutilizar todo el material posible del mismo.
 
-Para la alimentación eléctrica se decide utilizar una fuente de alimentación de 5 V capaz de suministrar hasta 100 W de energía permitiendo la conexión a la red eléctrica presente en la infraestructura.
+Para la alimentación eléctrica se decide utilizar una fuente de alimentación de 5 V capaz de suministrar hasta 20 amperios de energía que se puede conectar a la red eléctrica presente en la infraestructura.
 
-Las conexiones de red se centralizarán en un switch con velocidades de hasta 100 Mb/s paralelos.
+Las conexiones de red de datos se centralizarán en uno o varios \textit{switches} con velocidades de hasta 100 Mb/s paralelos.
 
 Sin embargo, queda aún una incógnita por resolver: si bien la fuente de alimentación es capaz de suministrar energía a los nodos, es necesario definir cómo se suministrará dicha energía. Se plantean dos opciones:
 
@@ -93,19 +93,19 @@ El puerto \textbf{GPIO} de la Raspberry Pi es utilizado comúnmente para la alim
 
 Extendiendo dos cable desde la fuente de alimentación hasta los pines 1 y 3 (+5V y neutro) es posible alimentar la placa.
 
-Sin embargo dicha solución implica un riesgo considerable, al no disponer el puerto GPIO de una serie de mecanismos de protección ante un uso como este (en el caso de la alimentación por USB se cuenta con dicha protección). En caso de una sobrecarga eléctrica la placa sería dañada de forma irreversible. Se plantea el uso de fusibles de 2 amperios para proteger a las placas de este tipo de sobrecargas.
+Esta solución implica un riesgo considerable. El puerto GPIO no dispone de mecanismos de protección ante un uso como este (en el caso de la alimentación por USB se cuenta con dicha protección). En caso de una sobrecarga eléctrica la placa sería dañada de forma irreversible. Se plantea el uso de fusibles de 2 amperios para proteger a las placas de este tipo de sobrecargas (es el máximo amperaje que la placa soporta), en caso de que esta solución sea la aceptada.
 
 \paragraph{Alimentación a través del puerto USB\\}
 
 Es posible adaptar la propuesta de solución anterior a una alternativa más prometedora. Aprovechando los mecanismos de protección frente a sobrecargas del puerto USB se decide adquirir y modificar cabezas micro-USB macho para soldarlas a cables conectados a la fuente de alimentación. Dichas cabezas se conectarán a cada una de las placas. Se mantienen no obstante los fusibles ya adquiridos como medida preventiva conectando uno a cada cable de corriente positiva.
 
-Esta solución permite centralizar todos los cables de alimentación en un único punto a la vez que se mantienen los mecanismos de protección que integran las placas, manteniendo a efectos prácticos el sistema de alimentación que se ideó para la Raspberry Pi.
+Esta solución permite centralizar todos los cables de alimentación en un único punto a la vez que se mantienen los mecanismos de protección que integran las placas, manteniendo a efectos prácticos el sistema de alimentación que se ideó para la Raspberry Pi.\citationneeded[FOTO de los cables]
 
-Gestión de la red:
+\paragraph{Gestión de la red\\}
 
-Se crearán cables ethernet a medida para cada uno de los raíles.
+Se crearán cables Ethernet a medida para cada uno de los raíles.
 
-LEDs
+\paragraph{LEDs}
 
 Situar los diodos supone un problema significativo. Utilizar cualquier tipo de cableado complicaría el diseño de forma significativa, por lo que es necesario buscar una alternativa.
 
@@ -113,7 +113,7 @@ Como solución se decide crear placas con circuitos impresos que conecten los di
 
 A fin de ahorrar espacio, los LED se situarán sobre la Raspberry cubriendo la parte inferior de la misma.
 
-\section{Coste}
+\subsection{Coste}
 
 \begin{table}[H]
 \centering
@@ -136,10 +136,57 @@ Diodos LED & 24 & &\\ \hline
 \end{table}
 
 \subsection{LEDs}
-\citationneeded
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 
-%\lhead{\emph{Arquitectura software}}
+Para facilitar la inclusión de una serie de diodos LED en el sistema, se diseñará un circuito impreso que aglutine todos los componentes y sea fácil de instalar.
+
+\subsection{Resultado final}
+
+El resultado final es una estructura que es capaz de aglutinar todos los componentes del sistema salvo los nodos secundarios del mismo, utilizando una única fuente de alimentación para todos los componentes.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{Chapters/Chapter5/Figures/estructuraFinal/general}
+\caption{Vista general de la estructura final}
+\end{figure}
+
+\subsubsection{Alimentación eléctrica}
+
+La fuente de alimentación proteje todos los componentes del sistema al incluir un conjunto de fusibles.
+\citationneeded[FOTO]
+
+\subsubsection{LEDs}
+
+Los LED se disponen en un circuito impreso diseñado para este propósito específico, donde se sitúan en fila acompañados por una resistencia protectora y un punto de conexión al puerto GPIO.
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.2\textheight]{Chapters/Chapter5/Figures/estructuraFinal/pcb1}
+\includegraphics[height=0.2\textheight]{Chapters/Chapter5/Figures/estructuraFinal/pcb2}
+\caption{Vista del reverso de la placa y el anverso de la misma conectada a una Raspberry Pi.}
+\end{figure}
+
+La conexión con el puerto GPIO se realiza a través de unas ``tiras'' hembra que se sueldan a la placa y posteriormente se conectan a la \textbf{Raspberry Pi}, ahorrando espacio y permitiendo su sustitución en cualquier momento (al contrario que alternativas como, por ejemplo, soldar la placa directamente al puerto GPIO de la Raspberry Pi).
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.116\textheight]{Chapters/Chapter5/Figures/estructuraFinal/pcb3}
+\includegraphics[height=0.116\textheight]{Chapters/Chapter5/Figures/estructuraFinal/pcb4}
+\includegraphics[height=0.116\textheight]{Chapters/Chapter5/Figures/estructuraFinal/pcb5}
+\caption{El conector GPIO hembra eleva la placa, pudiendo superponer la misma al resto de componentes, ahorrando espacio.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.255\textheight]{Chapters/Chapter5/Figures/estructuraFinal/pcb6}
+\includegraphics[height=0.255\textheight]{Chapters/Chapter5/Figures/estructuraFinal/pcb7}
+\includegraphics[height=0.255\textheight]{Chapters/Chapter5/Figures/estructuraFinal/pcb8}
+\includegraphics[height=0.255\textheight]{Chapters/Chapter5/Figures/estructuraFinal/pcb9}
+\caption{El circuito en funcionamiento.}
+\end{figure}
+
+
+Todos los planos de la estructura pueden consultarse en el anexo \citationneeded[TODO]
+
 \section{Arquitectura software}
 
 Con el objetivo de facilitar la comprensión del sistema como un todo esta memoria se estructura partiendo de los cimientos del sistema, ascendiendo hasta las aplicaciones de más alto nivel manipuladas por los usuarios, describiendo de forma exhaustiva todos los aspectos de relevancia y esfuerzos llevados a cabo para diseñar y desarrollar cada uno de los componentes del sistema.
@@ -171,9 +218,9 @@ Arch Linux ARM\footnote{\href{http://archlinuxarm.org/}{http://archlinuxarm.org/
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|l|l|l|}
+\begin{tabular}{|l|r|r|}
 \hline
-&\textbf{Consumo de Memoria} &\textbf{Espacio en disco}\\
+&\textbf{Consumo de memoria (\texttt{free -m})} &\textbf{Espacio ocupado (\texttt{df -h})}\\
 \hline
 \textbf{Ubuntu Mate}&702 MB&2.5 GB\\
 \hline
@@ -186,65 +233,57 @@ Arch Linux ARM\footnote{\href{http://archlinuxarm.org/}{http://archlinuxarm.org/
 \label{os:footprint}
 \end{table}
 
-La demanda de requisitos de Arch Linux es significativamente inferior a la de alternativas más populares. En la tabla \ref{os:footprint} se pueden observar las demandas de recursos de diferentes sistemas operativos.
+%TODO La demanda de requisitos de Arch Linux es significativamente inferior a la de alternativas más populares. En la tabla \ref{os:footprint} se pueden observar las demandas de recursos de diferentes sistemas operativos.
 
+El proceso detallado de elección del sistema operativo puede observarse en \ref{os:evaluation}.
+\subsubsection{Sistema operativo en los nodos secundarios}
 
-
-El proceso de elección del sistema operativo puede observarse en \ref{os:evaluation}.
-
-
-\subsubsection{Sistema operativo en el servidor}
-
-En el caso del servidor que provee diferentes servicios de apoyo a los nodos principales (ver \ref{sistema:arquitectura}) se utiliza el sistema operativo Debian GNU/Linux. Este sistema operativo tiene como objetivo la estabilidad del sistema en detrimento de las últimas características del \textit{software} que lo conforma.
+En el caso del servidor que provee diferentes servicios de apoyo a los nodos principales (ver \ref{sistema:arquitectura}) se utiliza el sistema operativo Xubuntu GNU/Linux\footnote{\href{http://xubuntu.org/}{http://xubuntu.org/}}.% Este sistema operativo tiene como objetivo la  estabilidad del sistema en detrimento de las últimas características del \textit{software} que lo conforma.
 
 \section{Servicios integrados en el sistema operativo}
 
 Diversos componentes del sistema operativo son utilizados para llevar a cabo operaciones de gestión o como herramienta para la creación de aplicaciones en niveles superiores. Gracias a la integración de estos componentes en niveles inferiores, es posible ofrecer dichos servicios a cualquier aplicación de usuario. 
 
+\subsection{Gestión de servicios}
 
-\subsubsection{Gestión de servicios}
+\textbf{systemd}\footnote{\href{http://www.freedesktop.org/wiki/Software/systemd/}{http://www.freedesktop.org/wiki/Software/systemd/}} es utilizado como gestor de los diferentes servicios del sistema. Se aprovecha su capacidad para el manejo dependencias entre los diferentes componentes (orden de arranque, qué servicios deben arrancarse para que otros puedan funcionar\dots) para establecer el orden de inicio al arrancar el sistema o iniciar automáticamente servicios sobre los que dependan otros.
 
-\textbf{systemd} es utilizado como gestor de los diferentes servicios del sistema, así como aquellos creados en el proceso de desarrollo del mismo. Se aprovecha su capacidad para gestionar dependencias entre los diferentes componentes (orden de arranque, qué servicios deben arrancarse para que otros puedan funcionar\dots) para establecer el orden de inicio al arrancar el sistema o iniciar automáticamente servicios sobre los que dependan otros.
-
-\textbf{systemd} define cada uno de los diferentes servicios (``unidades'') en un fichero independiente.
+%\textbf{systemd} define cada uno de los diferentes servicios (``unidades'') en un fichero independiente.
 
 \subsection{Descubrimiento de servicios: el protocolo MarcoPolo}
 
 Uno de los problemas típicos a la hora de crear un sistema distribuido es la localización de cada uno de los nodos que lo conforman. Al no existir un coordinador, es difícil establecer un mecanismo de interconexión entre los diferentes nodos que sea escalable e independiente de factores externos (e.g. IP asignada en un momento dado, número de nodos en la red).
 
-
-Soluciones como el uso de servidores de nombres (\textbf{DNS}) permiten crear estructuras jerárquicas donde cada nodo está identificado por un nombre previamente asignado y conocido. Como primera propuesta de solución se plantea el uso de los nombres de equipo que el servidor \textbf{DHCP} presente en la infraestructura otorga. Con esta solución los nodos serían accesibles mediante un identificador invariable en el tiempo (en contraste con una IP dinámica). Sin embargo, dicha solución presenta un grave problema en materia de escalabilidad: no existe un ``directorio'' que recoja qué nodos están activos en un momento dado ni que refleje adiciones en la lista original de nodos, por lo que para poder realizar cualquier cambio en el conjunto de nodos del sistema será necesario configurar cada equipo manualmente. También existen protocolos inspirados en enfoque como \textbf{mDNS} (\textit{Multicast Domain Name Service}) donde la necesidad de un servidor de nombres desaparece, y los nodos son capaces de realizar el descubrimiento mediante mensajes uno-a-muchos\cite{rfc6762}. Implementaciones de este protocolo, como \textit{Bonjour}, \textit{Avahi} o \textit{AppleTalk} (ya descontinuado) han sido evaluadas a la hora de buscar una solución a este problema. Sin embargo, estas y otras soluciones similares no responden a una de las necesidades básicas del sistema a construir: la condición de que la información que conoce cada nodo sobre el resto en el arranque del sistema es nula. Si bien con \textbf{mDNS} desaparece la necesidad con un servidor de nombres y es posible realizar operaciones de descubrimiento de servicios, este y otros protocolos similares asumen que la información de un nodo presente de una red local es de interés para el resto de miembros de la misma, lo cual dificulta la independencia de un conjunto de equipos frente al resto en el mismo espacio de direcciones.
-
-%Avahi?
+Soluciones como el uso de servidores de nombres (\textbf{DNS}) permiten crear estructuras jerárquicas donde cada nodo está identificado por un nombre previamente asignado y conocido. Como primera propuesta de solución se plantea el uso de los nombres de equipo que el servidor \textbf{DHCP} presente en la infraestructura otorga. Con esta solución los nodos serían accesibles mediante un identificador invariable en el tiempo (en contraste con una IP dinámica). Sin embargo, dicha solución presenta un grave problema en materia de escalabilidad: no existe un ``directorio'' que recoja qué nodos están activos en un momento dado ni que refleje adiciones en la lista original de nodos, por lo que para poder realizar cualquier cambio en el conjunto de nodos del sistema será necesario configurar cada equipo manualmente. También existen protocolos inspirados en este enfoque como \textbf{mDNS} (\textit{Multicast Domain Name Service}) donde la necesidad de un servidor de nombres desaparece, y los nodos son capaces de realizar el descubrimiento mediante mensajes uno-a-muchos \cite{rfc6762}. Implementaciones de este protocolo, como \textbf{Bonjour}\footnote{\href{https://developer.apple.com/bonjour/index.html}{https://developer.apple.com/bonjour/index.html}}, \textbf{Avahi}\footnote{\href{http://avahi.org/}{http://avahi.org/}} o alternativas similares, como\textbf{AppleTalk} (ya descontinuado) han sido evaluadas a la hora de buscar una solución a este problema. Sin embargo, estas y otras propuestas similares no responden a una de las necesidades básicas del sistema a construir: la condición de que la información que conoce cada nodo sobre el resto en el arranque del sistema es nula. Si bien con \textbf{mDNS} desaparece la necesidad con un servidor de nombres y es posible realizar operaciones de descubrimiento de servicios, este y otros protocolos similares asumen que la información de un nodo presente de una red local es de interés para el resto de miembros de la misma, lo cual dificulta la independencia de un conjunto de equipos frente al resto en el mismo espacio de direcciones.
 
 \subsubsection{MarcoPolo, el protocolo de descubrimiento de servicios}
 \label{marcopolo}
 
 Una de las características clave del sistema consiste en la escalabilidad del mismo en tiempo de ejecución: no es necesario conocer qué nodos participan en el sistema hasta que no se requiera de los mismos. Además, se pretende optimizar al máximo cada uno de los nodos del sistema por separado, por lo que designar a uno de ellos como ``autoridad'' frente a la que el resto de nodos se registren y esta actúe posteriormente como coordinador y \textit{``resolver''} supone una dedicación de recursos innecesaria y que dificulta la escalabilidad del sistema. Además, la gestión del espacio de direcciones de la red en la que se integra el sistema, que es compartido con una gran cantidad de equipos adicionales, no recaería en dicho coordinador. Esto implica que las direcciones de cada nodo son asignadas por un servidor DHCP sobre el que no se tiene control y cuyas asignaciones son dadas por intervalos de tiempo pequeños\footnote{Durante el desarrollo del sistema se observa que las direcciones son asignadas por periodos de tiempo pequeños y no suelen repetirse a menos que dicha dirección no haya sido asignada anteriormente, fenómeno que suele darse con bastante frecuencia.}. %TODOEsto implica que no es posible contar con un nodo coordinador sin un espacio de nombres anteriormente definido.
-Por otro lado, la clave de este sistema no la constituye la disponibilidad de un nodo, sino las aplicaciones distribuidas que pueden utilizarse en el mismo (de ahora en adelante serán denominadas ``servicios''). Un nodo puede contar con un conjunto de servicios diferente al de sus vecinos, y por tanto colaborará en unas tareas y en otras no en virtud de dicha disponibilidad.%TODO Este requisito no es satisfecho por la mayoría de los sistemas anteriormente mencionados.
+Por otro lado, la clave de este sistema no la constituye la disponibilidad de un nodo, sino las aplicaciones distribuidas que pueden utilizarse en el mismo (de ahora en adelante serán denominadas ``servicios''). Un nodo puede contar con un conjunto de servicios diferente al de sus vecinos, y por tanto colaborará en las tareas para las que disponga delos recursos necesarios.%TODO Este requisito no es satisfecho por la mayoría de los sistemas anteriormente mencionados.
 
-Motivada por esta serie de características surge la necesidad de crear un protocolo de descubrimiento de nodos y servicios basado principalmente en los servicios que dichos nodos pueden (y desean) ofrecer. Además, siendo uno de los objetivos funcionales del sistema el aprovechamiento del mismo como herramienta didáctica, surge la necesidad de que dos conjuntos de nodos puedan trabajar en la misma red de forma independiente. Como aproximación para satisfacer estas necesidades surge el procolo de descubrimiento de servicios \textbf{MarcoPolo}.
+Motivada por esta serie de características surge la necesidad de crear un protocolo de descubrimiento de nodos y servicios basado principalmente en los servicios que estos pueden (y desean) ofrecer. Además, siendo uno de los objetivos funcionales del sistema el aprovechamiento del mismo como herramienta didáctica, surge la necesidad de que dos conjuntos de nodos puedan trabajar en la misma red de forma independiente. Como aproximación para satisfacer estas necesidades surge el procolo de descubrimiento de servicios \textbf{MarcoPolo}.
 
-\paragraph{Introducción}
+\paragraph{Introducción\\}
 
 \textbf{MarcoPolo} es un protocolo de descubrimiento de servicios cuya dinámica y nombre se inspiran en el juego homónimo\footnote{\href{https://en.wikipedia.org/wiki/Marco\_Polo\_\%28game\%29}{https://en.wikipedia.org/wiki/Marco\_Polo\_\%28game\%29}}, en el cual uno de los integrantes debe encontrar al resto privado de visión mediante ecolocalización (gritando la palabra clave ``Marco'', cuya respuesta por parte del resto de jugadores es ``Polo''). El protocolo se compone de dos roles claramente diferenciados (e independientes aún siendo ejecutados en el mismo nodo): \textbf{Marco}, encargado de enviar consultas a la red y \textbf{Polo}, que emite una respuesta a dichos comandos y gestiona la información de cada nodo. %TODO: 
 
 Con el objetivo de posibilitar la coexistencia de varias ``mallas'' de nodos independientes (donde los servicios ofrecidos por un nodo sean conocidos y consecuentemente aprovechables únicamente por el resto) a la vez que las consultas son realizadas a todos los integrantes sin necesidad de conocer su identificador en la red (dirección a nivel de red o enlace, nombre \textbf{DNS}) se utilizan mensajes uno-a-muchos, conocidos con el nombre \textit{multicast}, donde cada una de las ``mallas'' se comunicará con el resto de integrantes de la misma a través de un grupo preestablecido (o consensuado por dichos nodos).
 
-\paragraph{Funcionamiento}
+\paragraph{Funcionamiento\\}
 
-El protocolo se basa en el envío de mensajes a un grupo multicast acordado previamente (existiendo un grupo designado por defecto). Los nodos suscritos a dicho grupo recibirán dicho mensaje y lo procesarán, emitiendo una respuesta dirigida únicamente al nodo que ha realizado la solicitud en caso de que el mensaje solicite un servicio que el nodo ofrezca. En caso contrario no se emitirá ninguna respuesta. Dicho mensaje incluirá información adicional, como el método de acceso al servicio, estado del nodo, etcétera.
+El protocolo se basa en el envío de mensajes a un grupo \textit{multicast} acordado previamente (existiendo un grupo designado por defecto). Los nodos suscritos a dicho grupo recibirán dicho mensaje y lo procesarán, emitiendo una respuesta dirigida únicamente al nodo que ha realizado la solicitud en caso de que el mensaje solicite un servicio que el nodo ofrezca. En caso contrario no se emitirá ninguna respuesta. Dicho mensaje incluirá información adicional, como el método de acceso al servicio, estado del nodo, etcétera.
 
 El solicitante esperará durante un tiempo pequeño a que haya respuesta por parte del resto de nodos, recogiendo todos los mensajes recibidos. Una vez que el tiempo de espera haya pasado, se retornarán los resultados al programa o usuario solicitante.
 
-\paragraph{Comandos}
+\paragraph{Comandos\\}
 
-Los mensajes utilizados se denominan \textit{comandos} y contienen las consultas sobre un servicio, nodo o información sobre la propia \textit{malla} que se desea conocer, así como la respuesta a dichas consultas. Dichos comandos son enviados como cadenas de texto que almacenan la información en estructuras de datos JSON (\textit{JavaScript Object Notation}) debido a la gran legibilidad de estas por humanos y máquinas, y la popularidad de este formato como mecanismo de transmisión de informaciónla gran cantidad de herramientas disponibles para su creación y procesado.
+Los mensajes utilizados se denominan \textit{comandos} y contienen las consultas sobre un servicio, nodo o información sobre la propia \textit{malla} que se desea conocer, así como la respuesta a dichas consultas. Dichos comandos son enviados como cadenas de texto que almacenan la información en estructuras de datos JSON (\textit{JavaScript Object Notation}) debido a la gran legibilidad de estas por humanos y máquinas, y la popularidad de este formato como mecanismo de transmisión de información, que ha propiciado la aparición de una gran cantidad de herramientas disponibles para su creación y procesado.
 
-Los comandos de MarcoPolo constituyen las primitivas del protocolo. Actualmente se cuenta con las siguientes primitivas y las correspondientes respuestas:
+%Los comandos de MarcoPolo constituyen las primitivas del protocolo. Actualmente se cuenta con las siguientes primitivas y las correspondientes respuestas:
 \begin{landscape}
 \begin{table}[H]
-\begin{tabular}{|p{2.35cm}|p{1.2cm}|p{4.5cm}|p{5cm}|p{5cm}|p{3.5cm}|}
+\begin{tabular}{|l|p{1.3cm}|p{4.5cm}|p{5cm}|p{4.5cm}|p{3cm}|}
 \hline
 \textbf{Nombre} & \textbf{Emisor} & \textbf{Función} & \textbf{Información} & \textbf{Respuesta esperada} & \textbf{Protocolo}\\ \hline
 
@@ -298,7 +337,7 @@ Estos ejecutables están diseñados para ser iniciados al arranque el equipo, ap
 
 Toda la funcionalidad se ejecuta en un único proceso que se encarga de la creación de los diferentes canales de comunicación (utilizando la API de \textit{sockets} de Berkeley). Dichos canales de comunicación son gestionados por la utilidad \textbf{Twisted}\footnote{\href{https://twistedmatrix.com/trac/}{https://twistedmatrix.com/trac/}}, que simplifica el trabajo con la API, en particular a la hora de crear \textit{sockets} asíncronos.
 
-\paragraph{Configuración}
+\paragraph{Configuración\\}
 
 Todos los aspectos modificables de cada rol, tales como el grupo \textit{multicast} al que suscribirse o el tiempo de espera predeterminado se definen en un archivo de configuración alojado en el directorio \texttt{/etc/marcopolo} (siguiendo la estructura definida en el \textit{Filesystem Hierarchy Standard} \cite{fhs}).
 
@@ -315,21 +354,22 @@ Los archivos de configuración de cada uno de los \textit{daemons} sigue la típ
 
 \paragraph{Archivos auxiliares}
 
-\paragraph{Log}
+\paragraph{Log\\}
 Toda la información sobre la ejecución de los \textit{daemons} se refleja en los archivos de \textit{log} presentes en el directorio \texttt{/var/log/marcopolo}. El nivel de log se configura en el parámetro \texttt{LOGLEVEL} de cada uno de los \textit{daemons} y puede tomar uno de los siguientes valores:
 
 \begin{itemize}
-\item \textbf{Error} Errores internos durante la ejecución.
-\item \textbf{Warn} Advertencias sobre posibles situaciones atípicas.
-\item \textbf{Info} Información de interés sobre el funcionamiento del sistema.
-\item \textbf{Debug} Información de depuración.
+\item \textbf{Error}: Errores internos durante la ejecución.
+\item \textbf{Warn}: Advertencias sobre posibles situaciones atípicas.
+\item \textbf{Info}: Información de interés sobre el funcionamiento del sistema.
+\item \textbf{Debug}: Información de depuración.
 \end{itemize}
 
+\citationneeded[TODO: Vistazo del log]
 %\logcode{/home/martin/TFG/Documentación/memoria-tfg/memoria/Code/marcod}{Caption}{1}{3} %TODO
 
 \paragraph{Registro de ejecución}
 
-En ocasiones es necesario conocer el identificador del proceso \textbf{PID} del \textit{daemon}. Para ello se almacena en el directorio \texttt{/var/run/(marcod.pid|polod.pid)} dicho identificador, que puede ser aprovechado por el gestor de arranque del proceso.
+En ocasiones es necesario conocer el identificador del proceso \textbf{PID} del \textit{daemon}. Para ello se almacenan en los ficheros \texttt{/var/run/polod.pid} y \texttt{/var/run/marcod.pid} estos identificadores, que pueden ser aprovechado por el gestor de arranque del proceso.
 
 \subsubsection{Integración de los \textit{daemons} en el sistema operativo}
 
@@ -348,9 +388,9 @@ Los \textit{daemons} se integran en el arranque del sistema a través de los fic
 
 La funcionalidad de \textbf{MarcoPolo} no se limita al descubrimiento de los servicios del sistema, por lo que es necesario ofrecer a los usuarios del clúster herramientas que permitan integrar sus aplicaciones distribuidas con estos servicios. Dichas herramientas, conocidas como \textit{bindings}, permiten exponer públicamente la funcionalidad de \textbf{MarcoPolo} para que pueda ser aprovechada por otros usuarios.
 
-Se han creado \textit{bindings} para los lenguajes de programación \textbf{C}, \textbf{C++}, \textbf{Python} y \textbf{Java}. Todos ellos son consistentes entre sí, manteniendo la misma sintaxis para realizar el mismo tipo de operación a la vez que aprovechan las características propias de cada lenguaje. Dicha filosofía está inspirada en el funcionamiento de las primitivas de la API de resolución de nombres en red (\texttt{netdb.h})\cite{netdb}, por lo que los \texttt{bindings} se comunican con la instancia local de Marco o Polo a través de \textit{sockets} vinculados a la dirección IP local (127.0.1.1).
+Se han creado \textit{bindings} para los lenguajes de programación \textbf{C}, \textbf{C++}, \textbf{Python} y \textbf{Java}. Todos ellos son consistentes entre sí, manteniendo la misma sintaxis para realizar el mismo tipo de operación a la vez que aprovechan las características propias de cada lenguaje. Dicha filosofía está inspirada en el funcionamiento de las primitivas de la API de resolución de nombres en red (\texttt{netdb.h}) \cite{netdb}, por lo que los \texttt{bindings} se comunican con la instancia local de Marco o Polo a través de \textit{sockets} vinculados a la dirección IP local (127.0.1.1).
 
-Todos los \textit{bindings} deben implementar el mismo conjunto de primitivas, definidas en la documentación de refencia de MarcoPolo (ver anexo). La mayoría de primitivas tienen como objetivo el descubrimiento y publicación de servicios. Sin embargo, varias de ellas permiten realizar consultas sobre la información del propio nodo y se plantea la creación de más primitivas que sigan dicha filosofía
+Todos los \textit{bindings} deben implementar el mismo conjunto de primitivas, definidas en la documentación de refencia de MarcoPolo (ver anexo\citationneeded[TODO]). La mayoría de primitivas tienen como objetivo el descubrimiento y publicación de servicios. Sin embargo, varias de ellas permiten realizar consultas sobre la información del propio nodo y se plantea la creación de más primitivas que sigan dicha filosofía
 
 %TODO \paragraph{Primitivas en el \textit{binding} de Marco}
 % \begin{itemize}
@@ -395,7 +435,7 @@ Todos los \textit{bindings} deben implementar el mismo conjunto de primitivas, d
 
 A fin de simplificar al máximo el funcionamiento de los \textit{daemons} varias utilidades que podrían tener cabida dentro del propio protocolo han sido creadas como utilidades independientes que aprovechan la funcionalidad de \textbf{MarcoPolo} para realizar su cometido, pero cuya interdependencia se limita a dichos canales de comunicación.
 
-\paragraph{\texttt{marcodiscover}}
+\paragraph{\texttt{marcodiscover}\\}
 \label{marcodiscover}
 Esta utilidad consiste en un comando que permite ejecutar consultas al sistema a través de un intérprete de órdenes. El comando posibilita realizar la mayoría de consultas de interés y cuenta con varias opciones para dar diferentes formatos a la salida por pantalla, algo que, como veremos posteriormente, es de gran utilidad para la ejecución de un conjunto particular de programas.
 
@@ -452,7 +492,7 @@ optional arguments:
 \label{fig:marcodiscover_help}
 \end{figure}
 
-\paragraph{\texttt{marcoinstallkey}}
+\paragraph{\texttt{marcoinstallkey}\\}
 \label{marcoinstallkey}
 
 Esta utilidad responde a la necesidad de instalar una clave pública en un nodo para poder acceder al mismo de forma remota sin necesidad de un par usuario-contraseña. Utiliza una llamada a marcodiscover internamente y aprovecha la información retornada para ejecutar el commando \texttt{ssh-copy-id} incluido en \textbf{OpenSSH}.
@@ -474,9 +514,9 @@ Arguments
 \end{lstlisting}
 \end{figure}
 
-\paragraph{\texttt{marcoscp}}
+\paragraph{\texttt{marcoscp}\\}
 
-Utilizando una llamada a marcodiscover, realiza una copia de los ficheros utilizando \textbf{scp}.
+Utilizando una llamada a \texttt{marcodiscover}, realiza una copia de los ficheros utilizando \textbf{scp}.
 
 
 \subsection{Autenticación de los usuarios}
@@ -508,37 +548,18 @@ En el sistema se aprovechará principalmente la funcionalidad de autenticación 
 
 El sistema aprovecha el módulo PAM para realizar el proceso de autenticación.
 
-\paragraph{pam\_mkhomedir}
+\paragraph{\texttt{pam\_mkpolohomedir}\\}
 \label{pam_mkpolohomedir}
 
 \textbf{PAM} permite ampliar la funcionalidad que ofrece por defecto mediante la inclusión de \textit{módulos}, pequeñas bibliotecas compartidas de código con las acciones a realizar.
 
-Uno de los módulos incluidos en la instalación por defecto de \textbf{PAM} es \textbf{mkhomedir}, encargado de la creación de un directorio propio para el usuario en caso de que aún no se haya realizado dicha acción. El proceso consiste en una copia del directorio \textbf{skeleton} (generalmente situado en \texttt{/etc/skel}) y la correcta fijación de permisos en el mismo.
+Uno de los módulos incluidos en la instalación por defecto de \textbf{PAM} es \texttt{pam\_mkhomedir}, encargado de la creación de un directorio propio para el usuario en caso de que aún no se haya realizado dicha acción. El proceso consiste en una copia del directorio \textbf{skeleton} (generalmente situado en \texttt{/etc/skel}) y la correcta fijación de permisos en el mismo.
 
 Sin embargo, el directorio únicamente es creado en el nodo al que se accede. La filosofía del sistema implica la creación de un sistema que se componga de varias unidades, pero se comporten como una única entidad, por lo que obligar al usuario a acceder a todos los nodos para poder trabajar en el sistema completo anula dicha transparencia. Es necesario contar con un sistema que extienda la funcionalidad de \texttt{mkhomedir} para incluir el resto de nodos en la creación del directorio.
 
-Con este objetivo nace \texttt{pam\_mkpolopohomedir}, un módulo basado en \texttt{mkhomedir} que hace uso de \textbf{MarcoPolo} para detectar los nodos presentes en la red que ofrezcan el servicio \texttt{polousers} y solicitar a los mismos la creación del directorio de inicio.
+Con este objetivo nace \texttt{pam\_mkpolohomedir}, un módulo basado en \texttt{pam\_mkhomedir} que hace uso de \textbf{MarcoPolo} para detectar los nodos presentes en la red que ofrezcan el servicio \texttt{polousers} y solicitar a los mismos la creación del directorio de inicio.
 
 El módulo se implementa en C debido a que es el lenguaje con el que los módulos de PAM se construyen por defecto y utiliza por tanto el \textit{binding} de MarcoPolo para este lenguaje. Existen sin embargo herramientas para desarrollar el mismo en Python\footnote{\href{http://pam-python.sourceforge.net/}{http://pam-python.sourceforge.net}}.
-
-%TODO: Mover al catálogo técnico del módulo
-% Un módulo en PAM debe implementar una serie de funciones que constituirán los puntos de entrada al módulo\citationneeded{pam manpages}:
-
-% \begin{itemize}
-% \item \texttt{PAM\_EXTERN int pam\_sm\_open\_session(pam\_handle\_t \* pamh, int flags, int argc ,const char **argv)}\\
-
-% Es la función que \textbf{PAM} invoca al incluir el módulo. Incluye en el mismo una estructura \texttt{pam\_handle\_t} con toda la información relevante sobre el usuario que ha iniciado sesión y los parámetros indicados en los ficheros de configuración de \texttt{PAM} (en el caso de este módulo, los permisos del directorio de inicio y la localización del directorio \textit{skeleton}). 
-
-% %comoPpunto de entrada al móduloal inicialmente
-
-% \item \texttt{PAM\_EXTERN int pam\_sm\_close\_session(pam\_handle\_t * pamh, int flags, int argc, const char **argv)}
-
-% Es la función que \textbf{PAM} utiliza para indicar al módulo que la sesión ha terminado. En el caso del módulo a crear no se debe realizar ninguna acción en este evento, sin embargo es necesario implementarla debido a que PAM la requiere.
-
-% \item \texttt{struct pam\_module \_pam\_mkhomedir\_modstruct}
-
-% Define las características del módulo y los puntos de entrada que define.
-% \end{itemize}
 
 El módulo realiza la siguiente secuencia de pasos:
 
@@ -554,9 +575,8 @@ El módulo realiza la siguiente secuencia de pasos:
 	\item Una vez que todos los nodos han realizado la acción solicitada, se da acceso al sistema.
 \end{enumerate}
 
-Todas las operaciones realizan escrituras en ficheros de \textbf{log} para su posterior análisis.
+Todas las operaciones realizan escrituras en ficheros de \textit{log} para su posterior análisis.
 
-%%TODO: definir en detalle
 En cada uno de los nodos exisitirá por tanto una instancia del servicio \textbf{polousers} que se encargará de procesar las peticiones.
 
 \paragraph{Seguridad\\}
@@ -567,7 +587,9 @@ Al tratarse de acciones llevadas a cabo por usuarios con privilegios elevados y 
 
 El módulo ha sido diseñado con el objetivo de posibilitar la adición de nueva funcionalidad al mismo. Únicamente es necesario definir las acciones a llevar a cabo en el servicio \textbf{polousers} y solicitar su realización mediante la sintaxis de comandos de \textbf{MarcoPolo}.
 
-%%%
+\vspace{2cm}
+
+Los detalles técnicos de este sistema se encuentran en la documentación adjunta \citationneeded[TODO]
 
 %%%%%%%%%%%%%%%%%%%%%%
 \subsection{Operaciones auxiliares}
