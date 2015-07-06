@@ -9,7 +9,11 @@ En el que se detalla el análisis de diferentes alternativas de aplicaciones, he
 
 \subsection{Lenguajes de programación}
 
-Python se ha elegido como lenguaje principal de desarrollo. Es un lenguaje de programación interpretado de propósito general que prioriza la legibilidad del código y la rapidez de desarrollo, manteniendo estas propiedades en proyectos de cualquier escala. Python soporta diferentes paradigmas de programación, entre ellos la orientación a objetos, programación imperativa y la programación funcional. Automatiza la gestión de memoria y utiliza un sistema de tipado dinámico rígido. Sin embargo se han utilizado varios lenguajes de forma complementaria.
+Python se ha elegido como lenguaje principal de desarrollo. Es un lenguaje de programación interpretado de propósito general que prioriza la legibilidad del código y la rapidez de desarrollo, manteniendo estas propiedades en proyectos de cualquier escala. Este lenguaje soporta diferentes paradigmas de programación, entre ellos la orientación a objetos, programación imperativa y la programación funcional. Automatiza la gestión de memoria y utiliza un sistema de tipado dinámico rígido.
+
+La gran cantidad de bibliotecas disponibles para el lenguaje y su facilidad de uso, así como el hecho de que la fundación Raspberry Pi propicie su uso en los equipos que produce constituyen ventajas competitivas sobre el resto de alternativas.
+
+Junto a Python se han utilizado varios lenguajes de forma complementaria.
 
 \begin{landscape}
 \begin{table}[H]
@@ -47,13 +51,22 @@ Twisted permite crear de forma sencilla sockets asíncronos a bajo nivel en los 
 
 \textbf{Twisted} se ha utilizado para la creación de la herramienta de descubrimiento de servicios \textbf{MarcoPolo} (ver \ref{marcopolo}).
 
+Esta herramienta es elegida sobre otras alternativas analizadas:
+
+\begin{itemize}
+\item asyncore\footnote{\href{https://docs.python.org/3.5/library/asyncore.html}{https://docs.python.org/3.5/library/asyncore.html}} se plantea como la primera alternativa y es descartado por la incapacidad de desarrollar un prototipo funcional.
+\item El bucle de eventos \texttt{io\_loop} de Tornado\footnote{\href{http://www.tornadoweb.org/en/stable/ioloop.html}{http://www.tornadoweb.org/en/stable/ioloop.html}}, si bien no diseñado específicamente para este propósito se considera como una alternativa viable. Sin embargo, la carencia de las facilidades para manejo de una aplicación en red (si bien Tornado es un servidor web, no está diseñado para implementar operaciones a bajo nivel, apoyándose siempre en protocolos como HTTP o WebSocket) hace que no sea una alternativa viable.
+\end{itemize}
+
+Finalmente, Twisted es elegido por la gran cantidad de protocolos que soporta y la posibilidad de manipular la pila de protocolos desde el nivel de red.
+
 \subsection{Tornado}
 
 \textbf{Tornado} es un \textit{framework} web y una biblioteca para aplicaciones en red que utiliza mecanismos de entrada/salida asíncrona, permitiendo crear herramientas como \textbf{WebSockets} de forma sencilla y escalable. Todo el código, a menos que explícitamente se indique lo contrario, se ejecuta en un único hilo.
 
 \textbf{Tornado} se utiliza en todas las interfaces web creadas, en ocasiones en conjunción con \textbf{Django} y se integra con \textbf{MarcoPolo} a través del \textit{binding} para Python.
 
-Si bien existen alternativas como node.js que siguen paradigmas similares, se decide utilizar Tornado debido a su implementación en Python, lenguaje conocido previamente, de alto rendimiento y fácil de utilizar para tareas que dependan altamente de la interacción con el sistema operativo y aplicaciones locales.
+Si bien existen alternativas como node.js que siguen paradigmas similares, se decide utilizar Tornado debido a su implementación en Python, lenguaje conocido previamente, de alto rendimiento y fácil de utilizar para tareas que dependan altamente de la interacción con el sistema operativo y aplicaciones locales. Se descarta también utilizar herramientas web escritos en Python que por su arquitectura (basada en múltiples procesos o hilos) consuman más recursos, como el \textit{framework} Django.
 
 \subsection{Websockets}
 
@@ -73,6 +86,8 @@ Hadoop\footnote{\href{https://hadoop.apache.org/}{https://hadoop.apache.org/}} e
 
 En una de las iteraciones del ciclo de desarrollo se instaló parcialmente una instancia de Hadoop en el sistema. Sin embargo se descartó su continuación al priorizar una serie de tareas de mayor importancia. No obstante, se contempla como línea de trabajo futuro, y teóricamente es integrable con \textbf{MarcoPolo} a través de \texttt{marcomanager}.
 
+No se ha realizado evaluación de otras alternativas para el proceso de grandes cantidades de datos, como \textbf{Apache Spark} \footnote{\href{https://spark.apache.org/}{https://spark.apache.org/}}.
+
 \section{Aplicaciones distribuidas}
 
 \subsection{\textit{Message Passing Interface}}
@@ -82,6 +97,8 @@ La necesidad de una herramienta de comunicación independiente de la plataforma 
 MPI se ha convertido con el paso de los años en la interfaz de referencia para la creación de aplicaciones distribuidas, contando con varias implementaciones como \textbf{MPICH} (la implementación original) u \textbf{OpenMPI} (presente en la mayoría de supercomputadores), de tipo libre, o implementaciones propietarias tales como IBM MPI, Intel MPI, Cray MPI, Microsoft MPI, Myricom MPI.
 
 MPI es utilizado en el sistema como herramienta de desarrollo de aplicaciones distribuidas, utilizando \textbf{MarcoPolo} para simplificar el proceso de descubrimiento de nodos (ver \ref{marcodiscover}). Además se han creado herramientas accesorias para facilitar varias tareas generalmente necesarias durante el desarrollo con la biblioteca (ver \ref{marcoinstallkey}).
+
+La popularidad de MPI sobre otras herramientas similares como \textbf{PVM} (\textit{Parallel Virtual Machine}) \footnote{\href{http://www.csm.ornl.gov/pvm/}{http://www.csm.ornl.gov/pvm/}} hace que la cantidad de soporte para las placas Raspberry sea mayor. Esta circunstancia junto al hecho de que MPI es utilizado en la asignatura Arquitectura de Computadores (y por tanto se cuenta con experiencia de uso, y el desarrollo del sistema relativo a este tipo de aplicaciones podría utilizarse en la asignatura) hace que MPI sea la alternativa elegida, sin evaluación previa.
 
 \subsubsection{\textit{Raspberry Pi Planet Simulator Cluster}}
 
@@ -98,13 +115,17 @@ Este proyecto ha sido evaluado con el objetivo de integrarlo en el sistema. Sin 
 
 \subsection{Tomcat}
 
-Las prácticas de la asignatura Sistemas Distribuidos se realizan sobre el contenedor de servicios Tomcat. Por ello el sistema ofrece instancias de Tomcat a todos los usuarios sin que estos deban realizar ningún tipo de configuración. Además, se habilita el uso de Tomcat en herramientas como \textbf{deployer} para facilitar el desarrollo de las prácticas.
+Las prácticas de la asignatura Sistemas Distribuidos se realizan sobre el contenedor de servicios Tomcat y el \textit{framework} Glassfish \footnote{\href{https://glassfish.java.net/}{https://glassfish.java.net/}} para la creación de APIs \textbf{REST}. Por ello el sistema ofrece instancias de Tomcat a todos los usuarios sin que estos deban realizar ningún tipo de configuración. Además, se habilita el uso de Tomcat en herramientas como \textbf{deployer} para facilitar el desarrollo de las prácticas.
+
+Se plantea el análisis de alternativas para la creación de APIs \textbf{REST} como el \textit{framework} \textbf{Flask}.
 
 \section{Herramientas de virtualización}
 
 \subsection{QEMU}
 
-QEMU es un emulador y virtualizador de código abierto compatible con un gran abanico de arquitecturas y sistemas operativos diferentes, siendo compatible con hipervisores como Xen o KVM. En el sistema se utiliza como la primera propuesta de optimización del rendimiento del sistema en tareas como la compilación de código fuente.
+QEMU\footnote{\href{http://qemu.org}{http://qemu.org}} es un emulador y virtualizador de código abierto compatible con un gran abanico de arquitecturas y sistemas operativos diferentes, siendo compatible con hipervisores como Xen o KVM. En el sistema se utiliza como la primera propuesta de optimización del rendimiento del sistema en tareas como la compilación de código fuente.
+
+QEMU es popular a la hora de virtualizar instancias de sistemas operativos para la arquitectura ARM, y existe documentación sobre la virtualización de sistemas como \textbf{Raspbian} o \textbf{Arch Linux ARM}, por lo que no se realiza una evaluación de otras alternativas.
 
 \section{Herramientas utilizadas para la gestión de código, calidad de \textit{software} y el proyecto}
 
@@ -114,7 +135,9 @@ Git es un sistema de control de versiones capaz de gestionar proyectos de cualqu
 
 Las diferentes herramientas que componen el sistema son creadas en repositorios independientes de código. Dicho código es almacenado en un servidor con el objetivo de facilitar la movilidad del código entre las diferentes máquinas que componen el sistema y a modo de copia de seguridad. Se sigue un modelo de desarrollo basado en ramas que representan características a añadir a la versión estable, revisión de código, documentación o mantenimiento y solución a \textit{bugs}.
 
-Todos los repositorios de código originales pueden consultarse en \href{https://bitbucket.org/Alternhuman}{https://bitbucket.org/Alternhuman}.
+Todos los repositorios de código originales pueden consultarse en \ref{repositorios}.
+
+Dado que se cuenta con bastante experiencia en el uso de \textbf{git} no se analizan alternativas como \textbf{subversion} o \textbf{mercurial}. 
 
 \subsection{Redmine}
 
@@ -183,7 +206,7 @@ Con el objetivo de superar este límite nace SSH-HPN\footnote{\href{http://www.p
 
 Se ha creado una versión parcheada de SSH probada en la instalación de Arch Linux utilizada con el código fuente ya preparado para trabajar en la arquitectura ARM utilizándose en lugar del paquete \textbf{OpenSSH} original.
 
-\section{Otras herramientas}
+%TODO\section{Otras herramientas}
 
 %TODOArchivo BibTeX con todas las referencias de las RFCs: \href{http://tm.uka.de/~bless/bibrfcindex.html}{http://tm.uka.de/~bless/bibrfcindex.html}
 

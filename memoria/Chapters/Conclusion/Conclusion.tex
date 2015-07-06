@@ -1,47 +1,27 @@
-\relax 
-\providecommand\hyper@newdestlabel[2]{}
-\@setckpt{Chapters/Conclulusion/Conclusion}{
-\setcounter{page}{111}
-\setcounter{equation}{0}
-\setcounter{enumi}{5}
-\setcounter{enumii}{0}
-\setcounter{enumiii}{0}
-\setcounter{enumiv}{0}
-\setcounter{footnote}{20}
-\setcounter{mpfootnote}{0}
-\setcounter{part}{0}
-\setcounter{chapter}{7}
-\setcounter{section}{7}
-\setcounter{subsection}{2}
-\setcounter{subsubsection}{0}
-\setcounter{paragraph}{0}
-\setcounter{subparagraph}{0}
-\setcounter{figure}{6}
-\setcounter{table}{3}
-\setcounter{parentequation}{0}
-\setcounter{example}{0}
-\setcounter{theorem}{0}
-\setcounter{ContinuedFloat}{0}
-\setcounter{subfigure}{0}
-\setcounter{lofdepth}{1}
-\setcounter{subtable}{0}
-\setcounter{lotdepth}{1}
-\setcounter{r@tfl@t}{0}
-\setcounter{lstnumber}{13}
-\setcounter{Item}{12}
-\setcounter{Hfootnote}{48}
-\setcounter{Hy@AnnotLevel}{0}
-\setcounter{bookmark@seq@number}{51}
-\setcounter{dummy}{7}
-\setcounter{LT@tables}{1}
-\setcounter{LT@chunks}{1}
-\setcounter{NAT@ctr}{0}
-\setcounter{vec@elem}{0}
-\setcounter{FancyVerbLine}{0}
-\setcounter{float@type}{8}
-\setcounter{undefinedreferences}{11}
-\setcounter{pp@next@reset}{0}
-\setcounter{AM@survey}{0}
-\setcounter{lstlisting}{1}
-\setcounter{section@level}{2}
-}
+\chapter{Conclusiones y líneas de trabajo futuro}
+\lhead{\emph{Conclusiones y líneas de trabajo futuro}}
+
+\begin{cabstract}
+
+En el que se realiza un análisis retrospectivo de todas las etapas del Trabajo de Fin de Grado valorando los diferentes aspectos de las mismas y los resultados finales. Se incluyen además una serie de propuestas de trabajo futuro para el equipo de desarrollo o potenciales interesados y tareas ya planeadas que complementan el Trabajo.
+
+\end{cabstract}
+
+El trabajo descrito en los anteriores capítulos ha probado ser de gran utilidad como síntesis de los conocimientos a adquirir según se plantea en el currículo del Grado en Ingeniería Informática de la Universidad de Salamanca. Además, el sistema ha permitido desarrollar expandir los conocimientos adquiridos en las asignaturas Sistemas Distribuidos, Redes de Computadores, Administración de Sistemas, Interacción Persona-Ordenador, Interfaces Gráficas de Usuario y Gestión de Proyectos.
+
+Como proyecto, la gestión del mismo ha permitido realizar una aproximación más cercana a un proyecto ``real'' que cualquier otro trabajo del plan de estudios, aprendiendo a lidiar con una incertidumbre muy alta y compaginando etapas de aprendizaje con etapas de desarrollo. El modelo de desarrollo utilizado, una metodología ágil basada prototipos, ha probado ser una vía efectiva para las demandas y restricciones del proyecto.
+
+Los resultados finales del sistema prueban que el desarrollo de sistemas distribuidos en hardware de bajo coste es factible e incluso ventajoso para diferentes propósitos. La relación rendimiento/coste es muy alta y sus características (como el puerto GPIO, o la pequeña demanda de espacio físico) pueden ser aprovechadas en un contexto didáctico, aportando nuevas herramientas que facilitarán la etapa de aprendizaje a los estudiantes de las asignaturas.
+
+Sin embargo, todas las herramientas creadas son independientes de la plataforma donde se ejecutan (excepto aquellas que dependan del \textit{hardware} presente en los nodos, como la biblioteca \textbf{quick2wire-cpp-api} o \textbf{marco-netinst}), por lo que su integración en cualquiera de los equipos de las aulas de informática de la organización no requiere adaptaciones al código fuente.
+
+\section{Líneas de trabajo futuro}
+
+Se plantean las siguientes líneas de trabajo futuro:
+
+\begin{itemize}
+	\item Instalar de forma definitiva (en lugar de las instalaciones de prueba realizadas) el sistema en la organización.
+	\item Analizar los resultados de la integración del sistema y sus herramientas en las asignaturas planteadas durante el curso académico 2015-2016.
+	\item Añadir a \textbf{MarcoPolo} la funcionalidad de publicación activa de servicios (anunciando en la red la adición de un nuevo servicio), en lugar de la publicación pasiva actual.
+	\item Consolidar el protocolo \textbf{MarcoPolo} como herramienta de descubrimiento de servicios, portándolo a sistemas como impresoras en red, dispositivos multimedia\dots y facilitar su uso en redes inalámbricas.
+\end{itemize}

@@ -130,8 +130,8 @@ Uno de los modelos típicos en el desarrollo de sistemas distribuidos es el ``di
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.92\textwidth]{Chapter2/Figures/map-reduce}
-  \caption[MapReduce]{\textbf{MapReduce} se basa en el principio de la distribución de los datos sobre diferentes nodos (\textit{Map}) y la recopilación de los datos procesados (\textit{Reduce})}
+  \includegraphics[width=\textwidth]{Chapter2/Figures/map-reduce}
+  \caption[Ejemplo de MapReduce]{\textbf{MapReduce} se basa en el principio de la distribución de los datos sobre diferentes nodos (\textit{Map}) y la recopilación de los resultados del proceso (\textit{Reduce}).}
   \label{fig:mapreduce}
 \end{figure}
 
@@ -193,7 +193,7 @@ Mediante rellamadas (\textit{callbacks}) una tarea que termina una operación de
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.7\textwidth]{Chapter2/Figures/threadcomparison}
-  \caption[Modelos de paralelización]{Comparación de los diferentes modelos de paralelización\cite{Fettig:2005:TNP:1205685}.}
+  \caption[Modelos de paralelización]{Comparación de los diferentes modelos de paralelización \cite{Fettig:2005:TNP:1205685}.}
   \label{fig:threadcomparison}
 \end{figure}
 En la figura \ref{fig:threadcomparison} se puede observar un claro ejemplo de tres diferentes modelos de programación y sus propiedades. Cada una de las áreas de diferente patrón representan los diferentes instantes de tiempo que un programa ha consumido ciclos de la CPU y el hilo en el que dicha ejecución se ha realizado. En la primera columna únicamente existe un hilo en el cual todos los programas se ejecutan. Esto impide que la CPU pueda alternar entre tareas en momentos en los que se está esperando a una operación que no requiere tiempo de procesado (un ejemplo habitual son las operaciones de lectura/escritura, generalmente lentas). Este modelo no posibilita la paralelización de tareas (como se ve, ninguna tarea comienza hasta que la anterior ha finalizado). En la segunda columna la paralelización es evidente. Sin embargo existe una gran cantidad de tiempo en el que la CPU no está siendo aprovechada. El tercer modelo, dirigido por eventos, ejecuta todas las tareas en un único hilo, pero solapando los instantes en los que la CPU es liberada con otra tarea. El tiempo de ejecución es menor que en el primer modelo y similar al segundo, pero se evitan cambios de contexto y se aumenta el tiempo de utilización de la CPU.
@@ -234,6 +234,10 @@ Con objeto de solventar los problemas que la coordinación centralizada conlleva
 
 El algoritmo del abusón (descrito en \cite{Coulouris:2011:DSC:2029110:Ch15}) posibilita la elección de un coordinador en función del cumplimiento de un criterio cuantitativo dado, siendo elegido coordinador aquel que mejor satisfaga dicho criterio.
 
+\paragraph{Algoritmo en anillo}
+
+El algoritmo funciona bajo la premisa de que todos los procesos cuentan con un orden preestablecido, conociendo a su antecesor y sucesor en la cadena\cite{Tanenbaum:2006:DSP:1202502:Ch6}.
+
 % Sea un proceso, \textit{P} que detecta la ausencia de un coordinador (en caso de que ya se haya ejecutado el algoritmo, se detecta la ausencia del anterior coordinador) y \textit{X} un valor numérico que determina el criterio para la elección del coordinador (el proceso con el valor más alto te \textit{X} será el coordinador).
 % \begin{enumerate}
 % \item \textit{P} envía un mensaje de elección a todos los procesos con \textit{X} más alto que \textit{X\textsuperscript{P}}.
@@ -243,14 +247,13 @@ El algoritmo del abusón (descrito en \cite{Coulouris:2011:DSC:2029110:Ch15}) po
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.8\textwidth]{Chapter2/Figures/bully}
-  \caption{Secuencia de elección de un coordinador}
+  \includegraphics[width=0.49\textwidth]{Chapter2/Figures/bully}
+  \includegraphics[width=0.49\textwidth]{Chapter2/Figures/ringalgorithm}
+  \caption{Secuencia de elección de un coordinador y funcionamiento del algoritmo en anillo}
   \label{fig:tanenbaum:bully}
+  \label{fig:tanenbaum:ringalgoritm}
 \end{figure}
 
-\paragraph{Algoritmo en anillo}
-
-El algoritmo funciona bajo la premisa de que todos los procesos cuentan con un orden preestablecido, conociendo a su antecesor y sucesor en la cadena\cite{Tanenbaum:2006:DSP:1202502:Ch6}.
 
 % \begin{enumerate}
 %   \item Cuando un proceso \textit{P} detecta la caída de un coordinador, envía un mensaje de elección al proceso sucesor, o en su defecto, al proceso sucesor más próximo, en caso de que se encuentre inactivo, hasta que encuentre un proceso activo.
@@ -258,13 +261,6 @@ El algoritmo funciona bajo la premisa de que todos los procesos cuentan con un o
 %   \item Una vez que el mensaje llega al creador del mismo, este construye un mensaje con el identificador del proceso que ha sido elegido como coordinador (el proceso con el identificador más alto, o aquel que satisfaga otro criterio similar) y lo envía al siguiente proceso de manera similar al mensaje inicial, si bien el contenido del mensaje no es alterado en este caso.
 %   \item Una vez que el mensaje ha circulado por todos los procesos, retorna a su creador y en este momento el trabajo se reanuda.
 % \end{enumerate}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.8\textwidth]{Chapter2/Figures/ringalgorithm}
-  \caption{Funcionamiento del algoritmo en anillo}
-  \label{fig:tanenbaum:ringalgoritm}
-\end{figure} 
 
 \section{Seguridad y protocolos criptográficos}
 
@@ -445,5 +441,12 @@ Un juego de herramientas (\textit{toolchain}) se conforma del conjunto de utilid
 
 %\subsection{Utilización en el sistema final}
 %\subsec
-Con el objetivo de posibilitar la realización de trabajos de compilación distribuida utilizando un equipo basado en la arquitectura i686\citationneeded[cat /proc/cpuinfo] se ha construido una cadena de herramientas que realiza procesos de compilación cruzada para la arquitectura ARMv7hf utilizando la herramienta \textit{crosstool-ng}\footnote{\href{http://www.crosstool-ng.org/}{http://crosstool-ng.org}}, consiguiendo optimizar de forma significativa el tiempo de compilación ver \ref{distcc:analysis}).También existe una versión para la arquitectura ARMv6hf \citationneeded[crear] y estas cadenas de  herramientas se han utilizado para la creación de un pequeño entorno de desarrollo con Eclipse para Raspberry Pi ver \ref{eclipseraspberry}.
+Con el objetivo de posibilitar la realización de trabajos de compilación distribuida utilizando un equipo basado en la arquitectura i686\citationneeded[cat /proc/cpuinfo] se ha construido una cadena de herramientas que realiza procesos de compilación cruzada para la arquitectura ARMv7hf utilizando la herramienta \textit{crosstool-ng}\footnote{\href{http://www.crosstool-ng.org/}{http://crosstool-ng.org}}, consiguiendo optimizar de forma significativa el tiempo de compilación ver \ref{distcc:analysis}).También existe una versión para la arquitectura ARMv6hf y estas cadenas de  herramientas se han utilizado para la creación de un pequeño entorno de desarrollo con Eclipse para Raspberry Pi (ver anexo \citationneeded[TODO]).
 
+\begin{comment}
+\begin{figure}[H]
+\includegraphics{raspbeclipse}
+\end{figure}
+\end{comment}
+
+El uso de \textbf{crosstool-ng} permite personalizar la cadena de herramientas creada a cambio de un aumento en la complejidad de uso. Dicha personalización hace que esta alternativa sea la elegida en lugar de las utilidades proporcionadas por los desarrolladores de la plataforma \textbf{Raspberry Pi}\footnote{\href{https://github.com/raspberrypi/tools}{https://github.com/raspberrypi/tools}} o el \textit{flag} \texttt{ARCH} de gcc.

@@ -666,18 +666,34 @@ La biblioteca es compatible con C y C++ ofreciendo un conjunto de llamadas simil
 \label{chapter:serviciosauxiliares}
 \subsection{Compilador cruzado}
 
-Si bien el sistema Raspberry Pi es capaz de compilar el \textit{software} que después utilizará, en ocasiones es beneficioso delegar dicha tarea a otro componente que realice el proceso por el nodo en cuestión y posteriormente añadir los archivos ejecutables al sistema. Este enfoque reduce el tiempo de trabajo de forma significativa, como observaremos posteriormente.\citationneeded[TODO: encontrar datos]%proporcione los resultados al solicitante.
+Si bien el sistema Raspberry Pi es capaz de compilar el \textit{software} que después utilizará, en ocasiones es beneficioso delegar dicha tarea a otro componente que realice el proceso por el nodo en cuestión y posteriormente añadir los archivos ejecutables al sistema. Este enfoque reduce el tiempo de trabajo de forma significativa.
+
+Una primera propuesta de solución es contar con una instancia virtualizada del sistema operativo de las placas en un equipo más potente, utilizando QEMU como virtualizador.
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.3\textheight]{Chapters/Chapter5/Figures/qemu/arch-booting}
+\caption[Arch Linux ARM virtualizado arrancando en QEMU]{Arch Linux ARM virtualizado arrancando en QEMU. Nótense los diferentes errores fruto de una configuración incompleta (no se terminó de refinar el prototipo, siendo el único objetivo conseguir una compilación exitosa virtualizada). Al abandonar esta propuesta, no se invirtió más tiempo en el prototipo.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.3\textheight]{Chapters/Chapter5/Figures/qemu/raspbian-compiler}
+\caption[Raspbian con interfaz gráfica ejecutando un proceso de compilación sobre QEMU]{Raspbian con interfaz gráfica ejecutando un proceso de compilación sobre QEMU en Ubuntu.}
+\end{figure}
+
+Los resultados de esta propuesta son prometedores. No obstante, la solución implica que todos los usuarios deben contar con acceso físico a la instancia virtual (o configurar una en su propia máquina). Aspectos como la dificultad de configuración de QEMU dificultan la viabilidad de la propuesta pues hace de su administración una tarea compleja. Se opta por descartar esta solución y utilizar soluciones que faciliten la integración en un sistema multiusuario, como un compilador distribuido.
 
 \subsubsection{Creación de un compilador cruzado}
 
-Un compilador cruzado (\textit{cross-compiler}) es una herramienta capaz de generar código máquina para una arquitectura determinada utilizando un equipo equipado con un juego de instrucciones diferente. %TODO: http://en.wikipedia.org/wiki/Cross_compiler
+Un compilador cruzado (\textit{cross-compiler}) es una herramienta capaz de generar código máquina para una arquitectura determinada utilizando un equipo equipado con un juego de instrucciones diferente.
 El uso de compiladores cruzados es habitual a la hora de desarrollar aplicaciones para sistemas embebidos o móviles, debido a la dificultad o incluso incapacidad de realizar las diferentes etapas de desarrollo en el propio equipo. Uno de los problemas que aparecen a la hora de utilizar este tipo de equipos es la escasa velocidad de procesamiento, que hace de tareas con gran demanda de recursos como una compilación un proceso tedioso (ver \ref{teoria:crosscompiler}).
 
 El compilador ha sido creado utilizando la herramienta \textbf{crosstool-ng}. No se ha generado únicamente un compilador, sino un conjunto completo de herramientas para el desarrollo de aplicaciones para las arquitecturas ARMv6 y ARMv7. \textbf{Crosstool-ng} permite generar una ``cadena de herramientas'' (\textit{crosstool} en inglés), que incluye una copia de las bibliotecas estándar de C (\textbf{glibc} en este caso), depurador y bibliotecas de depuración, además de permitir optimizar las herramientas creadas para una plataforma determinada o un conjunto de instrucciones determinado dentro de la plataforma (por ejemplo, para las operaciones en punto flotante).
 
 \subsubsection{Compilación distribuida}
 
-Si bien el uso de un compilador distribuido permite aprovechar la potencia de un segundo equipo para crear \textit{software}, se requiere previamente la instalación de la cadena de herramientas (o en el peor de los casos, la generación de la misma, un proceso generalmente complejo y largo). Por ello, se plantea una solución que sea más transparente para el usuario final.
+Si bien el uso de un compilador distribuido permite aprovechar la potencia de un segundo equipo para crear \textit{software}, se requiere previamente la instalación de la cadena de herramientas (o en el peor de los casos, la generación de la misma, un proceso que suele requerir entre 30 y 60 minutos). Por ello, se plantea una solución que sea más transparente para el usuario final.
 
 \textbf{distcc} es una herramienta que permite gestionar trabajos de compilación distribuida en un esquema cliente-servidor. Distribuye diferentes etapas de compilación a todos los nodos presentes en una red que cuenten con la aplicación servidor activada, estableciendo los diferentes mecanismos de sincronización y validación de resultados oportunos, haciendo que su uso sea completamente transparente al usuario (incluso en caso de fallo es capaz de realizar el trabajo encomendado, realizando la compilación en el propio equipo). Un trabajo de compilación en \textbf{distcc} con gcc se encarga de la siguiente forma:
 
@@ -688,7 +704,7 @@ Como se puede observar, todas las opciones de gcc se mantienen en dicha llamada,
 \textbf{Distcc} utiliza por defecto el compilador indicado por el cliente en la llamada al proceso cliente, utilizando dicho compilador en el servidor. En el caso de una compilación no cruzada esta situación no causa problemas, sin embargo, en el presente caso es necesario realizar una serie de modificaciones en el servidor para posibilitar el uso de la cadena de herramientas creada.
 
 Creando enlaces simbólicos que no incluyan el prefijo de los binarios generados por la cadena de herramientas (generalmente del estilo \texttt{arm-linux-gnueabi-armhfv7-gcc}) y modificando la variable \texttt{\$PATH} para incluir de forma prioritaria estos binarios en el entorno del proceso servidor (incluyendo dichas modificaciones en un \textit{script} de inicio) el servidor utilizará el compilador cruzado para las tareas que se le encarguen, sin entrar en conflicto con el resto del sistema.
-
+\citationneeded[TODO: Anexo]
 \subsubsection{Integración con MarcoPolo}
 
 El servidor distcc es detectable a través de MarcoPolo gracias a la herramienta \textbf{MarcoManager} (ver \ref{marcomanager}).
@@ -848,16 +864,52 @@ Marcoshell sigue un funcionamiento similar al de \textbf{logger}. La diferencia 
 \end{figure}
 \citationneeded[TODO: Mostrar una ejecución]
 
-%TODO\subsubsection{Herramientas didácticas}
 
-%TODO\paragraph{MusicPI}
+
 
 \subsubsection{Pruebas de concepto}
 \citationneeded[TODO]
 %\includegraphics{Chapter5/ScreenShot.png}http://www.bootc.net/archives/2012/05/26/how-to-build-a-cross-compiler-for-your-raspberry-pi/
 
+\section{Vista general del sistema}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%
+El sistema finalmente se compone de la siguiente combinación de \textit{software} y \textit{hardware}.
+
+\subsection{Componentes \textit{hardware}}
+
+\begin{itemize}
+\item Un conjunto escalable de nodos Rasbperry Pi (actualmente 10).
+\item Un servidor Xubuntu accesorio.
+\item Todos los mecanismos de interconexión y alimentación requeridos.
+\end{itemize}
+
+\subsection{Componentes \textit{software} en los nodos Raspberry Pi}
+
+\begin{itemize}
+	\item Una instancia de \textbf{MarcoPolo} como aglutinante de todos los servicios del sistema, tanto los creados como los servicios de terceras partes.
+	\item Una instancia de la biblioteca \textbf{OpenMPI}.
+	\item Diferentes instancias del contenedor de servicios \textbf{Tomcat} para cada usuario, pudiendo existir una instancia global.
+	\item Bindings de \textbf{MarcoPolo} para C, C++, Java y Python
+	\item Una instancia de los servicios \textbf{Deployer}, \textbf{StatusMonitor} y \textbf{MarcoShell} aglutinados en la herramienta \textbf{MarcoDeployer}.
+	\item Diferentes utilidades de manipulación de \textbf{MarcoPolo}.
+	\item Una instancia de MarcoManager para configurar \textbf{distcc} o cualquier otro servicio de tercero no enlazable con \textbf{MarcoPolo} de otra forma.
+	\item Una instancia del servicio \textbf{Marcobootstrap-slave} para la gestión de operaciones de reinico.
+	\item El módulo de PAM \textbf{pam\_mkpolohomedir} y una instancia de \textbf{polousers} para la gestión de usuarios.
+\end{itemize}
+
+\subsection{Componentes \textit{software} en el servidor Sun}
+
+\begin{itemize}
+	\item Una instancia del servidor \textbf{distcc} que utiliza la cadena de herramientas generada por \textbf{crosstool-ng} vinculada a \textbf{MarcoManager}.
+	\item Una instancia del servicio \textbf{Marcobootstrap-backend} para ejecutar diferentes operaciones de administración y albergar las imágenes del sistema operativo.
+\end{itemize}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{Chapters/Chapter5/Figures/capas}
+\caption{Representación artística de un nodo Raspberry Pi}
+\end{figure}
 
 \section{Evaluación y pruebas}
 %\lhead{Evaluación y pruebas}
@@ -894,3 +946,22 @@ Se ha realizado un total de \citationneeded[Número de evaluaciones]. El informe
 Varias de las prácticas de las asignaturas Arquitectura de Computadores y Sistemas Distribuidos han sido implementadas y probadas en el sistema distribuido, con el objetivo de analizar la viabilidad del sistema como herramienta didáctica. El único problema detectado es el bajo rendimiento del contenedor de servicios \textbf{Tomcat} al cargar nuevos servicios en el sistema. El rendimiento del resto de fases es equivalente al de los equipos utilizados actualmente.
 
 Además de la integración de las prácticas tal y como se plantean en las asignaturas, se han realizado las modificaciones necesarias para aprovechar herramientas integradas en el sistema como \textbf{MarcoPolo} y la biblioteca \textbf{quick2wire-cpp-api}. Integración realizada de forma trivial y de resultados satisfactorios.
+
+Para finalizar y de forma experimental se ha analizado la integración del lenguaje Python para el desarrollo de las prácticas de la asignatura Sistemas Distribuidos, utilizando el \textit{framework} Flask\footnote{\href{http://flask.pocoo.org/}{http://flask.pocoo.org/}} como herramienta para la creación de APIs REST. Los resultados del análisis reflejan que la sustitución de la tecnología utilizada actualmente, Java, por Python simplificaría una serie de tareas como el despliegue de los diferentes servicios sin alterar el rendimiento de la solución (y en casos como las placas Raspberry Pi, mejorándolo). No obtante, es necesario valorar la etapa de aprendizaje que los alumnos tendrían que llevar a cabo, pues el currículo de la titulación no incluye el uso de este lenguaje de forma obligatoria en ninguna asignatura.
+
+En el caso de la asignatura Arquitectura de Computadores se ha conseguido integrar \textbf{MarcoPolo} con la biblioteca MPI. MPI está diseñado de tal forma que los nodos participantes deben ser definidos durante la carga del código, mediante un parámetro en la llamada al ejecutor de trabajos:
+
+\texttt{mpiexec --hostfile <hostfile.txt> ./executable}
+
+Esta dinámica hace incompatible el uso de cualquiera de los \textit{bindings} de MarcoPolo, por lo que se debe plantear una alternativa. Aprovechando la herramienta \textbf{marcodiscover} (ver \ref{marcodiscover}) se añade un parámetro de formato a la misma, permitiendo la creación de un archivo compatible con el formato del fichero \texttt{hostfile} que puede ser utilizado en la llamada.
+
+\texttt{
+marcodiscover -s executable --format mpi > marcopolohostfile.txt
+mpiexec --hostfile marcopolohostfile.txt ./executable
+}
+
+Incluso es posible incluir el descubrimiento en la propia llamada a \textbf{mpiexec}, mediante el uso de pseudoficheros en la consola \cite{pseudofile}.
+
+\texttt{
+	mpiexec --hostfile <(marcodiscover -s executable --format mpi) ./executable
+}
