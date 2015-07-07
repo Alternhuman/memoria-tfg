@@ -1,0 +1,88 @@
+\input{includes}
+\usepackage{xcolor}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\newcommand{\hmwkTitle}{Evaluación de MarcoPolo} % Assignment title
+\newcommand{\hmwkDueDate}{Lunes,\ 15\ de\ junio\ de\ 2015}
+\newcommand{\hmwkClassInstructor}{Rodrigo Santamaría} % Teacher/lecturer
+\newcommand{\hmwkAuthorName}{Diego Martín Arroyo} % Your name
+\newcommand{\hmwkSubject}{6} % Evaluation subject number
+
+%----------------------------------------------------------------------------------------
+%   TITLE PAGE
+%----------------------------------------------------------------------------------------
+\newcommand{\ordinalindicator}{\hspace{-1.5mm}$\phantom{a}^{\circ}$}
+\title{\hmwkTitle}
+\author{\textbf{\hmwkAuthorName}}
+\date{\hmwkDueDate}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+
+\section{Descripción}
+
+\begin{itemize}
+ 	\item \textbf{Perfil}: Graduado en Ingeniería Informática.
+ 	\item No conocía las herramientas previamente.
+\end{itemize}
+
+
+\section{Introducción}
+
+Es necesario evaluar, además de de la experiencia de usuario, la interacción de los desarrolladores con las diferentes APIs creadas. El público objetivo de los productos finales está formado mayoritariamente por estudiantes, por lo que este aspecto cobra aún mayor importancia.
+
+En esta sesión se pide al sujeto de pruebas que realice la instalación de diferentes paquetes del software \textbf{MarcoPolo} en su equipo y ponga en ejecución el mismo, utilizando los diferentes \textbf{bindings} para crear una aplicación.
+
+\section{Instalación}
+
+Se solicita al usuario que instale los paquetes de \textbf{MarcoPolo} utilizando para ello el script \texttt{setup.py}. El usuario es capaz de realizar esta operación sin incidencias.
+
+\section{Utilización de la API de Marco}
+
+Ayudado de la documentación se solicita al usuario que, utilizando el \textit{binding} de Python, realice una operación de descubrimiento, indicando al usuario la siguiente serie de pasos que debe llevar a cabo:
+
+\begin{enumerate}
+
+\item Importar los paquetes necesarios.
+\item Crear una instancia del \textit{binding} de \textbf{Marco}.
+\item Ejecutar el método \texttt{marco()} y almacenar los resultados en una variable.
+\item Iterar la lista almacenada en la variable imprimiendo el parámetro \texttt{address}.
+
+\end{enumerate}
+
+La operación se realiza sin incidentes reseñables.
+
+\section{Utilización de la API de Polo}
+
+Ayudado de la documentación de la API, se solicita al usuario que publique un servicio siguiendo la siguiente secuencia de pasos:
+
+\begin{itemize}
+\item Importar los paquetes necesarios.
+\item Crear una instancia del \textit{binding} de \textbf{Polo}.
+\item Ejecutar el método \texttt{publish\_service()}.
+\item Descubrir el servicio con una llamada al método de \textbf{Marco} \texttt{request\_for}.
+\end{itemize}
+
+El usuario identifica fácilmente las acciones a realizar. Sin embargo, la evaluación no puede continuar debido a un \textit{bug} en el prototipo evaluado. El usuario utiliza una versión de Python para la que varias partes del código aún no habían sido probadas (incompatibilidades con la codificación de caracteres). Tras corregir el error, la evaluación continúa, y de forma independiente, el usuario es capaz de detectar el servicio publicado utilizando la herramienta \textbf{marcodiscover}.
+
+\section{Análisis de la evaluación}
+
+La opinión del usuario es muy buena. Resalta el carácter sencillo de la API y las posibilidades que ofrece. El hecho de que de forma independiente aprendiera a utilizar la herramienta \textbf{marcodiscover} reafirma dicha sencillez e intuitividad.
+
+\section{Conclusiones}
+
+A raíz de esta sesión se extraen las siguientes conclusiones y los caminos de actuación:
+
+\begin{itemize}
+\item Se verificará el correcto funcionamiento del \textbf{software} en Python 2 y 3.
+\end{itemize}
+
+\end{document}

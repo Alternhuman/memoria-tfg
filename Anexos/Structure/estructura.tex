@@ -31,6 +31,12 @@
 \usepackage[spanish]{babel} % Español como idioma principal del texto (permite hyphenation de palabras al final de una línea)
 \selectlanguage{spanish}
 \usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	urlcolor=blue,
+	linkcolor=blue,
+	citecolor=blue
+}
 \usepackage{listings}
 
 \input{includes}
@@ -57,9 +63,9 @@
 \begin{document}
 
 \maketitle
-\begin{abstract}
-Marcologger es una herramienta que permite observar la salida de un programa distribuido desde una única interfaz, integrándose además en rsyslog, utilizando Snorky para la gestión de los WebSockets.
-\end{abstract}
+%\begin{abstract}
+%Marcologger es una herramienta que permite observar la salida de un programa distribuido desde una única interfaz, integrándose además en rsyslog, utilizando Snorky para la gestión de los WebSockets.
+%\end{abstract}
 
 %----------------------------------------------------------------------------------------
 %   TABLE OF CONTENTS
@@ -88,6 +94,30 @@ También se utiliza latón para el soporte de los nodos en cada una de las balda
 
 \subsubsection{Planos}
 
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.7\textheight]{planos/base}
+\caption{Vista superior de la estructura, con la disposición de los \textit{switches} y la fuente de alimentación.}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.6\textheight]{planos/schema}
+\caption{Cada uno de los paneles de metacrilato está compuesto de dos placas. Una de ellas aporta la estructura básica y la otra tiene una serie de hendiduras que sostienen cada una de las baldas.}
+\end{figure}
+
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=\textwidth]{planos/vistasuperior}
+% \end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.3\textheight]{planos/placa}
+\caption{Vista superior de una de las baldas, con la placa LED (descrita en secciones posteriores) superpuesta sobre una Raspberry Pi}
+\end{figure}
+
 \subsection{Red}
 
 Toda la red de datos está soportada por dos \textit{switches} TP-Link 10/100 que se sitúan en la parte inferior de la estructura. Los nodos se conectan a este componente a través de cables Ethernet UTP cortados y crimpados a medida manualmente.
@@ -96,11 +126,30 @@ Toda la red de datos está soportada por dos \textit{switches} TP-Link 10/100 qu
 
 Uno de los aspectos más ingeniosos de la estructura es la gestión de la red eléctrica. La alimentación del sistema se centraliza en una fuente que provee de tensión continua a 5 V con una intensidad máxima de 20 amperios. La fuente se sitúa anexa a estantería principal y de ella parten diferentes cables de alimentación a cada uno de los componentes de la estructura, y a la conexión de corriente alterna que la alimenta, a través de un enchufe convencional.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.25\textheight]{fotos/fuente}
+	\includegraphics[height=0.25\textheight]{fotos/fuentedetalle}
+	\caption{Detalle de la fuente de alimentación y su conector a la red eléctrica}
+\end{figure}
+
 Es resaltable el hecho de que todos los componentes de la estructura están conectados a esta fuente eléctrica. Se han modificado unos cables USB a micro-USB, pelando las cabezas micro-USB y soldando a estas dos cables de corriente que se dirigen a las tomas positiva y negativa de la fuente. La conexión con el \textit{switch} se realiza adquiriendo conectores de corriente continua (los utilizados por defecto por el equipo) y realizando el mismo proceso que para las cabezas USB.
 
-%FOTO cables
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{fotos/usb}
+	\includegraphics[width=0.4\textwidth]{fotos/dc}
+	\caption{Conectores USB y DC creados modificados}
+\end{figure}
 
 Además de los mecanismos de protección con los que cuenta la fuente se incluye un fusible protector de 2 amperios por cada cable positivo.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.25\textheight]{planos/fusibles}
+	\includegraphics[height=0.25\textheight]{fotos/fusibles}
+	\caption{Placa de fusibles y cubierta protectora, plano y resultado final.}
+\end{figure}
 
 \section{LED}
 
@@ -117,7 +166,8 @@ Se utilizan 6 LEDs por placa, dos rojos, dos verdes, uno blanco y uno azul, cone
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.4\textwidth]{led/placareverso}
+\includegraphics[height=0.25\textheight]{fotos/placaanverso}
+\includegraphics[height=0.25\textheight]{led/placareverso}
 \caption{Vista del reverso de la placa, con los puntos de soldadura}
 \end{figure}
 
@@ -142,12 +192,14 @@ Se utilizan 6 LEDs por placa, dos rojos, dos verdes, uno blanco y uno azul, cone
 
 \begin{figure}[H]
 \centering
-\includegraphics[height=0.4\textheight]{placafinal_pcb}
+\includegraphics[height=0.3\textheight]{placafinal_pcb}
+\caption{Esquema de la conexión de los componentes}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[height=0.4\textheight]{placafinalschematic_schem}
+\includegraphics[height=0.3\textheight]{placafinalschematic_schem}
+\caption{Esquema de la conexión con las características técnicas de cada componente}
 \end{figure}
 
 
