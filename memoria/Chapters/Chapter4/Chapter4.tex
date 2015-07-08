@@ -11,7 +11,7 @@ Si bien la mayoría de las aplicaciones en las que el paradigma de computación 
 
 Sumada a dicha motivación existe el potencial aprovechamiento de este sistema como herramienta didáctica que facilite el aprendizaje de conceptos como el reparto de procesos, balance de carga o la compartición de recursos en asignaturas centradas en este tipo de computadores dentro de los planes de estudio de Ingeniería Informática o titulaciones similares.
 
-En el presente proyecto se realiza un análisis de las diferentes alternativas que permitan satisfacer los objetivos definidos previamente como soporte a la toma de una decisión final.
+En el presente proyecto se realiza un análisis de las diferentes alternativas que permitan satisfacer los objetivos definidos previamente como soporte a la toma de una decisión final, y una descripción de los diferentes requisitos del sistema a nivel global. Se omite la definición de objetivos, ya descrita en \ref{objetivos}.
 
 \section{Definición del dominio del problema}
 
@@ -110,7 +110,8 @@ Basándose en la motivación de cada parte es posible definir las demandas de ca
   \item Evaluación de la experiencia de uso en las diferentes etapas de desarrollo del sistema.
 \end{itemize}
 
-\section{Definición de objetivos}
+
+\begin{comment}
 
 \begin{table}[H]
 \begin{tabular}{|p{2.5cm}|p{10cm}|}
@@ -227,6 +228,7 @@ Basándose en la motivación de cada parte es posible definir las demandas de ca
 \end{tabular}
 \caption{OBJ-4: Estudio comparativo}
 \end{table}
+\end{comment}
 
 \section{Identificación de requisitos}
 
@@ -248,9 +250,9 @@ Se identifican los siguientes requisitos de información a alto nivel.
 \hline
 \textbf{Fuentes} & Análisis preliminar del sistema. Reuniones de equipo.\\
 \hline
-\textbf{Objetivos asociados} & \citationneeded[TODO]\\
+\textbf{Objetivos asociados} & \ref{obj3}, \ref{obj7}\\
 \hline
-\textbf{Requisitos asociados} & \citationneeded[TODO]\\
+\textbf{Requisitos asociados} &\\
 \hline
 \textbf{Descripción} & El sistema deberá consultar una fuente de datos (bien gestionada por el mismo o mantenida por un tercero) para realizar todas las operaciones de autenticación de los usuarios.\\
 \hline
@@ -286,9 +288,9 @@ Se identifican los siguientes requisitos de información a alto nivel.
 \hline
 \textbf{Fuentes} & Análisis preliminar del sistema. Reuniones de equipo.\\
 \hline
-\textbf{Objetivos asociados} & \citationneeded[TODO]\\
+\textbf{Objetivos asociados} & \ref{obj3}, \ref{obj4}\\
 \hline
-\textbf{Requisitos asociados} & \citationneeded[TODO] \\
+\textbf{Requisitos asociados} & NFR-1 \\
 \hline
 \textbf{Descripción} & Se deberán gestionar diferentes ficheros que sirvan como registro de todas las operaciones realizadas por el sistema con el objetivo de poder realizar operaciones de análisis o detección de errores posteriormente.\\
 \hline
@@ -324,9 +326,9 @@ Se identifican los siguientes requisitos de información a alto nivel.
 \hline
 \textbf{Fuentes} & Etapas de desarrollo\\
 \hline
-\textbf{Objetivos asociados} &\citationneeded[TODO]\\
+\textbf{Objetivos asociados} & \ref{obj3}\\
 \hline
-\textbf{Requisitos asociados} &\citationneeded[TODO]\\
+\textbf{Requisitos asociados} & NFR-1\\
 \hline
 \textbf{Descripción} &La configuración de todas las aplicaciones se realizará a través de ficheros que incluyan todos los parámetros de interés. \\
 \hline
@@ -362,9 +364,9 @@ Se identifican los siguientes requisitos de información a alto nivel.
 \hline
 \textbf{Fuentes} & Fases de desarrollo del sistema\\
 \hline
-\textbf{Objetivos asociados} &\citationneeded[TODO]\\
+\textbf{Objetivos asociados} &\ref{obj2}, \ref{obj3}, \ref{obj5}\\
 \hline
-\textbf{Requisitos asociados} &\citationneeded[TODO]\\
+\textbf{Requisitos asociados} & NFR-5\\
 \hline
 \textbf{Descripción} &Se utilizarán diferentes gestores de bases de datos para el almacenamiento de diferentes datos manejados por el sistema con el objetivo de facilitar el acceso a los mismos y su persistencia.\\
 \hline
@@ -441,11 +443,11 @@ Se identifican los siguientes requisitos de información a alto nivel.
 \hline
 \textbf{Fuentes} & Análisis preliminar del sistema\\
 \hline
-\textbf{Objetivos asociados} &\citationneeded[TODO]\\
+\textbf{Objetivos asociados} &\ref{obj1}, \ref{obj2}, \ref{obj4}\\
 \hline
-\textbf{Requisitos asociados} &\citationneeded[TODO]\\
+\textbf{Requisitos asociados} & IRQ-1, IRQ-2, IRQ-3, IRQ-4\\
 \hline
-\textbf{Descripción} &El \textit{software} debe ser mantenible y robusto, siendo dicha robustez garantizada mediante el uso de \textit{software} utilizado por una base de usuarios significativa, una arquitectura conocida, pruebas realizadas sobre él o un equipo de desarrollo en activo, entre otras.\\
+\textbf{Descripción} &El \textit{software} debe ser mantenible y robusto, siendo dicha robustez garantizada mediante el uso de \textit{software} utilizado por una base de usuarios significativa, una arquitectura conocida, pruebas realizadas sobre él o un equipo de desarrollo en activo, entre otras. El mantenimiento del sistema ha de ser lo más sencillo posible, utilizando mecanismos como diferentes ficheros de configuración y de registro para la realización de las diferentes operaciones de administración.\\
 \hline
 \textbf{Importancia} &Alta\\
 \hline
@@ -473,9 +475,9 @@ Se identifican los siguientes requisitos de información a alto nivel.
 \hline
 \textbf{Fuentes} &Administración de la organización\\
 \hline
-\textbf{Objetivos asociados} &\citationneeded[TODO]\\
+\textbf{Objetivos asociados} & \ref{obj1}, \ref{obj2}\\
 \hline
-\textbf{Requisitos asociados} &\citationneeded[TODO]\\
+\textbf{Requisitos asociados} &\\
 \hline
 \textbf{Descripción} &El coste de desarrollo no debe superar un total de 400 €.\\
 \hline
@@ -505,9 +507,9 @@ Se identifican los siguientes requisitos de información a alto nivel.
 \hline
 \textbf{Fuentes} &Análisis preliminar\\
 \hline
-\textbf{Objetivos asociados} &\citationneeded[TODO]\\
+\textbf{Objetivos asociados} & \ref{obj2}\\
 \hline
-\textbf{Requisitos asociados} &\citationneeded[TODO]\\
+\textbf{Requisitos asociados} &\\
 \hline
 \textbf{Descripción} &Los diferentes protocolos utilizados o creados para el sistema deben ser públicos y extensibles a diferentes paradigmas de utilización y tecnologías que los implementen.\\
 \hline
@@ -537,9 +539,9 @@ Se identifican los siguientes requisitos de información a alto nivel.
 \hline
 \textbf{Fuentes} &Análisis preliminar\\
 \hline
-\textbf{Objetivos asociados} &\citationneeded[TODO]\\
+\textbf{Objetivos asociados} &\ref{obj2}, \ref{obj3}, \ref{obj4}, \ref{obj6}\\
 \hline
-\textbf{Requisitos asociados} &\citationneeded[TODO]\\
+\textbf{Requisitos asociados} &\\
 \hline
 \textbf{Descripción} &El sistema deberá cumplir todas las transparencias definidas en \ref{transparencias} en todas aquellas ocasiones en las que no se comprometa el funcionamiento del sistema.\\
 \hline
@@ -569,9 +571,9 @@ Se identifican los siguientes requisitos de información a alto nivel.
 \hline
 \textbf{Fuentes} &Reuniones de equipo\\
 \hline
-\textbf{Objetivos asociados} &\citationneeded[TODO]\\
+\textbf{Objetivos asociados} & \ref{obj5}\\
 \hline
-\textbf{Requisitos asociados} &\citationneeded[TODO]\\
+\textbf{Requisitos asociados} & IRQ-1, IRQ-4\\
 \hline
 \textbf{Descripción} &El sistema deberá ser compatible los ejercicios desarrollados en las asignaturas \textbf{Arquitectura de Computadores} y en especial \textbf{Sistemas distribuidos}\\
 \hline
@@ -1234,11 +1236,11 @@ Las interfaces de acceso al sistema son las siguientes:
 \end{itemize}
 \subsection{Diseño procedimental}
 
-Todos los aspectos de programación (algoritmos empleados, ejemplos de código) se reflejan en la documentación adjunta referente a cada una de las herramientas creadas o utilizadas.
+Todos los aspectos de programación (algoritmos empleados, ejemplos de código) se reflejan en la documentación adjunta referente a cada una de las herramientas creadas o utilizadas (ver \ref{listaanexos}).
 
 \subsection{Pruebas}
 
-Se ha utilizado un desarrollo dirigido por pruebas en la mayoría de las herramientas creadas, como se detalla en la documentación técnica que acompaña a cada una de ellas, así como una batería de pruebas de una de las últimas versiones del sistema, como se detalla en \citationneeded[TODO].
+Se ha utilizado un desarrollo dirigido por pruebas en la mayoría de las herramientas creadas, como se detalla en la documentación técnica que acompaña a cada una de ellas, así como una batería de pruebas de una de las últimas versiones del sistema, como se detalla en el anexo ``Evaluación del rendimiento del sistema en un entorno real''.
 
 \subsection{Entorno tecnológico del sistema}
 

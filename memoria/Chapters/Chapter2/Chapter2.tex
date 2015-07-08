@@ -12,7 +12,7 @@ Un sistema distribuido es aquel conformado por un conjunto de nodos independient
 \begin{itemize}
   \item \textbf{Autonomía}: los diferentes integrantes cuentan con un alto grado de independencia entre sí, y por tanto se deben diseñar e implementar mecanismos de comunicación que formarán parte del núcleo del sistema, y cuyo diseño tendrá consecuencias directas en el funcionamiento final del mismo.
   \item \textbf{Transparencia}: Las diferencias entre diferentes nodos deben ser invisibles para los usuarios finales, así como la gestión de fallos y la posterior recuperación, así como la uniformidad a la hora de interactuar con el sistema. Según \cite{Tanenbaum:2006:DSP:1202502:Ch1} las siguientes propiedades deben contar con un grado de transparencia alto:\footnote{En numerosas ocasiones las propiedades de un sistema hacen desfavorable el cumplimiento de todos los requisitos de transparencia. Un ejemplo sería la transparencia de traslado en el sistema DNS.}:
-\label{transparencia}
+\label{transparencias}
   \subitem \textbf{Acceso}: La forma de almacenamiento y gestión de los recursos e información presentes en el sistema debe ser completamente transparente.
   \subitem \textbf{Localización}: La localización física del sistema no debe ser de relevancia para el uso del mismo.
   \subitem \textbf{Migración}: El cambio de plataforma debe ser transparente para el usuario (ejemplo: cambio del sistema operativo).
@@ -381,7 +381,7 @@ En el sistema final toda comunicación entre dos entidades se realiza gracias a 
 
 \section{Modelos de desarrollo}
 \subsection{\textit{Test-Driven Development}}
-\label{tdd}
+\label{teoria:tdd}
 
 El desarrollo dirigido por pruebas es una estrategia de desarrollo de software basada en el desarrollo de tests de partes concisas y fácilmente desacoplables del código de una aplicación que realizan una tarea muy concreta (conocidas como pruebas unitarias). Dichas pruebas se realizan generalmente con un control exhaustivo de las condiciones que pueden influir el desarrollo de la prueba. Mediante la modificación de dichas condiciones y el análisis de la respuesta frente a un conjunto de datos de entrada se puede analizar si el comportamiento de dicho fragmento de código es el adecuado.
 
@@ -430,7 +430,7 @@ El uso de compiladores cruzados facilita el desarrollo para diferentes plataform
 \label{crosstool-ng}
 Un juego de herramientas (\textit{toolchain}) se conforma del conjunto de utilidades necesarias para la construcción de un determinado producto. Generalmente estas utilidades son ejecutadas secuencialmente, utilizando la salida de una de ellas como la entrada de la siguiente. Este conjunto de herramientas comprende normalmente un compilador, un enlazador y un editor de texto, así como varias bibliotecas y un depurador, si bien puede contar con cualquier herramienta requerida para las necesidades propias del producto a crear\footnote{Más información sobre este tipo de técnica: \href{http://elinux.org/Toolchains}{http://elinux.org/Toolchains}}.
 
-Con el objetivo de posibilitar la realización de trabajos de compilación distribuida utilizando un equipo basado en la arquitectura i686 se ha construido una cadena de herramientas que realiza procesos de compilación cruzada para la arquitectura \textbf{ARMv7hf} (ARM versión 7 con instrucciones de punto flotante en hardware) utilizando la herramienta \textit{crosstool-ng}\footnote{\href{http://www.crosstool-ng.org/}{http://crosstool-ng.org}}, consiguiendo optimizar de forma significativa el tiempo de compilación ver \ref{distcc:analysis}).También es posible crear con pequeños ajustes a la configuración una versión para la arquitectura ARMv6hf. Estas cadenas de  herramientas se han utilizado para la creación de un pequeño entorno de desarrollo con Eclipse para Raspberry Pi (ver anexo \citationneeded[TODO]).
+Con el objetivo de posibilitar la realización de trabajos de compilación distribuida utilizando un equipo basado en la arquitectura i686 se ha construido una cadena de herramientas que realiza procesos de compilación cruzada para la arquitectura \textbf{ARMv7hf} (ARM versión 7 con instrucciones de punto flotante en hardware) utilizando la herramienta \textit{crosstool-ng}\footnote{\href{http://www.crosstool-ng.org/}{http://crosstool-ng.org}}, consiguiendo optimizar de forma significativa el tiempo de compilación (ver \ref{distcc:performance}).También es posible crear con pequeños ajustes a la configuración una versión para la arquitectura ARMv6hf. Estas cadenas de  herramientas se han utilizado para la creación de un pequeño entorno de desarrollo con Eclipse para Raspberry Pi (ver anexo ``Configuración de un sistema de compilación multiplataforma con distcc y aplicación de este en un entorno distribuido'').
 
 
 \begin{figure}[H]

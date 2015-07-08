@@ -192,7 +192,7 @@ La conexión con el puerto GPIO se realiza a través de unas ``tiras'' hembra qu
 \end{figure}
 
 
-Todos los planos de la estructura pueden consultarse en el anexo \citationneeded[TODO]
+Todos los diagramas que describen la estructura pueden consultarse en el anexo ``Estructura física''.
 
 \section{Arquitectura software}
 
@@ -250,7 +250,7 @@ Arch Linux ARM\footnote{\href{http://archlinuxarm.org/}{http://archlinuxarm.org/
 El proceso detallado de elección del sistema operativo puede observarse en \ref{os:evaluation}.
 \subsubsection{Sistema operativo en los nodos secundarios}
 
-En el caso del servidor que provee diferentes servicios de apoyo a los nodos principales (ver \ref{sistema:arquitectura}) se utiliza el sistema operativo Xubuntu GNU/Linux\footnote{\href{http://xubuntu.org/}{http://xubuntu.org/}}.% Este sistema operativo tiene como objetivo la  estabilidad del sistema en detrimento de las últimas características del \textit{software} que lo conforma.
+En el caso del servidor que provee diferentes servicios de apoyo a los nodos principales (ver \ref{servidor}) se utiliza el sistema operativo Xubuntu GNU/Linux\footnote{\href{http://xubuntu.org/}{http://xubuntu.org/}}.% Este sistema operativo tiene como objetivo la  estabilidad del sistema en detrimento de las últimas características del \textit{software} que lo conforma.
 
 \section{Servicios integrados en el sistema operativo}
 
@@ -376,12 +376,12 @@ En ocasiones es necesario conocer el identificador del proceso \textbf{PID} del 
 Los \textit{daemons} se integran en el arranque del sistema a través de los ficheros de configuración de \texttt{init}\footnote{\href{http://www.tldp.org/HOWTO/HighQuality-Apps-HOWTO/boot.html}{http://www.tldp.org/HOWTO/HighQuality-Apps-HOWTO/boot.html}} o \texttt{systemd} dependiendo del gestor disponible en el sistema operativo sobre el que se ejecuten los procesos. Por defecto los \textit{daemons} se ejecutan durante todo el ciclo de vida del computador, pero pueden ser reiniciados o detenidos arbitrariamente por voluntad del administrador.
 
 \subsubsection{Conexiones con MarcoPolo}
-
+\label{marcopolo:bindings}
 La funcionalidad de \textbf{MarcoPolo} no se limita al descubrimiento de los servicios del sistema, por lo que es necesario ofrecer a los usuarios del clúster herramientas que permitan integrar sus aplicaciones distribuidas con estos servicios. Dichas herramientas, conocidas como \textit{bindings}, permiten exponer públicamente la funcionalidad de \textbf{MarcoPolo} para que pueda ser aprovechada por otros usuarios.
 
 Se han creado \textit{bindings} para los lenguajes de programación \textbf{C}, \textbf{C++}, \textbf{Python} y \textbf{Java}. Todos ellos son consistentes entre sí, manteniendo la misma sintaxis para realizar el mismo tipo de operación a la vez que aprovechan las características propias de cada lenguaje. Dicha filosofía está inspirada en el funcionamiento de las primitivas de la API de resolución de nombres en red (\texttt{netdb.h}) \cite{netdb}, por lo que los \texttt{bindings} se comunican con la instancia local de Marco o Polo a través de \textit{sockets} vinculados a la dirección IP local (127.0.1.1).
 
-Todos los \textit{bindings} deben implementar el mismo conjunto de primitivas, definidas en la documentación de referencia de MarcoPolo (ver anexo\citationneeded[TODO]). La mayoría de primitivas tienen como objetivo el descubrimiento y publicación de servicios. Sin embargo, varias de ellas permiten realizar consultas sobre la información del propio nodo y se plantea la creación de más primitivas que sigan dicha filosofía
+Todos los \textit{bindings} deben implementar el mismo conjunto de primitivas, definidas en la documentación de referencia de MarcoPolo (ver anexo técnico de MarcoPolo). La mayoría de primitivas tienen como objetivo el descubrimiento y publicación de servicios. Sin embargo, varias de ellas permiten realizar consultas sobre la información del propio nodo y se plantea la creación de más primitivas que sigan dicha filosofía
 
 %TODO \paragraph{Primitivas en el \textit{binding} de Marco}
 % \begin{itemize}
@@ -510,8 +510,8 @@ Arguments
 Utilizando una llamada a \texttt{marcodiscover}, realiza una copia de los ficheros utilizando \textbf{scp}.
 
 
-\subsection{Autenticación de los usuarios}
-
+\subsection{Gestión de los usuarios}
+\label{gestionusuarios}
 El acceso a cualquier nodo del sistema debe realizarse mediante un sistema de credenciales homogéneo. Dicho enfoque es el propio de la infraestructura en la que el sistema se integra, que centraliza dicho repositorio de credenciales en un único punto.
 
 Un primer intento de posibilitar esta propiedad consistió en la creación de los mismos usuarios en cada uno de los nodos, utilizando el mismo par usuario-contraseña en cada uno de ellos. Sin embargo, este enfoque impide una escalabilidad sencilla y requiere un mantenimiento continuo (suponiendo que se añadan usuarios periódicamente). Por ello únicamente las pruebas iniciales de las plataformas que requieren acceso a la funcionalidad de autenticación han sido realizadas siguiendo este enfoque, pero siempre desacoplando al máximo el sistema de acceso del resto de la lógica del programa, con el objetivo de facilitar su posterior reemplazo.
@@ -580,7 +580,7 @@ El módulo ha sido diseñado con el objetivo de posibilitar la adición de nueva
 
 \vspace{2cm}
 
-Los detalles técnicos de este sistema se encuentran en la documentación adjunta \citationneeded[TODO]
+Los detalles técnicos de este sistema se encuentran en la documentación técnica adjunta.
 
 
 \subsection{Operaciones auxiliares}
@@ -614,7 +614,7 @@ Debido a la falta de soporte para \textbf{PXE} u otra alternativa similar, es ne
 
 
 \paragraph{MarcoBootstrap\\}
-
+\label{marcobootstrap}
 MarcoBootstrap es una herramienta de gestión del sistema distribuido, centrada principalmente en la instalación y actualización del sistema operativo (de ahí su nombre). \texttt{marco-netinst} obtiene una imagen del sistema operativo de esta herramienta, que ofrecerá una interfaz de gestión de las diferentes imágenes. A través de esta interfaz es posible además programar operaciones de actualización y reinicio del sistema y es extensible a otro tipo de operaciones.
 
 \begin{figure}[H]
@@ -623,7 +623,7 @@ MarcoBootstrap es una herramienta de gestión del sistema distribuido, centrada 
 	\caption{Interfaz administrativa de MarcoBootstrap}
 \end{figure}
 
-La especificación en detalle del funcionamiento de estas dos herramientas se detalla en el anexo\citationneeded[TODO]
+La especificación en detalle del funcionamiento de estas dos herramientas se detalla en el anexo técnico correspondiente.
 
 \subsection{Bibliotecas}
 
@@ -694,7 +694,6 @@ Como se puede observar, todas las opciones de gcc se mantienen en dicha llamada,
 \textbf{Distcc} utiliza por defecto el compilador indicado por el cliente en la llamada al proceso cliente, utilizando dicho compilador en el servidor. En el caso de una compilación no cruzada esta situación no causa problemas, sin embargo, en el presente caso es necesario realizar una serie de modificaciones en el servidor para posibilitar el uso de la cadena de herramientas creada.
 
 Creando enlaces simbólicos que no incluyan el prefijo de los binarios generados por la cadena de herramientas (generalmente del estilo \texttt{arm-linux-gnueabi-armhfv7-gcc}) y modificando la variable \texttt{\$PATH} para incluir de forma prioritaria estos binarios en el entorno del proceso servidor (incluyendo dichas modificaciones en un \textit{script} de inicio) el servidor utilizará el compilador cruzado para las tareas que se le encarguen, sin entrar en conflicto con el resto del sistema.
-\citationneeded[TODO: Anexo]
 \subsubsection{Integración con MarcoPolo}
 
 El servidor distcc es detectable a través de MarcoPolo gracias a la herramienta \textbf{MarcoManager} (ver \ref{marcomanager}).
@@ -716,16 +715,16 @@ Para determinar el rendimiento del compilador se ha utilizado el mismo en la com
 
 La versión de OpenSSH modificada para incluir las mejoras del proyecto SSH-HPN (ver \ref{ssh-hpn}) que se instala en el sistema ha sido compilada utilizando esta herramienta, con un tiempo de trabajo menor a un minutos.
 
-\vspace{2cm}
+\vspace{1cm}
 
-Esta herramienta se ejecuta en el servidor \textbf{marcoservidor}.
+Esta herramienta se ejecuta en el servidor secundario.
 
 \subsection{Nodos secundarios}
 
 Una serie de nodos secundarios han sido instalados en el sistema con el único propósito de realizar una serie de tareas que tienen como objeto simplificar u optimizar las diferentes tareas asociadas a los nodos. En ningún caso el uso de estos nodos secundarios implica una dependencia de los mismos, siendo posible prescindir de ellos sin consecuencias graves para el sistema como conjunto.
 
 \subsubsection{Servidor}
-
+\label{servidor}
 El equipo utilizado como servidor es un equipo en desuso presente en la Facultad de Ciencias, que se encuentra disponible para cualquier alumno interesado en integrarlo en un Trabajo de Fin de Grado. Las características del equipo, una estación de trabajo Sun Ultra, son las siguientes:
 
 \begin{itemize}
@@ -734,13 +733,13 @@ El equipo utilizado como servidor es un equipo en desuso presente en la Facultad
 	\item Partición de 50 GB para el sistema operativo del servidor.
 \end{itemize}
 
-Las características del sistema lo hacen idóneo para su uso como servidor de compilación distribuida. Se ha generado en el mismo una cadena de herramientas compatible con ARMv7.%TODO ARMv6 y marcomanager
+Las características del sistema lo hacen idóneo para su uso como servidor de compilación distribuida. Se ha generado en el mismo cadenas de herramientas compatibles con ARMv7 y ARMv6, que se integran con la herramienta \textbf{marcomanager} (ver \ref{marcomanager}).
 
 Además, este servidor incluye el servidor \textbf{marcoboostrap} (ver \ref{marcobootstrap}), incluyendo una interfaz de gestión para el administrador y un conjunto de imágenes de sistemas operativos para los usuarios finales.
 
 \subsubsection{Servidor LDAP}
 
-Con el objetivo de mejorar la accesibilidad del sistema, se delega la gestión de las diferentes cuentas de usuario a un servidor LDAP preexistente en la infraestructura. Dicho servidor se encuentra alojado en la dirección \texttt{ldap1.aulas.cie.usal.es} y es aprovechado por los nodos principales a través de nsswitch (ver \ref{gestionusuarios}) 
+Con el objetivo de mejorar la accesibilidad del sistema, se delega la gestión de las diferentes cuentas de usuario a un servidor LDAP preexistente en la infraestructura. Dicho servidor se encuentra alojado en la dirección \texttt{ldap1.aulas.cie.usal.es} y es aprovechado por los nodos principales a través de nsswitch (ver \ref{gestionusuarios}).
 
 %%%%%%%%%%%%%%%%%%%%%%
 
@@ -784,7 +783,7 @@ Dichos comandos son ejecutados periódicamente mediante el gestor de eventos \te
 La implementación del servicio está realizada íntegramente en Tornado\footnote{Más información sobre el proyecto puede encontrarse en \href{http://www.tornadoweb.org/en/stable/}{tornadoweb.org/en/stable}}, un servidor web ligero asíncrono implementado íntegramente en Python y mantenido por Facebook.
 
 \subsection{Deployer}
-
+\label{deployer}
 \begin{figure}[H]
 \centering
 \includegraphics[height=0.3\textheight]{Chapters/Chapter5/Figures/screenshot-deployer}
@@ -854,6 +853,12 @@ Marcoshell sigue un funcionamiento similar al de \textbf{logger}. La diferencia 
 \caption[La aplicación shell en ejecución]{La aplicación shell en ejecución.}
 \end{figure}
 
+\subsection{Marcomanager}
+\label{marcomanager}
+
+\textbf{Marcomanager} es una pequeña utilidad de gestión de servicios. Es diseñada con el propósito específico de posibilitar la integración con \textbf{MarcoPolo} de diferentes componentes de terceros que, por su diseño, no pueden (o la modificación es compleja) utilizar cualquier otro mecanismo disponible, como los diferentes \textit{bindings}. Sin embargo, durante su desarrollo se añaden diferentes mecanismos para la programación de diferentes tareas en el futuro, siendo el resultado final una herramienta de integración y planificación que implementa una parte de la funcionalidad ofrecida por \textbf{cron}.
+
+Todos los detalles técnicos sobre esta herramienta, manuales de usuario y programador y la descripción de las diferentes fases del desarrollo se encuentran en el anexo técnico correspondiente.
 \section{Vista general del sistema}
 
 El sistema finalmente se compone de la siguiente combinación de \textit{software} y \textit{hardware}.
@@ -910,7 +915,7 @@ Tras la fase de pruebas unitarias es necesario ejecutar el código en un ambient
 
 Tras las diferentes pruebas realizadas en contextos controlados es necesario verificar que el comportamiento del \textit{software} es similar en el entorno donde este deberá operar. Estas pruebas se han realizado de forma periódica, aprovechando que las fases de desarrollo se realizan en la misma infraestructura donde se integrará finalmente.
 
-En el anexo \citationneeded[TODO Número de anexo] (ver \ref{pruebasentornoreal}) se pueden observar los resultados de diferentes pruebas en este tipo de contextos, que evalúan el correcto funcionamiento del \textit{software} así como el tiempo de ejecución (relevante si se considera que la red de la infraestructura es compartida con un gran número de equipos, y no se tiene control sobre ella).
+En el anexo ``Evaluación del rendimiento del sistema en un entorno real'' se encuentran los resultados de diferentes pruebas en este tipo de contextos, que evalúan el correcto funcionamiento del \textit{software} así como el tiempo de ejecución (relevante si se considera que la red de la infraestructura es compartida con un gran número de equipos, y no se tiene control sobre ella).
 
 \subsection{Evaluación de usuarios}
 
@@ -922,7 +927,7 @@ Se han seguido diferentes estrategias de evaluación. El método más utilizado 
 
 Tras cada evaluación se realiza un análisis, incluyendo en un informe todos los aspectos de relevancia extraídos de la sesión. Las conclusiones de dicho informe determinan las acciones a llevar a cabo.
 
-Se ha documentado un total de 9 evaluaciones. El informe de cada una de ellas puede consultarse en el anexo correspondiente (ver \ref{anexo:evaluaciones}).
+Se ha documentado un total de 9 evaluaciones. Cada una de ellas se recoge en un informe adjunto a este documento.
 
 \section{Prácticas}
 
