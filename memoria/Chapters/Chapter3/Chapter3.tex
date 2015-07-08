@@ -45,11 +45,11 @@ Todas las interfaces web han sido programadas utilizando HTML, CSS y JavaScript 
 
 \subsection{Twisted}
 
-\textbf{Twisted} \footnote{\href{https://twistedmatrix.com/}{https://twistedmatrix.com/}} es un motor dirigido por eventos para la creación de aplicaciones basadas en red. Uno de los principales beneficios de la programación orientada a eventos es la capacidad del sistema de optimizar el tiempo de CPU y evitar cambios de contexto, pues todo el código se ejecuta en un único hilo. Twisted se basa en el patrón de diseño \textbf{reactor} (ver \ref{teoria:reactor}), que se basa en la gestión de diferentes eventos, su demultiplexación y el envío a los manejadores apropiados de forma síncrona (ver \ref{teoria:eventdriven}).
+\textbf{Twisted} \footnote{\href{https://twistedmatrix.com/}{https://twistedmatrix.com/}} es un motor dirigido por eventos para la creación de aplicaciones basadas en red. Uno de los principales beneficios de la programación orientada a eventos es la capacidad del sistema de optimizar el tiempo de CPU y evitar cambios de contexto, pues todo el código se ejecuta en un único hilo. \textbf{Twisted} se basa en el patrón de diseño \textbf{reactor} (ver \ref{teoria:reactor}), que se basa en la gestión de diferentes eventos, su demultiplexación y el envío a los manejadores apropiados de forma síncrona (ver \ref{teoria:eventdriven}).
 
-Twisted permite crear de forma sencilla sockets asíncronos a bajo nivel en los protocolos UDP y TCP y aplicaciones que utilizan protocolos bien definidos, como HTTP o DNS. Es capaz de trabajar con protocolos como \textbf{multicast} o \textbf{TLS} e integra funcionalidades para el desarrollo dirigido por pruebas (\textit{test-driven development}).
+\textbf{Twisted} permite crear de forma sencilla sockets asíncronos a bajo nivel en los protocolos UDP y TCP y aplicaciones que utilizan protocolos bien definidos, como HTTP o DNS. Es capaz de trabajar con protocolos como \textbf{multicast} o \textbf{TLS} e integra funcionalidades para el desarrollo dirigido por pruebas (\textit{test-driven development}).
 
-\textbf{Twisted} se ha utilizado para la creación de la herramienta de descubrimiento de servicios \textbf{MarcoPolo} (ver \ref{marcopolo}).
+\textbf{Twisted} se ha utilizado para la creación de la herramienta de descubrimiento de servicios \textbf{MarcoPolo} (ver \ref{marcopolo}) y parte de la herramienta \textbf{PoloUsers} (ver \ref{polousers}).
 
 Esta herramienta es elegida sobre otras alternativas analizadas:
 
@@ -58,7 +58,7 @@ Esta herramienta es elegida sobre otras alternativas analizadas:
 \item El bucle de eventos \texttt{io\_loop} de Tornado\footnote{\href{http://www.tornadoweb.org/en/stable/ioloop.html}{http://www.tornadoweb.org/en/stable/ioloop.html}}, si bien no diseñado específicamente para este propósito se considera como una alternativa viable. Sin embargo, la carencia de las facilidades para manejo de una aplicación en red (si bien Tornado es un servidor web, no está diseñado para implementar operaciones a bajo nivel, apoyándose siempre en protocolos como HTTP o WebSocket) hace que no sea una alternativa viable.
 \end{itemize}
 
-Finalmente, Twisted es elegido por la gran cantidad de protocolos que soporta y la posibilidad de manipular la pila de protocolos desde el nivel de red.
+\textbf{Twisted} es elegido por la gran cantidad de protocolos que soporta y la posibilidad de manipular la pila de protocolos desde el nivel de red.
 
 \subsection{Tornado}
 
@@ -78,7 +78,7 @@ La mayoría de las interfaces web creadas utilizan este tipo de comunicación pa
 
 \subsection{OpenSSL}
 
-OpenSSL es la implementación de código abierto más popular de los protocolos SSL y TSL. En el sistema se utiliza de forma intensiva para garantizar la confidencialidad de las transmisiones entre partes así como para verificar la identidad en ambos lados de un canal de comunicación. La biblioteca proporciona \textit{bindings} a C, C++, Java y Python, por lo que su integración en cualquiera de las herramientas creadas ha sido trivial. 
+\textbf{OpenSSL}\footnote{\href{https://www.openssl.org/}{https://www.openssl.org/}} es la implementación de código abierto más popular de los protocolos SSL y TSL. En el sistema se utiliza de forma intensiva para garantizar la confidencialidad de las transmisiones entre partes así como para verificar la identidad en ambos lados de un canal de comunicación. La biblioteca proporciona \textit{bindings} a C, C++, Java y Python, por lo que su integración en cualquiera de las herramientas creadas ha sido trivial. 
 
 \subsection{Hadoop}
 
@@ -92,13 +92,17 @@ No se ha realizado evaluación de otras alternativas para el proceso de grandes 
 
 \subsection{\textit{Message Passing Interface}}
 
-La necesidad de una herramienta de comunicación independiente de la plataforma derivó en la especificación del estándar MPI\cite{MPISpec}, un conjunto de interfaces para la creación de aplicaciones paralelas mediante la gestión de las operaciones de entrada-salida, definición de tipos de datos, grupos de proceso, creación y gestión de procesos, interfaces externas, etcétera. La especificación se define independientemente del lenguaje, si bien incluye implementaciones en C, C++ y Fortran, así como mecanismos para ser integrado con Python, entre muchos otros lenguajes.
+La necesidad de una herramienta de comunicación independiente de la plataforma derivó en la especificación del estándar MPI \cite{MPISpec}, un conjunto de interfaces para la creación de aplicaciones paralelas mediante la gestión de las operaciones de entrada-salida, definición de tipos de datos, grupos de proceso, creación y gestión de procesos, interfaces externas, etcétera. La especificación se define independientemente del lenguaje, si bien incluye implementaciones en C, C++ y Fortran, así como mecanismos para ser integrado con Python, entre muchos otros lenguajes.
 
-MPI se ha convertido con el paso de los años en la interfaz de referencia para la creación de aplicaciones distribuidas, contando con varias implementaciones como \textbf{MPICH} (la implementación original) u \textbf{OpenMPI} (presente en la mayoría de supercomputadores), de tipo libre, o implementaciones propietarias tales como IBM MPI, Intel MPI, Cray MPI, Microsoft MPI, Myricom MPI.
+MPI se ha convertido con el paso de los años en la interfaz de referencia para la creación de aplicaciones distribuidas, contando con varias implementaciones como \textbf{MPICH}\footnote{\href{https://www.mpich.org/}{https://www.mpich.org/}} (la implementación original) u \textbf{OpenMPI}\footnote{\href{http://www.open-mpi.org/}{http://www.open-mpi.org/}} (presente en la mayoría de supercomputadores), de tipo libre, o implementaciones propietarias tales como IBM MPI, Intel MPI, Cray MPI o Microsoft MPI.
 
 MPI es utilizado en el sistema como herramienta de desarrollo de aplicaciones distribuidas, utilizando \textbf{MarcoPolo} para simplificar el proceso de descubrimiento de nodos (ver \ref{marcodiscover}). Además se han creado herramientas accesorias para facilitar varias tareas generalmente necesarias durante el desarrollo con la biblioteca (ver \ref{marcoinstallkey}).
 
-La popularidad de MPI sobre otras herramientas similares como \textbf{PVM} (\textit{Parallel Virtual Machine}) \footnote{\href{http://www.csm.ornl.gov/pvm/}{http://www.csm.ornl.gov/pvm/}} hace que la cantidad de soporte para las placas Raspberry sea mayor. Esta circunstancia junto al hecho de que MPI es utilizado en la asignatura Arquitectura de Computadores (y por tanto se cuenta con experiencia de uso, y el desarrollo del sistema relativo a este tipo de aplicaciones podría utilizarse en la asignatura) hace que MPI sea la alternativa elegida, sin evaluación previa.
+La popularidad de MPI sobre otras herramientas similares como \textbf{PVM} (\textit{Parallel Virtual Machine}) \footnote{\href{http://www.csm.ornl.gov/pvm/}{http://www.csm.ornl.gov/pvm/}} hace que la cantidad de soporte para las placas Raspberry sea mayor. Esta circunstancia junto al hecho de que MPI es utilizado en la asignatura Arquitectura de Computadores (y por tanto se cuenta con experiencia de uso, y el desarrollo del sistema relativo a este tipo de aplicaciones podría utilizarse en la asignatura) hace que MPI sea la alternativa elegida sin evaluación previa.
+
+\vspace{1cm}
+
+Durante la etapa de desarrollo del sistema se han utilizado las dos vertientes libres más populares, \textbf{MPICH} y \textbf{OpenMPI}, siendo esta última la que se incluye en la versión final.
 
 \subsubsection{\textit{Raspberry Pi Planet Simulator Cluster}}
 
@@ -135,7 +139,7 @@ Git es un sistema de control de versiones capaz de gestionar proyectos de cualqu
 
 Las diferentes herramientas que componen el sistema son creadas en repositorios independientes de código. Dicho código es almacenado en un servidor con el objetivo de facilitar la movilidad del código entre las diferentes máquinas que componen el sistema y a modo de copia de seguridad. Se sigue un modelo de desarrollo basado en ramas que representan características a añadir a la versión estable, revisión de código, documentación o mantenimiento y solución a \textit{bugs}.
 
-Todos los repositorios de código originales pueden consultarse en \ref{repositorios}.
+Todos los repositorios de código originales se listan en el apéndice \ref{repositorios}.
 
 Dado que se cuenta con bastante experiencia en el uso de \textbf{git} no se analizan alternativas como \textbf{subversion} o \textbf{mercurial}. 
 
