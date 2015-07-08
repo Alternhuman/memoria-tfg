@@ -4,6 +4,7 @@
 \begin{cabstract}
 En el que se detalla la etapa de identificación de las características de la infraestructura donde el sistema se integrará, los diferentes usuarios que interactuarán con este y sus necesidades, y las propuestas de solución actuales relativas a la construcción de un sistema similar al planteado.
 \end{cabstract}
+
 La utilización de algoritmos distribuidos implica mejoras sustanciales en una gran cantidad de aplicaciones, incrementando la capacidad global de cómputo de un sistema mediante la unión de varios dispositivos que trabajan como una única entidad manteniendo simultáneamente un alto grado de independencia y una tolerancia global a fallos muy alta. Sin embargo, el coste de la adquisición, instalación y mantenimiento de dicho conjunto de nodos suele ser elevado. Además, los beneficios citados implican una mayor complejidad en el desarrollo de algoritmos que puedan aprovechar de forma óptima este tipo de sistemas. Varios factores como la sincronización y la comunicación entre partes, o errores tales como condiciones de carrera son mucho más comunes que en otro tipo de aplicaciones. Dichas circunstancias dificultan el desarrollo de este sistema y la comprensión de los fundamentos básicos de la Computación Distribuida, aspecto de relevancia para estudiantes de Ciencias de la Computación.
 
 Si bien la mayoría de las aplicaciones en las que el paradigma de computación distribuida introduce mejoras suelen exigir una gran capacidad de cálculo, su desarrollo únicamente requiere un conjunto de instancias independientes de un \textit{software} (sistema operativo, contenedor de servicios\dots) con las que trabajar. Dicha característica implica que la utilización de nodos de precio reducido (o incluso equipos ya presentes en una infraestructura) para el diseño, análisis y evaluación de este tipo de algoritmos constituye una alternativa válida frente a sistemas de precio superior.
@@ -109,47 +110,516 @@ Basándose en la motivación de cada parte es posible definir las demandas de ca
   \item Evaluación de la experiencia de uso en las diferentes etapas de desarrollo del sistema.
 \end{itemize}
 
+\section{Definición de objetivos}
+
+\begin{table}[H]
+\begin{tabular}{|p{2.5cm}|p{10cm}|}
+\hline
+\textbf{OBJ-1} &Creación de un sistema distribuido no jerárquico\\
+\hline
+\textbf{Versión} &1\\
+\hline
+\textbf{Autores} &Diego Martín\\
+\hline
+\textbf{Fuentes} &Análisis preliminar del sistema\\
+\hline
+\textbf{Descripción} &El sistema a crear reducirá el número de ``cuellos de botella'' e interdependencias entre componentes mediante la distribución de recursos sin coordinador.\\
+\hline
+\textbf{Subobjetivos} &\\
+\hline
+\textbf{Importancia} &Alta\\
+\hline
+\textbf{Urgencia} &Alta\\
+\hline
+\textbf{Estado} &Completo\\
+\hline
+\textbf{Estabilidad} &Estable\\
+\hline
+\textbf{Comentarios} &\\
+\hline
+\end{tabular}
+\caption{OBJ-1: Creación de un sistema distribuido no jerárquico}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{|p{2.5cm}|p{10cm}|}
+\hline
+\textbf{OBJ-2} &Integración\\
+\hline
+\textbf{Versión} &1\\
+\hline
+\textbf{Autores} &Diego Martín\\
+\hline
+\textbf{Fuentes} &Análisis preliminar\\
+\hline
+\textbf{Descripción} &El sistema creado deberá ser creado para que su integración con la infraestructura presente en la Facultad de Ciencias sea trivial.\\
+\hline
+\textbf{Subobjetivos} &\\
+\hline
+\textbf{Importancia} &Alta\\
+\hline
+\textbf{Urgencia} &Alta\\
+\hline
+\textbf{Estado} &Completo\\
+\hline
+\textbf{Estabilidad} &Estable\\
+\hline
+\textbf{Comentarios} &\\
+\hline
+\end{tabular}
+\caption{OBJ-2: Integración}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{|p{2.5cm}|p{10cm}|}
+\hline
+\textbf{OBJ-3} &Evaluación\\
+\hline
+\textbf{Versión} &1\\
+\hline
+\textbf{Autores} &Diego Martín\\
+\hline
+\textbf{Fuentes} &Análisis preliminar del sistema\\
+\hline
+\textbf{Descripción} &Se realizarán diferentes evaluaciones técnicas y de usuario de los diferentes aspectos del desarrollo, con el objetivo de verificar la integración del sistema en una organización\\
+\hline
+\textbf{Subobjetivos} &\\
+\hline
+\textbf{Importancia} &\\
+\hline
+\textbf{Urgencia} &\\
+\hline
+\textbf{Estado} &\\
+\hline
+\textbf{Estabilidad} &\\
+\hline
+\textbf{Comentarios} &\\
+\hline
+\end{tabular}
+\caption{OBJ-3: Evaluación}
+\end{table}
+
+\begin{table}[H]
+\begin{tabular}{|p{2.5cm}|p{10cm}|}
+\hline
+\textbf{OBJ-4} &Estudio comparativo\\
+\hline
+\textbf{Versión} &1\\
+\hline
+\textbf{Autores} &Diego Martín, Rodrigo Santamaría\\
+\hline
+\textbf{Fuentes} &Reuniones de equipo\\
+\hline
+\textbf{Descripción} &Junto al desarrollo y evaluación de los productos a crear se deberá realizar un estudio comparativo de todas las soluciones propuestas\\
+\hline
+\textbf{Subobjetivos} &\\
+\hline
+\textbf{Importancia} &Alta\\
+\hline
+\textbf{Urgencia} &Alta\\
+\hline
+\textbf{Estado} &Completo\\
+\hline
+\textbf{Estabilidad} &Estable\\
+\hline
+\textbf{Comentarios} &\\
+\hline
+\end{tabular}
+\caption{OBJ-4: Estudio comparativo}
+\end{table}
+
 \section{Identificación de requisitos}
-\citationneeded[TODO]
+
+Los requisitos relativos a cada herramienta son detallados en el anexo correspondientes (ver apéndice \ref{listaanexos}), sirviendo esta sección para aportar una perspectiva a alto nivel de los diferentes requisitos. Es por ello que los requisitos funcionales, vinculados fuertemente a la interacción del usuario con el sistema, son recogidos únicamente en este documento.
+
 \subsection{Requisitos de almacenamiento de la información}
-\citationneeded[TODO]
-\begin{itemize}
-  \item Gestión de usuarios (credenciales de autenticación).
-  \item Gestión de los datos de cada usuario.
-  \item \textit{Logs} del sistema
-  \item Ficheros de configuración, bases de datos de gestión\dots
-\end{itemize}
 
-\subsection{Identificación de requisitos funcionales}
+Se identifican los siguientes requisitos de información a alto nivel.
 
-\citationneeded[TODO]
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{3.5cm}|p{10cm}|}
+\hline
+\textbf{IRQ-1} & Gestión de usuarios\\
+\hline
+\textbf{Versión} & 1.1\\
+\hline
+\textbf{Autores} &Diego Martín\\
+\hline
+\textbf{Fuentes} & Análisis preliminar del sistema. Reuniones de equipo.\\
+\hline
+\textbf{Objetivos asociados} & \citationneeded[TODO]\\
+\hline
+\textbf{Requisitos asociados} & \citationneeded[TODO]\\
+\hline
+\textbf{Descripción} & El sistema deberá consultar una fuente de datos (bien gestionada por el mismo o mantenida por un tercero) para realizar todas las operaciones de autenticación de los usuarios.\\
+\hline
+\textbf{Datos específicos} & Los propios de un sistema UNIX (UID, GID, nombre de usuario, grupos, directorio \texttt{\$HOME}).\\
+\hline
+\textbf{Tiempo de vida} & Permanente\\
+\hline
+\textbf{Ocurrencias simultáneas} & Se plantea la existencia de una única fuente de datos, consultada tantas veces como un usuario inicie sesión o realice cualquier otra operación en la que esta información deba ser verificada.\\
+\hline
+\textbf{Importancia} & Alta\\
+\hline
+\textbf{Urgencia} & Alta\\
+\hline
+\textbf{Estado} & Completo\\
+\hline
+\textbf{Estabilidad} & Estable\\
+\hline
+\textbf{Comentarios} & La versión 1.1 considera una fuente de datos de un tercero para la gestión de los usuarios\\
+\hline
+\end{tabular}
+\caption{IRQ-1: Gestión de usuarios}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{3.5cm}|p{10cm}|}
+\hline
+\textbf{IRQ-2} & \textit{Logs} del sistema\\
+\hline
+\textbf{Versión} & 1\\
+\hline
+\textbf{Autores} &Diego Martín\\
+\hline
+\textbf{Fuentes} & Análisis preliminar del sistema. Reuniones de equipo.\\
+\hline
+\textbf{Objetivos asociados} & \citationneeded[TODO]\\
+\hline
+\textbf{Requisitos asociados} & \citationneeded[TODO] \\
+\hline
+\textbf{Descripción} & Se deberán gestionar diferentes ficheros que sirvan como registro de todas las operaciones realizadas por el sistema con el objetivo de poder realizar operaciones de análisis o detección de errores posteriormente.\\
+\hline
+\textbf{Datos específicos} & Operaciones realizadas en las diferentes herramientas, incluyendo parámetros de operación, usuarios, resultados, condiciones irregulares\dots\\
+\hline
+\textbf{Tiempo de vida} & Se mantendrán estos archivos de forma permanente.\\
+\hline
+\textbf{Ocurrencias simultáneas} & Se plantea el uso de un fichero por cada aplicación.\\
+\hline
+\textbf{Importancia} &Alta\\
+\hline
+\textbf{Urgencia} &Media\\
+\hline
+\textbf{Estado} &Completo\\
+\hline
+\textbf{Estabilidad} &Estable\\
+\hline
+\textbf{Comentarios} &\\
+\hline
+\end{tabular}
+\caption{IRQ-2: \textit{Logs} del sistema}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{3.5cm}|p{10cm}|}
+\hline
+\textbf{IRQ-3} &Ficheros de configuración\\
+\hline
+\textbf{Versión} & 1\\
+\hline
+\textbf{Autores} &Diego Martín\\
+\hline
+\textbf{Fuentes} & Etapas de desarrollo\\
+\hline
+\textbf{Objetivos asociados} &\citationneeded[TODO]\\
+\hline
+\textbf{Requisitos asociados} &\citationneeded[TODO]\\
+\hline
+\textbf{Descripción} &La configuración de todas las aplicaciones se realizará a través de ficheros que incluyan todos los parámetros de interés. \\
+\hline
+\textbf{Datos específicos} &Cualquier valor modificable que altere el comportamiento de un programa (puerto de operación, directorios auxiliares\dots\\
+\hline
+\textbf{Tiempo de vida} &Permanente\\
+\hline
+\textbf{Ocurrencias simultáneas} &Se plantea el uso de un fichero por cada aplicación.\\
+\hline
+\textbf{Importancia} &Alta\\
+\hline
+\textbf{Urgencia} &Media\\
+\hline
+\textbf{Estado} &Completo\\
+\hline
+\textbf{Estabilidad} &Estable\\
+\hline
+\textbf{Comentarios} &\\
+\hline
+\end{tabular}
+\caption{IRQ-3: Ficheros de configuración}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{3.5cm}|p{10cm}|}
+\hline
+\textbf{IRQ-4} &Información aportada por los usuarios y de gestión\\
+\hline
+\textbf{Versión} & 1\\
+\hline
+\textbf{Autores} &Diego Martín\\
+\hline
+\textbf{Fuentes} & Fases de desarrollo del sistema\\
+\hline
+\textbf{Objetivos asociados} &\citationneeded[TODO]\\
+\hline
+\textbf{Requisitos asociados} &\citationneeded[TODO]\\
+\hline
+\textbf{Descripción} &Se utilizarán diferentes gestores de bases de datos para el almacenamiento de diferentes datos manejados por el sistema con el objetivo de facilitar el acceso a los mismos y su persistencia.\\
+\hline
+\textbf{Datos específicos} &Se plantea el almacenamiento de información aportada por el usuario, datos internos del sistema, etcétera\\
+\hline
+\textbf{Tiempo de vida} &Generalmente, los datos serán almacenados hasta que no se consideren de utilidad o un usuario o administrador decida eliminarlos.\\
+\hline
+\textbf{Ocurrencias simultáneas} &Se plantea el uso de una base de datos para cada tarea.\\
+\hline
+\textbf{Importancia} &Media\\
+\hline
+\textbf{Urgencia} &Media\\
+\hline
+\textbf{Estado} &Completo\\
+\hline
+\textbf{Estabilidad} &Estable\\
+\hline
+\textbf{Comentarios} &\\
+\hline
+\end{tabular}
+\caption{IRQ-4: Información aportada por los usuarios y de gestión}
+\end{table}
+
+
+% \begin{comment}
+% For future use
+% \begin{table}[H]
+% \begin{tabular}{|p{3.5cm}|p{10cm}|}
+% \hline
+% \textbf{IRQ-} &\\
+% \hline
+% \textbf{Versión} &\\
+% \hline
+% \textbf{Fuentes} &\\
+% \hline
+% \textbf{Objetivos asociados} &\\
+% \hline
+% \textbf{Requisitos asociados} &\\
+% \hline
+% \textbf{Descripción} &\\
+% \hline
+% \textbf{Datos específicos} &\\
+% \hline
+% \textbf{Tiempo de vida} &\\
+% \hline
+% \textbf{Ocurrencias simultáneas} &\\
+% \hline
+% \textbf{Importancia} &\\
+% \hline
+% \textbf{Urgencia} &\\
+% \hline
+% \textbf{Estado} &\\
+% \hline
+% \textbf{Estabilidad} &\\
+% \hline
+% \textbf{Comentarios} &\\
+% \hline
+% \end{tabular}
+% \end{table}
+% \end{comment}
+
+
 \subsection{Identificación de requisitos no funcionales}
-\citationneeded[TODO]
-\subsubsection{Mantenimiento y robustez}
 
-El \textit{software} debe ser mantenible y robusto, siendo dicha robustez garantizada mediante el uso de \textit{software} utilizado por una base de usuarios significativa, una arquitectura conocida, pruebas realizadas sobre él o un equipo de desarrollo en activo, entre otras.
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{3.5cm}|p{10cm}|}
+\hline
+\textbf{NFR-1} &Mantenimiento y robustez\\
+\hline
+\textbf{Versión} &1\\
+\hline
+\textbf{Autores} & Diego Martín\\
+\hline
+\textbf{Fuentes} & Análisis preliminar del sistema\\
+\hline
+\textbf{Objetivos asociados} &\citationneeded[TODO]\\
+\hline
+\textbf{Requisitos asociados} &\citationneeded[TODO]\\
+\hline
+\textbf{Descripción} &El \textit{software} debe ser mantenible y robusto, siendo dicha robustez garantizada mediante el uso de \textit{software} utilizado por una base de usuarios significativa, una arquitectura conocida, pruebas realizadas sobre él o un equipo de desarrollo en activo, entre otras.\\
+\hline
+\textbf{Importancia} &Alta\\
+\hline
+\textbf{Urgencia} &Alta\\
+\hline
+\textbf{Estado} &Completo\\
+\hline
+\textbf{Estabilidad} &Estable\\
+\hline
+\textbf{Comentarios} &\\
+\hline
+\end{tabular}
+\caption{NFR-1: Mantenimiento y robustez}
+\end{table}
 
-\subsubsection{Costes de desarrollo}
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{3.5cm}|p{10cm}|}
+\hline
+\textbf{NFR-2} &Coste de desarrollo\\
+\hline
+\textbf{Versión} &1\\
+\hline
+\textbf{Autores} & Diego Martín\\
+\hline
+\textbf{Fuentes} &Administración de la organización\\
+\hline
+\textbf{Objetivos asociados} &\citationneeded[TODO]\\
+\hline
+\textbf{Requisitos asociados} &\citationneeded[TODO]\\
+\hline
+\textbf{Descripción} &El coste de desarrollo no debe superar un total de 400 €.\\
+\hline
+\textbf{Importancia} &Alta\\
+\hline
+\textbf{Urgencia} &Alta\\
+\hline
+\textbf{Estado} &Completo\\
+\hline
+\textbf{Estabilidad} &Estable\\
+\hline
+\textbf{Comentarios} &\\
+\hline
+\end{tabular}
+\caption{NFR-2: Coste de desarrollo}
+\end{table}
 
-El coste de desarrollo no debe superar un total de 400 €.
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{3.5cm}|p{10cm}|}
+\hline
+\textbf{NFR-3} &Definición de los protocolos de comunicación\\
+\hline
+\textbf{Versión} &1\\
+\hline
+\textbf{Autores} & Diego Martín\\
+\hline
+\textbf{Fuentes} &Análisis preliminar\\
+\hline
+\textbf{Objetivos asociados} &\citationneeded[TODO]\\
+\hline
+\textbf{Requisitos asociados} &\citationneeded[TODO]\\
+\hline
+\textbf{Descripción} &Los diferentes protocolos utilizados o creados para el sistema deben ser públicos y extensibles a diferentes paradigmas de utilización y tecnologías que los implementen.\\
+\hline
+\textbf{Importancia} &Alta\\
+\hline
+\textbf{Urgencia} &Alta\\
+\hline
+\textbf{Estado} &Completo\\
+\hline
+\textbf{Estabilidad} &Estable\\
+\hline
+\textbf{Comentarios} &\\
+\hline
+\end{tabular}
+\caption{NFR-3: Definición de los protocolos de comunicación}
+\end{table}
 
-\subsubsection{Definición de los protocolos de comunicación}
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{3.5cm}|p{10cm}|}
+\hline
+\textbf{NFR-4} &Transparencia\\
+\hline
+\textbf{Versión} &1\\
+\hline
+\textbf{Autores} & Diego Martín\\
+\hline
+\textbf{Fuentes} &Análisis preliminar\\
+\hline
+\textbf{Objetivos asociados} &\citationneeded[TODO]\\
+\hline
+\textbf{Requisitos asociados} &\citationneeded[TODO]\\
+\hline
+\textbf{Descripción} &El sistema deberá cumplir todas las transparencias definidas en \ref{transparencias} en todas aquellas ocasiones en las que no se comprometa el funcionamiento del sistema.\\
+\hline
+\textbf{Importancia} &Media\\
+\hline
+\textbf{Urgencia} &Media\\
+\hline
+\textbf{Estado} &Completo\\
+\hline
+\textbf{Estabilidad} &Estable\\
+\hline
+\textbf{Comentarios} &\\
+\hline
+\end{tabular}
+\caption{NFR-4: Transparencia}
+\end{table}
 
-Los diferentes protocolos utilizados o creados para el sistema deben ser públicos y extensibles a diferentes paradigmas de utilización y tecnologías que los implementen.
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{3.5cm}|p{10cm}|}
+\hline
+\textbf{NFR-5} &Compatibilidad con prácticas y otros ejercicios didácticos\\
+\hline
+\textbf{Versión} &1\\
+\hline
+\textbf{Autores} & Diego Martín\\
+\hline
+\textbf{Fuentes} &Reuniones de equipo\\
+\hline
+\textbf{Objetivos asociados} &\citationneeded[TODO]\\
+\hline
+\textbf{Requisitos asociados} &\citationneeded[TODO]\\
+\hline
+\textbf{Descripción} &El sistema deberá ser compatible los ejercicios desarrollados en las asignaturas \textbf{Arquitectura de Computadores} y en especial \textbf{Sistemas distribuidos}\\
+\hline
+\textbf{Importancia} &Alta\\
+\hline
+\textbf{Urgencia} &Media\\
+\hline
+\textbf{Estado} &Completo\\
+\hline
+\textbf{Estabilidad} &Estable\\
+\hline
+\textbf{Comentarios} &\\
+\hline
+\end{tabular}
+\caption{NFR-5: Compatibilidad con prácticas y otros ejercicios didácticos}
+\end{table}
 
-\subsubsection{Definición de los protocolos de seguridad y confidencialidad}
+% \begin{comment}
+% For future use
+% \begin{table}[H]
+% \begin{tabular}{|p{3.5cm}|p{10cm}|}
+% \hline
+% \textbf{NFR-} &\\
+% \hline
+% \textbf{Versión} &\\
+% \hline
+% \textbf{Fuentes} &\\
+% \hline
+% \textbf{Objetivos asociados} &\\
+% \hline
+% \textbf{Requisitos asociados} &\\
+% \hline
+% \textbf{Descripción} &\\
+% \hline
+% \textbf{Importancia} &\\
+% \hline
+% \textbf{Urgencia} &\\
+% \hline
+% \textbf{Estado} &\\
+% \hline
+% \textbf{Estabilidad} &\\
+% \hline
+% \textbf{Comentarios} &\\
+% \hline
+% \end{tabular}
+% \end{table}
+% \end{comment}
 
-Se utilizará una infraestructura de clave pública para la mayoría de las transacciones cifradas realizadas en el sistema.
-
-\subsubsection{Definición de la interacción con el usuario}
-
-Todos los mecanismos de interacción con el usuario deberán definirse de forma precisa.
-
-\subsubsection{Integridad del sistema y fiabilidad (\textit{uptime}, recuperación frente a fallos)}
-
-\subsubsection{Compatibilidad con prácticas y otros ejercicios}
-
-El sistema deberá ser compatible los ejercicios desarrollados en las asignaturas \textbf{Arquitectura de Computadores} y en especial \textbf{Sistemas distribuidos}
 
 \section{Situación actual (\textit{state of the art})}
 \label{stateoftheart}
@@ -243,279 +713,6 @@ A la hora de evaluar las diferentes opciones que satisfagan los requisitos descr
   \item Obsolescencia del sistema (periodo de tiempo en el que el \textit{hardware} y \textit{software} del sistema podrán ser actualizados y ser capaces de satisfacer los requisitos para los que fue creado).
 \end{itemize}
 
-\begin{comment}
-% \subsection{Propuesta de solución: Virtualización de entornos de trabajo}
-
-% Crear un conjunto de nodos virtuales dentro de una máquina que simulen un sistema distribuido
-
-% \paragraph{Ventajas intrínsecas de la solución\\}
-
-% Simplificación del sistema (reduce las necesidades de adquisición y mantenimiento de hardware).
-% Gestión de varias partes del sistema (sistema de ficheros centralizado, gestión de usuarios\dots) de forma mas sencilla. El coste se reduce significativamente.
-
-% \paragraph{Inconvenientes intrínsecos del sistema\\}
-
-% No se exploran apenas las posibilidades de un sistema distribuido formado por varios equipos físicamente independientes e impide aprovechar dicha independencia para los objetivos didácticos del sistema.
-
-% \paragraph{Facilidad de trabajo y curva de aprendizaje\\}
-
-% Si bien el trabajo con cada una de las instancias es previsiblemente sencillo, debido a la eliminación de la gran parte del mantenimiento de la capa física subyacente, el uso de este tipo de sistema requiere una etapa de formación previa en materia de virtualización.
-
-% \paragraph{Prestaciones técnicas\\}
-
-% Las prestaciones técnicas con las que se contaría, de llevarse a cabo este proyecto, son las de los equipos ya dispuestos para fines similares a este en el Centro\citationneeded[Preguntar a Andrés]{}.
-
-% \paragraph{Coste económico\\}
-
-% El coste económico es muy reducido si ya se cuenta con los equipos a utilizar y las licencias del \textit{software} de virtualización necesarias.
-
-% \paragraph{Escalabilidad del sistema\\}
-
-% Dependiente de las capacidades de virtualización del equipo disponible, y el número de nodos y usuarios a gestionar.
-
-% \paragraph{Necesidades de mantenimiento\\}
-
-% Las necesidades propias de un sistema operativo multiusuario (previsiblemente \textbf{GNU/Linux}) junto a las específicas de la virtualización de los equipos (monitor de máquinas virtuales).
-
-% \paragraph{Consumo energético del sistema\\}
-
-% \citationneeded[Preguntar a Andrés]{}
-
-% \paragraph{Obsolescencia del sistema\\}
-
-% Se estima una larga vida útil del sistema. Las máquinas virtuales instaladas en un sistema físico son fácilmente trasladables a otro equipo, por lo que la dependencia de la parte física del sistema es muy baja.
-
-% \paragraph{Material con el que se cuenta actualmente\\}
-
-% Se plantea el aprovechamiento de equipos ya presentes en la infraestructura en la que trabajar, por lo que se estima un coste muy pequeño a la hora de adquirir material.
-
-% \paragraph{Prestaciones técnicas\\}
-
-% \citationneeded[Preguntar a Andrés]{}
-
-% \paragraph{Análisis coste/beneficio\\}
-
-% Si bien el coste de esta solución es muy atractivo, presenta una serie de carencias que dificultan significativamente el desarrollo del sistema en el mismo. 
-
-
-% \subsection{Propuesta de solución: Clúster con equipos de escritorio}
-
-% Se plantea la reutilización de equipos de escritorio pertenecientes a la Universidad que ya no se encuentran en uso (debido a su renovación, falta de potencia como PC\dots) para la creación de este sistema.
-
-% \paragraph{Ventajas intrínsecas de la solución\\}
-
-% La potencia del sistema es mucho mayor que la de cualquier otra solución considerada. Se reduce dramáticamente el coste de adquisición de material y permite dar un nuevo ciclo de vida a material universitario. La arquitectura es conocida y fiable.
-
-% \paragraph{Inconvenientes intrínsecos del sistema\\}
-
-% No se exploran las características únicas de otros sistemas menos ``convencionales'', como los sistemas embebidos. El consumo energético es mayor y existe una mayor demanda de espacio que puede dificultar la implementación de diferentes aplicaciones didácticas ya planteadas como objetivo funcional del sistema.
-
-% \paragraph{Facilidad de trabajo y curva de aprendizaje\\}
-
-% Soporte completo de casi la totalidad de las distribuciones de GNU/Linux. Las necesidades de manipulación de hardware se minimizan.
-
-% \paragraph{Prestaciones técnicas}
-% \begin{itemize}
-%   \item Arquitectura x86/x86-64 (dependiendo de los equipos a utilizar finalmente).
-%   \item Entre 2 y 4 GB de memoria principal.
-%   \item Conectividad Ethernet, USB.
-%   \item Almacenamiento en disco duro.
-% \end{itemize}
-
-% \paragraph{Coste económico\\}
-
-% El coste económico de estos equipos es prácticamente nulo, pues ya se cuenta con los mismos y su utilización no exige la adquisición de nuevos equipos que los sustituyan. Estos equipos ya han sido retirados y no están empleados actualmente en ninguna tarea.
-
-% \paragraph{Escalabilidad del sistema\\}
-
-% Dependiente únicamente del coste económico de la adquisición de nuevos equipos, o de la disponibilidad de equipos que no estén utilizados.
-
-% \paragraph{Necesidades de mantenimiento\\}
-
-% Las propias de cualquier sistema multiusuario y las específicas del montaje dado (en materia de refrigeración, gestión de cableado, etcétera).
-
-% \paragraph{Consumo energético del sistema\\}
-
-% El típico de cualquier equipo de escritorio.
-
-% \paragraph{Obsolescencia del sistema\\}
-
-% Estos equipos tienen una antigüedad de aproximadamente 4 años. Dicha edad no impide que sean capaces de utilizar aplicaciones actuales, y en general no se prevé la incompatibilidad con ninguna aplicación. No obstante, son equipos relativamente antiguos que han sido utilizados de forma intensiva, por lo que la probabilidad de fallo en los mismos puede ser elevada.
-
-% \paragraph{Material con el que se cuenta actualmente\\}
-
-% Se cuenta con un número suficiente de equipos para la creación del sistema final.
-
-% \paragraph{Análisis coste/beneficio\\}
-
-% Si bien el coste de estos equipos es prácticamente nulo, dicho atractivo contrasta con los potenciales problemas que el uso de estos sistemas puede implicar (obsolescencia, uso de sistemas convencionales en detrimento de soluciones más innovadoras\dots).
-
-% \subsection{Clúster con equipos embebidos multimedia}
-
-% Utilización de equipos embebidos diseñados para aplicaciones multimedia en el sistema (ejemplos de alternativas comerciales son \textbf{Chromecast}, \textbf{Apple TV}, \textbf{Amazon Fire TV}\dots).
-
-% \paragraph{Ventajas intrínsecas de la solución\\}
-
-% Relación potencia/precio presumiblemente similar o superior a soluciones de coste similar como las placas Raspberry Pi.
-
-% \paragraph{Inconvenientes intrínsecos del sistema\\}
-
-% Dificultad de conexión (generalmente la conexión a red se realiza de forma inalámbrica, ausencia casi absoluta de cualquier conexión cuya finalidad no sea la emisión de contenido multimedia o la conexión con sistemas de almacenamiento), falta de puertos \textbf{GPIO}, \textbf{I\textsuperscript{2}C}\dots
-
-% \paragraph{Facilidad de trabajo y curva de aprendizaje\\}
-
-% Es difícil determinar la viabilidad de esta solución, pues no se cuenta con experiencia previa ni una documentación amplia al respecto. Además, es probable que sea necesaria la manipulación del sistema a muy bajo nivel, lo cual incrementa el grado de complejidad de la solución.
-
-% \paragraph{Prestaciones técnicas\\}
-
-% Como referencia se utilizan las prestaciones de uno de los equipos más populares, el \textbf{Google Chromecast}\footnote{\href{https://wikidevi.com/wiki/Google\_Chromecast\_\%28H2G2-42\%29}{https://wikidevi.com/wiki/Google\_Chromecast\_\%28H2G2-42\%29}}
-% \begin{itemize}
-%   \item Procesador ARM de 2 núcleos a 1.2 GHz.
-%   \item 512 MB de memoria principal.
-%   \item 2 GB de almacenamiento no extensibles.
-%   \item Alimentación por micro-USB.
-%   \item Utiliza un sistema operativo basado en \textbf{Google TV}, \textbf{ChromeOS} y \textbf{Android}.
-% \end{itemize}
-
-% \paragraph{Coste económico\\}
-
-% El coste de estos equipos es reducido, generalmente inferior a 30 € por unidad.
-
-% \paragraph{Escalabilidad del sistema\\}
-
-% Dependiente del coste de adquisición de nuevos equipos y las facilidades de interconexión de la plataforma (previsiblemente compleja, debido a la ausencia de sistemas de interconexión más allá de conexiones inalámbricas).
-
-% \paragraph{Necesidades de mantenimiento\\}
-
-% Dependiente del número de modificaciones que se realicen a las capas más bajas. En el peor de los casos puede que el administrador del sistema tenga que someterse a una etapa de formación para realizar un mantenimiento adecuado del sistema sin depender de los desarrolladores del mismo.
-% Otras necesidades son aquellas derivadas del mantenimiento de un sistema multiusuario sumadas a posibles problemas de interconexión si se utiliza una red inalámbrica (conexión a la LAN de la infraestructura local, interferencias\dots).
-
-% \paragraph{Consumo energético del sistema\\}
-
-% El diseño de estos equipos está orientado a la minimización del consumo energético, por lo que se estima reducido.
-
-% \paragraph{Obsolescencia del sistema\\}
-
-% La obsolescencia del sistema es difícil de determinar: no se cuenta con una gran cantidad de \textit{software} para este tipo de sistemas más allá de las aplicaciones multimedia.%TODO No obstante, el sistema subyacente es conocido (Linux).
-
-% \paragraph{Material con el que se cuenta actualmente\\}
-
-% No se dispone de material de estas o similares características.
-
-% \subsection{Clúster con equipos embebidos multimedia\\}
-
-% Utilización de equipos embebidos diseñados para aplicaciones multimedia en el sistema (ejemplos son Chromecast, Apple TV, Amazon Fire TV\dots)
-
-% \paragraph{Ventajas intrínsecas de la solución}
-
-% Relación potencia/precio presumiblemente superior a soluciones de coste similar como las placas Raspberry Pi.
-
-% \paragraph{Inconvenientes intrínsecos del sistema}
-
-% Dificultad de conexión (generalmente la conexión a red se realiza de forma inalámbrica, ausencia casi absoluta de cualquier conexión cuya finalidad no sea la emisión de vídeo o conexión con sistemas de almacenamiento mediante USB), falta de puertos GPIO, I2C\dots
-
-% \paragraph{Facilidad de trabajo y curva de aprendizaje}
-% Es difícil determinar la viabilidad de esta solución, pues no se cuenta con experiencia previa ni una documentación amplia al respecto.
-% Es probable que sea necesaria la manipulación del sistema a muy bajo nivel. Lo cual incrementa el grado de complejidad de la solución.
-
-% \paragraph{Prestaciones técnicas}
-% Arquitectura ARM
-% 2 núcleos a 1.2 GHz
-% 512 MB de RAM
-% Almacenamiento: 2 GB no expandibles
-% Alimentación por microUSB
-
-% \paragraph{Coste económico}
-
-
-% \paragraph{Escalabilidad del sistema}
-% Dependiente del coste de adquisición de nuevos equipos y las facilidades de interconexión de la plataforma (previsiblemente compleja, debido a la ausencia de sistemas de interconexión más allá de WiFi)
-
-% \paragraph{Necesidades de mantenimiento}
-
-% Dependiente del número de modificaciones que se realicen a las capas más bajas. En el peor de los casos puede que el administrador del sistema tenga que someterse a una etapa de formación para realizar un mantenimiento adecuado del sistema sin depender de desarrolladores previos.
-% Las derivadas del mantenimiento de un sistema Linux sumadas a posibles problemas de interconexión si se utiliza una red inalámbrica (conexión a  la LAN de la infraestructura local, interferencias\dots).
-
-% \paragraph{Consumo energético del sistema}
-
-
-% \paragraph{Obsolescencia del sistema}
-
-% Difícil de determinar: no se cuenta con una gran cantidad de software para este tipo de sistemas más allá de las aplicaciones multimedia. No obstante, el sistema subyacente es conocido (Linux)
-
-% \paragraph{Material con el que se cuenta actualmente}
-
-% No se dispone de material de estas o similares características
-
-% \paragraph{Otras características}
-
-% \subsection{Clúster con sistemas embebidos}
-
-% Recientemente han surgido en el mercado sistemas embebidos con capacidad de cómputo elevada y precio muy reducido (en torno a los 40 euros por unidad). Estos equipos destacan además por su versatilidad. La mayoría de ellos son capaces de ejecutar una gran variedad de sistemas operativos (GNU/Linux, RISC OS, BSD, Windows\dots), incluyen una gran cantidad de mecanismos de interconexión y soportan la mayoría de herramientas presentes en equipos de escritorio y servidores.
-
-% Se plantea utilizar este tipo de plataformas para la creación del sistema, disponiendo los diferentes equipos en un pequeño ``rack'' con un sistema de alimentación propio centralizado y una conexión directa a la infraestructura local.
-
-% \paragraph{Ventajas intrínsecas de la solución\\}
-
-% Existen varias soluciones similares bien documentadas.
-% El hardware es flexible, barato y el consumo es pequeño.
-% Gran comunidad de desarrolladores alrededor de la plataforma.
-
-% \paragraph{Inconvenientes intrínsecos del sistema\\}
-
-% La potencia del sistema es pequeña.
-
-% \paragraph{Facilidad de trabajo y curva de aprendizaje\\}
-
-% Existe una amplia documentación del \textit{hardware} de este tipo de equipos, así como numerosos proyectos basados en los mismos, entre los que se incluyen sistemas similares a la solución planteada. Se cuenta además con experiencia en el manejo de estas placas.
-
-% \paragraph{Prestaciones técnicas}
-
-% \begin{itemize}
-%   \item Generalmente basados en la arquitectura ARM.
-%   \item Entre 512 MB y 2 GB de memoria principal.
-%   \item Conectividad \textbf{Ethernet},\textbf{I\textsuperscript{2}C}, \textbf{GPIO}, \textbf{USB}.
-%   \item Alimentación a través de \textbf{USB}/\textbf{GPIO}.
-%   \item Almacenamiento secundario basado en tarjetas microSD/SD, expansible a través de USB.
-% \end{itemize}
-
-% \paragraph{Coste económico\\}
-
-% Muy reducido, con un coste por nodo de entre 20 y 40 euros, al que se debe añadir los mecanismos de alimentación e interconexión.
-
-% \paragraph{Escalabilidad del sistema\\}
-
-% Dependiente únicamente del coste económico de la adquisición de nuevos equipos.
-
-% \paragraph{Necesidades de mantenimiento\\}
-
-% Las mismas que cualquier sistema multiusuario.
-
-% \paragraph{Consumo energético del sistema\\}
-
-% Variable según modelo, entre 3 y 4 W, con 5V de tensión y un amperaje variable entre 0.6 y 0.8 A.
-
-% \paragraph{Obsolescencia del sistema\\}
-
-% El software de terceros (sistema operativo, bibliotecas, etc) a incluir está respaldado por una comunidad extensa que provee actualizaciones de forma continua, por lo que previsiblemente el sistema podrá estar actualizado durante varios años.
-% Se prevé que las necesidades que el sistema cubre no demandarán una mayor potencia de cálculo en el futuro.
-
-% \paragraph{Material con el que se cuenta actualmente\\}
-
-% El Departamento de Informática y Automática cuenta con varios de estos equipos actualmente que podrían disponerse para el uso en el proyecto.
-
-% \subsection{Elección de la solución}
-
-% Basándose en las características descritas anteriormente, se elige realizar el sistema utilizando sistemas embebidos de bajo coste en virtud de los siguientes aspectos positivos:
-
-% \begin{itemize}[noitemsep]
-% \item Compatibilidad con de gran cantidad de \textit{software} y sistemas operativos.
-% \item Versatilidad y facilidad de interconexión.
-% \item Se cuenta con experiencia en el uso de este tipo de dispositivos.
-% \item Bajo coste.
-% \end{itemize}
-\end{comment}
-
 \begin{table}[H]
 \begin{tabular}{|p{2.4cm}|p{12cm}|}
 \hline
@@ -529,7 +726,7 @@ Inconvenientes intrínsecos&No se exploran apenas las posibilidades de un sistem
 \hline
 Facilidad de trabajo&Si bien el trabajo con cada una de las instancias es previsiblemente sencillo, debido a la eliminación de la gran parte del mantenimiento de la capa física subyacente, el uso de este tipo de sistema requiere una etapa de formación previa en materia de virtualización.\\
 \hline
-Prestaciones técnicas&Las prestaciones técnicas con las que se contaría, de llevarse a cabo este proyecto, son las de los equipos ya dispuestos para fines similares a este en el Centro\citationneeded[Preguntar a Andrés].\\
+Prestaciones técnicas&Las prestaciones técnicas con las que se contaría, de llevarse a cabo este proyecto, son las de los equipos ya dispuestos para fines similares a este en el Centro. Tres equipos Dell PowerEdge r410, con dos procesadores Xeon E5620, 32GB de RAM y disco duro de 500GB en RAID1.\\
 \hline
 Coste económico&El coste económico es muy reducido si ya se cuenta con los equipos a utilizar y las licencias del \textit{software} de virtualización necesarias.\\
 \hline
@@ -537,15 +734,13 @@ Escalabilidad&Dependiente de las capacidades de virtualización del equipo dispo
 \hline
 Mantenimiento&Las necesidades propias de un sistema operativo multiusuario (previsiblemente \textbf{GNU/Linux}) junto a las específicas de la virtualización de los equipos (monitor de máquinas virtuales).\\
 \hline
-Consumo energético&\citationneeded[Preguntar a Andrés]\\
+Consumo energético&Se desconocen datos concretos.\\
 \hline
 Obsolescencia&Se estima una larga vida útil del sistema. Las máquinas virtuales instaladas en un sistema físico son fácilmente trasladables a otro equipo, por lo que la dependencia de la parte física del sistema es muy baja.\\
 \hline
 Material&Se plantea el aprovechamiento de equipos ya presentes en la infraestructura en la que trabajar, por lo que se estima un coste muy pequeño a la hora de adquirir material.\\
 \hline
-Prestaciones técnicas&\citationneeded[Preguntar a Andrés]\\
-\hline
-Análisis coste/beneficio&\\
+Análisis coste/beneficio&El coste es muy bajo, dado que no es necesario adquirir ningún equipo. El consumo energético también es bajo, pues estos equipos ya se encuentran en funcionamiento, y añadir un sistema como el que se plantea crear no incrementaría previsiblemente el gasto.\\
 \hline
 \end{tabular}
 \caption[Características de la virtualización de entornos de trabajo]{Evaluación de las características de la virtualización de entornos de trabajo}
@@ -1019,11 +1214,15 @@ Se plantean de forma global las siguientes fuentes de datos.
   \item Ficheros de \textit{log} para registrar todas las operaciones llevadas a cabo por el sistema, situaciones irregulares\dots, con el objetivo de ser analizados posteriormente.
 \end{itemize}
 
-%\subsection{Diseño arquitectónico}
+\subsection{Diseño arquitectónico}
 
-%Se plantea el siguiente esquema arquitectónico
+Se plantea el siguiente esquema arquitectónico:
 
-%TODO\citationneeded[TODO]
+\begin{itemize}
+\item Un conjunto de nodos principales centralizados en una misma localización física.
+\item Varios nodos secundarios a los que se delegará una serie de tareas. Sus características (mayor capacidad de procesamiento, \textit{hardware} exclusivo\dots hacen que esta delegación mejore el rendimiento global del sistema o cualquier otra propiedad).
+\item Mecanismos de interconexión, enrutado y alimentación.
+\end{itemize}
 
 \subsection{Diseño de la interfaz}
 
@@ -1041,7 +1240,9 @@ Todos los aspectos de programación (algoritmos empleados, ejemplos de código) 
 
 Se ha utilizado un desarrollo dirigido por pruebas en la mayoría de las herramientas creadas, como se detalla en la documentación técnica que acompaña a cada una de ellas, así como una batería de pruebas de una de las últimas versiones del sistema, como se detalla en \citationneeded[TODO].
 
-%\subsection{Entorno tecnológico del sistema}
+\subsection{Entorno tecnológico del sistema}
+
+El sistema se integrará en la Facultad de Ciencias de la Universidad de Salamanca. Todos los aspectos de esta organización se definen en \ref{dominioproblema:infraestructura}.
 
 \subsection{Plan de desarrollo e implementación}
 
@@ -1078,11 +1279,9 @@ En la fase inicial, se evalúa un gran número de opciones atendiendo a los sigu
   \item Tiempo de entrega\footnote{Las restricciones de tiempo que el proyecto implica exigen que los materiales sean entregados en un periodo de tiempo corto}.
 \end{itemize}
 
-%TODO
-\citationneeded[TODO]
 El proceso de compra de los diferentes componentes necesarios para el sistema se ha realizado de forma incremental, comenzando por una compra de tamaño significativo que incluye los diferentes componentes del sistema y posteriormente adquiriendo los componentes supletorios necesarios.
 
-Esta estrategia ha permitido refinar las necesidades inicialmente planteadas, lo cual ha reducido significativamente el coste, al poder evaluar alternativas de igual efectividad y menor coste o incluso buscar mecanismos para reutilizar componentes con los que ya se contaba.
+Esta estrategia ha permitido refinar las necesidades inicialmente planteadas, lo cual ha reducido significativamente el coste, al poder evaluar alternativas de igual efectividad y menor coste o incluso buscar mecanismos para reutilizar componentes con los que ya se contaba. El coste total del sistema se define en \ref{coste}.
 
 %\begin{landscape}
 \begin{table}[H]
@@ -1252,10 +1451,3 @@ Tarjeta de memoria & 4 & Comprobar & Comprobar & Comprobar & Comprobar\\ \hline
 %TODO:Todos los precios están basados en el coste unitario sin descuento por volumen y con IVA incluido reflejado en la web http://es.rs-online.com/web/&En verde la mejor opción de cada categoría&&&&&Referencia&&\\
 \end{table}
 \end{comment}
-%\end{landscape}
-
-
-%TODO: IS 1 T2 pg 37
-No se plantea la modificación de ninguno de los componentes anteriormente descritos.\citationneeded[TODO]%El coste total del proyecto no es elevado, por lo que no se solicitarán más presupuestos ni proveedores de los aquí listados.
-
-\citationneeded[Objetivos funcionales]

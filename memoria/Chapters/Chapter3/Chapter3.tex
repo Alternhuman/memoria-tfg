@@ -196,10 +196,12 @@ Se ha creado un módulo para \textbf{PAM} para facilitar las tareas que el siste
 
 \subsection{Distcc}
 
-Distcc es la herramienta utilizada para el desarrollo del compilador distribuido.\citationneeded[TODO]
+Distcc\footnote{\href{https://code.google.com/p/distcc/}{https://code.google.com/p/distcc/}} es la herramienta utilizada para el desarrollo del compilador distribuido. Se basa en una arquitectura cliente-servidor donde los trabajos de compilación pueden ser repartidos entre varios servidores para reducir el tiempo total de compilación, implementando mecanismos de verificación y balance de carga.
+
+Junto con \textbf{crosstool-ng} conforma el compilador distribuido del sistema (ver \ref{crosstool-ng}).
 
 \subsection{SSH-HPN}
-
+\label{ssh-hpn}
 Una de las características de OpenSSH es la ejecución de todas las tareas en un único proceso y por tanto, en un único núcleo, constituyendo un cuello de botella que se hace notable en computadores de bajas prestaciones, como el sistema a modelar que sin embargo, cuentan con un procesador multinúcleo.
 
 Con el objetivo de superar este límite nace SSH-HPN\footnote{\href{http://www.psc.edu/index.php/hpn-ssh}{http://www.psc.edu/index.php/hpn-ssh}}, un conjunto de modificaciones al código fuente de OpenSSH que optimiza la ejecución del mismo mediante el uso de diferentes procesos repartidos en los diferentes núcleos del sistema. El proyecto se distribuye como un archivo \texttt{.diff} que se incluye en los archivos del código fuente con la herramienta \textbf{GNU patch}.

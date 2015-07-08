@@ -19,14 +19,6 @@ Esta centralización apoya uno de los objetivos principales del proyecto. Al con
 \item Simplifica el mantenimiento del sistema.
 \end{itemize}
 
-\begin{comment}
-% \subsection{Requisitos}
-
-% \subsubsection{Coste}
-
-% El coste de la estructura debe reducirse al máximo sin que esto comprometa el resultado final.
-\end{comment}
-
 \subsection{Propuestas de solución}
 
 \subsubsection{Primera propuesta: estructura básica}
@@ -45,7 +37,7 @@ Las diferentes placas de metacrilato se unirán mediante barras metálicas. Las 
 
 \paragraph{Construcción\\}
 
-La fase de construcción se extiende durante aproximadamente dos semanas (compaginadas con con el resto de tareas de desarrollo. El tiempo total dedicado a esta tarea asciende a 20 horas\citationneeded[TODO. Redmine], como se puede observar en la gestión del proyecto (ver\citationneeded[TODO])).
+La fase de construcción se extiende durante aproximadamente dos semanas (compaginadas con con el resto de tareas de desarrollo. El tiempo total dedicado a esta tarea asciende a 20 horas, como se puede observar en los anexos referentes a la gestión del proyecto (ver\citationneeded[TODO])).
 
 \begin{figure}[H]
 \centering
@@ -67,7 +59,7 @@ Este prototipo es considerado aceptable, y se decide partir del mismo para elabo
 A pesar del éxito del segundo prototipo, durante las siguientes fases de desarrollo se plantea la viabilidad del prototipo para albergar una serie de componentes que acompañen a los nodos. Utilizar, como se planteaba, un ladrón USB %TODO
 para la alimentación del sistema parece una solución poco efectiva (incrementa la cantidad de cableado a utilizar). La conexión a la red también genera incertidumbre, pues se planteaba inicialmente la conexión a la misma de forma individual para cada nodo. Esta decisión complicaría la gestión del cableado.
 
-Además, se observan errores en las medidas iniciales para cada uno de los raíles, pues no se contó con el espacio que los conjuntos de diodos LED consumirían\citationneeded[LED].
+Además, se observan errores en las medidas iniciales para cada uno de los raíles, pues no se contó con el espacio que las placas de diodos LED consumirían.
 
 Por ello, se plantea la elaboración de un tercer prototipo basado en el anterior que tenga las siguientes propiedades:
 
@@ -103,13 +95,20 @@ Esta solución implica un riesgo considerable. El puerto GPIO no dispone de meca
 
 Es posible adaptar la propuesta de solución anterior a una alternativa más prometedora. Aprovechando los mecanismos de protección frente a sobrecargas del puerto USB se decide adquirir y modificar cabezas micro-USB macho para soldarlas a cables conectados a la fuente de alimentación. Dichas cabezas se conectarán a cada una de las placas. Se mantienen no obstante los fusibles ya adquiridos como medida preventiva conectando uno a cada cable de corriente positiva.
 
-Esta solución permite centralizar todos los cables de alimentación en un único punto a la vez que se mantienen los mecanismos de protección que integran las placas, manteniendo a efectos prácticos el sistema de alimentación que se ideó para la Raspberry Pi.\citationneeded[FOTO de los cables]
+Esta solución permite centralizar todos los cables de alimentación en un único punto a la vez que se mantienen los mecanismos de protección que integran las placas, manteniendo a efectos prácticos el sistema de alimentación que se ideó para la Raspberry Pi.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.12\textheight]{Chapters/Chapter5/Figures/usb}
+	\includegraphics[height=0.12\textheight]{Chapters/Chapter5/Figures/dcplug}
+	\caption{Cables modificados}
+\end{figure}
 
 \paragraph{Gestión de la red\\}
 
 Se crearán cables Ethernet a medida para cada uno de los raíles.
 
-\paragraph{LEDs}
+\paragraph{LEDs\\}
 
 Situar los diodos supone un problema significativo. Utilizar cualquier tipo de cableado complicaría el diseño de forma significativa, por lo que es necesario buscar una alternativa.
 
@@ -118,7 +117,7 @@ Como solución se decide crear placas con circuitos impresos que conecten los di
 A fin de ahorrar espacio, los LED se situarán sobre la Raspberry cubriendo la parte inferior de la misma.
 
 \subsection{Coste}
-
+\label{coste}
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|r|r|r|}
@@ -156,7 +155,11 @@ El resultado final es una estructura que es capaz de aglutinar todos los compone
 \subsubsection{Alimentación eléctrica}
 
 La fuente de alimentación protege todos los componentes del sistema al incluir un conjunto de fusibles.
-\citationneeded[FOTO]
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{Chapters/Chapter5/Figures/fusibles}
+	\caption{Panel de fusibles protectores}
+\end{figure}
 
 \subsubsection{LEDs}
 
@@ -212,13 +215,18 @@ La gestión de paquetes se realiza utilizando la herramienta \textbf{pacman}\cit
 
 Arch Linux utiliza el sistema de arranque \textbf{systemd}\cite{systemd}, un conjunto de módulos que proporcionan una gestión de dependencias entre servicios del sistema más eficiente y sencilla que el cargador clásico de las distribuciones GNU, \textbf{init}\cite{init}, inspirado en el utilizado por UNIX System V.
 
-Otro de los aspectos de relevancia del sistema es la comunidad creada alrededor del mismo, que fomenta la implicación de cualquier usuario en cualquiera de los aspectos de relevancia en el desarrollo del sistema. La documentación del sistema es extensa y cuenta con recursos tanto para las características propias del sistema como para herramientas de terceros utilizadas en el mismo. Dichos aspectos del proyecto y una serie de consideraciones adicionales se recogen en los preceptos definidos en el documento \textit{The Arch Way}\cite{thearchway}, inspirado en el principio de desarrollo \textbf{KISS} (\textit{Keep It Simple, Stupid}).%, muy popular en el entorno de los sistemas operativos UNIX.%\citationneeded{http://people.apache.org/~fhanik/kiss.html}. 
+Otro de los aspectos de relevancia del sistema es la comunidad creada alrededor del mismo, que fomenta la implicación de cualquier usuario en cualquiera de los aspectos de relevancia en el desarrollo del sistema. La documentación del sistema es extensa y cuenta con recursos tanto para las características propias del sistema como para herramientas de terceros utilizadas en el mismo. Dichos aspectos del proyecto y una serie de consideraciones adicionales se recogen en los preceptos definidos en el documento \textit{The Arch Way}\cite{thearchway}, inspirado en el principio de desarrollo \textbf{KISS} (\textit{Keep It Simple, Stupid}).
 
-Arch Linux ARM\footnote{\href{http://archlinuxarm.org/}{http://archlinuxarm.org/}} es un proyecto derivado de Arch Linux que tiene como objetivo portar el sistema operativo a dispositivos basados en la arquitectura ARM (pues el proyecto raíz está enfocado únicamente en las arquitecturas i686 y x68\_64).Es una de las principales opciones a la hora de realizar proyectos con este tipo de computadores\cite{distrowatch:arm}. %, generalmente sistemas embebidos, habiendo conseguido la compatibilidad con las versiones v5te, v6h y v7h de la arquitectura. El proyecto mantiene la misma filosofía de diseño que su progenitor, siendo el buen rendimiento del sistema operativo uno de los aspectos que propician el uso de esta distribución en sistemas con un capacidad de cómputo reducida. %TODO: Revisar
+Arch Linux ARM\footnote{\href{http://archlinuxarm.org/}{http://archlinuxarm.org/}} es un proyecto derivado de Arch Linux que tiene como objetivo portar el sistema operativo a dispositivos basados en la arquitectura ARM (pues el proyecto raíz está enfocado únicamente en las arquitecturas i686 y x68\_64).Es una de las principales opciones a la hora de realizar proyectos con este tipo de computadores\cite{distrowatch:arm}.
+
+\begin{comment}
+%, generalmente sistemas embebidos, habiendo conseguido la compatibilidad con las versiones v5te, v6h y v7h de la arquitectura. El proyecto mantiene la misma filosofía de diseño que su progenitor, siendo el buen rendimiento del sistema operativo uno de los aspectos que propician el uso de esta distribución en sistemas con un capacidad de cómputo reducida. %TODO: Revisar
 
 %Además, Arch Linux apuesta por un modelo de desarrollo de liberación continua (\textit{rolling releases}). El sistema operativo no se distribuye en versiones, sino en imágenes con las últimas versiones de los paquetes disponibles, lo cual posibilita contar con las últimas versiones de las herramientas presentes en el sistema operativo poco tiempo (o de forma inmediata) a su liberación. El modelo de desarrollo sigue este principio de forma tan estricta, que basta una actualización de todos los paquetes del sistema mediante el gestor propio de la distribución (\textbf{pacman}) para actualizar el sistema operativo (en contraste con operaciones específicas para este cometido, como ocurre con otros sistemas operativos).
 
-%El sistema operativo delega la responsabilidad del mantenimiento de todos los componentes al usuario en un grado mayor que el que pueden ofrecer otras distribuciones. Esto permite a los usuarios contar con completa libertad para modificar componentes del sistema en función de sus intereses a cualquier nivel\citationneeded{https://wiki.archlinux.org/index.php/The\_Arch\_Way}.
+%El sistema operativo delega la responsabilidad del mantenimiento de todos los componentes al usuario en un grado mayor que el que pueden ofrecer otras distribuciones. Esto permite a los usuarios contar con completa libertad para modificar componentes del sistema en función de sus intereses a cualquier nivel. https://wiki.archlinux.org/index.php/The\_Arch\_Way.
+
+\end{comment}
 
 \begin{table}[H]
 \centering
@@ -345,48 +353,27 @@ Toda la funcionalidad se ejecuta en un único proceso que se encarga de la creac
 
 Todos los aspectos modificables de cada rol, tales como el grupo \textit{multicast} al que suscribirse o el tiempo de espera predeterminado se definen en un archivo de configuración alojado en el directorio \texttt{/etc/marcopolo} (siguiendo la estructura definida en el \textit{Filesystem Hierarchy Standard} \cite{fhs}).
 
-% \begin{figure}[H]
-% 	\centering
-% 	\VerbatimInput{/home/martin/TFG/Documentación/memoria-tfg/memoria/Code/confdir.txt} %TODO
-% 	\caption{Árbol de directorios dentro del directorio de configuración}
-% 	\label{fig:arbol_marcopoloconf}
-% \end{figure}
-
-Los archivos de configuración de cada uno de los \textit{daemons} sigue la típica estructura clave-valor presente en archivos de configuración de servicios del sistema. Por el contrario, la información de los servicios a ofrecer sigue la sintaxis de un fichero \textbf{JSON}\footnote{La razón de esta decisión de diseño es la facilidad de interpretación de dicho formato y la legibilidad que ofrecen.}. Todos estos ficheros son leídos al arrancar el ejecutable, y su modificación no tendrá efectos hasta la próxima vez que se inicie el servicio.%TODO (salvo excepciones que veremos a continuación).
+Los archivos de configuración de cada uno de los \textit{daemons} sigue la típica estructura clave-valor presente en archivos de configuración de servicios del sistema. Por el contrario, la información de los servicios a ofrecer sigue la sintaxis de un fichero \textbf{JSON}\footnote{La razón de esta decisión de diseño es la facilidad de interpretación de dicho formato y la legibilidad que ofrecen.}. Todos estos ficheros son leídos al arrancar el ejecutable, y su modificación no tendrá efectos hasta la próxima vez que se inicie el servicio.
 
 \javascriptcode{statusmonitor}{Un archivo que describe el servicio status monitor}{1}{7}
-
-\paragraph{Archivos auxiliares}
 
 \paragraph{Log\\}
 Toda la información sobre la ejecución de los \textit{daemons} se refleja en los archivos de \textit{log} presentes en el directorio \texttt{/var/log/marcopolo}. El nivel de log se configura en el parámetro \texttt{LOGLEVEL} de cada uno de los \textit{daemons} y puede tomar uno de los siguientes valores:
 
 \begin{itemize}
-\item \textbf{Error}: Errores internos durante la ejecución.
-\item \textbf{Warn}: Advertencias sobre posibles situaciones atípicas.
-\item \textbf{Info}: Información de interés sobre el funcionamiento del sistema.
-\item \textbf{Debug}: Información de depuración.
+	\item \textbf{Error}: Errores internos durante la ejecución.
+	\item \textbf{Warn}: Advertencias sobre posibles situaciones atípicas.
+	\item \textbf{Info}: Información de interés sobre el funcionamiento del sistema.
+	\item \textbf{Debug}: Información de depuración.
 \end{itemize}
 
-\citationneeded[TODO: Vistazo del log]
-%\logcode{/home/martin/TFG/Documentación/memoria-tfg/memoria/Code/marcod}{Caption}{1}{3} %TODO
-
-\paragraph{Registro de ejecución}
+\paragraph{Registro de ejecución\\}
 
 En ocasiones es necesario conocer el identificador del proceso \textbf{PID} del \textit{daemon}. Para ello se almacenan en los ficheros \texttt{/var/run/polod.pid} y \texttt{/var/run/marcod.pid} estos identificadores, que pueden ser aprovechado por el gestor de arranque del proceso.
 
 \subsubsection{Integración de los \textit{daemons} en el sistema operativo}
 
 Los \textit{daemons} se integran en el arranque del sistema a través de los ficheros de configuración de \texttt{init}\footnote{\href{http://www.tldp.org/HOWTO/HighQuality-Apps-HOWTO/boot.html}{http://www.tldp.org/HOWTO/HighQuality-Apps-HOWTO/boot.html}} o \texttt{systemd} dependiendo del gestor disponible en el sistema operativo sobre el que se ejecuten los procesos. Por defecto los \textit{daemons} se ejecutan durante todo el ciclo de vida del computador, pero pueden ser reiniciados o detenidos arbitrariamente por voluntad del administrador.
-
-% TODO: para el documento en detalle \begin{lstlisting}
-% systemctl start (marco|polo)
-% systemctl stop (marco|polo)
-% systemctl restart (marco|polo)
-% systemctl reload polo #Orden exclusiva de Polo
-% \end{lstlisting}
-
-% El comando \texttt{reload} permite actualizar la lista de servicios que \textbf{Polo} ofrece sin tener que detener todo el proceso para ello. Dicho comportamiento se consigue de forma similar al comando \texttt{reload} de Apache, enviando la señal \texttt{SIGUSR1} al proceso. 
 
 \subsubsection{Conexiones con MarcoPolo}
 
@@ -595,12 +582,10 @@ El módulo ha sido diseñado con el objetivo de posibilitar la adición de nueva
 
 Los detalles técnicos de este sistema se encuentran en la documentación adjunta \citationneeded[TODO]
 
-%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Operaciones auxiliares}
 
-Sumada a las herramientas descritas anteriormente, es necesario llevar a cabo una serie de operaciones que posibiliten la realización de diferentes tareas de administración, acceso a recursos, etcétera.%el acceso a servicios más básicos tales como la autenticación de los usuarios del sistema.%, TODO etc
-
-%Con el objetivo de mejorar la situación actual en la infraestructura a analizar, se tratan los siguientes problemas.
+Sumada a las herramientas descritas anteriormente, es necesario llevar a cabo una serie de operaciones que posibiliten la realización de diferentes tareas de administración, acceso a recursos, etcétera.
 
 \subsubsection{Instalación del sistema}
 
@@ -632,7 +617,12 @@ Debido a la falta de soporte para \textbf{PXE} u otra alternativa similar, es ne
 
 MarcoBootstrap es una herramienta de gestión del sistema distribuido, centrada principalmente en la instalación y actualización del sistema operativo (de ahí su nombre). \texttt{marco-netinst} obtiene una imagen del sistema operativo de esta herramienta, que ofrecerá una interfaz de gestión de las diferentes imágenes. A través de esta interfaz es posible además programar operaciones de actualización y reinicio del sistema y es extensible a otro tipo de operaciones.
 
-\citationneeded[TODO: imágenes]
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{Chapters/Chapter5/Figures/marcobootstrap}
+	\caption{Interfaz administrativa de MarcoBootstrap}
+\end{figure}
+
 La especificación en detalle del funcionamiento de estas dos herramientas se detalla en el anexo\citationneeded[TODO]
 
 \subsection{Bibliotecas}
@@ -657,7 +647,7 @@ La biblioteca original aprovecha otro producto de \textbf{quick2wire}, la aplica
 
 La herramienta establece una correspondencia (\textit{``mapping''}) entre las direcciones asociadas al GPIO y un directorio virtual en \texttt{/sys/class/gpio/}\footnote{En la biblioteca original, escrita para Raspbian, la correspondencia se realizaba con \texttt{/sys/devices/virtual/gpio/}. Se ha modificado el código para posibilitar la compatibilidad con Arch Linux}. Posteriormente se utiliza esta herramienta mediante llamadas al sistema a través de la biblioteca. Es por ello que \textbf{quick2wire-cpp-api} (y la implementación original en Python) pueden considerarse \textit{wrappers} de esta utilidades, aportando poca funcionalidad más allá de una capa de abstracción.
 
-\paragraph{Descripción del código}
+\paragraph{Descripción del código\\}
 
 La biblioteca es compatible con C y C++ ofreciendo un conjunto de llamadas similares a la implementación original en Python. Sólo se ha implementado aquella funcionalidad necesaria para posibilitar el acceso a los pines GPIO (y actualmente únicamente en modo salida, pues es el único modo cuyo uso se plantea, delegando el resto de tareas de desarrollo a líneas de trabajo futuro). %TODO futuras líneas de trabajo hacer GPIO in.La interfaz con I\textsuperscript{2}C y SPI aún no está implementada.
 
@@ -722,10 +712,12 @@ Para determinar el rendimiento del compilador se ha utilizado el mismo en la com
 
 \textbf{Tiempo de compilación con 4 trabajos paralelos (make -j4)}: 1267 segundos (21 minutos)
 
-%\paragraph{OpenCV\\} TODO
-
 \paragraph{OpenSSH\\}
-\citationneeded[TODO]
+
+La versión de OpenSSH modificada para incluir las mejoras del proyecto SSH-HPN (ver \ref{ssh-hpn}) que se instala en el sistema ha sido compilada utilizando esta herramienta, con un tiempo de trabajo menor a un minutos.
+
+\vspace{2cm}
+
 Esta herramienta se ejecuta en el servidor \textbf{marcoservidor}.
 
 \subsection{Nodos secundarios}
@@ -737,11 +729,10 @@ Una serie de nodos secundarios han sido instalados en el sistema con el único p
 El equipo utilizado como servidor es un equipo en desuso presente en la Facultad de Ciencias, que se encuentra disponible para cualquier alumno interesado en integrarlo en un Trabajo de Fin de Grado. Las características del equipo, una estación de trabajo Sun Ultra, son las siguientes:
 
 \begin{itemize}
-	\item Procesador AMD Opteron 1200 de dos núcleos (arquitectura x86)%TODO
-	\item 4 GB de memoria RAM
-	\item Disco duro de %TODO
+	\item Procesador AMD Opteron 1200 de dos núcleos (arquitectura x86).
+	\item 4 GB de memoria RAM.
+	\item Partición de 50 GB para el sistema operativo del servidor.
 \end{itemize}
-\citationneeded[Prestaciones]
 
 Las características del sistema lo hacen idóneo para su uso como servidor de compilación distribuida. Se ha generado en el mismo una cadena de herramientas compatible con ARMv7.%TODO ARMv6 y marcomanager
 
@@ -860,16 +851,8 @@ Marcoshell sigue un funcionamiento similar al de \textbf{logger}. La diferencia 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.9\textwidth]{Chapters/Chapter5/Figures/logger-shell}
-\caption[La aplicación shell en ejecución]{La aplicación shell en ejecución. Nótese el uso de un código de colores diferente para cada uno de los canales de salida.}
+\caption[La aplicación shell en ejecución]{La aplicación shell en ejecución.}
 \end{figure}
-\citationneeded[TODO: Mostrar una ejecución]
-
-
-
-
-\subsubsection{Pruebas de concepto}
-\citationneeded[TODO]
-%\includegraphics{Chapter5/ScreenShot.png}http://www.bootc.net/archives/2012/05/26/how-to-build-a-cross-compiler-for-your-raspberry-pi/
 
 \section{Vista general del sistema}
 
@@ -878,7 +861,7 @@ El sistema finalmente se compone de la siguiente combinación de \textit{softwar
 \subsection{Componentes \textit{hardware}}
 
 \begin{itemize}
-\item Un conjunto escalable de nodos Rasbperry Pi (actualmente 10).
+\item Un conjunto escalable de nodos Rasbperry Pi (actualmente 9).
 \item Un servidor Xubuntu accesorio.
 \item Todos los mecanismos de interconexión y alimentación requeridos.
 \end{itemize}
@@ -939,7 +922,7 @@ Se han seguido diferentes estrategias de evaluación. El método más utilizado 
 
 Tras cada evaluación se realiza un análisis, incluyendo en un informe todos los aspectos de relevancia extraídos de la sesión. Las conclusiones de dicho informe determinan las acciones a llevar a cabo.
 
-Se ha realizado un total de \citationneeded[Número de evaluaciones]. El informe de cada una de ellas puede consultarse en el anexo correspondiente (ver \ref{anexo:evaluaciones}).
+Se ha documentado un total de 9 evaluaciones. El informe de cada una de ellas puede consultarse en el anexo correspondiente (ver \ref{anexo:evaluaciones}).
 
 \section{Prácticas}
 

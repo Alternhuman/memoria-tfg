@@ -40,21 +40,19 @@ Un algoritmo distribuido es aquel que realiza una tarea de forma distribuida, cu
   \item No hay una asunción implícita de que existe un reloj global (\textbf{principio de autonomía}).
 \end{itemize}
 
-%\subsubsection{Utilización en el sistema final}
-
-El sistema final consiste en un conjunto de nodos sin una jerarquía definida, por lo que se elimina la dependencia de un coordinador. Esto hace del sistema una solución fácilmente escalable.
+El sistema final consiste en un conjunto de nodos sin una jerarquía definida, eliminando la dependencia de un coordinador. Esto hace del sistema una solución fácilmente escalable.
 
 A la hora de desarrollar las diferentes herramientas creadas se mantienen todas las  ``transparencias '' citadas anteriormente, salvo en aquellos casos que estas comprometan el rendimiento o funcionalidad de la misma. Ejemplos de este tipo de casos son el uso de la IP asignada a un nodo (se rompe la transparencia de localización) como identificador del mismo o la gestión de errores, que en diversas ocasiones puede ser revelada al usuario. Otro ejemplo claro es la transparencia de acceso, pues los usuarios conocen el mecanismo de almacenamiento de ficheros utilizado, dado que cuentan con acceso a través de una interfaz SSH (no obstante, las diferentes aplicaciones proporcionan una interfaz que abstrae este tipo de detalles en todos los casos en los que puede ser necesario)\footnote{
   En mayor detalle:
   \begin{itemize}
-  \item Aquellas herramientas que utilizan MarcoPolo mostrarán las IPs
+  \item Aquellas herramientas que utilizan MarcoPolo revelarán las direcciones IP al usuario final si es necesario.
+  \item El reemplazo del sistema operativo en herramientas como \textbf{marcobootstrap} (ver \ref{marcobootstrap}) no garantiza la transparencia de migración.
+  \item La transparencia de replicación puede ser revelada al usuario en casos como la herramienta \textbf{deployer} (ver \ref{deployer}).
+  \item La mayor parte de los usuarios del sistema son desarrolladores, por lo que se tolerará que la transparencia a la hora de gestionar errores se vea reducida, únicamente en aquellos casos en los que el error sea, o bien no recuperable, o bien causado por la acción del usuario, a fin de que pueda establecer mecanismos de recuperación.
   \end{itemize}
-\citationneeded
-}
+}.
 
 Como se detalla en la fase de análisis (ver \ref{chapter:analisis}) el sistema incluye mecanismos de autoconfiguración que lo hacen adaptable a un gran número de situaciones (variaciones en el espacio de direcciones, nodos añadidos y eliminados arbitrariamente\dots). La flexibilidad de este es por tanto alta.
-
-%TODO: En aquellos componentes basados en la colaboración entre partes se cumples las condiciones de todo algoritmo distribuido. 
 
 \subsection{\textit{Middleware}}
 \label{teoria:middleware}
@@ -68,9 +66,6 @@ Un \textit{middleware} es una capa \textit{software} que abstrae las peculiarida
 \label{fig:middleware-rodrigo}
 \end{figure}
 
-%\subsubsection{Utilización en el sistema final}
-
-%TODO
 Los diferentes \textit{bindings} de MarcoPolo (ver \ref{marcopolo:bindings}) pueden ser considerados middleware, pues abstraen los diferentes procesos de comunicación que ocurren al utilizar el sistema, proporcionando una interfaz independiente del lenguaje de programación y el sistema operativo. La serialización de las peticiones puede ser considerada \textit{middleware}.
 
 Si \textbf{nsswitch} \cite{nsswitch} es considerado un sistema que abstrae los diferentes mecanismos de autenticación y resolución de nombres de la implementación de los mismos puede ser denominado \textit{middleware}. \textbf{Nsswitch} se utiliza como método de abstracción de los diferentes proveedores de información de usuarios (archivos del sistema y \textbf{LDAP}) en el sistema final.
@@ -98,7 +93,7 @@ Una ``rejilla'' (grid) es un sistema distribuido en el que los nodos del sistema
 
 Si bien los nodos principales del sistema final son del mismo tipo y cuentan con el mismo conjunto de herramientas \textit{software}, los nodos secundarios del mismo (encargados de ofrecer servicios auxiliares, ver \ref{chapter:serviciosauxiliares}) cuentan con una arquitectura \textit{hardware} diferente, así como un sistema operativo diferente. El sistema final puede considerarse un clúster si obviamos estos nodos.
 
-Sin embargo, todas las herramientas han sido diseñadas con el objetivo de ser compatibles con cualquier otro entorno. Han sido integradas en diferentes equipos de escritorio con el sistema GNU/Linux. %TODO y entornos virtualizados.
+Sin embargo, todas las herramientas han sido diseñadas con el objetivo de ser compatibles con cualquier otro entorno. Han sido integradas en diferentes equipos de escritorio con el sistema GNU/Linux y entornos virtualizados.
 
 En consecuencia, todo el \textit{software} creado es capaz de trabajar en un sistema heterogéneo.
 
@@ -118,8 +113,6 @@ Un protocolo consiste en un conjunto de formatos y reglas bien definidas y conoc
 
 Si un protocolo es definido de forma correcta posibilitará la comunicación entre entidades sin importar la implementación del mismo, ofreciendo un alto grado de transparencia. De esta forma es posible, por ejemplo, ofrecer un servicio web que procese una serie de datos numéricos sin importar el tipo de \textit{endianness} del cliente o el servidor o el lenguaje de programación en el que el servicio se implementa. Únicamente es necesario conocer el tipo de dato que requiere el servicio y el valor esperado de retorno, así como los mensajes a intercambiar.
 
-%\subsubsection{Utilización en el sistema final}
-%TODO
 En el sistema final se utilizan gran cantidad de protocolos conocidos (tales como HTTP, JSON, Websockets\dots) y se ha definido el protocolo de descubrimiento de servicios \textbf{MarcoPolo}. Los mecanismos de comunicación entre diferentes componentes de una aplicación son claramente definidos, si bien no de una forma tan exhaustiva como un protocolo.
 
 \subsection{Distribución}
@@ -185,8 +178,6 @@ Uno de los mecanismos para conseguir paralelizar tareas es su distribución en p
 
 \label{teoria:singlethread}
 Un tercer enfoque es desarrollo de aplicaciones dirigidas por eventos (\textit{event-driven}) en un único hilo (\textit{single-threaded application}). Para conseguir paralelizar las diferentes tareas se deben ejecutar de forma no bloqueante, cediendo la CPU a otra tarea en caso de que se deba esperar a que otra sea realizada (generalmente, operaciones de entrada-salida, que presentan un gran tiempo de espera sin consumo de CPU, como la descarga de información en red o el acceso al almacenamiento secundario).
-
-%TODO: Node I/O example
 
 Mediante rellamadas (\textit{callbacks}) una tarea que termina una operación de este tipo indica al hilo gestor que requiere de nuevo tiempo de computación, y este añadirá la tarea de nuevo a la cola de acceso a la CPU.
 
@@ -436,12 +427,10 @@ La compilación cruzada posibilita el desarrollo de \textit{software} en platafo
 El uso de compiladores cruzados facilita el desarrollo para diferentes plataformas y en ocasiones es la única forma de crear aplicaciones para sistemas tales como dispositivos embebidos que no cuentan con herramientas de desarrollo. También es útil para facilitar la compilación de código en entornos como granjas de servidores, generación de código para emuladores o realizar procesos de \textit{bootstrapping} (creación de las herramientas básicas de una nueva plataforma, como un sistema operativo o un enlazador).
 
 \subsubsection{\textit{Toolchain}}
-
+\label{crosstool-ng}
 Un juego de herramientas (\textit{toolchain}) se conforma del conjunto de utilidades necesarias para la construcción de un determinado producto. Generalmente estas utilidades son ejecutadas secuencialmente, utilizando la salida de una de ellas como la entrada de la siguiente. Este conjunto de herramientas comprende normalmente un compilador, un enlazador y un editor de texto, así como varias bibliotecas y un depurador, si bien puede contar con cualquier herramienta requerida para las necesidades propias del producto a crear\footnote{Más información sobre este tipo de técnica: \href{http://elinux.org/Toolchains}{http://elinux.org/Toolchains}}.
 
-%\subsection{Utilización en el sistema final}
-%\subsec
-Con el objetivo de posibilitar la realización de trabajos de compilación distribuida utilizando un equipo basado en la arquitectura i686\citationneeded[cat /proc/cpuinfo] se ha construido una cadena de herramientas que realiza procesos de compilación cruzada para la arquitectura ARMv7hf utilizando la herramienta \textit{crosstool-ng}\footnote{\href{http://www.crosstool-ng.org/}{http://crosstool-ng.org}}, consiguiendo optimizar de forma significativa el tiempo de compilación ver \ref{distcc:analysis}).También existe una versión para la arquitectura ARMv6hf y estas cadenas de  herramientas se han utilizado para la creación de un pequeño entorno de desarrollo con Eclipse para Raspberry Pi (ver anexo \citationneeded[TODO]).
+Con el objetivo de posibilitar la realización de trabajos de compilación distribuida utilizando un equipo basado en la arquitectura i686 se ha construido una cadena de herramientas que realiza procesos de compilación cruzada para la arquitectura \textbf{ARMv7hf} (ARM versión 7 con instrucciones de punto flotante en hardware) utilizando la herramienta \textit{crosstool-ng}\footnote{\href{http://www.crosstool-ng.org/}{http://crosstool-ng.org}}, consiguiendo optimizar de forma significativa el tiempo de compilación ver \ref{distcc:analysis}).También es posible crear con pequeños ajustes a la configuración una versión para la arquitectura ARMv6hf. Estas cadenas de  herramientas se han utilizado para la creación de un pequeño entorno de desarrollo con Eclipse para Raspberry Pi (ver anexo \citationneeded[TODO]).
 
 \begin{comment}
 \begin{figure}[H]
