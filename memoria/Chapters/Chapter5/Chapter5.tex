@@ -826,7 +826,7 @@ Al igual que en el caso de la aplicación \textbf{statusmonitor} el \textbf{depl
 
 \subsection{Logger}
 
-Uno de los aspectos que dificultan el desarrollo de aplicaciones distribuidas son las tareas de análisis y depuración del código desarrollado. Soluciones ``creativas'' como utilizar el puerto GPIO\footnote{\href{http://elinux.org/RPi\_Serial\_Connection}{http://elinux.org/RPi\_Serial\_Connection} Uso del puerto GPIO como conexión serie.} para este tipo de tareas son efectivas, si bien no aplicables a cualquier dispositivo o aplicación (por ejemplo, un ejecutable que no pueda ser modificado). Se debe por tanto buscar una solución complementaria para este tipo de casos.
+Uno de los problemas típicos que dificultan el desarrollo de aplicaciones distribuidas son las tareas de análisis y depuración del código desarrollado. Soluciones ``creativas'' como utilizar el puerto GPIO\footnote{\href{http://elinux.org/RPi\_Serial\_Connection}{http://elinux.org/RPi\_Serial\_Connection} Uso del puerto GPIO como conexión serie.} para este tipo de tareas son efectivas, si bien no aplicables a cualquier dispositivo o aplicación (por ejemplo, un ejecutable que no pueda ser modificado). Se debe por tanto buscar una solución complementaria para este tipo de casos.
 
 El \textbf{logger} es una herramienta que, a través de WebSockets y redireccionamiento de \textit{streams}, permite enviar la salida que una aplicación emite a través de los canales estándares (\textbf{stdout}, \textbf{stderr}) a una interfaz web.
 
@@ -834,7 +834,7 @@ Esta herramienta se integra con el \textbf{deployer}, mostrando la salida por pa
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.9\textwidth]{Chapters/Chapter5/Figures/logger-deployer}
+\includegraphics[width=0.9\textwidth]{Chapters/Chapter5/Figures/loggermain}
 \caption[La herramienta logger en ejecución]{La herramienta logger en ejecución}
 \end{figure}
 
