@@ -38,6 +38,7 @@
 	citecolor=blue
 }
 \usepackage{listings}
+\usepackage{float}
 
 % Margins
 \topmargin=-0.45in
@@ -155,7 +156,7 @@ Diversas soluciones han sido propuestas para solucionar este problema, siendo un
 
 \section{crostool-ng}
 
-%Crosstool-ng\footnote{Existe una amplia cantidad de información sobre el proyecto en su sitio web, href{http://crosstool-ng.org/}{crosstool-ng.org}} es una utilidad para la generación de cadenas de herramientas (\textit{toolchains}) tales como GCC \textit{GNU Compiler Collection}, que permiten compilar y enlazar códigos fuente. El proyecto tiene como objetivo crear \textit{toolchains} ajustadas a cada necesidad específica, ofreciendo un gran número de parámetros de configuración con el objetivo de optimizar al máximo el proceso de compilación y adaptarse a las necesidades de los usuarios. \textbf{Crosstool-ng} es un proyecto cuyo origen se remonta a la herramienta crosstool de Daniel Kegel\citationneeded{http://kegel.com/crosstool/}.
+Crosstool-ng\footnote{Existe una amplia cantidad de información sobre el proyecto en su sitio web, \href{http://crosstool-ng.org/}{crosstool-ng.org}} es una utilidad para la generación de cadenas de herramientas (\textit{toolchains}) tales como GCC \textit{GNU Compiler Collection}, que permiten compilar y enlazar códigos fuente. El proyecto tiene como objetivo crear \textit{toolchains} ajustadas a cada necesidad específica, ofreciendo un gran número de parámetros de configuración con el objetivo de optimizar al máximo el proceso de compilación y adaptarse a las necesidades de los usuarios. \textbf{Crosstool-ng} es un proyecto cuyo origen se remonta a la herramienta crosstool de Daniel Kegel\footnote{\href{http://kegel.com/crosstool/}{http://kegel.com/crosstool/}}.
 
 \subsection{Configuración de crosstool-ng}
 
@@ -214,7 +215,7 @@ En el caso de utilizar Arch ARM y la arquitectura del equipo a utilizar como com
 También es posible utilizar el paquete \textbf{distccd-alarm}, que realiza todos los pasos necesarios para instalar \textbf{distccd} para todas las arquitecturas de forma simplificada. Únicamente válido para sistemas \textbf{Arch Linux} ejecutados en una arquitectura x86\_64: \href{https://github.com/WarheadsSE/PKGs/tree/master/distccd-alarm}{github.com/WarheadsSE/PKGs/tree/master/distccd-alarm}.
 }.
 
-\section{Uso}
+\subsection{Uso}
 
 Ejemplo de ejecución:
 
@@ -225,13 +226,50 @@ arm-unknown-linux-gnueabihf-gcc main.c -o main
 $
 \end{lstlisting}
 
-\subsection{Análisis del rendimiento}
-
-\subsection{Potenciales aplicaciones}
-
 \subsection{Integración con un entorno de desarrollo}
 
+Es posible integrar el compilador cruzado en un entorno de desarrollo integrado como \textbf{Eclipse}\footnote{\href{http://eclipse.org/}{http://eclipse.org/}}, siguiendo la siguiente secuencia de pasos. Es necesario contar con los \textit{plugins} CDT (C Development Toolkit) y Cross
 
+\begin{enumerate}
+\item Creación de un nuevo proyecto para el lenguaje elegido (es importante que se haya creado el compilador para ese lenguaje), indicando que el tipo de compilador será cruzado (opción \textbf{Cross GCC}). Se deben seleccionar las opciones de configuración para el desarrollo en la siguiente ventana..
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{Recursos/raspbeclipse/projectcreation}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{Recursos/raspbeclipse/configurations}
+\end{figure}
+
+\item Definición de la ruta del compilador.
+
+Se especifican la ruta donde se encuentran los diferentes ejecutables del compilador, indicando el prefijo que les acompaña (Eclipse realizará una llamada convencional al compilador como si se tratase de un proyecto típico, por lo que para identificar cada uno de los ejecutables, se debe indicar dicho prefijo, si lo hay). En este caso, dado que se han creado enlaces simbolicos que no incluyen el prefijo, no es necesario indicarlo.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{Recursos/raspbeclipse/compilerpath}
+\end{figure}
+
+\item Creación del código y compilación.
+
+Se añaden o crean los archivos a compilar y se ejecuta la acción \textbf{Build}. La consola mostrará el resultado de la operación.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{Recursos/raspbeclipse/build}
+\end{figure}
+
+\item Evaluación del resultado.
+
+Utilizando la herramienta \textbf{file} es posible verificar la arquitectura del ejecutable.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{Recursos/raspbeclipse/result}
+\end{figure}
+
+\end{enumerate}
+%\includegraphics{Recursos/raspbeclipse/compilerpath}
 
 %http://elinux.org/Raspberry_Pi_Kernel_Compilation
 %http://getglitched.com/?page_id=253
@@ -284,7 +322,7 @@ En ocasiones el repositorio subversion de EGlibC presenta un error en la descarg
 \nocite{mborgersoncrosstool}
 
 \label{Bibliography}
-\lhead{\emph{Bibliography}}  % Change the left side page header to "Bibliography"
+\lhead{\emph{Bibliografía}}  % Change the left side page header to "Bibliography"
 \bibliographystyle{ieeetr}  % Use the "unsrtnat" BibTeX style for formatting the Bibliography
 \bibliography{distcc}  % The references (distcc) information are stored in the file named "distcc.bib"
 

@@ -432,10 +432,12 @@ Un juego de herramientas (\textit{toolchain}) se conforma del conjunto de utilid
 
 Con el objetivo de posibilitar la realización de trabajos de compilación distribuida utilizando un equipo basado en la arquitectura i686 se ha construido una cadena de herramientas que realiza procesos de compilación cruzada para la arquitectura \textbf{ARMv7hf} (ARM versión 7 con instrucciones de punto flotante en hardware) utilizando la herramienta \textit{crosstool-ng}\footnote{\href{http://www.crosstool-ng.org/}{http://crosstool-ng.org}}, consiguiendo optimizar de forma significativa el tiempo de compilación ver \ref{distcc:analysis}).También es posible crear con pequeños ajustes a la configuración una versión para la arquitectura ARMv6hf. Estas cadenas de  herramientas se han utilizado para la creación de un pequeño entorno de desarrollo con Eclipse para Raspberry Pi (ver anexo \citationneeded[TODO]).
 
-\begin{comment}
+
 \begin{figure}[H]
-\includegraphics{raspbeclipse}
+\centering
+\includegraphics[width=0.8\textwidth]{Chapters/Chapter2/Figures/raspbeclipse}
+\caption{Compilación cruzada utilizando Eclipse}
 \end{figure}
-\end{comment}
+
 
 El uso de \textbf{crosstool-ng} permite personalizar la cadena de herramientas creada a cambio de un aumento en la complejidad de uso. Dicha personalización hace que esta alternativa sea la elegida en lugar de las utilidades proporcionadas por los desarrolladores de la plataforma \textbf{Raspberry Pi}\footnote{\href{https://github.com/raspberrypi/tools}{https://github.com/raspberrypi/tools}} o el \textit{flag} \texttt{ARCH} de gcc.
