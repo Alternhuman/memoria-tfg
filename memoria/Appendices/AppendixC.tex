@@ -1,3 +1,16 @@
 \chapter{Listado de contenidos del DVD}
 \lhead{Listado de contenidos del DVD}
 \label{contenidosdvd}
+
+El DVD que acompaña a esta memoria incluye los anexos relativos al desarrollo del proyecto, el código fuente, imágenes del sistema operativo y cualquier otro fichero considerado de relevancia. El DVD sigue la siguiente estructura:
+
+\begin{itemize}[noitemsep]
+
+	\item Directorio ``documentacion'', en el que se incluye toda la documentación del proyecto en el siguiente árbol:
+		\subitem Directorio ``memoria'', con una copia del repositorio del presente documento con el código \LaTeX correspondiente y aquellos anexos no relativos a los aspectos técnicos de los productos \textit{software} (evaluaciones de usuario, aspectos de gestión de proyectos, pruebas, estructura física\dots).
+		\subitem Directorio ``anexos'' en el que se incluyen varios directorios con copias de la documentación técnica de todos los productos \textit{software} creados (en inglés) y los aspectos relativos a la ingeniería del software. Dicha documentación ha sido generada con la herramienta Sphinx, y se incluye tanto en formato PDF como HTML. Se adjunta también, en los casos que proceda, una copia del proyecto de Visual Paradigm utilizado en las etapas de análisis y diseño.
+	\item Directorio ``código'', en el que se incluyen los repositorios de código (incluyendo el directorio \texttt{.git}) de cada uno de los productos \textit{software} creados. En este directorio se encuentra una copia de la documentación técnica, a fin de no modificar el repositorio de código.
+	\item Directorio ``imágenes'', en el que se incluyen diferentes imágenes del sistema operativo utilizado en las placas Raspberry Pi.
+\end{itemize}
+
+En los casos en el que la documentación o el código fuente requiera ser compilado, se incluye un fichero \textbf{Makefile} tradicional, o en ciertos casos, un fichero \textbf{latexmk}. Toda la documentación ha sido compilada previamente.
