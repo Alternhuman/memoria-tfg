@@ -191,10 +191,10 @@ En el proyecto Doxygen es utilizado para documentar aquellas partes del proyecto
 \section{Herramientas para la gestión de usuarios}
 
 \subsection{PAM, LDAP}
-
+\label{polousers}
 La gestión de los usuarios está delegada al sistema de autenticación preexistente en la infraestructura en la que se integra el sistema. En ella se cuenta con un servidor \textbf{LDAP}\footnote{\href{ldap1.cie.aulas.usal.es}{ldap1.cie.aulas.usal.es}} con la información de los usuarios. Mediante la configuración del paquete \textbf{LDAP} es posible acceder a los mismos, y gracias a \textbf{PAM} (\textit{Pluggable Authentication Module}) se integra con el resto de métodos de autenticación presentes en el sistema.
 
-Se ha creado un módulo para \textbf{PAM} para facilitar las tareas que el sistema debe realizar. Dicho módulo integra \textbf{MarcoPolo} y es conocido como \textbf{pam\_mkpolohomedir}\ref{pam_mkpolohomedir}.
+Se ha creado un módulo para \textbf{PAM} para facilitar las tareas que el sistema debe realizar. Dicho módulo integra \textbf{MarcoPolo} y es conocido como \textbf{pam\_mkpolohomedir}\ref{pam_mkpolohomedir}. Este módulo, en combinación con un \textit{daemon} que realiza la gestión de las diferentes peticiones realizadas conforman la herramienta polousers (ver anexo técnico correspondiente).
 
 \section{Herramientas para la optimización del rendimiento}
 

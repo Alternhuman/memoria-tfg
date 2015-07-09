@@ -274,19 +274,19 @@
   \null\vfil
   \begin{center}
     \setlength{\parskip}{0pt}
-    {\normalsize \UNIVNAME \par}
+    %{\normalsize \UNIVNAME \par}
     \bigskip
     {\huge{\textit{Resumen}} \par}
     \bigskip
-    {\normalsize \facname \par}
-    {\normalsize \deptname \par}
+    %{\normalsize \facname \par}
+    %{\normalsize \deptname \par}
     %\bigskip
     %{\normalsize Doctor of Philosophy\par}
-    \bigskip
+    \medskip
     {\normalsize\bf \@title \par}
     \medskip
     {\normalsize por \authornames \par}
-    \bigskip
+    \medskip
   \end{center}
 }
 {
@@ -301,19 +301,19 @@
   \null\vfil
   \begin{center}
     \setlength{\parskip}{0pt}
-    {\normalsize \UNIVNAME \par}
+    %{\normalsize \UNIVNAME \par}
     \bigskip
     {\huge{\textit{Abstract}} \par}
     \bigskip
-    {\normalsize \facname \par}
-    {\normalsize \deptname \par}
-    \bigskip
+    %{\normalsize \facname \par}
+    %{\normalsize \deptname \par}
+    \medskip
     %{\normalsize Doctor of Philosophy\par}
     %\bigskip
     {\normalsize\bf \@title \par}
     \medskip
-    {\normalsize por \authornames \par}
-    \bigskip
+    {\normalsize by \authornames \par}
+    \medskip
   \end{center}
 }
 {

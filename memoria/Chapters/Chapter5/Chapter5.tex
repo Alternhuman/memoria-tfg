@@ -37,7 +37,7 @@ Las diferentes placas de metacrilato se unirán mediante barras metálicas. Las 
 
 \paragraph{Construcción\\}
 
-La fase de construcción se extiende durante aproximadamente dos semanas (compaginadas con con el resto de tareas de desarrollo. El tiempo total dedicado a esta tarea asciende a 20 horas, como se puede observar en los anexos referentes a la gestión del proyecto (ver\citationneeded[TODO])).
+La fase de construcción se extiende durante aproximadamente dos semanas (compaginadas con con el resto de tareas de desarrollo. El tiempo total dedicado a esta tarea asciende a 20 horas, como se puede observar en el anexo referentes a la gestión del proyecto ``Gestión del proyecto'').
 
 \begin{figure}[H]
 \centering
@@ -126,15 +126,15 @@ Placas de metacrilato de 10mm & 1 m\textsuperscript{2} & 1 & 30 € \\ \hline
 Placas de metacrilato de 5mm & 1 m\textsuperscript{2} & 1 & 10 € \\ \hline
 Placa de metacrilato de 4mm & 1 m\textsuperscript{2} & 1 & 20 € \\ \hline
 Varilla de latón de 8mm & 1 & 1& 15 €\\ \hline
-Tornillos & & & 10 €\\ \hline
 Cable Ethernet & 3 metros & 1.2 €/metro & 3.6€\\ \hline
 Fusibles de 2 A & 10 & 0.3 € & 3.15\\ \hline
 Portafusibles & 12 & 0.5 & 6 € \\ \hline
 Fuente de alimentación de 5 V & 1 & 16.63 & 16.63 \\ \hline
 Tira de pines GPIO & 3 & 0.9 & 2.84 \\ \hline
-Diodos LED & 24 & &\\ \hline
+Diodos LED & 30 & 0 € & 0 €\\ \hline
+Resistencias & 30 & 0 € & 0 €\\ \hline
 \end{tabular}
-\caption{Coste de los materiales de la estructura final}
+\caption{Coste de los materiales de la estructura final. Los materiales con coste igual a 0 euros no han sido adquiridos, ya se contaba con ellos o han sido reutilizados}
 \end{table}
 
 \subsection{LEDs}
@@ -314,31 +314,8 @@ Los mensajes utilizados se denominan \textit{comandos} y contienen las consultas
 
 \subsubsection{Esquemas de comunicación}
 
-%TODO: Quitado por sugerencia de Rodrigo\subsubsection{Comando \textbf{Marco}}
-
-%TODO \begin{figure}[H]
-% \centering
-% \includegraphics[width=\textwidth]{Diagrams/Sequence/marcocompleto}
-% \caption[Interacción al enviar el comando \textbf{Marco}]{Interacción al enviar el comando \textbf{Marco}. Los mensajes a grupos \textit{multicast} se indican con ``*''}
-% \label{fig:secuencia_marco}
-% \end{figure}
 
 El comando Marco se envía al grupo \textit{multicast} definido en la configuración de la instancia local de \textbf{Marco} o a aquel definido en tiempo de ejecución. Los nodos suscritos a dicho grupo (aquellos que pertenecen a la malla) reciben el mensaje y emiten una respuesta \textbf{Polo}. Debido a la falta de una conexión entre los nodos (todos los mensajes son intercambiados utilizando el protocolo \textbf{UDP}) se fija un tiempo de espera, durante el cual se reciben y acumulan todas las respuestas. Al pasar dicho tiempo, se retornan los resultados y los mensajes recibidos posteriormente son ignorados.
-
-% TODO\begin{figure}[H]
-% 	\centering
-% 	\includegraphics[width=\textwidth]{Diagrams/Sequence/request_for}
-% 	\caption[Interacción al enviar el comando \textbf{Request-For}]{Diagrama de interacción al enviar el comando \textbf{Request-For}. Los nodos comprueban si deben ofrecer el servicio identificado por la clave \textit{s}. En caso de que la búsqueda sea exitosa se retorna un mensaje indicando la disponibilidad de dicho nodo. En caso contrario no habrá respuesta alguna.
-% 	Los mensajes enviados a grupos \textit{multicast} se indican con ``*''}
-% 	\label{fig:secuencia_request_for}
-% \end{figure}
-
-% TODO\begin{figure}[H]
-% 	\centering
-% 	\includegraphics[width=\textwidth]{Diagrams/Sequence/services}
-% 	\caption[Diagrama de interacción al enviar el comando \textbf{Services}]{Diagrama de interacción al enviar el comando \textbf{Services}. El nodo al que se le envía el comando consulta la información sobre los servicios que posee y posteriormente envía una respuesta a la instancia de Marco que ha realizado la consulta. Obsérvese toda la información es enviada en modo \textit{unicast}}
-% 	\label{fig:secuencia_services}
-% \end{figure}
 
 \subsubsection{Arquitectura en detalle}
 
@@ -381,45 +358,6 @@ La funcionalidad de \textbf{MarcoPolo} no se limita al descubrimiento de los ser
 Se han creado \textit{bindings} para los lenguajes de programación \textbf{C}, \textbf{C++}, \textbf{Python} y \textbf{Java}. Todos ellos son consistentes entre sí, manteniendo la misma sintaxis para realizar el mismo tipo de operación a la vez que aprovechan las características propias de cada lenguaje. Dicha filosofía está inspirada en el funcionamiento de las primitivas de la API de resolución de nombres en red (\texttt{netdb.h}) \cite{netdb}, por lo que los \texttt{bindings} se comunican con la instancia local de Marco o Polo a través de \textit{sockets} vinculados a la dirección IP local (127.0.1.1).
 
 Todos los \textit{bindings} deben implementar el mismo conjunto de primitivas, definidas en la documentación de referencia de MarcoPolo (ver anexo técnico de MarcoPolo). La mayoría de primitivas tienen como objetivo el descubrimiento y publicación de servicios. Sin embargo, varias de ellas permiten realizar consultas sobre la información del propio nodo y se plantea la creación de más primitivas que sigan dicha filosofía
-
-%TODO \paragraph{Primitivas en el \textit{binding} de Marco}
-% \begin{itemize}
-% \item \texttt{request\_for(service, timeout=None)}
-% Retorna una lista de nodos que ofrecen el servicio indicado en \texttt{service}. Esta función bloquea la ejecución del proceso hasta que el tiempo de espera de nuevas respuestas se cumple (si bien esto no constituye un problema para la mayoría de aplicaciones, es importante que sea conocido por el programador). Si se especifica un \texttt{timeout}, este se utiliza en lugar del determinado por defecto en los parámetros de configuración de \textbf{MarcoPolo}. Se lanza una excepción o un código de error en caso de que la comunicación con la instancia de \textbf{Marco} sea infructuosa (generalmente este tipo de problemas se originan debido a un fallo en el arranque del servicio). Toda la información es transferida en cadenas JSON codificadas en UTF-8.
-
-
-% \item \texttt{getOneNode(criteria=None, timeout=None)}
-
-% Retorna un nodo elegido aleatoriamente entre las respuestas (en concreto, el nodo cuya respuesta llegue primero). Si se especifica un criterio en la variable \texttt{criteria} se elegirá el nodo que mejor satisfaga dicho criterio. %TODO in sphinx and MarcoPolo
-
-% \item \texttt{getAllNodes(timeout=None)}
-% Retorna todos los nodos disponibles en la \textit{malla} sin considerar los servicios ofertados. Se lanza una excepción o un código de error en caso de que la comunicación con la instancia de \textbf{Marco} sea infructuosa.
-
-% \item \texttt{getNodeInfo(ip)} %TODO Timeout
-% Obtiene la información de un nodo identificado por su \texttt{ip} si este está disponible en la red.
-
-% \end{itemize}
-
-% \paragraph{Primitivas en el \textit{binding} de Polo}
-
-% \begin{itemize}
-% \item \texttt{register\_service(service, params=None)}
-
-% Añade un nuevo servicio al conjunto de servicios ofertados. El servicio únicamente será ofertado durante el ciclo de vida de la instancia local de Polo. Si esta es detenida o reiniciada se procederá a la eliminación del registro. Para registrar un servicio de forma permanente es necesario definirlo en el directorio \texttt{/etc/marcopolo} %TODO add section reference.
-
-% \item \texttt{remove\_service(service)}
-% Elimina un servicio de la lista de ofertados. Para poder realizar este proceso es necesario ser el ``propietario'' del servicio. Esto es, el único proceso que puede eliminar un servicio es aquel que lo creó o en su defecto la instancia de \textbf{Polo}. En caso de que esta restricción sea quebrantada, una excepción o código de error será retornado.
-
-% \item \texttt{have\_service(service)}
-% Indica si el servicio está ofertado o no.
-
-% \end{itemize}
-
-% Como se puede observar, la mayoría de primitivas tienen como objetivo el descubrimiento y publicación de servicios. Sin embargo, varias de ellas permiten realizar consultas sobre la información del propio nodo y se plantea la creación de más primitivas que sigan dicha filosofía.
-
-
-
-%\section{Aplicaciones construidas sobre MarcoPolo}
  
 \subsubsection{Utilidades}
 
@@ -433,28 +371,6 @@ Las opciones del comando son las siguientes:
 
 \begin{figure}[H]
 \centering
-% \begin{lstlisting}
-% usage: marcodiscover [-h] [-d [ADDRESS]] [-s [SERVICE]] [-S [SERVICES]]
-%                         [-n [NODE]] [--sh [SHELL]]
-
-% Discovery of MarcoPolo nodes in the subnet
-
-% optional arguments:
-%   -h, --help            show this help message and exit
-%   -d [ADDRESS], --discover [ADDRESS]
-%                         Multicast group where to discover
-%   -s [SERVICE], --service [SERVICE]
-%                         Name of the service to look for
-%   -S [SERVICES], --services [SERVICES]
-%                         Discover all services in a node
-%   -n [NODE], --node [NODE]
-%                         Perform the discovery on only one node, identified by
-%                         its ip/dns name
-%   --sh [SHELL], --shell [SHELL]
-%                         Print output so it can be used as an interable list in
-%                         a shell
-
-% \end{lstlisting}
 \begin{lstlisting}
 usage: marcodiscover [-h] [-d [ADDRESS]] [-s [SERVICE]] [-S [SERVICES]]
                      [-n [NODE]] [--sh [SHELL]]
@@ -753,12 +669,6 @@ Muchas de las aplicaciones distribuidas utilizadas incluyen varias utilidades pa
 
 El monitor de estado consiste en una aplicación con interfaz web que permite observar las estadísticas de uso del \textit{hardware} y de diversos procesos. Utiliza para la detección de los diferentes nodos el \textit{binding} de \textbf{Marco} en Python que realiza una consulta para descubrir que nodos están dispuestos a ofrecer el servicio \texttt{statusmonitor}. La respuesta de dicho comando es enviada al cliente, que establece conexiones directas a cada uno de los nodos a través de \textit{Websockets} \cite{rfc6455}. Esto es posible debido a que según la especificación del estándar de Websocket, la \textit{Same-Origin Policy} no es utilizada de la misma forma que en peticiones HTTP \cite{rfc6454}.
 
-% TODO\begin{figure}[H]
-% \centering
-% \includegraphics[width=\textwidth]{Diagrams/Sequence/statusmonitor}
-% \caption[Interacción completa del usuario con \textbf{Statusmonitor}]{Interacción completa del usuario con \textbf{statusmonitor}. Los mensajes a grupos \textit{multicast} se indican con ``*''}. El usuario se conecta a la página web, que en respuesta envía un código \textit{JavaScript} (además del código HTML y CSS) que solicita la lista de nodos disponibles. Una vez recibida la petición de los nodos disponibles, el servidor solicita dicha información a través de su instancia local de \textbf{Marco} (utilizando para ello un \textit{binding}. Cuando la instancia de \textbf{Marco} termina de recoger las respuestas, retorna la información al servidor, que a su vez retorna dicha información al cliente. Al recibir dicha información, el nodo crea una conexión \textit{Websocket} con el servicio statusmonitor que se encarga de enviar por dicha conexión la información local a intervalos de tiempo definidos.)
-% \label{fig:secuencia_statusmonitor}
-% \end{figure}
 
 \begin{figure}[H]
 	\centering
@@ -811,18 +721,6 @@ La aplicación es accesible a través de un panel web %TODO: o del comando marco
 
 Al igual que en el caso de la aplicación \textbf{statusmonitor} el \textbf{deployer} está creado utilizando el servidor web \textbf{Tornado} y todo el contenido enviado al usuario se reduce a archivos HTML, CSS y JavaScript. La comunicación entre el cliente y el servidor se realiza a través de peticiones \textit{AJAX} y \textit{Websockets}. Todo el control de la interfaz se delega a hojas de estilo CSS y JavaScript utilizando la biblioteca jQuery\footnote{\href{https://jquery.com/}{jquery.com/}}.
 
-
-
-% \paragraph{Autenticación}
-
-% La autenticación de los usuarios se realiza mediante el módulo \textbf{PAM} presente en cada nodo\cite{osf:rfc86}, utilizando \textbf{python-pam} para el acceso al mismo desde \textbf{Python}\cite{python-am}.
-
-%TODO: \begin{figure}[H]
-% \centering
-% %\includegraphics[width=\textwidth]{Chapter5/Sequence}
-% %\caption{Diagrama de secuencia de la interacción}
-% %\label{fig:sequence_deployer}
-% \end{figure}
 
 \subsection{Logger}
 
@@ -952,3 +850,15 @@ Incluso es posible incluir el descubrimiento en la propia llamada a \textbf{mpie
 \texttt{
 	mpiexec --hostfile <(marcodiscover -s executable --format mpi) ./executable
 }
+
+\section{Instalación}
+
+Se ha instalado la totalidad o parte del software desarrollado en los siguientes equipos, con resultados satisfactorios:
+
+\begin{itemize}
+	\item Equipo personal (Portátil x86\_64 con sistema operativo Ubuntu 14.04).
+	\item Equipo que actúa como nodo secundario (Sun Workstation con sistema operativo Xubuntu 12.04).
+	\item Placas Raspberry Pi B versión 1 y 2 con los sistemas operativos Arch Linux ARM y Raspbian.
+	\item Equipos Lenovo x86\_64 del aula Sun de la Facultad de Ciencias con sistema operativo Debian 7.
+	\item Instancia virtualizada de Debian 6 estable (ver anexo \ref{acceso}).
+\end{itemize}
